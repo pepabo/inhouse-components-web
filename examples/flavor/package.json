@@ -1,0 +1,28 @@
+{
+  "name": "flavor",
+  "private": true,
+  "scripts": {
+    "start": "start-storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@inhouse/button": "git+ssh://git@git.pepabo.com/inhouse/button.git#v0.1.1",
+    "@inhouse/flavor": "git+ssh://git@git.pepabo.com/inhouse/flippers-flavor.git#master",
+    "@inhouse/icon": "git+ssh://git@git.pepabo.com/inhouse/icon.git#v0.1.1",
+    "@inhouse/select": "git+ssh://git@git.pepabo.com/inhouse/select.git#v0.1.1",
+    "@inhouse/textfield": "git+ssh://git@git.pepabo.com/inhouse/textfield.git#v0.1.1",
+    "@storybook/html": "^6.0.0",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "camelcase": "^6.0.0",
+    "css-loader": "^4.2.1",
+    "inhouse-components-web": "git+ssh://git@git.pepabo.com/inhouse/components-web.git#v0.1.1",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {}
+}

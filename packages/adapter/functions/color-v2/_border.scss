@@ -1,0 +1,192 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+@use "../color-v2/button" as button-color;
+@use "../color-v2/implication" as implication-color;
+@use "../color-v2/semantic" as semantic-color;
+@use "../color-v2/surface" as surface-color;
+@use "../color-v2/text" as text-color;
+
+$border-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  border
+);
+
+@function get-border-color($brightness: light, $name: high_emphasis) {
+  $tokens: map.get($border-color-tokens, base);
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-names:
+    list.join(
+      helpers.get-emphasises(),
+      helpers.get-semantic-intentions(),
+      $separator: comma
+    );
+
+  @if list.index($available-names, $name) == null {
+    @error error-message.any-one-of(
+      $value: $name,
+      $available-values: $available-names
+    );
+  }
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  $brightness-tokens: map.get($tokens, $brightness);
+
+  @return map.get($brightness-tokens, $name);
+}
+
+@function get-avatar-border-color() {
+  @return map.get($border-color-tokens, avatar);
+}
+
+@function get-button-border-color(
+  $appearance: flat,
+  $color: neutral,
+  $state: enabled
+) {
+  $available-appearances: helpers.get-button-appearances();
+  $available-colors: helpers.get-button-colors();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @if list.index($available-colors, $color) == null {
+    @if helpers.is-color-code($value: $color) == false {
+      @error error-message.any-one-of(
+        $value: $color,
+        $available-values: $available-colors
+      );
+    }
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @if $appearance == flat {
+    @return transparent;
+  } @else if $appearance == outlined {
+    @return button-color.get-button-color($color: $color);
+  } @else if $appearance == solid {
+    @return button-color.get-button-color($color: $color);
+  } @else if $appearance == white {
+    @return transparent;
+  } @else if $appearance == transparent {
+    @return transparent;
+  } @else if $appearance == hollow {
+    @if $state == hover {
+      @return transparent;
+    }
+
+    @if $state == focused {
+      @return transparent;
+    } @else {
+      @return button-color.get-button-color($color: $color);
+    }
+  } @else {
+    @return button-color.get-button-color($color: $color);
+  }
+}
+
+@function get-checkbox-border-color($states: (enabled)) {
+  $available-states: helpers.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error error-message.any-one-of(
+        $value: $state,
+        $available-values: $available-states
+      );
+    }
+  }
+
+  @if list.index($states, selected) != null or list.index($states, mixed) != null {
+    @return surface-color.get-checkbox-surface-color($states: (selected));
+  } @else {
+    @return get-border-color($brightness: light, $name: mid_emphasis);
+  }
+}
+
+@function get-focus-ring-color($color: neutral) {
+  $available-colors: list.join(
+    helpers.get-semantic-intentions(),
+    helpers.get-implications(),
+    $separator: comma
+  );
+
+  @if list.index($available-colors, $color) == null {
+    @error error-message.any-one-of(
+      $value: $color,
+      $available-values: $available-colors
+    );
+  }
+
+  @if list.index(helpers.get-semantic-intentions(), $color) != null {
+    @return semantic-color.get-semantic-color(
+      $intention: $color,
+      $level: 500
+    );
+  } @else {
+    @return implication-color.get-implication-color(
+      $name: $color,
+      $level: 500
+    );
+  }
+}
+
+@function get-interactive-list-border-color() {
+  @return map.get($border-color-tokens, interactive-list);
+}
+
+@function get-interactive-table-border-color($element: header) {
+  $tokens: map.get($border-color-tokens, interactive-table);
+  $available-elements: header, data;
+
+  @if list.index($available-elements, $element) == null {
+    @error error-message.any-one-of(
+      $value: $element,
+      $available-values: $available-elements
+    );
+  }
+
+  @return map.get($tokens, $element);
+}
+
+@function get-radio-border-color($states: (enabled)) {
+  $available-states: helpers.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error error-message.any-one-of(
+        $value: $state,
+        $available-values: $available-states
+      );
+    }
+  }
+
+  @if list.index($states, selected) != null {
+    @return text-color.get-radio-text-color($states: (selected));
+  } @else {
+    @return get-border-color($brightness: light, $name: mid_emphasis);
+  }
+}
+
+@function get-side-navigation-border-color() {
+  @return map.get($border-color-tokens, side-navigation);
+}

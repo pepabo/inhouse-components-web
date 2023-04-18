@@ -1,0 +1,98 @@
+@use "./surface" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-surface-color() {
+  @return assert.equals(
+    functions.get-surface-color($brightness: light, $priority: secondary),
+    #f7f8fa
+  );
+}
+
+@function test-get-avatar-surface-color() {
+  @return assert.equals(
+    functions.get-avatar-surface-color(),
+    #f7f8fa
+  );
+}
+
+@function test-get-bottom-navigation-surface-color() {
+  @return assert.equals(
+    functions.get-bottom-navigation-surface-color($appearance: filled),
+    #1f7acc
+  );
+}
+
+@function test-get-solid-button-scrim-color() {
+  @return assert.equals(
+    functions.get-solid-button-scrim-color($position: start),
+    rgba(255, 255, 255, 0.25)
+  );
+}
+
+@function test-get-button-surface-color() {
+  @return assert.equals(
+    functions.get-button-surface-color(
+      $appearance: flat,
+      $brightness: light,
+      $color: neutral,
+      $state: enabled
+    ),
+    #585c63
+  );
+}
+
+@function test-get-button-surface-image() {
+  @return assert.equals(
+    "#{functions.get-button-surface-image($appearance: flat, $brightness: light, $color: neutral, $own-brightness: light, $state: enabled)}",
+    "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), linear-gradient(#585c63, #585c63)"
+  );
+}
+
+@function test-get-checkbox-surface-color() {
+  @return assert.equals(
+    functions.get-checkbox-surface-color($states: (enabled)),
+    #ffffff
+  );
+}
+
+@function test-get-header-surface-color() {
+  @return assert.equals(
+    functions.get-header-surface-color($appearance: filled),
+    #1f7acc
+  );
+}
+
+@function test-get-progress-indicator-track-surface-color() {
+  @return assert.equals(
+    functions.get-progress-indicator-track-surface-color(),
+    #e5f3ff
+  );
+}
+
+@function test-get-progress-indicator-indicator-surface-color() {
+  @return assert.equals(
+    functions.get-progress-indicator-indicator-surface-color(),
+    #3e93de
+  );
+}
+
+@function test-get-progress-indicator-indicator-surface-color() {
+  @return assert.equals(
+    functions.get-progress-indicator-indicator-surface-color(),
+    #3e93de
+  );
+}
+
+@function test-get-radio-surface-color() {
+  @return assert.equals(
+    functions.get-radio-surface-color(),
+    #ffffff
+  );
+}
+
+@function test-get-skeleton-surface-color() {
+  @return assert.equals(
+    functions.get-skeleton-surface-color(),
+    rgba(0, 0, 0, 0.2)
+  );
+}

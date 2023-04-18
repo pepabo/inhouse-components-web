@@ -1,0 +1,149 @@
+@use "sass:map";
+@use "sass:math";
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+@use "./functions";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: adapter.get-bottom-navigation-body-height();
+  background-color:
+    adapter.get-bottom-navigation-surface-color(
+      $appearance: map.get($option, appearance)
+    );
+  box-shadow:
+    adapter.get-elevation-box-shadow(
+      $level: 2
+    );
+
+  ._list {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ._item {
+    max-width: adapter.get-sizing-scale-size($level: 168);
+
+    &:first-child {
+      @for $i from adapter.get-bottom-navigation-item-min-length() through adapter.get-bottom-navigation-item-max-length() {
+        &:nth-last-child(#{$i}) {
+          &,
+          & ~ ._item {
+            width:
+              math.percentage(
+                math.div(1, $i)
+              );
+          }
+        }
+      }
+    }
+  }
+
+  ._action {
+    @include -action-style($appearance: map.get($option, appearance));
+  }
+
+  ._icon {
+    width: adapter.get-bottom-navigation-pict-height();
+    height: adapter.get-bottom-navigation-pict-height();
+    font-size: adapter.get-bottom-navigation-pict-height();
+  }
+
+  ._text {
+    width: 100%;
+    overflow: hidden;
+    font-size: adapter.get-font-size($level: xs);
+    line-height: adapter.get-line-height($density: dense);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @each $appearance in adapter.get-bottom-navigation-appearances() {
+    &.-appearance-#{"" + $appearance} {
+      background-color:
+        adapter.get-bottom-navigation-surface-color(
+          $appearance: $appearance
+        );
+
+      ._action {
+        @include -action-style($appearance: $appearance);
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-bottom-navigation {
+    @include style;
+  }
+}
+
+@mixin -action-style($appearance: white) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  color:
+    adapter.get-bottom-navigation-text-color(
+      $appearance: $appearance,
+      $state: enabled
+    );
+  text-align: center;
+  text-decoration: none;
+  background-color:
+    functions.get-action-background-color(
+      $appearance: $appearance,
+      $state: enabled
+    );
+  border: none;
+  outline: none;
+  cursor: pointer;
+  opacity:
+    functions.get-action-opacity(
+      $appearance: $appearance,
+      $is-activated: false,
+    );
+
+  &:hover,
+  &.--hover {
+    background-color:
+      functions.get-action-background-color(
+        $appearance: $appearance,
+        $state: hover
+      );
+  }
+
+  &:focus,
+  &.--focused {
+    background-color:
+      functions.get-action-background-color(
+        $appearance: $appearance,
+        $state: focused
+      );
+  }
+
+  &.--activated {
+    color:
+      adapter.get-bottom-navigation-text-color(
+        $appearance: $appearance,
+        $state: activated
+      );
+    opacity:
+      functions.get-action-opacity(
+        $appearance: $appearance,
+        $is-activated: true,
+      );
+  }
+}

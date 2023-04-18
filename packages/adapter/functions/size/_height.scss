@@ -1,0 +1,148 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$height-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  height
+);
+
+@function get-interactive-component-height-keys() {
+  $tokens: map.get($height-tokens, base);
+  $interactive-component-tokens: map.get($tokens, interactive-component);
+
+  @return map.keys($interactive-component-tokens);
+}
+
+@function get-interactive-component-height($level: m) {
+  $tokens: map.get($height-tokens, base);
+  $interactive-component-tokens: map.get($tokens, interactive-component);
+  $available-levels: get-interactive-component-height-keys();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($interactive-component-tokens, $level);
+}
+
+@function get-avatar-height($level: m) {
+  $tokens: map.get($height-tokens, avatar);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}
+
+@function get-bottom-navigation-body-height() {
+  $tokens: map.get($height-tokens, bottom-navigation);
+
+  @return map.get($tokens, body);
+}
+
+@function get-bottom-navigation-pict-height() {
+  $tokens: map.get($height-tokens, bottom-navigation);
+
+  @return map.get($tokens, pict);
+}
+
+@function get-icon-only-button-pict-height($level: m) {
+  $tokens: map.get($height-tokens, button);
+  $pict-tokens: map.get($tokens, pict);
+  $icon-only-tokens: map.get($pict-tokens, icon-only);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($icon-only-tokens, $level);
+}
+
+@function get-checkbox-parent-height() {
+  $tokens: map.get($height-tokens, checkbox);
+
+  @return map.get($tokens, parent);
+}
+
+@function get-checkbox-child-height() {
+  $tokens: map.get($height-tokens, checkbox);
+
+  @return map.get($tokens, child);
+}
+
+@function get-header-height() {
+  @return map.get($height-tokens, header);
+}
+
+@function get-interactive-list-pict-height() {
+  $tokens: map.get($height-tokens, interactive-list);
+
+  @return map.get($tokens, pict);
+}
+
+@function get-interactive-list-edge-element-height() {
+  $tokens: map.get($height-tokens, interactive-list);
+
+  @return map.get($tokens, edge-element);
+}
+
+@function get-interactive-table-pict-height() {
+  $tokens: map.get($height-tokens, interactive-table);
+
+  @return map.get($tokens, pict);
+}
+
+@function get-circular-progress-indicator-height() {
+  $tokens: map.get($height-tokens, progress-indicator);
+
+  @return map.get($tokens, circular);
+}
+
+@function get-radio-parent-height() {
+  $tokens: map.get($height-tokens, radio);
+
+  @return map.get($tokens, parent);
+}
+
+@function get-radio-child-background-height() {
+  $tokens: map.get($height-tokens, radio);
+  $child-tokens: map.get($tokens, child);
+
+  @return map.get($child-tokens, background);
+}
+
+@function get-radio-child-foreground-height() {
+  $tokens: map.get($height-tokens, radio);
+  $child-tokens: map.get($tokens, child);
+
+  @return map.get($child-tokens, foreground);
+}
+
+@function get-thumbnail-height($level: m) {
+  $tokens: map.get($height-tokens, thumbnail);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}

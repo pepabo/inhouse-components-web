@@ -1,0 +1,22 @@
+{
+  "name": "@inhouse/grid",
+  "description": "Inhouse Components for the web grid component",
+  "version": "0.39.0",
+  "publishConfig": {
+    "registry": "https://npm.git.pepabo.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.pepabo.com/inhouse/components-web.git",
+    "directory": "packages/grid"
+  },
+  "dependencies": {
+    "@inhouse/adapter": "^0.39.0",
+    "@inhouse/container": "^0.39.0"
+  },
+  "devDependencies": {
+    "@inhouse/constants": "^0.39.0",
+    "@inhouse/flavor": "^0.39.0",
+    "@inhouse/tokens": "^0.9.0"
+  }
+}

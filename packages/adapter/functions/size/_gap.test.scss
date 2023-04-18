@@ -1,0 +1,9 @@
+@use "./gap" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-gap-size() {
+  @return assert.equals(
+    functions.get-gap-size($level: m),
+    1.5rem
+  );
+}

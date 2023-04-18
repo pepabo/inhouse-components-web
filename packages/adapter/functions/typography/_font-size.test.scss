@@ -1,0 +1,9 @@
+@use "./font-size" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-font-size() {
+  @return assert.equals(
+    functions.get-font-size($level: m),
+    1rem
+  );
+}

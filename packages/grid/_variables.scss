@@ -1,0 +1,9 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens" as flavor;
+
+$default-option: (
+  direction: ltr
+);
+
+$total-col-count: 12;

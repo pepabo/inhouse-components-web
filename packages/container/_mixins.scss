@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "sass:list";
+@use "@inhouse/adapter/mixins" as adapter-mixins;
+@use "@inhouse/adapter/functions" as adapter-functions;
+@use "./functions";
+
+@mixin style() {
+  box-sizing: border-box;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: functions.get-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+  padding-left: functions.get-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+
+  @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
+    @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
+      padding-right: functions.get-horizontal-gap($boundary-size-level);
+      padding-left: functions.get-horizontal-gap($boundary-size-level);
+    }
+  }
+
+  @each $content-size in adapter-functions.get-content-sizes() {
+    &.-size-#{$content-size} {
+      max-width: adapter-functions.get-content-size($level: $content-size);
+    }
+  }
+
+  &.-is-gapless {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@mixin export {
+  .in-container {
+    @include style;
+  }
+}

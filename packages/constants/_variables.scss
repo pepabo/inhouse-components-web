@@ -1,0 +1,140 @@
+$priorities: (
+  primary,
+  secondary,
+  tertiary
+);
+
+$states: (
+  enabled,
+  hover,
+  focused,
+  selected,
+  activated,
+  dragged,
+  disabled,
+  mixed,
+) !default;
+
+$sizes: (xxs, xs, s, m, l, xl, xxl, xxxl) !default;
+
+$semantic-intentions: (
+  informative,
+  neutral,
+  positive,
+  notice,
+  negative,
+  attention,
+) !default;
+
+$implications: (
+  interactive,
+  favorite,
+  rate,
+) !default;
+
+$densities: (
+  dense,
+  normal,
+  comfort
+) !default;
+
+$emphasises: (
+  high_emphasis,
+  mid_emphasis,
+  low_emphasis
+) !default;
+
+$shapes: (
+  circle,
+  square
+) !default;
+
+$brightnesses: (
+  light,
+  dark
+) !default;
+
+$widths: (
+  auto,
+  full,
+  half,
+  third
+);
+
+$orders: (
+  asc,
+  desc
+) !default;
+
+$positions: (
+  relative,
+  fixed,
+  sticky
+) !default;
+
+$elevation-levels: 0, 1, 2, 3, 4, 5, 6 !default;
+
+$layer-levels: 1, 2, 3, 4, 5, 6 !default;
+
+$minor-stack-types: over, on !default;
+
+$avatar-sizes: (xs, s, m, l) !default;
+
+$thumbnail-sizes: (s, m, l) !default;
+
+$header-appearances: (
+  white,
+  filled,
+  transparent,
+);
+
+$scrim-appearances: (
+  hollow,
+  transparent,
+);
+
+$bottom-navigation-appearances: (
+  white,
+  filled
+) !default;
+
+$bottom-navigation-item-min-length: 3 !default;
+$bottom-navigation-item-max-length: 5 !default;
+
+$button-appearances: (
+  flat,
+  outlined,
+  solid,
+  white,
+  transparent,
+  hollow,
+) !default;
+
+$button-colors: (
+  neutral,
+  negative,
+  interactive,
+  favorite,
+) !default;
+
+$cell-sizes: (
+  s,
+  m,
+  l
+);
+
+$interactive-table-align-values: (
+  start,
+  end
+) !default;
+
+$table-align-values: (
+  start,
+  end
+) !default;
+
+$major-stack-range: 10000 !default;
+
+$minor-stack-over-range: 1000 !default;
+
+$minor-stack-on-range: 10 !default;

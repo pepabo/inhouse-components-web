@@ -1,0 +1,252 @@
+@use "sass:map";
+@use "./pepper-color";
+
+// 数値のインデントを揃えているせいでstylelintがエラーと判定してしまうため、
+// ソースコードの読みやすさを優先させてlintの対象から除外する
+/* stylelint-disable function-comma-space-after */
+
+$select-state-color-matrix: (
+  informative: (
+    text: (
+      enabled:  pepper-color.color(blue, 800),
+      hover:    pepper-color.color(blue, 800),
+      focused:  pepper-color.color(blue, 800),
+      disabled: pepper-color.color(blue, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(blue,    50),
+      hover:    pepper-color.color(blue,   100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(blue,   200)
+    ),
+    border: (
+      enabled:  pepper-color.color(blue,  400),
+      hover:    pepper-color.color(blue,  600),
+      focused:  pepper-color.color(blue,  700),
+      disabled: pepper-color.color(blue,  400)
+    )
+  ),
+  neutral: (
+    text: (
+      enabled:  pepper-color.color(gray, 800),
+      hover:    pepper-color.color(gray, 800),
+      focused:  pepper-color.color(gray, 800),
+      disabled: pepper-color.color(gray, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(gray,    50),
+      hover:    pepper-color.color(gray,   100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(gray,   200)
+    ),
+    border: (
+      enabled:  pepper-color.color(gray,  400),
+      hover:    pepper-color.color(gray,  600),
+      focused:  pepper-color.color(blue,  700),
+      disabled: pepper-color.color(gray,  400)
+    )
+  ),
+  positive: (
+    text: (
+      enabled:  pepper-color.color(green, 800),
+      hover:    pepper-color.color(green, 800),
+      focused:  pepper-color.color(green, 800),
+      disabled: pepper-color.color(green, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(green,   50),
+      hover:    pepper-color.color(green,  100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(green,  200)
+    ),
+    border: (
+      enabled:  pepper-color.color(green,  400),
+      hover:    pepper-color.color(green,  600),
+      focused:  pepper-color.color(green,  700),
+      disabled: pepper-color.color(green,  400)
+    )
+  ),
+  notice: (
+    text: (
+      enabled:  pepper-color.color(yellow, 800),
+      hover:    pepper-color.color(yellow, 800),
+      focused:  pepper-color.color(yellow, 800),
+      disabled: pepper-color.color(yellow, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(yellow,  50),
+      hover:    pepper-color.color(yellow, 100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(yellow, 200)
+    ),
+    border: (
+      enabled:  pepper-color.color(yellow,  400),
+      hover:    pepper-color.color(yellow,  600),
+      focused:  pepper-color.color(yellow,  700),
+      disabled: pepper-color.color(yellow,  400)
+    )
+  ),
+  negative: (
+    text: (
+      enabled:  pepper-color.color(red, 800),
+      hover:    pepper-color.color(red, 800),
+      focused:  pepper-color.color(red, 800),
+      disabled: pepper-color.color(red, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(red,     50),
+      hover:    pepper-color.color(red,    100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(red,    200)
+    ),
+    border: (
+      enabled:  pepper-color.color(red,  400),
+      hover:    pepper-color.color(red,  600),
+      focused:  pepper-color.color(red,  700),
+      disabled: pepper-color.color(red,  400)
+    )
+  ),
+  attention: (
+    text: (
+      enabled:  pepper-color.color(orange, 800),
+      hover:    pepper-color.color(orange, 800),
+      focused:  pepper-color.color(orange, 800),
+      disabled: pepper-color.color(orange, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(orange,  50),
+      hover:    pepper-color.color(orange, 100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(orange, 200)
+    ),
+    border: (
+      enabled:  pepper-color.color(orange,  400),
+      hover:    pepper-color.color(orange,  600),
+      focused:  pepper-color.color(orange,  700),
+      disabled: pepper-color.color(orange,  400)
+    )
+  )
+) !default;
+
+$textfield-state-color-matrix: (
+  informative: (
+    text: (
+      enabled:  pepper-color.color(blue, 800),
+      hover:    pepper-color.color(blue, 800),
+      focused:  pepper-color.color(blue, 800),
+      disabled: pepper-color.color(blue, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(blue,    50),
+      hover:    pepper-color.color(blue,   100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(blue,   200)
+    ),
+    border: (
+      enabled:  pepper-color.color(blue,  400),
+      hover:    pepper-color.color(blue,  600),
+      focused:  pepper-color.color(blue,  700),
+      disabled: pepper-color.color(blue,  400)
+    )
+  ),
+  neutral: (
+    text: (
+      enabled:  pepper-color.color(gray, 800),
+      hover:    pepper-color.color(gray, 800),
+      focused:  pepper-color.color(gray, 800),
+      disabled: pepper-color.color(gray, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(gray,    50),
+      hover:    pepper-color.color(gray,   100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(gray,   200)
+    ),
+    border: (
+      enabled:  pepper-color.color(gray,  400),
+      hover:    pepper-color.color(gray,  600),
+      focused:  pepper-color.color(blue,  700),
+      disabled: pepper-color.color(gray,  400)
+    )
+  ),
+  positive: (
+    text: (
+      enabled:  pepper-color.color(green, 800),
+      hover:    pepper-color.color(green, 800),
+      focused:  pepper-color.color(green, 800),
+      disabled: pepper-color.color(green, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(green,   50),
+      hover:    pepper-color.color(green,  100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(green,  200)
+    ),
+    border: (
+      enabled:  pepper-color.color(green,  400),
+      hover:    pepper-color.color(green,  600),
+      focused:  pepper-color.color(green,  700),
+      disabled: pepper-color.color(green,  400)
+    )
+  ),
+  notice: (
+    text: (
+      enabled:  pepper-color.color(yellow, 800),
+      hover:    pepper-color.color(yellow, 800),
+      focused:  pepper-color.color(yellow, 800),
+      disabled: pepper-color.color(yellow, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(yellow,  50),
+      hover:    pepper-color.color(yellow, 100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(yellow, 200)
+    ),
+    border: (
+      enabled:  pepper-color.color(yellow,  400),
+      hover:    pepper-color.color(yellow,  600),
+      focused:  pepper-color.color(yellow,  700),
+      disabled: pepper-color.color(yellow,  400)
+    )
+  ),
+  negative: (
+    text: (
+      enabled:  pepper-color.color(red, 800),
+      hover:    pepper-color.color(red, 800),
+      focused:  pepper-color.color(red, 800),
+      disabled: pepper-color.color(red, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(red,     50),
+      hover:    pepper-color.color(red,    100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(red,    200)
+    ),
+    border: (
+      enabled:  pepper-color.color(red,  400),
+      hover:    pepper-color.color(red,  600),
+      focused:  pepper-color.color(red,  700),
+      disabled: pepper-color.color(red,  400)
+    )
+  ),
+  attention: (
+    text: (
+      enabled:  pepper-color.color(orange, 800),
+      hover:    pepper-color.color(orange, 800),
+      focused:  pepper-color.color(orange, 800),
+      disabled: pepper-color.color(orange, 600)
+    ),
+    background: (
+      enabled:  pepper-color.color(orange,  50),
+      hover:    pepper-color.color(orange, 100),
+      focused:  pepper-color.color(white, 1000),
+      disabled: pepper-color.color(orange, 200)
+    ),
+    border: (
+      enabled:  pepper-color.color(orange,  400),
+      hover:    pepper-color.color(orange,  600),
+      focused:  pepper-color.color(orange,  700),
+      disabled: pepper-color.color(orange,  400)
+    )
+  )
+) !default;

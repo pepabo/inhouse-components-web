@@ -1,0 +1,20 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$sizing-scale-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  scale
+);
+
+@function get-sizing-scale-size($level: 16) {
+  $value: map.get($sizing-scale-tokens, "#{$level}");
+
+  @if $value == null {
+    @error error-message.not-specified($value: $level);
+  }
+
+  @return $value;
+}

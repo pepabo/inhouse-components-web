@@ -1,0 +1,27 @@
+{
+  "name": "@inhouse/stories-web",
+  "description": "Inhouse Components for the web component",
+  "version": "0.39.0",
+  "publishConfig": {
+    "registry": "https://npm.git.pepabo.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.pepabo.com/inhouse/components-web.git",
+    "directory": "packages/stories-web"
+  },
+  "dependencies": {
+    "core-js": "3.29.1"
+  },
+  "devDependencies": {
+    "@storybook/react": "6.5.0-alpha.14",
+    "@types/react": "18.0.28",
+    "react": "17.0.2",
+    "typescript": "4.8.4"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc"
+  }
+}

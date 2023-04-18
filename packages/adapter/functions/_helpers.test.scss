@@ -1,0 +1,37 @@
+@use "./helpers" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-transition-value() {
+  @return assert.equals(
+    functions.get-transition-value(),
+    none
+  );
+}
+
+@function test-get-major-stack-z-index() {
+  @return assert.equals(
+    functions.get-major-stack-z-index($layer: 2),
+    20000
+  );
+}
+
+@function test-get-minor-stack-over-z-index() {
+  @return assert.equals(
+    functions.get-minor-stack-z-index($type: over, $level: 2),
+    2000
+  );
+}
+
+@function test-get-minor-stack-on-z-index() {
+  @return assert.equals(
+    functions.get-minor-stack-z-index($type: on, $level: 2),
+    20
+  );
+}
+
+@function test-is-color-code() {
+  @return assert.equals(
+    functions.is-color-code(#000000),
+    true
+  );
+}

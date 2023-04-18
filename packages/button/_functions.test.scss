@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+@use "sass:meta";
+
+@function test-get-horizontal-gap() {
+  @return assert.equals(
+    functions.get-horizontal-gap($shape: square),
+    0.75rem
+  );
+}
+
+@function test-get-font-weight() {
+  @return assert.equals(
+    functions.get-font-weight($appearance: flat),
+    normal
+  );
+}
+
+@function test-get-border-radius() {
+  @return assert.equals(
+    functions.get-border-radius($size: m, $shape: square),
+    0.25rem
+  );
+}
+
+@function test-get-box-shadow() {
+  @return assert.equals(
+    functions.get-box-shadow($appearance: white, $color: neutral, $state: enabled),
+    none
+  );
+}
+
+@function test-get-only-leading-width() {
+  $actual: functions.get-only-leading-width($size: m);
+
+  @return assert.equals("#{$actual}", "calc(2.5rem - 0.125rem)");
+}

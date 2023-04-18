@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+
+$button-shadow-tokens: map.get(map.get(tokens.$tokens, shadow), button);
+
+@function get-solid-button-highlight-box-shadow() {
+  $solid-button-tokens: map.get($button-shadow-tokens, solid);
+
+  @return map.get($solid-button-tokens, highlight);
+}
+
+@function get-solid-button-shadow-box-shadow() {
+  $solid-button-tokens: map.get($button-shadow-tokens, solid);
+
+  @return map.get($solid-button-tokens, shadow);
+}

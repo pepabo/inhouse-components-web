@@ -1,0 +1,9 @@
+@use "./option" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-option-color() {
+  @return assert.equals(
+    functions.get-option-color($name: blue, $level: 600),
+    #1f7acc
+  );
+}

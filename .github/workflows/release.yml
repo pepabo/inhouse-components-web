@@ -1,0 +1,40 @@
+name: release
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  release:
+    runs-on: normal
+    container:
+      image: node:16
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup .npmrc
+        run: echo "//npm.git.pepabo.com/:_authToken=${{ secrets.GHE_TOKEN }}" >> $HOME/.npmrc
+      - name: Pick pull request IDs
+        run: |
+          git tag -l --sort=-v:refname | head -n 2 | tail -n 1 | xargs -ITAG git log TAG..HEAD --merges --pretty=format:"%s" | awk '{print substr($4, 2)}' > .pull_requests
+          cat .pull_requests
+      - name: Run npm install
+        run: npm install
+      - name: Create changelog
+        run: |
+          npm run changelog
+          cat CHANGELOG.md
+        env:
+          GHE_TOKEN: ${{ secrets.GHE_TOKEN }}
+      - uses: pepactions/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHE_TOKEN }}
+        with:
+          body_path: CHANGELOG.md
+      - name: Notify
+        if: always()
+        uses: dojineko/slack-notify@v1
+        with:
+          github_host: git.pepabo.com
+          job_status: ${{ job.status }}
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}

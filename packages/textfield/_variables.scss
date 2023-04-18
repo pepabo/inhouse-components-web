@@ -1,0 +1,472 @@
+@use "@inhouse/adapter/functions" as adapter;
+@use "sass:math";
+
+$default-option: (
+  appearance: outlined,
+  size: m,
+  width: auto,
+  color: neutral
+);
+
+$proto: (
+  enabled: (
+    display: inline-block,
+    box-sizing: border-box,
+    position: relative,
+    vertical-align: text-bottom
+  )
+);
+
+$width: (
+  auto: (
+    width: auto
+  ),
+  full: (
+    display: block,
+    width: 100%,
+    max-width: 100%
+  ),
+  half: (
+    min-width: (100% * 0.5)
+  ),
+  third: (
+    min-width: math.div(100%, 3)
+  )
+);
+
+$input-proto: (
+  enabled: (
+    display: block,
+    box-sizing: border-box,
+    width: 100%,
+    font-family: inherit,
+    border: none,
+    outline: 0,
+    transition: adapter.get-transition-value(),
+    appearance: none
+  ),
+  enabled-textarea: (
+    height: auto !important,
+    font-family: inherit
+  ),
+  not-disabled: (
+    cursor: text
+  ),
+  focused: (
+    background-color: adapter.get-option-color($name: white)
+  ),
+  hover: (),
+  disabled: (
+    cursor: not-allowed
+  )
+);
+
+$input-color-informative: (
+  enabled: (
+    color: adapter.get-textfield-text-state-color($intention: informative, $state: enabled),
+    background-color: adapter.get-textfield-background-state-color($intention: informative, $state: enabled)
+  ),
+  hover: (
+    background-color: adapter.get-textfield-background-state-color($intention: informative, $state: hover)
+  ),
+  disabled: (
+    color: adapter.get-textfield-text-state-color($intention: informative, $state: disabled),
+    background-color: adapter.get-textfield-background-state-color($intention: informative, $state: disabled)
+  )
+);
+
+$input-color-neutral: (
+  enabled: (
+    color: adapter.get-textfield-text-state-color($intention: neutral, $state: enabled),
+    background-color: adapter.get-textfield-background-state-color($intention: neutral, $state: enabled)
+  ),
+  hover: (
+    background-color: adapter.get-textfield-background-state-color($intention: neutral, $state: hover)
+  ),
+  disabled: (
+    color: adapter.get-textfield-text-state-color($intention: neutral, $state: disabled),
+    background-color: adapter.get-textfield-background-state-color($intention: neutral, $state: disabled)
+  )
+);
+
+$input-color-positive: (
+  enabled: (
+    color: adapter.get-textfield-text-state-color($intention: positive, $state: enabled),
+    background-color: adapter.get-textfield-background-state-color($intention: positive, $state: enabled)
+  ),
+  hover: (
+    background-color: adapter.get-textfield-background-state-color($intention: positive, $state: hover)
+  ),
+  disabled: (
+    color: adapter.get-textfield-text-state-color($intention: positive, $state: disabled),
+    background-color: adapter.get-textfield-background-state-color($intention: positive, $state: disabled)
+  )
+);
+
+$input-color-notice: (
+  enabled: (
+    color: adapter.get-textfield-text-state-color($intention: notice, $state: enabled),
+    background-color: adapter.get-textfield-background-state-color($intention: notice, $state: enabled)
+  ),
+  hover: (
+    background-color: adapter.get-textfield-background-state-color($intention: notice, $state: hover)
+  ),
+  disabled: (
+    color: adapter.get-textfield-text-state-color($intention: notice, $state: disabled),
+    background-color: adapter.get-textfield-background-state-color($intention: notice, $state: disabled)
+  )
+);
+
+$input-color-negative: (
+  enabled: (
+    color: adapter.get-textfield-text-state-color($intention: negative, $state: enabled),
+    background-color: adapter.get-textfield-background-state-color($intention: negative, $state: enabled)
+  ),
+  hover: (
+    background-color: adapter.get-textfield-background-state-color($intention: negative, $state: hover)
+  ),
+  disabled: (
+    color: adapter.get-textfield-text-state-color($intention: negative, $state: disabled),
+    background-color: adapter.get-textfield-background-state-color($intention: negative, $state: disabled)
+  )
+);
+
+$input-color-attention: (
+  enabled: (
+    color: adapter.get-textfield-text-state-color($intention: attention, $state: enabled),
+    background-color: adapter.get-textfield-background-state-color($intention: attention, $state: enabled)
+  ),
+  hover: (
+    background-color: adapter.get-textfield-background-state-color($intention: attention, $state: hover)
+  ),
+  disabled: (
+    color: adapter.get-textfield-text-state-color($intention: attention, $state: disabled),
+    background-color: adapter.get-textfield-background-state-color($intention: attention, $state: disabled)
+  )
+);
+
+$input-size: (
+  s: (
+    height: adapter.get-interactive-component-height($level: s),
+    padding: #{(adapter.get-interactive-component-height($level: s) * 0.5) - (adapter.get-line-height($level: s, $density: normal) * 0.5)} adapter.get-spacing-size($level: s),
+    font-size: adapter.get-font-size($level: s)
+  ),
+  m: (
+    height: adapter.get-interactive-component-height($level: m),
+    padding: #{(adapter.get-interactive-component-height($level: m) * 0.5) - (adapter.get-line-height($level: m, $density: normal) * 0.5)} adapter.get-spacing-size($level: m),
+    font-size: adapter.get-font-size($level: m)
+  ),
+  l: (
+    height: adapter.get-interactive-component-height($level: l),
+    padding: #{(adapter.get-interactive-component-height($level: l) * 0.5) - (adapter.get-line-height($level: l, $density: normal) * 0.5)} adapter.get-spacing-size($level: l),
+    font-size: adapter.get-font-size($level: l)
+  )
+);
+
+$input-size-icon-before: (
+  s: (
+    padding-left: #{adapter.get-spacing-size($level: xs) + adapter.get-font-size($level: m) + adapter.get-spacing-size($level: xxs)}
+  ),
+  m: (
+    padding-left: #{adapter.get-spacing-size($level: s) + adapter.get-font-size($level: m) + adapter.get-spacing-size($level: xs)}
+  ),
+  l: (
+    padding-left: #{adapter.get-spacing-size($level: m) + adapter.get-font-size($level: l) + adapter.get-spacing-size($level: s)}
+  )
+);
+
+$input-appearance-outlined: (
+  enabled: (),
+  hover: (),
+  focused: (),
+  disabled: ()
+);
+
+$input-appearance-outlined-size: (
+  s: (
+    border-radius: adapter.get-radius-size($level: m)
+  ),
+  m: (
+    border-radius: adapter.get-radius-size($level: m)
+  ),
+  l: (
+    border-radius: adapter.get-radius-size($level: l)
+  )
+);
+
+$input-appearance-outlined-color-informative: (
+  enabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: informative, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: informative, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: informative, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: informative, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: informative, $state: disabled)}"
+  )
+);
+
+$input-appearance-outlined-color-neutral: (
+  enabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: neutral, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: neutral, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: neutral, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: neutral, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: neutral, $state: disabled)}"
+  )
+);
+
+$input-appearance-outlined-color-positive: (
+  enabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: positive, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: positive, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: positive, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: positive, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: positive, $state: disabled)}"
+  )
+);
+
+$input-appearance-outlined-color-notice: (
+  enabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: notice, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: notice, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: notice, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: notice, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: notice, $state: disabled)}"
+  )
+);
+
+$input-appearance-outlined-color-negative: (
+  enabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: negative, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: negative, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: negative, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: negative, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: negative, $state: disabled)}"
+  )
+);
+
+$input-appearance-outlined-color-attention: (
+  enabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: attention, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: attention, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: attention, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: attention, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-textfield-border-state-color($intention: attention, $state: disabled)}"
+  )
+);
+
+$input-appearance-filled: (
+  enabled: (
+    border-radius: 0
+  ),
+  hover: (),
+  focused: (),
+  disabled: ()
+);
+
+$input-appearance-filled-color-informative: (
+  enabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: informative, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: informative, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: informative, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: informative, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: informative, $state: disabled)}"
+  )
+);
+
+$input-appearance-filled-color-neutral: (
+  enabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: neutral, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: neutral, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: neutral, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: neutral, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: neutral, $state: disabled)}"
+  )
+);
+
+$input-appearance-filled-color-positive: (
+  enabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: positive, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: positive, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: positive, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: positive, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: positive, $state: disabled)}"
+  )
+);
+
+$input-appearance-filled-color-notice: (
+  enabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: notice, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: notice, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: notice, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: notice, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: notice, $state: disabled)}"
+  )
+);
+
+$input-appearance-filled-color-negative: (
+  enabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: negative, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: negative, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: negative, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: negative, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: negative, $state: disabled)}"
+  )
+);
+
+$input-appearance-filled-color-attention: (
+  enabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: attention, $state: enabled)}"
+  ),
+  hover: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: attention, $state: hover)}"
+  ),
+  focused: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: attention, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-textfield-border-state-color($intention: attention, $state: focused))}"
+  ),
+  disabled: (
+    box-shadow: "inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-textfield-border-state-color($intention: attention, $state: disabled)}"
+  )
+);
+
+$icon-proto: (
+  enabled: (
+    display: inline-flex,
+    align-items: center,
+    justify-content: center,
+    position: absolute,
+    top: 0,
+    bottom: 0,
+    pointer-events: none
+  ),
+  disabled: ()
+);
+
+$icon-size: (
+  s: (
+    left: adapter.get-spacing-size($level: xs),
+    width: adapter.get-font-size($level: m),
+    height: adapter.get-interactive-component-height($level: s),
+    font-size: adapter.get-font-size($level: m)
+  ),
+  m: (
+    left: adapter.get-spacing-size($level: s),
+    width: adapter.get-font-size($level: m),
+    height: adapter.get-interactive-component-height($level: m),
+    font-size: adapter.get-font-size($level: m)
+  ),
+  l: (
+    left: adapter.get-spacing-size($level: m),
+    width: adapter.get-font-size($level: l),
+    height: adapter.get-interactive-component-height($level: l),
+    font-size: adapter.get-font-size($level: l)
+  )
+);
+
+$icon-color-informative: (
+  enabled: (
+    color: adapter.get-select-text-state-color($intention: informative, $state: enabled)
+  ),
+  disabled: (
+    color: adapter.get-select-text-state-color($intention: informative, $state: disabled)
+  )
+);
+
+$icon-color-neutral: (
+  enabled: (
+    color: adapter.get-select-text-state-color($intention: neutral, $state: enabled)
+  ),
+  disabled: (
+    color: adapter.get-select-text-state-color($intention: neutral, $state: disabled)
+  )
+);
+
+$icon-color-positive: (
+  enabled: (
+    color: adapter.get-select-text-state-color($intention: positive, $state: enabled)
+  ),
+  disabled: (
+    color: adapter.get-select-text-state-color($intention: positive, $state: disabled)
+  )
+);
+
+$icon-color-notice: (
+  enabled: (
+    color: adapter.get-select-text-state-color($intention: notice, $state: enabled)
+  ),
+  disabled: (
+    color: adapter.get-select-text-state-color($intention: notice, $state: disabled)
+  )
+);
+
+$icon-color-negative: (
+  enabled: (
+    color: adapter.get-select-text-state-color($intention: negative, $state: enabled)
+  ),
+  disabled: (
+    color: adapter.get-select-text-state-color($intention: negative, $state: disabled)
+  )
+);
+
+$icon-color-attention: (
+  enabled: (
+    color: adapter.get-select-text-state-color($intention: attention, $state: enabled)
+  ),
+  disabled: (
+    color: adapter.get-select-text-state-color($intention: attention, $state: disabled)
+  )
+);

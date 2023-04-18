@@ -1,0 +1,30 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$implication-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  implication
+);
+
+@function get-implication-color($name: interactive, $level: 1000) {
+  $available-implications: helpers.get-implications();
+
+  @if list.index($available-implications, $name) == null {
+    @error error-message.any-one-of(
+      $value: $name,
+      $available-values: $available-implications
+    );
+  }
+
+  $implication-tokens: map.get($implication-color-tokens, $name);
+  $value: map.get($implication-tokens, "#{$level}");
+
+  @if $value == null {
+    @error error-message.not-specified($value: $level);
+  }
+
+  @return $value;
+}

@@ -1,0 +1,146 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens" as flavor;
+@use "./helpers";
+
+@function get-select-text-state-color($intention, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-select-text-state-color($intention, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-select-text-state-color($intention, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  @return -get-select-state-color($intention: $intention, $property: text, $state: $state);
+}
+
+@function get-select-background-state-color($intention, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-select-background-state-color($intention, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-select-background-state-color($intention, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  @return -get-select-state-color($intention: $intention, $property: background, $state: $state);
+}
+
+@function get-select-border-state-color($intention, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-select-border-state-color($intention, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-select-border-state-color($intention, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  @return -get-select-state-color($intention: $intention, $property: border, $state: $state);
+}
+
+@function get-textfield-text-state-color($intention, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-textfield-text-state-color($intention, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-textfield-text-state-color($intention, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  @return -get-textfield-state-color($intention: $intention, $property: text, $state: $state);
+}
+
+@function get-textfield-background-state-color($intention, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-textfield-background-state-color($intention, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-textfield-background-state-color($intention, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  @return -get-textfield-state-color($intention: $intention, $property: background, $state: $state);
+}
+
+@function get-textfield-border-state-color($intention, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-textfield-border-state-color($intention, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-textfield-border-state-color($intention, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  @return -get-textfield-state-color($intention: $intention, $property: border, $state: $state);
+}
+
+@function -get-select-state-color($intention, $property, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-properties: text, background, border;
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-select-state-color($intention, $property, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-properties, $property) == null {
+    @error "-get-select-state-color($intention, $property, $state)の$propertyには #{$available-properties} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-select-state-color($intention, $property, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  $value: map.get(map.get(map.get(map.get(map.get(flavor.$tokens, color), textbox), $intention), $property), $state);
+
+  @if $value == null {
+    @error "-get-select-state-color($intention: #{$intention}, $property: #{$property}, $state: #{$state})はFlavorで指定されていません";
+  }
+
+  @return $value;
+}
+
+@function -get-textfield-state-color($intention, $property, $state) {
+  $available-intentions: helpers.get-semantic-intentions();
+  $available-properties: text, background, border;
+  $available-states: helpers.get-states();
+
+  @if list.index($available-intentions, $intention) == null {
+    @error "-get-textfield-state-color($intention, $property, $state)の$intentionには #{$available-intentions} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-properties, $property) == null {
+    @error "-get-textfield-state-color($intention, $property, $state)の$propertyには #{$available-properties} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "-get-textfield-state-color($intention, $property, $state)の$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  $value: map.get(map.get(map.get(map.get(map.get(flavor.$tokens, color), textbox), $intention), $property), $state);
+
+  @if $value == null {
+    @error "-get-textfield-state-color($intention: #{$intention}, $property: #{$property}, $state: #{$state})はFlavorで指定されていません";
+  }
+
+  @return $value;
+}

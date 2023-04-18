@@ -1,0 +1,52 @@
+name: CI
+on:
+  push:
+    branches: ['**']
+    tags-ignore: ['**']
+
+jobs:
+  test:
+    runs-on: normal
+    container:
+      image: node:16
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup .npmrc
+        run: echo "//npm.git.pepabo.com/:_authToken=${{ secrets.GHE_TOKEN }}" >> $HOME/.npmrc
+      - name: Run npm install
+        run: npm install
+      - name: Bootstrap lerna
+        run: npm run bootstrap
+      - name: Workaround for stale package-lock.json
+        run: |
+          git config --global user.email 'designers@pepabo.com' && git config --global user.name 'GitHub Actions'
+          git add .
+          git commit -m '[ci skip] regenerate package-lock.json' || true
+          git push origin ${GITHUB_REF#refs/heads/} || true
+      - name: Run lint
+        run: npm run lint
+      - name: Run test
+        run: npm test
+      - name: Build Artifacts
+        run: npm run build
+      - name: Workaround for detached HEAD
+        run: |
+          git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
+      - uses: pepactions/storycap-action@v1
+        with:
+          strategy: http-server
+      - name: Run visual regression test
+        run: npm run vrt
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GHE_TOKEN: ${{ secrets.GHE_TOKEN }}
+      - name: Notify
+        if: always()
+        uses: dojineko/slack-notify@v1
+        with:
+          github_host: git.pepabo.com
+          job_status: ${{ job.status }}
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}

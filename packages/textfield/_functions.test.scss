@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-compose-enabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-enabled-value(), display),
+    inline-block
+  );
+}
+
+@function test-compose-input-enabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-input-enabled-value(), background-color),
+    #f7f8fa
+  );
+}
+
+@function test-compose-input-enabled-textarea-value() {
+  @return assert.equals(
+    map.get(functions.compose-input-enabled-textarea-value(), height),
+    auto !important
+  );
+}
+
+@function test-compose-input-not-disabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-input-not-disabled-value(), cursor),
+    text
+  );
+}
+
+@function test-compose-input-hover-value() {
+  @return assert.equals(
+    map.get(functions.compose-input-hover-value(), background-color),
+    #edeef0
+  );
+}
+
+@function test-compose-input-focused-value() {
+  @return assert.equals(
+    map.get(functions.compose-input-focused-value(), background-color),
+    #fff
+  );
+}
+
+@function test-compose-input-disabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-input-disabled-value(), background-color),
+    #dee0e3
+  );
+}

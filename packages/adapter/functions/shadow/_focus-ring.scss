@@ -1,0 +1,16 @@
+@use "sass:list";
+@use "../color-v2/border" as border-color;
+@use "../opacity/border" as border-opacity;
+@use "../size/border" as border-size;
+@use "../helpers";
+
+@function get-focus-ring-box-shadow($color: neutral) {
+  $width: border-size.get-focus-ring-size();
+  $opacity: border-opacity.get-focus-ring-opacity();
+
+  @if helpers.is-color-code($value: $color) {
+    @return 0 0 0 #{$width} rgba($color, $opacity);
+  } @else {
+    @return 0 0 0 #{$width} rgba(border-color.get-focus-ring-color($color: $color), $opacity);
+  }
+}

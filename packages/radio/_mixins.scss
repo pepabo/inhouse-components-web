@@ -1,0 +1,140 @@
+@use "sass:map";
+@use "@inhouse/icon/mixins" as icon;
+@use "@inhouse/adapter/functions" as adapter;
+@use "@inhouse/skeleton/mixins" as skeleton;
+@use "./variables";
+@use "./functions";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include -ruleset($states: (enabled));
+
+  &:hover,
+  &.--hover {
+    @include -ruleset($states: (hover));
+  }
+
+  &:focus,
+  &.--focused {
+    @include -ruleset($states: (focused));
+  }
+
+  &:checked,
+  &.--selected {
+    @include -ruleset($states: (selected));
+  }
+
+  &:disabled,
+  &.--disabled {
+    @include -ruleset($states: (disabled));
+  }
+
+  &:checked:focus,
+  &:checked.--focused,
+  &.--selected:focus,
+  &.--selected.--focused {
+    @include -ruleset($states: (selected, focused));
+  }
+
+  &:checked:disabled,
+  &:checked.--disabled,
+  &.--selected:disabled,
+  &.--selected.--disabled {
+    @include -ruleset($states: (selected, disabled));
+  }
+}
+
+@mixin skeleton-style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include skeleton.style;
+
+  width: adapter.get-radio-parent-width();
+  height: adapter.get-radio-parent-height();
+  border-radius: 50%;
+}
+
+@mixin export() {
+  .in-radio {
+    @include style;
+  }
+
+  .in-skeleton-radio {
+    @include skeleton-style;
+  }
+}
+
+@mixin -proto() {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: adapter.get-radio-parent-width();
+  height: adapter.get-radio-parent-height();
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  appearance: unset;
+}
+
+@mixin -child-element-proto() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  box-sizing: border-box;
+}
+
+@mixin -ruleset($states: (enabled)) {
+  @include -proto;
+
+  cursor: functions.get-cursor($states: $states);
+  opacity: functions.get-opacity($states: $states);
+
+  &::before {
+    @include -background-style($states: $states);
+  }
+
+  &::after {
+    @include -foreground-style($states: $states);
+  }
+}
+
+@mixin -background-style($states: (enabled)) {
+  @include -child-element-proto;
+
+  width: adapter.get-radio-child-background-width();
+  height: adapter.get-radio-child-background-height();
+  margin-top:
+    functions.compose-child-element-margin(
+      $child-element-size: adapter.get-radio-child-background-height()
+    );
+  margin-left:
+    functions.compose-child-element-margin(
+      $child-element-size: adapter.get-radio-child-background-width()
+    );
+  background-color: adapter.get-radio-surface-color();
+  border-radius: 50%;
+  box-shadow: functions.get-background-box-shadow($states: $states);
+  content: "";
+}
+
+@mixin -foreground-style($states: (enabled)) {
+  $foreground-size: adapter.get-radio-child-foreground-height();
+
+  @include icon.style;
+  @include -child-element-proto;
+
+  width: $foreground-size;
+  height: $foreground-size;
+  margin-top: functions.compose-child-element-margin($child-element-size: $foreground-size);
+  margin-left: functions.compose-child-element-margin($child-element-size: $foreground-size);
+  color: adapter.get-radio-text-color($states: $states);
+  font-size: $foreground-size;
+  line-height: $foreground-size;
+  text-align: center;
+  content: "circle";
+  pointer-events: none;
+}

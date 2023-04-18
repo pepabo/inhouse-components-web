@@ -1,0 +1,121 @@
+@use "./height" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-interactive-component-height-keys() {
+  @return assert.equals(
+    "#{functions.get-interactive-component-height-keys()}",
+    "xs, s, m, l, xl"
+  );
+}
+
+@function test-get-interactive-component-height($level: m) {
+  @return assert.equals(
+    functions.get-interactive-component-height($level: m),
+    2.5rem
+  );
+}
+
+@function test-get-avatar-height() {
+  @return assert.equals(
+    functions.get-avatar-height($level: m),
+    2.5rem
+  );
+}
+
+@function test-get-bottom-navigation-body-height() {
+  @return assert.equals(
+    functions.get-bottom-navigation-body-height(),
+    3.5rem
+  );
+}
+
+@function test-get-bottom-navigation-pict-height() {
+  @return assert.equals(
+    functions.get-bottom-navigation-pict-height(),
+    1.5rem
+  );
+}
+
+@function test-get-icon-only-button-pict-height() {
+  @return assert.equals(
+    functions.get-icon-only-button-pict-height($level: m),
+    1.5rem
+  );
+}
+
+@function test-get-checkbox-parent-height() {
+  @return assert.equals(
+    functions.get-checkbox-parent-height(),
+    1.5rem
+  );
+}
+
+@function test-get-checkbox-child-height() {
+  @return assert.equals(
+    functions.get-checkbox-child-height(),
+    1.25rem
+  );
+}
+
+@function test-get-header-height() {
+  @return assert.equals(
+    functions.get-header-height(),
+    3.5rem
+  );
+}
+
+@function test-get-interactive-list-pict-height() {
+  @return assert.equals(
+    functions.get-interactive-list-pict-height(),
+    1.5rem
+  );
+}
+
+@function test-get-circular-progress-indicator-height() {
+  @return assert.equals(
+    functions.get-circular-progress-indicator-height(),
+    3rem
+  );
+}
+
+@function test-get-interactive-list-edge-element-height() {
+  @return assert.equals(
+    functions.get-interactive-list-edge-element-height(),
+    2rem
+  );
+}
+
+@function test-get-interactive-table-pict-height() {
+  @return assert.equals(
+    functions.get-interactive-table-pict-height(),
+    1.5rem
+  );
+}
+
+@function test-get-radio-parent-height() {
+  @return assert.equals(
+    functions.get-radio-parent-height(),
+    1.5rem
+  );
+}
+
+@function test-get-radio-child-background-height() {
+  @return assert.equals(
+    functions.get-radio-child-background-height(),
+    1.25rem
+  );
+}
+
+@function test-get-radio-child-foreground-height() {
+  @return assert.equals(
+    functions.get-radio-child-foreground-height(),
+    0.75rem
+  );
+}
+
+@function test-get-thumbnail-height() {
+  @return assert.equals(
+    functions.get-thumbnail-height($level: m),
+    3.5rem
+  );
+}

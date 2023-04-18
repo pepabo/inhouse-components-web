@@ -1,0 +1,58 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-compose-enabled-value() {
+  @return assert.equals(
+    functions.compose-enabled-value(),
+    (
+      display: inline-block,
+      box-sizing: border-box,
+      position: relative,
+      vertical-align: text-bottom,
+      width: auto
+    )
+  );
+}
+
+@function test-compose-select-enabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-select-enabled-value(), background-color),
+    #f7f8fa
+  );
+}
+
+@function test-compose-select-enabled-multiple-lines-value() {
+  @return assert.equals(
+    map.get(functions.compose-select-enabled-multiple-lines-value(), height),
+    auto !important
+  );
+}
+
+@function test-compose-select-not-disabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-select-not-disabled-value(), cursor),
+    default
+  );
+}
+
+@function test-compose-select-hover-value() {
+  @return assert.equals(
+    map.get(functions.compose-select-hover-value(), background-color),
+    #edeef0
+  );
+}
+
+@function test-compose-select-focused-value() {
+  @return assert.equals(
+    map.get(functions.compose-select-focused-value(), background-color),
+    #fff
+  );
+}
+
+@function test-compose-select-disabled-value() {
+  @return assert.equals(
+    map.get(functions.compose-select-disabled-value(), background-color),
+    #dee0e3
+  );
+}

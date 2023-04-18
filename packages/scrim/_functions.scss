@@ -1,0 +1,18 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-background-color($appearance: hollow) {
+  $available-appearances: adapter.get-scrim-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearance には #{$available-appearances} のいずれかのみ指定できます";
+  }
+
+  @if $appearance == hollow {
+    @return adapter.get-scrim-background-color();
+  } @else if $appearance == transparent {
+    @return transparent;
+  }
+}

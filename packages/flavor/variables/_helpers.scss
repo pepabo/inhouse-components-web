@@ -1,0 +1,8 @@
+@use "./pepper-color";
+
+$transition-value: none !default;
+
+$selection-color-values: (
+  text: #fff,
+  background: #0a62ad, // Pepper Blue 700
+) !default;

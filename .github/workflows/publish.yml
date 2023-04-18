@@ -1,0 +1,38 @@
+name: publish
+on:
+  repository_dispatch:
+    types: [publish]
+
+jobs:
+  publish:
+    runs-on: normal
+    container:
+      image: node:16
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .npmrc
+        run: echo "//npm.git.pepabo.com/:_authToken=${{ secrets.GHE_TOKEN }}" >> $HOME/.npmrc
+      - name: Setup deploy key
+        run: |
+          echo "${{ secrets.DEPLOY_KEY }}" > $HOME/deploy_key
+          chmod 600 $HOME/deploy_key
+          echo "${{ secrets.KNOWN_HOSTS }}" > $HOME/known_hosts
+          git config --global core.sshCommand '/usr/bin/ssh -i "$HOME/deploy_key" -o UserKnownHostsFile="$HOME/known_hosts"'
+      - name: Configure git
+        run: |
+          git remote set-url origin git@git.pepabo.com:inhouse/inhouse-components-web.git
+          git config --global user.email 'designers@pepabo.com' && git config --global user.name 'GitHub Actions'
+      - name: Run npm install
+        run: npm install
+      - name: Bootstrap lerna
+        run: npm run bootstrap
+      - if: github.event.client_payload
+        name: Publish
+        run: npx lerna publish "${{ github.event.client_payload.version }}" --registry https://npm.git.pepabo.com/ --yes
+      - name: Notify
+        if: always()
+        uses: dojineko/slack-notify@v1
+        with:
+          github_host: git.pepabo.com
+          job_status: ${{ job.status }}
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}

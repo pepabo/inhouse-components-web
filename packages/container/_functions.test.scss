@@ -1,0 +1,9 @@
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-horizontal-gap() {
+  @return assert.equals(
+    functions.get-horizontal-gap(m),
+    1.5rem
+  );
+}

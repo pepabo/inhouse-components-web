@@ -1,0 +1,12 @@
+@use "sass:list";
+@use "@inhouse/adapter/functions" as adapter;
+
+@function get-avatar-and-media-max-height($children-height) {
+  $line-height: adapter.get-line-height($level: m, $density: normal);
+
+  @if $children-height > $line-height * 2 {
+    @return none;
+  } @else {
+    @return $line-height * 2;
+  }
+}

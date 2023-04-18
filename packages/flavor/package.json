@@ -1,0 +1,16 @@
+{
+  "name": "@inhouse/flavor",
+  "description": "Inhouse is core design system to support pepabo brand.",
+  "version": "0.39.0",
+  "publishConfig": {
+    "registry": "https://npm.git.pepabo.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.pepabo.com/inhouse/components-web.git",
+    "directory": "packages/flavor"
+  },
+  "dependencies": {
+    "@inhouse/tokens": "^0.9.0"
+  }
+}

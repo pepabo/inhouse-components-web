@@ -1,0 +1,145 @@
+@use "sass:map";
+@use "@inhouse/icon/mixins" as icon;
+@use "@inhouse/adapter/functions" as adapter;
+@use "@inhouse/skeleton/mixins" as skeleton;
+@use "./variables";
+@use "./functions";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include -ruleset($states: (enabled));
+
+  &:hover,
+  &.--hover {
+    @include -ruleset($states: (hover));
+  }
+
+  &:focus,
+  &.--focused {
+    @include -ruleset($states: (focused));
+  }
+
+  &:checked,
+  &.--selected {
+    @include -ruleset($states: (selected));
+  }
+
+  &.--mixed {
+    @include -ruleset($states: (mixed));
+  }
+
+  &:disabled,
+  &.--disabled {
+    @include -ruleset($states: (disabled));
+  }
+
+  &:checked:focus,
+  &:checked.--focused,
+  &.--selected:focus,
+  &.--selected.--focused {
+    @include -ruleset($states: (selected, focused));
+  }
+
+  &:checked:disabled,
+  &:checked.--disabled,
+  &.--selected:disabled,
+  &.--selected.--disabled {
+    @include -ruleset($states: (selected, disabled));
+  }
+
+  &.--mixed:focus,
+  &.--mixed.--focused {
+    @include -ruleset($states: (mixed, focused));
+  }
+
+  &.--mixed:disabled,
+  &.--mixed.--disabled {
+    @include -ruleset($states: (mixed, disabled));
+  }
+}
+
+@mixin skeleton-style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include skeleton.style;
+
+  width: adapter.get-checkbox-parent-width();
+  height: adapter.get-checkbox-parent-height();
+  border-radius: adapter.get-radius-size($level: m);
+}
+
+@mixin export {
+  .in-checkbox {
+    @include style;
+  }
+
+  .in-skeleton-checkbox {
+    @include skeleton-style;
+  }
+}
+
+@mixin -proto() {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: adapter.get-checkbox-parent-width();
+  height: adapter.get-checkbox-parent-height();
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  appearance: unset;
+}
+
+@mixin -child-element-proto() {
+  $child-element-size: adapter.get-checkbox-child-height();
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  box-sizing: border-box;
+  width: $child-element-size;
+  height: $child-element-size;
+  margin-top: functions.compose-child-element-margin($child-element-size: $child-element-size);
+  margin-left: functions.compose-child-element-margin($child-element-size: $child-element-size);
+  font-size: $child-element-size;
+  line-height: $child-element-size;
+}
+
+@mixin -ruleset($states: (enabled)) {
+  @include -proto;
+
+  cursor: functions.get-cursor($states: $states);
+  opacity: functions.get-opacity($states: $states);
+
+  &::before {
+    @include -background-style($states: $states);
+  }
+
+  &::after {
+    @include -foreground-style($states: $states);
+  }
+}
+
+@mixin -background-style($states: (enabled)) {
+  @include -child-element-proto;
+
+  background-color: adapter.get-checkbox-surface-color($states: $states);
+  border-radius: adapter.get-radius-size($level: m);
+  box-shadow: functions.get-background-box-shadow($states: $states);
+  content: "";
+}
+
+@mixin -foreground-style($states: (enabled)) {
+  @include icon.style;
+  @include -child-element-proto;
+
+  color: adapter.get-checkbox-text-color($states: $states);
+  text-align: center;
+  opacity: functions.get-foreground-opacity($states: $states);
+  content: functions.get-foreground-content($states: $states);
+  pointer-events: none;
+}

@@ -1,0 +1,9 @@
+@use "./focus-ring" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-focus-ring-box-shadow() {
+  @return assert.equals(
+    "#{functions.get-focus-ring-box-shadow()}",
+    "0 0 0 0.25rem rgba(146, 151, 161, 0.15)"
+  );
+}

@@ -1,0 +1,13 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../../error-message";
+
+$border-opacity-tokens: map.get(
+  map.get(tokens.$tokens, opacity),
+  border
+);
+
+@function get-focus-ring-opacity() {
+  @return map.get($border-opacity-tokens, focus-ring);
+}

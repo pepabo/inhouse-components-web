@@ -1,0 +1,26 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$option-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  option
+);
+
+@function get-option-color($name, $level: 1000) {
+  $option-color-name: map.get($option-color-tokens, "#{$name}");
+
+  @if $option-color-name == null {
+    @error error-message.not-specified($value: $name);
+  }
+
+  $value: map.get($option-color-name, "#{$level}");
+
+  @if $value == null {
+    @error error-message.not-specified($value: $level);
+  }
+
+  @return $value;
+}

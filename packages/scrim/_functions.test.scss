@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-background-color() {
+  @return assert.equals(
+    functions.get-background-color($appearance: transparent),
+    transparent
+  );
+}

@@ -1,0 +1,47 @@
+name: deploy
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: normal
+    container:
+      image: node:16
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .npmrc
+        run: echo "//npm.git.pepabo.com/:_authToken=${{ secrets.GHE_TOKEN }}" >> $HOME/.npmrc
+      - name: Setup credentials
+        run: |
+          echo "${{ secrets.DEPLOY_KEY }}" > $HOME/deploy_key
+          chmod 600 $HOME/deploy_key
+          echo "${{ secrets.KNOWN_HOSTS }}" > $HOME/known_hosts
+      - name: Run npm install
+        run: npm install
+      - name: Bootstrap lerna
+        run: npm run bootstrap
+      - name: Build Artifacts
+        run: npm run build
+      - name: Run test
+        run: npm test
+      - name: Configure git
+        run: |
+          git remote set-url origin git@git.pepabo.com:inhouse/inhouse-components-web.git
+          git config --global core.sshCommand '/usr/bin/ssh -i "$HOME/deploy_key" -o UserKnownHostsFile="$HOME/known_hosts"'
+          git config --global user.email 'designers@pepabo.com' && git config --global user.name 'GitHub Actions'
+      - name: Run deploy
+        run: npm run deploy
+      - name: Notify deployment
+        uses: pepactions/slack@pepabo
+        env:
+          INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          text: inhouse-components-web is deployed to https://pages.git.pepabo.com/inhouse/components-web/
+      - name: Notify
+        if: always()
+        uses: dojineko/slack-notify@v1
+        with:
+          github_host: git.pepabo.com
+          job_status: ${{ job.status }}
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}

@@ -1,0 +1,121 @@
+@use "./width" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-width() {
+  @return assert.equals(
+    functions.get-width($width: auto),
+    auto
+  );
+}
+
+@function test-get-avatar-width() {
+  @return assert.equals(
+    functions.get-avatar-width($level: m),
+    2.5rem
+  );
+}
+
+@function test-get-bottom-navigation-pict-width() {
+  @return assert.equals(
+    functions.get-bottom-navigation-pict-width(),
+    1.5rem
+  );
+}
+
+@function test-get-icon-only-button-pict-width() {
+  @return assert.equals(
+    functions.get-icon-only-button-pict-width($level: m),
+    1.5rem
+  );
+}
+
+@function test-get-checkbox-parent-width() {
+  @return assert.equals(
+    functions.get-checkbox-parent-width(),
+    1.5rem
+  );
+}
+
+@function test-get-checkbox-child-width() {
+  @return assert.equals(
+    functions.get-checkbox-child-width(),
+    1.25rem
+  );
+}
+
+@function test-get-description-list-leading-width() {
+  @return assert.equals(
+    functions.get-description-list-leading-width(),
+    3rem
+  );
+}
+
+@function test-get-interactive-list-pict-width() {
+  @return assert.equals(
+    functions.get-interactive-list-pict-width(),
+    1.5rem
+  );
+}
+
+@function test-get-interactive-list-edge-element-width() {
+  @return assert.equals(
+    functions.get-interactive-list-edge-element-width(),
+    2rem
+  );
+}
+
+@function test-get-interactive-table-pict-width() {
+  @return assert.equals(
+    functions.get-interactive-table-pict-width(),
+    1.5rem
+  );
+}
+
+@function test-get-list-leading-width() {
+  @return assert.equals(
+    functions.get-list-leading-width(),
+    3rem
+  );
+}
+
+@function test-get-circular-progress-indicator-width() {
+  @return assert.equals(
+    functions.get-circular-progress-indicator-width(),
+    3rem
+  );
+}
+
+@function test-get-radio-parent-width() {
+  @return assert.equals(
+    functions.get-radio-parent-width(),
+    1.5rem
+  );
+}
+
+@function test-get-radio-child-background-width() {
+  @return assert.equals(
+    functions.get-radio-child-background-width(),
+    1.25rem
+  );
+}
+
+@function test-get-radio-child-foreground-width() {
+  @return assert.equals(
+    functions.get-radio-child-foreground-width(),
+    0.75rem
+  );
+}
+
+@function test-get-side-navigation-width() {
+  @return assert.equals(
+    functions.get-side-navigation-width(),
+    16rem
+  );
+}
+
+@function test-get-thumbnail-width() {
+  @return assert.equals(
+    functions.get-thumbnail-width($level: m),
+    3.5rem
+  );
+}

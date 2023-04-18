@@ -1,0 +1,485 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "./variables";
+
+@function compose-enabled-value($options: variables.$default-option) {
+  $value: -get-proto-value(enabled);
+
+  @if map.has-key($options, width) {
+    $level: map.get($options, width);
+    $value: map.merge($value, -get-width-value($level));
+  }
+
+  @return $value;
+}
+
+@function compose-select-enabled-value($options: variables.$default-option) {
+  $value: -get-select-proto-value(enabled);
+
+  @if map.has-key($options, size) {
+    $level: map.get($options, size);
+    $value: map.merge($value, -get-select-size-value($level));
+  }
+
+  @if map.has-key($options, color) {
+    $name: map.get($options, color);
+
+    @if $name == informative {
+      $value: map.merge($value, -get-select-color-informative-value(enabled));
+    } @else if $name == neutral {
+      $value: map.merge($value, -get-select-color-neutral-value(enabled));
+    } @else if $name == positive {
+      $value: map.merge($value, -get-select-color-positive-value(enabled));
+    } @else if $name == notice {
+      $value: map.merge($value, -get-select-color-notice-value(enabled));
+    } @else if $name == negative {
+      $value: map.merge($value, -get-select-color-negative-value(enabled));
+    } @else if $name == attention {
+      $value: map.merge($value, -get-select-color-attention-value(enabled));
+    }
+  }
+
+  @if map.has-key($options, appearance) {
+    $name: map.get($options, appearance);
+
+    @if $name == outlined {
+      $value: map.merge($value, -get-select-appearance-outlined-value(enabled));
+
+      @if map.has-key($options, size) {
+        $level: map.get($options, size);
+        $value: map.merge($value, -get-select-appearance-outlined-size-value($level));
+      }
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-informative-value(enabled));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-outlined-color-neutral-value(enabled));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-outlined-color-positive-value(enabled));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-outlined-color-notice-value(enabled));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-negative-value(enabled));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-outlined-color-attention-value(enabled));
+        }
+      }
+    } @else if $name == filled {
+      $value: map.merge($value, -get-select-appearance-filled-value(enabled));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-filled-color-informative-value(enabled));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-filled-color-neutral-value(enabled));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-filled-color-positive-value(enabled));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-filled-color-notice-value(enabled));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-filled-color-negative-value(enabled));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-filled-color-attention-value(enabled));
+        }
+      }
+    }
+  }
+
+  @return $value;
+}
+
+@function compose-select-enabled-multiple-lines-value($options: variables.$default-option) {
+  $value: -get-select-proto-value(enabled-multiple-lines);
+
+  @return $value;
+}
+
+@function compose-select-not-disabled-value($options: variables.$default-option) {
+  $value: -get-select-proto-value(not-disabled);
+
+  @return $value;
+}
+
+@function compose-select-hover-value($options: variables.$default-option) {
+  $value: -get-select-proto-value(hover);
+
+  @if map.has-key($options, color) {
+    $name: map.get($options, color);
+
+    @if $name == informative {
+      $value: map.merge($value, -get-select-color-informative-value(hover));
+    } @else if $name == neutral {
+      $value: map.merge($value, -get-select-color-neutral-value(hover));
+    } @else if $name == positive {
+      $value: map.merge($value, -get-select-color-positive-value(hover));
+    } @else if $name == notice {
+      $value: map.merge($value, -get-select-color-notice-value(hover));
+    } @else if $name == negative {
+      $value: map.merge($value, -get-select-color-negative-value(hover));
+    } @else if $name == attention {
+      $value: map.merge($value, -get-select-color-attention-value(hover));
+    }
+  }
+
+  @if map.has-key($options, appearance) {
+    $name: map.get($options, appearance);
+
+    @if $name == outlined {
+      $value: map.merge($value, -get-select-appearance-outlined-value(hover));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-informative-value(hover));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-outlined-color-neutral-value(hover));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-outlined-color-positive-value(hover));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-outlined-color-notice-value(hover));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-negative-value(hover));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-outlined-color-attention-value(hover));
+        }
+      }
+    } @else if $name == filled {
+      $value: map.merge($value, -get-select-appearance-filled-value(hover));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-filled-color-informative-value(hover));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-filled-color-neutral-value(hover));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-filled-color-positive-value(hover));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-filled-color-notice-value(hover));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-filled-color-negative-value(hover));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-filled-color-attention-value(hover));
+        }
+      }
+    }
+  }
+
+  @return $value;
+}
+
+@function compose-select-focused-value($options: variables.$default-option) {
+  $value: -get-select-proto-value(focused);
+
+  @if map.has-key($options, appearance) {
+    $name: map.get($options, appearance);
+
+    @if $name == outlined {
+      $value: map.merge($value, -get-select-appearance-outlined-value(focused));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-informative-value(focused));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-outlined-color-neutral-value(focused));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-outlined-color-positive-value(focused));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-outlined-color-notice-value(focused));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-negative-value(focused));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-outlined-color-attention-value(focused));
+        }
+      }
+    } @else if $name == filled {
+      $value: map.merge($value, -get-select-appearance-filled-value(focused));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-filled-color-informative-value(focused));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-filled-color-neutral-value(focused));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-filled-color-positive-value(focused));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-filled-color-notice-value(focused));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-filled-color-negative-value(focused));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-filled-color-attention-value(focused));
+        }
+      }
+    }
+  }
+
+  @return $value;
+}
+
+@function compose-select-disabled-value($options: variables.$default-option) {
+  $value: -get-select-proto-value(disabled);
+
+  @if map.has-key($options, color) {
+    $name: map.get($options, color);
+
+    @if $name == informative {
+      $value: map.merge($value, -get-select-color-informative-value(disabled));
+    } @else if $name == neutral {
+      $value: map.merge($value, -get-select-color-neutral-value(disabled));
+    } @else if $name == positive {
+      $value: map.merge($value, -get-select-color-positive-value(disabled));
+    } @else if $name == notice {
+      $value: map.merge($value, -get-select-color-notice-value(disabled));
+    } @else if $name == negative {
+      $value: map.merge($value, -get-select-color-negative-value(disabled));
+    } @else if $name == attention {
+      $value: map.merge($value, -get-select-color-attention-value(disabled));
+    }
+  }
+
+  @if map.has-key($options, appearance) {
+    $name: map.get($options, appearance);
+
+    @if $name == outlined {
+      $value: map.merge($value, -get-select-appearance-outlined-value(disabled));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-informative-value(disabled));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-outlined-color-neutral-value(disabled));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-outlined-color-positive-value(disabled));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-outlined-color-notice-value(disabled));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-outlined-color-negative-value(disabled));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-outlined-color-attention-value(disabled));
+        }
+      }
+    } @else if $name == filled {
+      $value: map.merge($value, -get-select-appearance-filled-value(disabled));
+
+      @if map.has-key($options, color) {
+        $name: map.get($options, color);
+
+        @if $name == informative {
+          $value: map.merge($value, -get-select-appearance-filled-color-informative-value(disabled));
+        } @else if $name == neutral {
+          $value: map.merge($value, -get-select-appearance-filled-color-neutral-value(disabled));
+        } @else if $name == positive {
+          $value: map.merge($value, -get-select-appearance-filled-color-positive-value(disabled));
+        } @else if $name == notice {
+          $value: map.merge($value, -get-select-appearance-filled-color-notice-value(disabled));
+        } @else if $name == negative {
+          $value: map.merge($value, -get-select-appearance-filled-color-negative-value(disabled));
+        } @else if $name == attention {
+          $value: map.merge($value, -get-select-appearance-filled-color-attention-value(disabled));
+        }
+      }
+    }
+  }
+
+  @return $value;
+}
+
+@function compose-icon-enabled-value($options: variables.$default-option) {
+  $value: -get-icon-proto-value(enabled);
+
+  @if map.has-key($options, size) {
+    $level: map.get($options, size);
+    $value: map.merge($value, -get-icon-size-value($level));
+  }
+
+  @if map.has-key($options, color) {
+    $name: map.get($options, color);
+
+    @if $name == informative {
+      $value: map.merge($value, -get-icon-color-informative-value(enabled));
+    } @else if $name == neutral {
+      $value: map.merge($value, -get-icon-color-neutral-value(enabled));
+    } @else if $name == positive {
+      $value: map.merge($value, -get-icon-color-positive-value(enabled));
+    } @else if $name == notice {
+      $value: map.merge($value, -get-icon-color-notice-value(enabled));
+    } @else if $name == negative {
+      $value: map.merge($value, -get-icon-color-negative-value(enabled));
+    } @else if $name == attention {
+      $value: map.merge($value, -get-icon-color-attention-value(enabled));
+    }
+  }
+
+  @return $value;
+}
+
+@function compose-icon-disabled-value($options: variables.$default-option) {
+  $value: -get-icon-proto-value(disabled);
+
+  @if map.has-key($options, color) {
+    $name: map.get($options, color);
+
+    @if $name == informative {
+      $value: map.merge($value, -get-icon-color-informative-value(disabled));
+    } @else if $name == neutral {
+      $value: map.merge($value, -get-icon-color-neutral-value(disabled));
+    } @else if $name == positive {
+      $value: map.merge($value, -get-icon-color-positive-value(disabled));
+    } @else if $name == notice {
+      $value: map.merge($value, -get-icon-color-notice-value(disabled));
+    } @else if $name == negative {
+      $value: map.merge($value, -get-icon-color-negative-value(disabled));
+    } @else if $name == attention {
+      $value: map.merge($value, -get-icon-color-attention-value(disabled));
+    }
+  }
+
+  @return $value;
+}
+
+@function -get-proto-value($state: enabled) {
+  @return map.get(variables.$proto, $state);
+}
+
+@function -get-width-value($level: auto) {
+  @return map.get(variables.$width, $level);
+}
+
+@function -get-select-proto-value($state: enabled) {
+  @return map.get(variables.$select-proto, $state);
+}
+
+@function -get-select-color-informative-value($state: enabled) {
+  @return map.get(variables.$select-color-informative, $state);
+}
+
+@function -get-select-color-neutral-value($state: enabled) {
+  @return map.get(variables.$select-color-neutral, $state);
+}
+
+@function -get-select-color-positive-value($state: enabled) {
+  @return map.get(variables.$select-color-positive, $state);
+}
+
+@function -get-select-color-notice-value($state: enabled) {
+  @return map.get(variables.$select-color-notice, $state);
+}
+
+@function -get-select-color-negative-value($state: enabled) {
+  @return map.get(variables.$select-color-negative, $state);
+}
+
+@function -get-select-color-attention-value($state: enabled) {
+  @return map.get(variables.$select-color-attention, $state);
+}
+
+@function -get-select-size-value($level: m) {
+  @return map.get(variables.$select-size, $level);
+}
+
+@function -get-select-appearance-outlined-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined, $state);
+}
+
+@function -get-select-appearance-outlined-size-value($level: m) {
+  @return map.get(variables.$select-appearance-outlined-size, $level);
+}
+
+@function -get-select-appearance-outlined-color-informative-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined-color-informative, $state);
+}
+
+@function -get-select-appearance-outlined-color-neutral-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined-color-neutral, $state);
+}
+
+@function -get-select-appearance-outlined-color-positive-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined-color-positive, $state);
+}
+
+@function -get-select-appearance-outlined-color-notice-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined-color-notice, $state);
+}
+
+@function -get-select-appearance-outlined-color-negative-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined-color-negative, $state);
+}
+
+@function -get-select-appearance-outlined-color-attention-value($state: enabled) {
+  @return map.get(variables.$select-appearance-outlined-color-attention, $state);
+}
+
+@function -get-select-appearance-filled-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled, $state);
+}
+
+@function -get-select-appearance-filled-color-informative-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled-color-informative, $state);
+}
+
+@function -get-select-appearance-filled-color-neutral-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled-color-neutral, $state);
+}
+
+@function -get-select-appearance-filled-color-positive-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled-color-positive, $state);
+}
+
+@function -get-select-appearance-filled-color-notice-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled-color-notice, $state);
+}
+
+@function -get-select-appearance-filled-color-negative-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled-color-negative, $state);
+}
+
+@function -get-select-appearance-filled-color-attention-value($state: enabled) {
+  @return map.get(variables.$select-appearance-filled-color-attention, $state);
+}
+
+@function -get-icon-proto-value($state: enabled) {
+  @return map.get(variables.$icon-proto, $state);
+}
+
+@function -get-icon-size-value($level: m) {
+  @return map.get(variables.$icon-size, $level);
+}
+
+@function -get-icon-color-informative-value($state: enabled) {
+  @return map.get(variables.$icon-color-informative, $state);
+}
+
+@function -get-icon-color-neutral-value($state: enabled) {
+  @return map.get(variables.$icon-color-neutral, $state);
+}
+
+@function -get-icon-color-positive-value($state: enabled) {
+  @return map.get(variables.$icon-color-positive, $state);
+}
+
+@function -get-icon-color-notice-value($state: enabled) {
+  @return map.get(variables.$icon-color-notice, $state);
+}
+
+@function -get-icon-color-negative-value($state: enabled) {
+  @return map.get(variables.$icon-color-negative, $state);
+}
+
+@function -get-icon-color-attention-value($state: enabled) {
+  @return map.get(variables.$icon-color-attention, $state);
+}

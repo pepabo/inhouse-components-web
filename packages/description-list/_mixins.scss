@@ -1,0 +1,162 @@
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter-functions;
+@use "@inhouse/adapter/mixins" as adapter-mixins;
+@use "@inhouse/cell/mixins" as cell;
+@use "@inhouse/icon/mixins" as icon;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include -proto;
+
+  ._item {
+    @include cell.style((
+      density: map.get($option, density),
+      size: map.get($option, size),
+    ));
+
+    position: relative;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  &.-has-background {
+    padding: adapter-functions.get-cell-vertical-spacing-size(map.get($option, density)) 0;
+  }
+
+  &.-type-bullet {
+    ._item {
+      padding-left: adapter-functions.get-description-list-leading-width();
+
+      &::before {
+        @include icon.style;
+        @include cell.style((
+          density: map.get($option, density),
+          size: map.get($option, size),
+        ));
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: adapter-functions.get-description-list-leading-width();
+        text-align: center;
+        content: "bullet_circle";
+      }
+    }
+  }
+
+  &.-type-tabular {
+    ._item {
+      @include adapter-mixins.mq-boundary(up, m) {
+        display: flex;
+        gap: adapter-functions.get-spacing-size($level: m);
+
+        dt {
+          width: 40%;
+        }
+
+        dd {
+          width: 60%;
+        }
+      }
+    }
+  }
+
+  @each $size in adapter-functions.get-cell-sizes() {
+    &.-size-#{$size} {
+      ._item {
+        @include cell.style((
+          density: map.get($option, density),
+          size: $size,
+        ));
+      }
+    }
+
+    &.-type-bullet.-size-#{$size} {
+      ._item {
+        &::before {
+          @include cell.style((
+            density: map.get($option, density),
+            size: $size,
+          ));
+        }
+      }
+    }
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    &.-density-#{$density} {
+      ._item {
+        @include cell.style((
+          density: $density,
+          size: map.get($option, size),
+        ));
+      }
+    }
+
+    &.-type-bullet.-density-#{$density} {
+      ._item {
+        &::before {
+          @include cell.style((
+            density: $density,
+            size: map.get($option, size),
+          ));
+        }
+      }
+    }
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    @each $size in adapter-functions.get-cell-sizes() {
+      &.-density-#{$density}.-size-#{$size} {
+        ._item {
+          @include cell.style((
+            density: $density,
+            size: $size,
+          ));
+        }
+      }
+
+      &.-type-bullet.-density-#{$density}.-size-#{$size} {
+        ._item {
+          &::before {
+            @include cell.style((
+              density: $density,
+              size: $size,
+            ));
+          }
+        }
+      }
+    }
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    &.-density-#{$density}.-has-background {
+      padding: adapter-functions.get-cell-vertical-spacing-size($density) 0;
+    }
+  }
+}
+
+@mixin -proto() {
+  margin: 0;
+  padding: 0;
+  color:
+    adapter-functions.get-text-color(
+      $brightness: light,
+      $name: high_emphasis
+    );
+}
+
+@mixin export {
+  .in-description-list {
+    @include style;
+  }
+}

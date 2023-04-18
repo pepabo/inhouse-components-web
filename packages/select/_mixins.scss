@@ -1,0 +1,449 @@
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter;
+@use "@inhouse/icon/mixins" as icon;
+@use "./variables";
+@use "./functions";
+
+// ソースコードの読みやすさを優先させて、以下のルールのlintの対象から除外する
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-duplicate-selectors */
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include -enabled-style($options);
+
+  &.-width-auto {
+    @include -enabled-style(
+      map.merge(
+        $options,
+        (
+          width: auto
+        )
+      )
+    );
+  }
+
+  &.-width-full {
+    @include -enabled-style(
+      map.merge(
+        $options,
+        (
+          width: full
+        )
+      )
+    );
+  }
+
+  &.-width-half {
+    @include -enabled-style(
+      map.merge(
+        $options,
+        (
+          width: half
+        )
+      )
+    );
+  }
+
+  &.-width-third {
+    @include -enabled-style(
+      map.merge(
+        $options,
+        (
+          width: third
+        )
+      )
+    );
+  }
+
+  ._select {
+    @include -select-enabled-style($options);
+
+    &:not([disabled]) {
+      @include -select-not-disabled-style($options);
+    }
+
+    &:hover,
+    &:active,
+    &.--hover {
+      @include -select-hover-style($options);
+    }
+
+    &:focus,
+    &.--focused {
+      @include -select-focused-style($options);
+    }
+
+    &:disabled,
+    &.--disabled {
+      @include -select-disabled-style($options);
+    }
+  }
+
+  ._select[size] {
+    @include -select-enabled-multiple-lines-style($options);
+  }
+
+  &.-color-informative ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          color: informative
+        )
+      )
+    );
+  }
+
+  &.-color-neutral ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          color: neutral
+        )
+      )
+    );
+  }
+
+  &.-color-positive ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          color: positive
+        )
+      )
+    );
+  }
+
+  &.-color-notice ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          color: notice
+        )
+      )
+    );
+  }
+
+  &.-color-negative ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          color: negative
+        )
+      )
+    );
+  }
+
+  &.-color-attention ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          color: attention
+        )
+      )
+    );
+  }
+
+  &.-size-s ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          size: s
+        )
+      )
+    );
+  }
+
+  &.-size-m ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          size: m
+        )
+      )
+    );
+  }
+
+  &.-size-l ._select {
+    @include -select-ruleset(
+      map.merge(
+        $options,
+        (
+          size: l
+        )
+      )
+    );
+  }
+
+  &.-appearance-outlined {
+    @include -select-enabled-ruleset(map.merge($options, (appearance: outlined)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-enabled-ruleset(map.merge($options, (appearance: outlined, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-filled {
+    @include -select-enabled-ruleset(map.merge($options, (appearance: filled)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-enabled-ruleset(map.merge($options, (appearance: filled, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-outlined {
+    @include -select-hover-ruleset(map.merge($options, (appearance: outlined)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-hover-ruleset(map.merge($options, (appearance: outlined, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-filled {
+    @include -select-hover-ruleset(map.merge($options, (appearance: filled)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-hover-ruleset(map.merge($options, (appearance: filled, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-outlined {
+    @include -select-focused-ruleset(map.merge($options, (appearance: outlined)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-focused-ruleset(map.merge($options, (appearance: outlined, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-filled {
+    @include -select-focused-ruleset(map.merge($options, (appearance: filled)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-focused-ruleset(map.merge($options, (appearance: filled, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-outlined {
+    @include -select-disabled-ruleset(map.merge($options, (appearance: outlined)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-disabled-ruleset(map.merge($options, (appearance: outlined, color: $name)));
+      }
+    }
+  }
+
+  &.-appearance-filled {
+    @include -select-disabled-ruleset(map.merge($options, (appearance: filled)));
+
+    @each $name in adapter.get-semantic-intentions() {
+      &.-color-#{$name} {
+        @include -select-disabled-ruleset(map.merge($options, (appearance: filled, color: $name)));
+      }
+    }
+  }
+
+  ._icon {
+    @include -icon-enabled-style($options);
+    @include icon.style($options: (content: "'arrow_drop_down'"));
+  }
+
+  ._select:disabled + ._icon,
+  ._select.--disabled + ._icon {
+    @include -icon-disabled-style($options);
+  }
+
+  // 複数の選択肢を表示する場合はアイコンは必要ないので隠す
+  ._select[size] + ._icon {
+    display: none;
+  }
+
+  &.-size-s ._icon {
+    @include -icon-enabled-style(
+      map.merge(
+        $options,
+        (
+          size: s
+        )
+      )
+    );
+  }
+
+  &.-size-m ._icon {
+    @include -icon-enabled-style(
+      map.merge(
+        $options,
+        (
+          size: m
+        )
+      )
+    );
+  }
+
+  &.-size-l ._icon {
+    @include -icon-enabled-style(
+      map.merge(
+        $options,
+        (
+          size: l
+        )
+      )
+    );
+  }
+
+  @each $name in adapter.get-semantic-intentions() {
+    &.-color-#{$name} {
+      ._icon {
+        @include -icon-enabled-style(
+          map.merge(
+            $options,
+            (
+              color: $name
+            )
+          )
+        );
+      }
+
+      ._select:disabled + ._icon,
+      ._select.--disabled + ._icon {
+        @include -icon-disabled-style(
+          map.merge(
+            $options,
+            (
+              color: $name
+            )
+          )
+        );
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-select {
+    @include style;
+  }
+}
+
+@mixin -enabled-style($options) {
+  @each $property, $value in functions.compose-enabled-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-enabled-style($options) {
+  @each $property, $value in functions.compose-select-enabled-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-enabled-ruleset($options) {
+  ._select {
+    @include -select-enabled-style($options);
+  }
+}
+
+@mixin -select-enabled-multiple-lines-style($options) {
+  @each $property, $value in functions.compose-select-enabled-multiple-lines-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-not-disabled-style($options) {
+  @each $property, $value in functions.compose-select-not-disabled-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-hover-style($options) {
+  @each $property, $value in functions.compose-select-hover-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-hover-ruleset($options) {
+  ._select:hover,
+  ._select:active,
+  ._select.--hover {
+    @include -select-hover-style($options);
+  }
+}
+
+@mixin -select-focused-style($options) {
+  @each $property, $value in functions.compose-select-focused-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-focused-ruleset($options) {
+  ._select:focus,
+  ._select.--focused {
+    @include -select-focused-style($options);
+  }
+}
+
+@mixin -select-disabled-style($options) {
+  @each $property, $value in functions.compose-select-disabled-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -select-disabled-ruleset($options) {
+  ._select:disabled,
+  ._select.--disabled {
+    @include -select-disabled-style($options);
+  }
+}
+
+@mixin -select-ruleset($options) {
+  @include -select-enabled-style($options);
+
+  &:hover,
+  &:active,
+  &.--hover {
+    @include -select-hover-style($options);
+  }
+
+  &:focus,
+  &.--focused {
+    @include -select-focused-style($options);
+  }
+
+  &:disabled,
+  &.--disabled {
+    @include -select-disabled-style($options);
+  }
+}
+
+@mixin -icon-enabled-style($options) {
+  @each $property, $value in functions.compose-icon-enabled-value($options) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin -icon-disabled-style($options) {
+  @each $property, $value in functions.compose-icon-disabled-value($options) {
+    #{$property}: #{$value};
+  }
+}

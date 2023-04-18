@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "sass:math";
+@use "@inhouse/adapter/functions" as adapter;
+@use "@inhouse/header/mixins" as header;
+@use "@inhouse/scrim/mixins" as scrim;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  display: none;
+
+  & > ._scrim {
+    @include scrim.style((
+      appearance: hollow,
+      layer: map.get($option, layer)
+    ));
+  }
+
+  & > ._content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index:
+      adapter.get-major-stack-z-index(
+        $layer: map.get($option, layer)
+      );
+    width: 100vw;
+    height: 50vh;
+    background-color: adapter.get-option-color(white, 1000);
+  }
+
+  & > * > ._header {
+    @include header.style;
+  }
+
+  & > * > ._body {
+    width: 100%;
+    height: calc(100% - adapter.get-header-height());
+    padding-top: adapter.get-header-height();
+    overflow-y: scroll;
+  }
+
+  &.--activated {
+    display: block;
+  }
+
+  @each $level in adapter.get-layer-levels() {
+    &.-layer-#{$level} {
+      & > ._scrim {
+        @include scrim.style((
+          appearance: hollow,
+          layer: $level
+        ));
+      }
+
+      & > ._content {
+        z-index:
+          adapter.get-major-stack-z-index(
+            $layer: $level
+          );
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-navigation-drawer {
+    @include style;
+  }
+}

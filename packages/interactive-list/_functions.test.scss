@@ -1,0 +1,10 @@
+@use "./variables";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-avatar-and-media-max-height() {
+  @return assert.equals(
+    functions.get-avatar-and-media-max-height($children-height: 10rem),
+    none
+  );
+}

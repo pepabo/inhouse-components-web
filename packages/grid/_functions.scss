@@ -1,0 +1,46 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "@inhouse/flavor/tokens" as flavor;
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-direction($option) {
+  @return map.get($option, direction);
+}
+
+@function compose-row-top-gap($boundary-size-level) {
+  @return -get-gap($boundary-size-level) * -1;
+}
+
+@function compose-row-horizontal-gap($boundary-size-level) {
+  @return math.div(-get-gap($boundary-size-level), -2);
+}
+
+@function compose-col-top-gap($boundary-size-level) {
+  @return -get-gap($boundary-size-level);
+}
+
+@function compose-col-horizontal-gap($boundary-size-level) {
+  @return -get-gap($boundary-size-level) * 0.5;
+}
+
+@function get-col-width($count) {
+  @return percentage(math.div($count, variables.$total-col-count));
+}
+
+@function -get-gap($boundary-size-level) {
+  $available-boundary-size-levels: xxs, xs, s, m, l, xl, xxl;
+
+  @if list.index($available-boundary-size-levels, $boundary-size-level) == null {
+    @error "grid-gap($grid-boundary)の$grid-boundaryには #{$available-boundary-size-levels} のいずれかのみ指定できます";
+  }
+
+  $value: adapter.get-gap-size($level: $boundary-size-level);
+
+  @if $value == null {
+    @error "grid-gap(#{$boundary-size-level})はFlavorで指定されていません";
+  }
+
+  @return $value;
+}
