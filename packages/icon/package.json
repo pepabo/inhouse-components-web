@@ -1,0 +1,25 @@
+{
+  "name": "@inhouse/icon",
+  "description": "Inhouse Components for the web component",
+  "version": "0.41.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/icon"
+  },
+  "dependencies": {
+    "@inhouse/adapter": "^0.41.0"
+  },
+  "devDependencies": {
+    "@gyugyu/webfonts-generator": "0.3.0",
+    "@inhouse/flavor": "^0.41.0",
+    "@inhouse/tokens": "^0.13.1"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "start": "npm run build",
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf dist",
+    "compile": "generate-webfonts assets"
+  }
+}

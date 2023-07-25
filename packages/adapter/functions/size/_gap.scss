@@ -1,0 +1,24 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$gap-size-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  gap
+);
+
+@function get-gap-size($level: m) {
+  $tokens: map.get($gap-size-tokens, base);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}

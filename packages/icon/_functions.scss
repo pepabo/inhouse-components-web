@@ -1,0 +1,6 @@
+@use "sass:map";
+@use "./variables";
+
+@function get-proto-value() {
+  @return variables.$proto;
+}

@@ -1,0 +1,9 @@
+@use "./text-style" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-text-style() {
+  @return assert.equals(
+    functions.get-text-style($level: m, $density: normal),
+    (font-size: 1rem, line-height: 1.5rem)
+  );
+}

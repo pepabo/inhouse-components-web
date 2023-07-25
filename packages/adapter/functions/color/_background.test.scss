@@ -1,0 +1,16 @@
+@use "./background" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-background-color() {
+  @return assert.equals(
+    functions.get-background-color($name: light, $type: well),
+    #f7f8fa
+  );
+}
+
+@function test-get-scrim-background-color() {
+  @return assert.equals(
+    functions.get-scrim-background-color(),
+    rgba(0, 0, 0, 0.32)
+  );
+}

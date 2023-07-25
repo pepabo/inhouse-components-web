@@ -1,0 +1,20 @@
+{
+  "name": "@inhouse/checkbox",
+  "description": "Inhouse Components for the web checkbox component",
+  "version": "0.41.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/checkbox"
+  },
+  "dependencies": {
+    "@inhouse/adapter": "^0.41.0",
+    "@inhouse/icon": "^0.41.0",
+    "@inhouse/skeleton": "^0.41.0"
+  },
+  "devDependencies": {
+    "@inhouse/constants": "^0.41.0",
+    "@inhouse/flavor": "^0.41.0",
+    "@inhouse/tokens": "^0.13.1"
+  }
+}

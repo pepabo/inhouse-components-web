@@ -1,0 +1,61 @@
+@use "./border" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+// 0に単位をつけないとテストが通らないのでLintを無視する
+/* stylelint-disable length-zero-no-unit */
+
+@function test-get-border-size() {
+  @return assert.equals(
+    functions.get-border-size($level: m),
+    0.0625rem
+  );
+}
+
+@function test-get-avatar-border-size() {
+  @return assert.equals(
+    functions.get-avatar-border-size(),
+    0rem
+  );
+}
+
+@function test-get-button-border-size() {
+  @return assert.equals(
+    functions.get-button-border-size($appearance: flat),
+    0.0625rem
+  );
+}
+
+@function test-get-checkbox-border-size() {
+  @return assert.equals(
+    functions.get-checkbox-border-size(),
+    0.0625rem
+  );
+}
+
+@function test-get-focus-ring-size() {
+  @return assert.equals(
+    functions.get-focus-ring-size(),
+    0.25rem
+  );
+}
+
+@function test-get-radio-border-size() {
+  @return assert.equals(
+    functions.get-radio-border-size(),
+    0.0625rem
+  );
+}
+
+@function test-get-progress-indicator-border-size() {
+  @return assert.equals(
+    functions.get-progress-indicator-border-size(),
+    0.25rem
+  );
+}
+
+@function test-get-table-border-size() {
+  @return assert.equals(
+    functions.get-table-border-size(),
+    0.0625rem
+  );
+}

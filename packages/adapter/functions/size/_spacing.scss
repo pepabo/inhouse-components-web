@@ -1,0 +1,43 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$spacing-size-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  spacing
+);
+
+@function get-spacing-size($level: m) {
+  $tokens: map.get($spacing-size-tokens, base);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}
+
+@function get-cell-vertical-spacing-size($density: normal) {
+  $tokens: map.get($spacing-size-tokens, cell);
+  $vertical-tokens: map.get($tokens, vertical);
+  $available-densities: helpers.get-densities();
+
+  @if list.index($available-densities, $density) == null {
+    @error error-message.any-one-of(
+      $value: $density,
+      $available-values: $available-densities
+    );
+  }
+
+  @return map.get($vertical-tokens, $density);
+}
+
+@function get-interactive-list-spacing-size() {
+  @return map.get($spacing-size-tokens, interactive-list);
+}

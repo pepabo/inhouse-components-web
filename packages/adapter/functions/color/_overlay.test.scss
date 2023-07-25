@@ -1,0 +1,16 @@
+@use "./overlay" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-background-overlay-color() {
+  @return assert.equals(
+    functions.get-background-overlay-color($brightness: light, $state: enabled),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@function test-get-image-overlay-color() {
+  @return assert.equals(
+    functions.get-image-overlay-color($state: enabled),
+    rgba(0, 0, 0, 0)
+  );
+}

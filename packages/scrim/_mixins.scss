@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+@use "./functions";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:
+    adapter.get-major-stack-z-index(
+      $layer: map.get($option, layer)
+    );
+  width: 100vw;
+  height: 100vh;
+  background-color:
+    functions.get-background-color(
+      $appearance: map.get($option, appearance)
+    );
+
+  @each $appearance in adapter.get-scrim-appearances() {
+    &.-appearance-#{"" + $appearance} {
+      background-color:
+        functions.get-background-color(
+          $appearance: $appearance
+        );
+    }
+  }
+}

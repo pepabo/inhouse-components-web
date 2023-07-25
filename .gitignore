@@ -1,0 +1,10 @@
+node_modules
+dist
+.envrc
+.changelog
+.DS_Store
+lerna-debug.log
+.reg
+__screenshots__
+.pull_requests
+CHANGELOG.md

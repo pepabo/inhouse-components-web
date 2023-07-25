@@ -1,0 +1,18 @@
+{
+  "name": "@inhouse/header",
+  "description": "Inhouse Components for the web header proto",
+  "version": "0.41.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/header"
+  },
+  "dependencies": {
+    "@inhouse/adapter": "^0.41.0"
+  },
+  "devDependencies": {
+    "@inhouse/constants": "^0.41.0",
+    "@inhouse/flavor": "^0.41.0",
+    "@inhouse/tokens": "^0.13.1"
+  }
+}

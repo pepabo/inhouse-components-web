@@ -1,0 +1,326 @@
+@use "sass:map";
+@use "sass:math";
+@use "@inhouse/icon/mixins" as icon;
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+@use "./functions";
+
+@mixin linear($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: adapter.get-progress-indicator-border-size();
+  overflow: hidden;
+  background-color: adapter.get-progress-indicator-track-surface-color();
+
+  &[aria-valuenow] > * {
+    height: adapter.get-progress-indicator-border-size();
+    background-color: adapter.get-progress-indicator-indicator-surface-color();
+  }
+
+  @for $i from 0 to 100 {
+    &[aria-valuenow][data-percentage="#{$i}"] > * {
+      width: math.percentage(math.div($i, 100));
+    }
+  }
+
+  &:not([aria-valuenow]) > * {
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-color: adapter.get-progress-indicator-indicator-surface-color();
+      content: "";
+      will-change: left, right;
+    }
+
+    &::before {
+      animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    }
+
+    &::after {
+      animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      animation-delay: 1.15s;
+    }
+  }
+}
+
+@mixin circular($option: variables.$default-option) {
+  position: relative;
+  width: adapter.get-circular-progress-indicator-width();
+  height: adapter.get-circular-progress-indicator-height();
+
+  &::after {
+    position: absolute;
+    top: adapter.get-spacing-size($level: xxs);
+    right: adapter.get-spacing-size($level: xxs);
+    bottom: adapter.get-spacing-size($level: xxs);
+    left: adapter.get-spacing-size($level: xxs);
+    display: block;
+    box-sizing: border-box;
+    border: adapter.get-progress-indicator-border-size() solid adapter.get-progress-indicator-indicator-surface-color();
+    border-radius: 50%;
+    transform: rotate(45deg);
+    transform-origin: center;
+    transition: clip-path 0.1s ease;
+    content: "";
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 50% 50%);
+  }
+
+  @for $i from 0 to 25 {
+    &[data-percentage="#{$i}"]::after {
+      clip-path:
+        polygon(
+          functions.compose-polygon-displacement($i) 0%,
+          functions.compose-polygon-displacement($i) 0%,
+          functions.compose-polygon-displacement($i) 0%,
+          functions.compose-polygon-displacement($i) 0%,
+          0% 0%,
+          50% 50%
+        );
+    }
+  }
+
+  @for $j from 25 to 50 {
+    &[data-percentage="#{$j}"]::after {
+      clip-path:
+        polygon(
+          100% functions.compose-polygon-displacement($j),
+          100% functions.compose-polygon-displacement($j),
+          100% functions.compose-polygon-displacement($j),
+          100% 0%,
+          0% 0%,
+          50% 50%
+        );
+    }
+  }
+
+  @for $k from 50 to 75 {
+    &[data-percentage="#{$k}"]::after {
+      clip-path:
+        polygon(
+          (100% - functions.compose-polygon-displacement($k)) 100%,
+          (100% - functions.compose-polygon-displacement($k)) 100%,
+          100% 100%,
+          100% 0%,
+          0% 0%,
+          50% 50%
+        );
+    }
+  }
+
+  @for $l from 75 to 100 {
+    &[data-percentage="#{$l}"]::after {
+      clip-path:
+        polygon(
+          0% (100% - functions.compose-polygon-displacement($l)),
+          0 100%,
+          100% 100%,
+          100% 0%,
+          0% 0%,
+          50% 50%
+        );
+    }
+  }
+
+  &:not([aria-valuenow]),
+  &[aria-valuenow=""] {
+    animation: circular-indeterminate-rotate 2s linear infinite;
+
+    &::after {
+      animation: circular-indeterminate 2s linear infinite;
+    }
+  }
+}
+
+@keyframes indeterminate {
+  0% {
+    right: 100%;
+    left: -35%;
+  }
+
+  60% {
+    right: -90%;
+    left: 100%;
+  }
+
+  100% {
+    right: -90%;
+    left: 100%;
+  }
+}
+
+@keyframes indeterminate-short {
+  0% {
+    right: 100%;
+    left: -200%;
+  }
+
+  60% {
+    right: -8%;
+    left: 107%;
+  }
+
+  100% {
+    right: -8%;
+    left: 107%;
+  }
+}
+
+@keyframes circular-indeterminate-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circular-indeterminate {
+  0% {
+    clip-path:
+      polygon(
+        functions.compose-polygon-displacement(10) 0%,
+        functions.compose-polygon-displacement(10) 0%,
+        functions.compose-polygon-displacement(10) 0%,
+        functions.compose-polygon-displacement(10) 0%,
+        0% 0%,
+        50% 50%
+      );
+  }
+
+  8% {
+    clip-path:
+      polygon(
+        100% 0%,
+        100% 0%,
+        100% 0%,
+        100% 0%,
+        0% 0%,
+        50% 50%
+      );
+  }
+
+  16% {
+    clip-path:
+      polygon(
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 0%,
+        0% 0%,
+        50% 50%
+      );
+  }
+
+  24% {
+    clip-path:
+      polygon(
+        0% 100%,
+        0 100%,
+        100% 100%,
+        100% 0%,
+        0% 0%,
+        50% 50%
+      );
+  }
+
+  32% {
+    clip-path:
+      polygon(
+        0% functions.compose-polygon-displacement(10),
+        0 100%,
+        100% 100%,
+        100% 0%,
+        0% 0%,
+        50% 50%
+      );
+  }
+
+  50% {
+    clip-path:
+      polygon(
+        0% 0%,
+        0% 100%,
+        100% 100%,
+        100% 0%,
+        functions.compose-polygon-displacement(10) 0%,
+        50% 50%
+      );
+  }
+
+  58% {
+    clip-path:
+      polygon(
+        0% 0%,
+        0% 100%,
+        100% 100%,
+        100% 0%,
+        100% 0%,
+        50% 50%
+      );
+  }
+
+  66% {
+    clip-path:
+      polygon(
+        0% 0%,
+        0% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        50% 50%
+      );
+  }
+
+  74% {
+    clip-path:
+      polygon(
+        0% 0%,
+        0% 100%,
+        0% 100%,
+        0% 100%,
+        0% 100%,
+        50% 50%
+      );
+  }
+
+  82% {
+    clip-path:
+      polygon(
+        0% 0%,
+        0% functions.compose-polygon-displacement(10),
+        0% functions.compose-polygon-displacement(10),
+        0% functions.compose-polygon-displacement(10),
+        0% functions.compose-polygon-displacement(10),
+        50% 50%
+      );
+  }
+
+  100% {
+    clip-path:
+      polygon(
+        functions.compose-polygon-displacement(10) 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        50% 50%
+      );
+  }
+}
+
+@mixin export {
+  .in-linear-progress-indicator {
+    @include linear;
+  }
+
+  .in-circular-progress-indicator {
+    @include circular;
+  }
+}

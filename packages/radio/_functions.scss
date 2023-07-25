@@ -1,0 +1,102 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-cursor($states: (enabled)) {
+  $available-states: adapter.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error "$statesには #{$available-states} を組み合わせた配列のみ指定できます";
+    }
+  }
+
+  @if list.index($states, disabled) != null {
+    @return default;
+  } @else {
+    @return pointer;
+  }
+}
+
+@function get-opacity($states: (enabled)) {
+  $available-states: adapter.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error "$statesには #{$available-states} を組み合わせた配列のみ指定できます";
+    }
+  }
+
+  @if list.index($states, disabled) != null {
+    @return adapter.get-disabled-surface-opacity();
+  } @else {
+    @return 1;
+  }
+}
+
+@function compose-child-element-margin($child-element-size) {
+  @return $child-element-size * 0.5 * -1;
+}
+
+@function get-background-box-shadow($states: (enabled)) {
+  $available-states: adapter.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error "$statesには #{$available-states} を組み合わせた配列のみ指定できます";
+    }
+  }
+
+  $focus-ring: -get-focus-ring($states: $states);
+  $border-overlay: -get-border-overlay($states: $states);
+  $border: -get-border($states: $states);
+
+  @if list.index($states, focused) != null {
+    @if list.index($states, selected) != null {
+      @return $focus-ring, $border;
+    } @else {
+      @return $focus-ring, $border-overlay, $border;
+    }
+  } @else {
+    @if list.index($states, selected) != null {
+      @return $border;
+    } @else {
+      @return $border-overlay, $border;
+    }
+  }
+}
+
+@function -get-focus-ring($states: (enabled)) {
+  @if list.index($states, selected) != null {
+    @return adapter.get-focus-ring-box-shadow($color: informative);
+  } @else {
+    @return adapter.get-focus-ring-box-shadow($color: neutral);
+  }
+}
+
+@function -get-border($states: (enabled)) {
+  $border-width: adapter.get-radio-border-size();
+  $border-color: adapter.get-radio-border-color($states: $states);
+
+  @return 0 0 0 $border-width $border-color;
+}
+
+@function -get-border-overlay-color($states: (enabled)) {
+  $brightness:
+    adapter.get-background-brightness(
+      $background-color: adapter.get-radio-surface-color()
+    );
+
+  @return adapter.get-background-overlay-color(
+    $brightness: $brightness,
+    $state: list.nth($states, 1)
+  );
+}
+
+@function -get-border-overlay($states: (enabled)) {
+  $border-width: adapter.get-radio-border-size();
+  $border-overlay-color: -get-border-overlay-color($states: $states);
+
+  @return 0 0 0 $border-width $border-overlay-color;
+}

@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "./variables";
+
+@function get-default-option($options) {
+  @return map.get(variables.$default-option, $options);
+}
+
+@function get-available-appearance() {
+  @return variables.$available-appearance;
+}
+
+@function get-available-sizes() {
+  @return variables.$available-sizes;
+}
+
+@function get-available-semantic-intentions() {
+  @return variables.$available-semantic-intentions;
+}
+
+@function get-available-width() {
+  @return variables.$available-width;
+}

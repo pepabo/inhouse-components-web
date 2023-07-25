@@ -1,0 +1,21 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../../error-message";
+
+$surface-opacity-tokens: map.get(
+  map.get(tokens.$tokens, opacity),
+  surface
+);
+
+@function get-disabled-surface-opacity() {
+  $tokens: map.get($surface-opacity-tokens, base);
+
+  @return map.get($tokens, disabled);
+}
+
+@function get-hollow-button-surface-opacity() {
+  $tokens: map.get($surface-opacity-tokens, button);
+
+  @return map.get($tokens, hollow);
+}

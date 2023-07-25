@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter;
+@use "@inhouse/header/mixins" as header;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include header.style($option);
+}
+
+@mixin export {
+  .in-app-bar {
+    @include style;
+  }
+}

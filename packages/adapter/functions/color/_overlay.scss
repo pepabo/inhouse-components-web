@@ -1,0 +1,48 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$overlay-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  overlay
+);
+
+@function get-background-overlay-color($brightness: light, $state: enabled) {
+  $tokens: map.get($overlay-color-tokens, background);
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  $brightness-tokens: map.get($tokens, $brightness);
+
+  @return map.get($brightness-tokens, $state);
+}
+
+@function get-image-overlay-color($state: enabled) {
+  $tokens: map.get($overlay-color-tokens, image);
+  $available-states: helpers.get-states();
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @return map.get($tokens, $state);
+}

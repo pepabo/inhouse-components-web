@@ -1,0 +1,524 @@
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter-functions;
+@use "@inhouse/adapter/mixins" as adapter-mixins;
+@use "@inhouse/cell/mixins" as cell;
+@use "@inhouse/skeleton/mixins" as skeleton;
+@use "@inhouse/thumbnail/mixins" as thumbnail;
+@use "./variables";
+@use "./functions";
+
+// ソースコードの読みやすさを優先させて、以下のルールのlintの対象から除外する
+/* stylelint-disable no-descending-specificity */
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  &.-has-background {
+    @include -background-proto(
+      $density: map.get($option, density)
+    );
+  }
+
+  & + & {
+    @include -divider-proto;
+  }
+
+  & > ._title {
+    @include -title-proto(
+      $density: map.get($option, density)
+    );
+  }
+
+  ._list {
+    @include -list-proto(
+      $density: map.get($option, density)
+    );
+  }
+
+  ._item {
+    & > * {
+      @include -item-children-proto;
+    }
+
+    & > a,
+    & > button,
+    & > label {
+      &:focus,
+      &.--focused {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: focused
+          );
+        outline: none;
+      }
+
+      &:hover,
+      &.--hover {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: hover
+          );
+        cursor: pointer;
+      }
+    }
+
+    & > a {
+      text-decoration: inherit;
+    }
+
+    & > button {
+      margin: 0;
+      font-size: 100%;
+      font-family: inherit;
+      text-align: inherit;
+      border: none;
+    }
+
+    ._body {
+      @include -body-proto(
+        $density: map.get($option, density)
+      );
+    }
+
+    & > * > ._leading {
+      @include -leading-proto(
+        $density: map.get($option, density)
+      );
+    }
+
+    & > * > ._trailing {
+      @include -trailing-proto(
+        $density: map.get($option, density)
+      );
+    }
+
+    ._title {
+      @include -body-title-proto(
+        $line-clamp: map.get($option, line-clamp)
+      );
+    }
+
+    ._description {
+      @include -body-description-proto(
+        $line-clamp: map.get($option, line-clamp)
+      );
+    }
+
+    ._avatar {
+      @include -avatar-proto;
+    }
+
+    ._media {
+      @include -media-proto;
+
+      ._thumbnail {
+        @include thumbnail.style((size: m));
+      }
+
+      @each $size in adapter-functions.get-thumbnail-sizes() {
+        &.-size-#{$size} {
+          max-height:
+            functions.get-avatar-and-media-max-height(
+              $children-height: adapter-functions.get-thumbnail-height($size)
+            );
+
+          ._thumbnail {
+            @include thumbnail.style((size: $size));
+          }
+        }
+      }
+    }
+
+    ._icon {
+      @include -icon-proto;
+    }
+
+    &.--disabled > * {
+      background-color:
+        adapter-functions.get-background-overlay-color(
+          $brightness: light,
+          $state: disabled
+        );
+      opacity: adapter-functions.get-disabled-surface-opacity();
+
+      &:hover {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: disabled
+          );
+        cursor: not-allowed;
+      }
+    }
+
+    &.--selected > * {
+      background-color:
+        adapter-functions.get-background-overlay-color(
+          $brightness: light,
+          $state: selected
+        );
+
+      &:focus,
+      &:hover {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: selected
+          );
+      }
+    }
+
+    &.--activated > * {
+      font-weight: bold;
+      background-color:
+        adapter-functions.get-background-overlay-color(
+          $brightness: light,
+          $state: activated
+        );
+
+      &:focus,
+      &:hover {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: activated
+          );
+      }
+
+      ._leading {
+        color: adapter-functions.get-interactive-list-edge-element-text-color($state: activated);
+      }
+
+      ._trailing {
+        color: adapter-functions.get-interactive-list-edge-element-text-color($state: activated);
+      }
+
+      ._title {
+        color: adapter-functions.get-interactive-list-body-title-text-color($state: activated);
+      }
+
+      ._description {
+        color: adapter-functions.get-interactive-list-body-description-text-color($state: activated);
+      }
+    }
+
+    &.-is-draggable {
+      cursor: grab;
+
+      &:active,
+      &.--dragged {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: dragged
+          );
+        box-shadow: adapter-functions.get-elevation-box-shadow($level: 3);
+        cursor: grabbing;
+      }
+    }
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    &.-density-#{$density} {
+      padding: adapter-functions.get-cell-vertical-spacing-size($density) 0;
+
+      & > ._title {
+        @include cell.style((density: $density, size: s));
+
+        padding-bottom: 0;
+      }
+
+      ._list {
+        padding: adapter-functions.get-cell-vertical-spacing-size($density) 0;
+      }
+
+      ._leading,
+      ._body,
+      ._trailing {
+        @include cell.style((density: $density, size: m));
+      }
+    }
+  }
+}
+
+@mixin skeleton-style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  &.-has-background {
+    @include -background-proto(
+      $density: map.get($option, density)
+    );
+  }
+
+  & + & {
+    @include -divider-proto;
+  }
+
+  & > ._title {
+    @include -title-proto(
+      $density: map.get($option, density)
+    );
+
+    ._skeleton {
+      @include skeleton.skeleton-text(
+        $level: s,
+        $density: map.get($option, density)
+      );
+
+      max-width: 6rem;
+    }
+  }
+
+  ._list {
+    @include -list-proto(
+      $density: map.get($option, density)
+    );
+  }
+
+  ._item {
+    & > * {
+      @include -item-children-proto;
+    }
+
+    ._body {
+      @include -body-proto(
+        $density: map.get($option, density)
+      );
+    }
+
+    & > * > ._leading {
+      @include -leading-proto(
+        $density: map.get($option, density)
+      );
+    }
+
+    & > * > ._trailing {
+      @include -trailing-proto(
+        $density: map.get($option, density)
+      );
+    }
+
+    ._title {
+      @include -body-title-proto(
+        $line-clamp: map.get($option, line-clamp)
+      );
+
+      ._skeleton {
+        @include skeleton.skeleton-text(
+          $level: m,
+          $density: map.get($option, density)
+        );
+
+        max-width: 12rem;
+      }
+    }
+
+    ._description {
+      @include -body-description-proto(
+        $line-clamp: map.get($option, line-clamp)
+      );
+
+      ._skeleton {
+        @include skeleton.skeleton-text(
+          $level: s,
+          $density: map.get($option, density)
+        );
+
+        max-width: 8rem;
+      }
+    }
+
+    ._avatar {
+      @include -avatar-proto;
+    }
+
+    ._media {
+      @include -media-proto;
+
+      ._thumbnail {
+        @include thumbnail.skeleton-style((size: m));
+      }
+
+      @each $size in adapter-functions.get-thumbnail-sizes() {
+        &.-size-#{$size} {
+          max-height:
+            functions.get-avatar-and-media-max-height(
+              $children-height: adapter-functions.get-thumbnail-height($size)
+            );
+
+          ._thumbnail {
+            @include thumbnail.skeleton-style((size: $size));
+          }
+        }
+      }
+    }
+
+    ._icon {
+      @include -icon-proto;
+    }
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    &.-density-#{$density} {
+      padding: adapter-functions.get-cell-vertical-spacing-size($density) 0;
+
+      & > ._title {
+        @include cell.style((density: $density, size: s));
+
+        padding-bottom: 0;
+      }
+
+      ._list {
+        padding: adapter-functions.get-cell-vertical-spacing-size($density) 0;
+      }
+
+      ._leading,
+      ._body,
+      ._trailing {
+        @include cell.style((density: $density, size: m));
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-interactive-list {
+    @include style;
+  }
+
+  .in-skeleton-interactive-list {
+    @include skeleton-style;
+  }
+}
+
+@mixin -background-proto($density: normal) {
+  padding: adapter-functions.get-cell-vertical-spacing-size($density) 0;
+}
+
+@mixin -divider-proto() {
+  border-top: adapter-functions.get-border-size($level: m) solid adapter-functions.get-interactive-list-border-color();
+}
+
+@mixin -title-proto($density: normal) {
+  @include cell.style((density: $density, size: s));
+
+  margin: 0;
+  padding-right: adapter-functions.get-gap-size($level: m);
+  padding-bottom: 0;
+  padding-left: adapter-functions.get-gap-size($level: m);
+  color: adapter-functions.get-interactive-list-title-text-color();
+
+  @each $boundary-size in adapter-functions.get-boundary-sizes() {
+    @include adapter-mixins.mq-boundary(up, $boundary-size) {
+      padding-right: adapter-functions.get-gap-size($level: $boundary-size);
+      padding-left: adapter-functions.get-gap-size($level: $boundary-size);
+    }
+  }
+}
+
+@mixin -list-proto($density: normal) {
+  margin: 0;
+  padding: adapter-functions.get-cell-vertical-spacing-size($density: $density) 0;
+  list-style-type: none;
+}
+
+@mixin -item-children-proto() {
+  display: flex;
+  gap: adapter-functions.get-interactive-list-spacing-size();
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 adapter-functions.get-gap-size($level: m);
+  background-color:
+    adapter-functions.get-background-overlay-color(
+      $brightness: light,
+      $state: enabled
+    );
+
+  @each $boundary-size in adapter-functions.get-boundary-sizes() {
+    @include adapter-mixins.mq-boundary(up, $boundary-size) {
+      padding: 0 adapter-functions.get-gap-size($level: $boundary-size);
+    }
+  }
+}
+
+@mixin -body-proto($density: normal) {
+  @include cell.style((density: $density, size: m));
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@mixin -leading-proto($density: normal) {
+  @include cell.style((density: $density, size: m));
+  @include -edge-element-proto;
+
+  min-width: adapter-functions.get-interactive-list-edge-element-width();
+  color: adapter-functions.get-interactive-list-edge-element-text-color($state: enabled);
+}
+
+@mixin -trailing-proto($density: normal) {
+  @include cell.style((density: $density, size: m));
+  @include -edge-element-proto;
+
+  align-self: center;
+  min-width: adapter-functions.get-interactive-list-edge-element-width();
+  color: adapter-functions.get-interactive-list-edge-element-text-color($state: enabled);
+}
+
+@mixin -body-title-proto($line-clamp: 2) {
+  @include -body-element-proto;
+
+  color: adapter-functions.get-interactive-list-body-title-text-color($state: enabled);
+  font-size: adapter-functions.get-font-size($level: m);
+  -webkit-line-clamp: $line-clamp;
+}
+
+@mixin -body-description-proto($line-clamp: 2) {
+  @include -body-element-proto;
+
+  color: adapter-functions.get-interactive-list-body-description-text-color($state: enabled);
+  font-size: adapter-functions.get-font-size($level: s);
+  -webkit-line-clamp: $line-clamp;
+}
+
+@mixin -avatar-proto() {
+  display: flex;
+  align-items: center;
+  max-height:
+    functions.get-avatar-and-media-max-height(
+      $children-height: adapter-functions.get-avatar-height(m)
+    );
+}
+
+@mixin -media-proto() {
+  display: flex;
+  align-items: center;
+  max-height:
+    functions.get-avatar-and-media-max-height(
+      $children-height: adapter-functions.get-thumbnail-height(m)
+    );
+}
+
+@mixin -icon-proto() {
+  width: adapter-functions.get-interactive-list-pict-width();
+  height: adapter-functions.get-interactive-list-pict-height();
+  font-size: adapter-functions.get-interactive-list-pict-height();
+}
+
+@mixin -edge-element-proto() {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+@mixin -body-element-proto() {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

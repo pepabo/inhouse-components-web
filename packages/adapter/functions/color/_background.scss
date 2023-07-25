@@ -1,0 +1,56 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$background-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  background
+);
+
+@function get-background-color($name: light, $type: base) {
+  $base-tokens: map.get($background-color-tokens, base);
+  $brand-colors: brand, accent;
+
+  $available-names:
+    list.join(
+      helpers.get-brightnesses(),
+      $brand-colors,
+      $separator: comma
+    );
+  $available-types: base, well;
+
+  @if list.index($available-names, $name) == null {
+    @error error-message.any-one-of(
+      $value: $name,
+      $available-values: $available-names
+    );
+  }
+
+  @if list.index($available-types, $type) == null {
+    @error error-message.any-one-of(
+      $value: $type,
+      $available-values: $available-types
+    );
+  }
+
+  $name-tokens: map.get($base-tokens, $name);
+
+  @if $name == light {
+    @return map.get($name-tokens, $type);
+  } @else {
+    @if $type == well {
+      @error error-message.exclusive(
+        $value1: $name,
+        $value2: $type
+      );
+    } @else {
+      @return map.get($name-tokens, $type);
+    }
+  }
+}
+
+@function get-scrim-background-color() {
+  @return map.get($background-color-tokens, scrim);
+}

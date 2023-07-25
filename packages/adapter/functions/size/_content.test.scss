@@ -1,0 +1,16 @@
+@use "./content" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-border-size() {
+  @return assert.equals(
+    "#{functions.get-content-sizes()}",
+    "xs, s, m, l, xl"
+  );
+}
+
+@function test-get-content-size() {
+  @return assert.equals(
+    functions.get-content-size($level: m),
+    960px
+  );
+}

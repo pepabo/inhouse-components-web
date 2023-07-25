@@ -1,0 +1,45 @@
+@use "@inhouse/app-bar";
+@use "@inhouse/avatar";
+@use "@inhouse/bottom-navigation";
+@use "@inhouse/button";
+@use "@inhouse/checkbox";
+@use "@inhouse/container";
+@use "@inhouse/description-list";
+@use "@inhouse/flavor";
+@use "@inhouse/grid";
+@use "@inhouse/header";
+@use "@inhouse/icon";
+@use "@inhouse/interactive-list";
+@use "@inhouse/interactive-table";
+@use "@inhouse/list";
+@use "@inhouse/navigation-drawer";
+@use "@inhouse/progress-indicator";
+@use "@inhouse/radio";
+@use "@inhouse/scrim";
+@use "@inhouse/select";
+@use "@inhouse/side-navigation";
+@use "@inhouse/table";
+@use "@inhouse/textfield";
+
+// @import が存在しているので最初に flavor を読む
+// see: https://git.pepabo.com/inhouse/components-web/issues/355
+@include flavor.export;
+@include app-bar.export;
+@include avatar.export;
+@include bottom-navigation.export;
+@include button.export;
+@include checkbox.export;
+@include container.export;
+@include description-list.export;
+@include grid.export;
+@include icon.export;
+@include interactive-list.export;
+@include interactive-table.export;
+@include list.export;
+@include navigation-drawer.export;
+@include progress-indicator.export;
+@include radio.export;
+@include select.export;
+@include side-navigation.export;
+@include table.export;
+@include textfield.export;

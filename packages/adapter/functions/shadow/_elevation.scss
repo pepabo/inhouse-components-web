@@ -1,0 +1,24 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../../error-message";
+@use "../helpers";
+
+$elevation-shadow-tokens: map.get(map.get(tokens.$tokens, shadow), elevation);
+
+@function get-elevation-box-shadow($level: 0) {
+  $available-levels: helpers.get-elevation-levels();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  $level-tokens: map.get($elevation-shadow-tokens, "#{$level}");
+
+  @return #{map.get($level-tokens, key-light)},
+    #{map.get($level-tokens, ambient-light)},
+    #{map.get($level-tokens, adjustment)};
+}

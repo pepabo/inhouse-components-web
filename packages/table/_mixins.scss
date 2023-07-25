@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "sass:list";
+@use "@inhouse/adapter/functions" as adapter;
+@use "@inhouse/cell/mixins" as cell;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  color:
+    adapter.get-text-color(
+      $brightness: light,
+      $name: high_emphasis
+    );
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th,
+  td {
+    padding-right: adapter.get-spacing-size(m);
+    padding-left: adapter.get-spacing-size(m);
+    text-align: start;
+
+    @include cell.style((density: map.get($option, density), size: map.get($option, size)));
+    @include -align;
+  }
+
+  @each $density in adapter.get-densities() {
+    &.-density-#{$density} {
+      th,
+      td {
+        @include cell.style((density: $density, size: map.get($option, size)));
+      }
+    }
+  }
+
+  @each $size in adapter.get-cell-sizes() {
+    &.-size-#{$size} {
+      th,
+      td {
+        @include cell.style((density: map.get($option, density), size: $size));
+      }
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    @each $size in adapter.get-cell-sizes() {
+      &.-density-#{$density}.-size-#{$size} {
+        th,
+        td {
+          @include cell.style((density: $density, size: $size));
+        }
+      }
+    }
+  }
+
+  th {
+    font-weight: bold;
+    border-bottom: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: high_emphasis);
+  }
+
+  td {
+    border-bottom: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: mid_emphasis);
+  }
+}
+
+@mixin -align() {
+  @each $align in adapter.get-table-align-values() {
+    &.-align-#{$align} {
+      text-align: #{$align};
+    }
+  }
+}
+
+@mixin export {
+  .in-table {
+    @include style;
+  }
+}

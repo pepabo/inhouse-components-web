@@ -1,0 +1,16 @@
+@use "./surface" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-disabled-surface-opacity() {
+  @return assert.equals(
+    functions.get-disabled-surface-opacity(),
+    0.38
+  );
+}
+
+@function test-get-hollow-button-surface-opacity() {
+  @return assert.equals(
+    functions.get-hollow-button-surface-opacity(),
+    0.15
+  );
+}

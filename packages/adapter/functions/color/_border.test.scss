@@ -1,0 +1,79 @@
+@use "./border" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-border-color() {
+  @return assert.equals(
+    functions.get-border-color($brightness: light, $name: high_emphasis),
+    rgba(57, 60, 65, 0.3)
+  );
+}
+
+@function test-get-avatar-border-color() {
+  @return assert.equals(
+    functions.get-avatar-border-color(),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@function test-get-button-border-color() {
+  @return assert.equals(
+    functions.get-button-border-color(
+      $appearance: flat,
+      $color: neutral,
+      $state: enabled
+    ),
+    transparent
+  );
+}
+
+@function test-get-checkbox-border-color() {
+  @return assert.equals(
+    functions.get-checkbox-border-color($states: (enabled)),
+    rgba(57, 60, 65, 0.2)
+  );
+}
+
+@function test-get-focus-ring-color() {
+  @return assert.equals(
+    functions.get-focus-ring-color($color: neutral),
+    #9297a1
+  );
+}
+
+@function test-get-interactive-list-border-color() {
+  @return assert.equals(
+    functions.get-interactive-list-border-color(),
+    rgba(57, 60, 65, 0.2)
+  );
+}
+
+@function test-get-interactive-table-border-color() {
+  @return assert.equals(
+    functions.get-interactive-table-border-color($element: header),
+    rgba(57, 60, 65, 0.3)
+  );
+}
+
+@function test-get-radio-border-color() {
+  @return assert.equals(
+    functions.get-radio-border-color($states: (enabled)),
+    rgba(57, 60, 65, 0.2)
+  );
+}
+
+@function test-get-side-navigation-border-color() {
+  @return assert.equals(
+    functions.get-side-navigation-border-color(),
+    rgba(57, 60, 65, 0.2)
+  );
+}
+
+@function test-get-field-border-color() {
+  @return assert.equals(
+    functions.get-field-border-color(
+      $color: neutral,
+      $state: enabled
+    ),
+    #afb3ba
+  );
+}

@@ -1,0 +1,62 @@
+@use "sass:list";
+@use "sass:map";
+@use "@inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$border-size-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  border
+);
+
+@function get-border-size($level: m) {
+  $tokens: map.get($border-size-tokens, base);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}
+
+@function get-avatar-border-size() {
+  @return map.get($border-size-tokens, avatar);
+}
+
+@function get-button-border-size($appearance: flat) {
+  $tokens: map.get($border-size-tokens, button);
+  $available-appearances: helpers.get-button-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @return map.get($tokens, "#{$appearance}");
+}
+
+@function get-checkbox-border-size() {
+  @return map.get($border-size-tokens, checkbox);
+}
+
+@function get-focus-ring-size() {
+  @return map.get($border-size-tokens, focus-ring);
+}
+
+@function get-progress-indicator-border-size() {
+  @return map.get($border-size-tokens, progress-indicator);
+}
+
+@function get-radio-border-size() {
+  @return map.get($border-size-tokens, radio);
+}
+
+@function get-table-border-size() {
+  @return map.get($border-size-tokens, table);
+}

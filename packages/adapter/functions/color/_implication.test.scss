@@ -1,0 +1,9 @@
+@use "./implication" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-implication-color() {
+  @return assert.equals(
+    functions.get-implication-color($name: interactive, $level: 600),
+    #1f7acc
+  );
+}

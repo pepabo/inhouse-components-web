@@ -1,0 +1,140 @@
+@use "sass:map";
+@use "@inhouse/adapter/functions" as adapter;
+@use "./variables";
+@use "./functions";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  position: functions.get-position($position: map.get($option, position));
+  z-index: functions.get-z-index($position: map.get($option, position));
+  width: 100%;
+  color:
+    functions.get-color(
+      $appearance: map.get($option, appearance),
+      $brightness: map.get($option, brightness)
+    );
+  background-color: functions.get-background-color($appearance: map.get($option, appearance));
+  box-shadow: functions.get-box-shadow($appearance: map.get($option, appearance));
+
+  & > ._content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: adapter.get-header-height();
+    padding: adapter.get-spacing-size($level: xs);
+
+    & > ._body {
+      display: flex;
+      flex-grow: 1;
+      box-sizing: border-box;
+      padding-right: adapter.get-spacing-size($level: xs);
+      padding-left: adapter.get-spacing-size($level: xs);
+
+      img,
+      svg {
+        display: block;
+        max-height: adapter.get-sizing-scale-size($level: 32);
+      }
+
+      a {
+        display: block;
+        color:
+          functions.get-color(
+            $appearance: map.get($option, appearance),
+            $brightness: map.get($option, brightness)
+          );
+        text-decoration: none;
+      }
+
+      ._title {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        font-size: adapter.get-font-size($level: xl);
+        line-height: adapter.get-line-height($density: normal);
+      }
+    }
+
+    & > ._leading {
+      display: flex;
+      align-items: center;
+    }
+
+    & > ._trailing {
+      ._list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        ._item {
+          display: flex;
+          align-items: center;
+          margin: 0 adapter.get-spacing-size($level: xxs) 0 0;
+          padding: 0;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @each $appearance in adapter.get-header-appearances() {
+    &.-appearance-#{"" + $appearance} {
+      color:
+        functions.get-color(
+          $appearance: $appearance,
+          $brightness: map.get($option, brightness),
+        );
+      background-color: functions.get-background-color($appearance: $appearance);
+      box-shadow: functions.get-box-shadow($appearance: $appearance);
+
+      & > ._content {
+        & > ._body {
+          a {
+            color:
+              functions.get-color(
+                $appearance: $appearance,
+                $brightness: map.get($option, brightness),
+              );
+          }
+        }
+      }
+    }
+
+    @each $brightness in adapter.get-brightnesses() {
+      &.-appearance-#{"" + $appearance}.-brightness-#{$brightness} {
+        color:
+          functions.get-color(
+            $appearance: $appearance,
+            $brightness: $brightness,
+          );
+
+        & > ._content {
+          & > ._body {
+            a {
+              color:
+                functions.get-color(
+                  $appearance: $appearance,
+                  $brightness: $brightness,
+                );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @each $position in adapter.get-positions() {
+    &.-position-#{$position} {
+      position: functions.get-position($position: $position);
+      z-index: functions.get-z-index($position: $position);
+    }
+  }
+}

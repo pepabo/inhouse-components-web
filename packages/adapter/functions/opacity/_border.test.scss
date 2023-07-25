@@ -1,0 +1,9 @@
+@use "./border" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-focus-ring-opacity() {
+  @return assert.equals(
+    functions.get-focus-ring-opacity(),
+    0.15
+  );
+}

@@ -1,0 +1,5 @@
+name: inhouse-icons
+dest: ../dist
+svg:
+  fontHeight: 1000
+  normalize: true

@@ -1,0 +1,57 @@
+{
+  "name": "@inhouse/inhouse-components-web",
+  "description": "Inhouse UI components for the web",
+  "version": "0.41.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/inhouse-components-web"
+  },
+  "devDependencies": {
+    "@inhouse/adapter": "^0.41.0",
+    "@inhouse/app-bar": "^0.41.0",
+    "@inhouse/avatar": "^0.41.0",
+    "@inhouse/bottom-navigation": "^0.41.0",
+    "@inhouse/button": "^0.41.0",
+    "@inhouse/cell": "^0.41.0",
+    "@inhouse/checkbox": "^0.41.0",
+    "@inhouse/constants": "^0.41.0",
+    "@inhouse/container": "^0.41.0",
+    "@inhouse/description-list": "^0.41.0",
+    "@inhouse/flavor": "^0.41.0",
+    "@inhouse/grid": "^0.41.0",
+    "@inhouse/header": "^0.41.0",
+    "@inhouse/icon": "^0.41.0",
+    "@inhouse/interactive-list": "^0.41.0",
+    "@inhouse/interactive-table": "^0.41.0",
+    "@inhouse/list": "^0.41.0",
+    "@inhouse/navigation-drawer": "^0.41.0",
+    "@inhouse/progress-indicator": "^0.41.0",
+    "@inhouse/radio": "^0.41.0",
+    "@inhouse/scrim": "^0.41.0",
+    "@inhouse/select": "^0.41.0",
+    "@inhouse/side-navigation": "^0.41.0",
+    "@inhouse/skeleton": "^0.41.0",
+    "@inhouse/table": "^0.41.0",
+    "@inhouse/textfield": "^0.41.0",
+    "@inhouse/thumbnail": "^0.41.0",
+    "@inhouse/tokens": "^0.13.1",
+    "autoprefixer": "10.4.14",
+    "cssnano": "5.1.15",
+    "postcss": "8.4.23",
+    "postcss-cli": "10.1.0",
+    "sass": "1.62.1"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf dist",
+    "compile": "mkdir dist && npm run compile:scss && npm run compile:postcss:min && npm run compile:postcss:unmin",
+    "compile:scss": "sass inhouse-components-web.scss:dist/inhouse-components-web.css -I node_modules --no-source-map",
+    "compile:postcss:unmin": "postcss dist/inhouse-components-web.css --output dist/inhouse-components-web.css --use autoprefixer",
+    "compile:postcss:min": "postcss dist/inhouse-components-web.css --output dist/inhouse-components-web.min.css --use autoprefixer --use cssnano",
+    "watch": "npm run compile:scss -- --watch"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}

@@ -1,0 +1,16 @@
+@use "./font-family" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-font-family() {
+  @return assert.equals(
+    functions.get-font-family($name: sans-japanese),
+    "'Noto Sans JP'"
+  );
+}
+
+@function test-compose-font-stack() {
+  @return assert.equals(
+    #{functions.compose-font-stack($name: japanese)},
+    "'Open Sans', 'Noto Sans JP', apple-system, BlinkMacSystemFont, Roboto, 'Lucida Grande', Helvetica, Arial, sans-serif"
+  );
+}

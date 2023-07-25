@@ -1,0 +1,37 @@
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-cursor() {
+  @return assert.equals(
+    functions.get-cursor($states: (enabled)),
+    pointer
+  );
+}
+
+@function test-get-opacity() {
+  @return assert.equals(
+    functions.get-opacity($states: (enabled)),
+    1
+  );
+}
+
+@function test-compose-child-element-margin() {
+  @return assert.equals(
+    functions.compose-child-element-margin($child-element-size: 1.25rem),
+    -0.625rem
+  );
+}
+
+@function test-get-foreground-content() {
+  @return assert.equals(
+    functions.get-foreground-content($states: (enabled)),
+    "check"
+  );
+}
+
+@function test-get-foreground-opacity() {
+  @return assert.equals(
+    functions.get-foreground-opacity($states: (enabled)),
+    0
+  );
+}

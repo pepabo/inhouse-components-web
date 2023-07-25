@@ -1,0 +1,10 @@
+$default-option: (
+  appearance: outlined,
+  size: m,
+  width: auto,
+  color: neutral
+);
+$available-appearance: (outlined, filled);
+$available-sizes: (s, m, l);
+$available-semantic-intentions: (neutral, negative);
+$available-width: (auto, full, half, third);
