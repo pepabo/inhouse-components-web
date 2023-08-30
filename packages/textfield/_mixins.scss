@@ -38,8 +38,7 @@
   }
 
   textarea._input {
-    height: auto !important;
-    font-family: inherit;
+    resize: vertical;
   }
 
   // width
@@ -172,6 +171,11 @@
       (adapter.get-line-height($level: $level, $density: normal) * 0.5)}
       adapter.get-spacing-size($level: $level);
     font-size: adapter.get-font-size($level: $level);
+  }
+
+  textarea._input {
+    min-height: adapter.get-interactive-component-height($level: $level);
+    line-height: adapter.get-line-height($level: $level, $density: normal);
   }
 }
 
