@@ -1,0 +1,11 @@
+@use "./font-size";
+@use "./line-height";
+
+@function get-text-style($density: normal, $level: m) {
+  $value: (
+    font-size: font-size.get-font-size($level),
+    line-height: line-height.get-line-height($density: $density, $level: $level)
+  );
+
+  @return $value;
+}

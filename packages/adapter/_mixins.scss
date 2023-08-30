@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "./functions";
+
+@mixin text($level: m, $density: normal) {
+  font-size: functions.get-font-size($level: $level);
+  line-height: functions.get-line-height($level: $level, $density: $density);
+}
+
+@mixin elevation($level: 1) {
+  box-shadow: functions.get-elevation-box-shadow($level: $level);
+}
+
+@mixin mq-boundary($name, $level) {
+  @if $name == up {
+    @media screen and (min-width: functions.get-boundary-size($level)) {
+      @content;
+    }
+  } @else if $name == down {
+    $max-width: functions.get-boundary-size($level) - 1px;
+
+    @media screen and (max-width: $max-width) {
+      @content;
+    }
+  }
+}

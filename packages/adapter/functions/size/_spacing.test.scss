@@ -1,0 +1,23 @@
+@use "./spacing" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-spacing-size() {
+  @return assert.equals(
+    functions.get-spacing-size($level: m),
+    1rem
+  );
+}
+
+@function test-get-cell-vertical-spacing-size() {
+  @return assert.equals(
+    functions.get-cell-vertical-spacing-size($density: normal),
+    0.75rem
+  );
+}
+
+@function test-get-interactive-list-spacing-size() {
+  @return assert.equals(
+    functions.get-interactive-list-spacing-size(),
+    0.5rem
+  );
+}

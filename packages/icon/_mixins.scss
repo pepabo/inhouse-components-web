@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "./variables";
+@use "./functions";
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @each $property, $value in functions.get-proto-value() {
+    #{$property}: #{$value};
+  }
+
+  &::after {
+    @each $property, $value in $options {
+      #{$property}: #{$value};
+    }
+  }
+}
+
+@mixin export {
+  .in-icon {
+    @include style;
+  }
+}

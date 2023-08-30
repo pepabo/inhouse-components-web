@@ -1,0 +1,9 @@
+@use "./button" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-button-color() {
+  @return assert.equals(
+    functions.get-button-color($color: neutral),
+    #585c63
+  );
+}

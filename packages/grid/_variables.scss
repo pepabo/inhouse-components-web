@@ -1,0 +1,8 @@
+@use "sass:list";
+@use "sass:map";
+
+$default-option: (
+  direction: ltr
+);
+
+$total-col-count: 12;

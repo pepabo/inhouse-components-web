@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "sass:math";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 0;
+  height: calc(100vh - adapter.get-header-height());
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &.--activated {
+    width: adapter.get-side-navigation-width();
+    border-right: 1px solid adapter.get-side-navigation-border-color();
+  }
+
+  & > * {
+    width: adapter.get-side-navigation-width();
+  }
+
+  & > ._header {
+    border-bottom: 1px solid adapter.get-side-navigation-border-color();
+  }
+
+  & + * {
+    flex: 1;
+  }
+}
+
+@mixin export {
+  .in-side-navigation {
+    @include style;
+  }
+}

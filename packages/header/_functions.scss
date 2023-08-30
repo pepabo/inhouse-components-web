@@ -1,0 +1,83 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-position($position) {
+  $available-positions: adapter.get-positions();
+
+  @if list.index($available-positions, $position) == null {
+    @error "$position には #{$available-positions} のいずれかのみ指定できます";
+  }
+
+  @return $position;
+}
+
+@function get-z-index($position) {
+  $available-positions: adapter.get-positions();
+
+  @if list.index($available-positions, $position) == null {
+    @error "$position には #{$available-positions} のいずれかのみ指定できます";
+  }
+
+  @if $position == relative {
+    @return adapter.get-minor-stack-z-index($type: on, $level: 2);
+  } @else {
+    @return adapter.get-minor-stack-z-index($type: over, $level: 2);
+  }
+}
+
+@function get-background-color($appearance) {
+  $available-appearances: adapter.get-header-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearance には #{$available-appearances} のいずれかのみ指定できます";
+  }
+
+  @return adapter.get-header-surface-color($appearance: $appearance);
+}
+
+@function get-color($appearance, $brightness) {
+  $available-appearances: adapter.get-header-appearances();
+  $available-brightnesses: adapter.get-brightnesses();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearance には #{$available-appearances} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error "$brightness には #{$available-brightnesses} のいずれかのみ指定できます";
+  }
+
+  @if $appearance == white {
+    @return adapter.get-semantic-color(
+      $intention: neutral,
+      $level: 800
+    );
+  } @else if $appearance == filled {
+    @return adapter.get-primitive-color($name: white, $level: 1000);
+  } @else if $appearance == transparent {
+    @if $brightness == light {
+      @return adapter.get-semantic-color(
+        $intention: neutral,
+        $level: 800
+      );
+    } @else if $brightness == dark {
+      @return adapter.get-primitive-color($name: white, $level: 1000);
+    }
+  }
+}
+
+@function get-box-shadow($appearance) {
+  $available-appearances: adapter.get-header-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearance には #{$available-appearances} のいずれかのみ指定できます";
+  }
+
+  @if $appearance == transparent {
+    @return adapter.get-elevation-box-shadow($level: 0);
+  } @else {
+    @return adapter.get-elevation-box-shadow($level: 2);
+  }
+}

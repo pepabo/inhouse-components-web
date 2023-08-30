@@ -1,0 +1,16 @@
+@use "./boundary" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-boundary-sizes() {
+  @return assert.equals(
+    "#{functions.get-boundary-sizes()}",
+    "xxs, xs, s, m, l, xl"
+  );
+}
+
+@function test-get-boundary-size-first-key() {
+  @return assert.equals(
+    functions.get-boundary-size-first-key(),
+    xxs
+  );
+}

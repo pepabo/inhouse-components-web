@@ -1,0 +1,62 @@
+@use "./text" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-text-color() {
+  @return assert.equals(
+    functions.get-text-color($brightness: light, $name: high_emphasis),
+    #393c41
+  );
+}
+
+@function test-get-bottom-navigation-text-color() {
+  @return assert.equals(
+    functions.get-bottom-navigation-text-color(
+      $appearance: white,
+      $state: enabled
+    ),
+    rgba(57, 60, 65, 0.6)
+  );
+}
+
+@function test-get-button-text-color() {
+  @return assert.equals(
+    functions.get-button-text-color(
+      $appearance: flat,
+      $brightness: light,
+      $color: neutral,
+      $state: enabled
+    ),
+    #ffffff
+  );
+}
+
+@function test-get-checkbox-text-color() {
+  @return assert.equals(
+    functions.get-checkbox-text-color($states: (enabled)),
+    #ffffff
+  );
+}
+
+@function test-get-interactive-list-title-text-color() {
+  @return assert.equals(
+    functions.get-interactive-list-title-text-color(),
+    #393c41
+  );
+}
+
+@function test-get-radio-text-color() {
+  @return assert.equals(
+    functions.get-radio-text-color($states: (enabled)),
+    #ffffff
+  );
+}
+
+@function test-get-field-text-color() {
+  @return assert.equals(
+    functions.get-field-text-color(
+      $color: neutral,
+      $state: enabled
+    ),
+    #393c41
+  );
+}

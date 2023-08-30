@@ -1,0 +1,16 @@
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-action-background-color() {
+  @return assert.equals(
+    functions.get-action-background-color($appearance: white, $state: enabled),
+    transparent
+  );
+}
+
+@function test-get-action-opacity() {
+  @return assert.equals(
+    functions.get-action-opacity($appearance: white, $is-activated: false),
+    1
+  );
+}

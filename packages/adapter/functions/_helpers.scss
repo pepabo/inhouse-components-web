@@ -1,0 +1,261 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
+@use "sass:meta";
+@use "@pepabo-inhouse/constants/variables" as constants;
+@use "../error-message";
+
+@function get-states() {
+  @return constants.$states;
+}
+
+@function get-semantic-intentions() {
+  @return constants.$semantic-intentions;
+}
+
+@function get-implications() {
+  @return constants.$implications;
+}
+
+@function get-densities() {
+  @return constants.$densities;
+}
+
+@function get-emphasises() {
+  @return constants.$emphasises;
+}
+
+@function get-sizes() {
+  @return constants.$sizes;
+}
+
+@function get-transition-value() {
+  @return constants.$transition-value;
+}
+
+@function get-priorities() {
+  @return constants.$priorities;
+}
+
+@function get-shapes() {
+  @return constants.$shapes;
+}
+
+@function get-brightnesses() {
+  @return constants.$brightnesses;
+}
+
+@function get-widths() {
+  @return constants.$widths;
+}
+
+@function get-orders() {
+  @return constants.$orders;
+}
+
+@function get-positions() {
+  @return constants.$positions;
+}
+
+@function get-elevation-levels() {
+  @return constants.$elevation-levels;
+}
+
+@function get-layer-levels() {
+  @return constants.$layer-levels;
+}
+
+@function get-minor-stack-types() {
+  @return constants.$minor-stack-types;
+}
+
+@function get-header-appearances() {
+  @return constants.$header-appearances;
+}
+
+@function get-scrim-appearances() {
+  @return constants.$scrim-appearances;
+}
+
+@function get-bottom-navigation-appearances() {
+  @return constants.$bottom-navigation-appearances;
+}
+
+@function get-bottom-navigation-item-min-length() {
+  @return constants.$bottom-navigation-item-min-length;
+}
+
+@function get-bottom-navigation-item-max-length() {
+  @return constants.$bottom-navigation-item-max-length;
+}
+
+@function get-button-appearances() {
+  @return constants.$button-appearances;
+}
+
+@function get-button-colors() {
+  @return constants.$button-colors;
+}
+
+@function get-cell-sizes() {
+  @return constants.$cell-sizes;
+}
+
+@function get-avatar-sizes() {
+  @return constants.$avatar-sizes;
+}
+
+@function get-interactive-table-align-values() {
+  @return constants.$interactive-table-align-values;
+}
+
+@function get-table-align-values() {
+  @return constants.$table-align-values;
+}
+
+@function get-thumbnail-sizes() {
+  @return constants.$thumbnail-sizes;
+}
+
+@function get-background-brightness($background-color) {
+  $min-contrast: 3.1;
+
+  $contrast: -compose-contrast-ratio($background-color, white);
+
+  @if $contrast < $min-contrast {
+    @return light;
+  } @else {
+    @return dark;
+  }
+}
+
+@function get-major-stack-range() {
+  @return constants.$major-stack-range;
+}
+
+@function get-major-stack-z-index($layer: 1) {
+  $available-layer-levels: get-layer-levels();
+
+  @if list.index($available-layer-levels, $layer) == null {
+    @error error-message.any-one-of(
+      $value: $layer,
+      $available-values: $available-layer-levels
+    );
+  }
+
+  @return get-major-stack-range() * $layer;
+}
+
+@function get-minor-stack-over-range() {
+  @return constants.$minor-stack-over-range;
+}
+
+@function get-minor-stack-on-range() {
+  @return constants.$minor-stack-on-range;
+}
+
+@function get-minor-stack-types() {
+  @return constants.$minor-stack-types;
+}
+
+@function get-minor-stack-z-index($type: over, $level: 1) {
+  $available-types: get-minor-stack-types();
+  $available-levels: get-elevation-levels();
+
+  @if list.index($available-types, $type) == null {
+    @error error-message.any-one-of(
+      $value: $type,
+      $available-values: $available-types
+    );
+  }
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @if $type == over {
+    @return get-minor-stack-over-range() * $level;
+  } @else if $type == on {
+    @return get-minor-stack-on-range() * $level;
+  }
+}
+
+@function get-button-background-overlay-brightness(
+  $appearance: flat,
+  $brightness: light,
+  $own-brightness: light
+) {
+  // AppearanceがTransparentの時、Overlay Colorは自身のBrightnessによってではなく、背景のBrightnessによって決まる
+  @if $appearance == transparent {
+    @return $brightness;
+  } @else {
+    @return $own-brightness;
+  }
+}
+
+@function get-foreground-brightness($background-color) {
+  @return if(get-foreground-brightness($background-color) == dark, light, dark);
+}
+
+@function is-number($value) {
+  @return meta.type-of($value) == "number";
+}
+
+$available-hexadecimal-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F";
+
+@function is-color-code($value) {
+  $length: string.length("#{$value}");
+
+  @if string.slice("#{$value}", 1, 1) != "#" {
+    @return false;
+  }
+
+  // 先頭が#なので、カラーコードの桁数+1する
+  @if $length != 4 and $length != 7 {
+    @return false;
+  }
+
+  @for $i from 2 through $length {
+    $char: string.slice("#{$value}", $i, $i);
+
+    @if list.index($available-hexadecimal-chars, $char) == null {
+      @return false;
+    }
+  }
+
+  @return true;
+}
+
+// 二色間のコントラスト比を計算する
+// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+@function -compose-contrast-ratio($background, $foreground) {
+  $background-luminance: -compose-luminance($background) + 0.05;
+  $foreground-luminance: -compose-luminance($foreground) + 0.05;
+
+  @return math.div(max($background-luminance, $foreground-luminance), min($background-luminance, $foreground-luminance));
+}
+
+// 輝度を計算する
+// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+@function -compose-luminance($color) {
+  $red: -compose-linear-channel-value(color.red($color));
+  $green: -compose-linear-channel-value(color.green($color));
+  $blue: -compose-linear-channel-value(color.blue($color));
+
+  @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+}
+
+@function -compose-linear-channel-value($channel-value) {
+  $normalized-channel-value: math.div($channel-value, 255);
+
+  @if $normalized-channel-value < 0.03928 {
+    @return math.div($normalized-channel-value, 12.92);
+  }
+
+  @return math.pow(math.div($normalized-channel-value + 0.055, 1.055), 2.4);
+}

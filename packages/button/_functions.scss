@@ -1,0 +1,100 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-horizontal-gap($shape: square) {
+  $available-shapes: adapter.get-shapes();
+
+  @if list.index($available-shapes, $shape) == null {
+    @error "$sizeには #{$available-size} のいずれかのみ指定できます";
+  }
+
+  @if $shape == circle {
+    @return adapter.get-spacing-size($level: m);
+  } @else if $shape == square {
+    @return adapter.get-spacing-size($level: s);
+  }
+}
+
+@function get-font-weight($appearance: flat) {
+  $available-appearances: adapter.get-button-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearanceには #{$available-appearances} のいずれかのみ指定できます";
+  }
+
+  @if $appearance == hollow {
+    @return bold;
+  } @else {
+    @return normal;
+  }
+}
+
+@function get-border-radius($size: m, $shape: square) {
+  $available-sizes: adapter.get-interactive-component-height-keys();
+  $available-shapes: adapter.get-shapes();
+
+  @if list.index($available-sizes, $size) == null {
+    @error "$sizeには #{$available-size} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-shapes, $shape) == null {
+    @error "$shapeには #{$available-shapes} のいずれかのみ指定できます";
+  }
+
+  @if $shape == square {
+    @return adapter.get-button-radius-size();
+  } @else if $shape == circle {
+    @return adapter.get-interactive-component-height($level: $size) * 0.5;
+  }
+}
+
+@function get-box-shadow($appearance: flat, $color: neutral, $state: enabled) {
+  $available-appearances: adapter.get-button-appearances();
+  $available-states: adapter.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearanceには #{$available-appearances} のいずれかのみ指定できます";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  $elevation-shadow: adapter.get-elevation-box-shadow($level: 1);
+  $scrim-highlight: adapter.get-solid-button-highlight-box-shadow();
+  $scrim-shadow: adapter.get-solid-button-shadow-box-shadow();
+  $focus-ring: adapter.get-focus-ring-box-shadow($color: $color);
+
+  @if $appearance == flat or $appearance == outlined {
+    @if $state == focused {
+      @return $elevation-shadow, $focus-ring;
+    } @else if $state == disabled {
+      @return none;
+    } @else {
+      @return $elevation-shadow;
+    }
+  } @else if $appearance == solid {
+    @if $state == focused {
+      @return $elevation-shadow, $scrim-highlight, $scrim-shadow, $focus-ring;
+    } @else if $state == disabled {
+      @return $scrim-highlight, $scrim-shadow;
+    } @else {
+      @return $elevation-shadow, $scrim-highlight, $scrim-shadow;
+    }
+  } @else {
+    @if $state == focused {
+      @return $focus-ring;
+    } @else {
+      @return none;
+    }
+  }
+}
+
+@function get-only-leading-width($size: m, $appearance: flat) {
+  $button-width: adapter.get-interactive-component-height($level: $size);
+  $button-border-size: adapter.get-button-border-size($appearance: $appearance);
+
+  @return calc(#{$button-width} - #{$button-border-size * 2});
+}

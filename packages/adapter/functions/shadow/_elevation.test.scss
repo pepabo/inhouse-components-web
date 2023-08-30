@@ -1,0 +1,9 @@
+@use "./elevation" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-elevation-box-shadow() {
+  @return assert.equals(
+    "#{functions.get-elevation-box-shadow($level: 1)}",
+    "0px -0.1px 1px 0px rgba(0, 0, 0, 0.12), 0px 1px 2px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+  );
+}

@@ -1,0 +1,258 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+@use "../color/button" as button-color;
+@use "../color/surface" as surface-color;
+
+$text-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  text
+);
+
+@function get-text-color($brightness: light, $name: high_emphasis) {
+  $tokens: map.get($text-color-tokens, base);
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-names:
+    list.join(
+      list.join(
+        helpers.get-emphasises(),
+        helpers.get-semantic-intentions(),
+        $separator: comma
+      ),
+      helpers.get-implications(),
+      $separator: comma
+    );
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  @if list.index($available-names, $name) == null {
+    @error error-message.any-one-of(
+      $value: $name,
+      $available-values: $available-names
+    );
+  }
+
+  $brightness-tokens: map.get($tokens, $brightness);
+
+  @return map.get($brightness-tokens, $name);
+}
+
+@function get-bottom-navigation-text-color(
+  $appearance: white,
+  $state: enabled
+) {
+  $tokens: map.get($text-color-tokens, bottom-navigation);
+  $available-appearances: helpers.get-bottom-navigation-appearances();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  $appearance-tokens: map.get($tokens, "#{$appearance}");
+
+  @return map.get($appearance-tokens, $state);
+}
+
+@function get-button-text-color(
+  $appearance: flat,
+  $brightness: light,
+  $color: neutral,
+  $state: enabled
+) {
+  $available-appearances: helpers.get-button-appearances();
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-colors: helpers.get-button-colors();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  @if list.index($available-colors, $color) == null {
+    @if helpers.is-color-code($value: $color) == false {
+      @error error-message.any-one-of(
+        $value: $color,
+        $available-values: $available-colors
+      );
+    }
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @if $appearance == flat {
+    @return surface-color.get-surface-color($brightness: light, $priority: primary);
+  } @else if $appearance == outlined {
+    @return button-color.get-button-color($color: $color);
+  } @else if $appearance == solid {
+    @return surface-color.get-surface-color($brightness: light, $priority: primary);
+  } @else if $appearance == white {
+    @return button-color.get-button-color($color: $color);
+  } @else if $appearance == transparent {
+    @if $brightness == light {
+      @return button-color.get-button-color($color: $color);
+    } @else if $brightness == dark {
+      @return get-text-color($brightness: dark, $name: high_emphasis);
+    }
+  } @else if $appearance == hollow {
+    @if $state == hover {
+      @return surface-color.get-surface-color($brightness: light, $priority: primary);
+    }
+
+    @if $state == focused {
+      @return surface-color.get-surface-color($brightness: light, $priority: primary);
+    } @else {
+      @return button-color.get-button-color($color: $color);
+    }
+  } @else {
+    @return button-color.get-button-color($color: $color);
+  }
+}
+
+@function get-checkbox-text-color($states: (enabled)) {
+  $tokens: map.get($text-color-tokens, checkbox);
+  $available-states: helpers.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error error-message.any-one-of(
+        $value: $state,
+        $available-values: $available-states
+      );
+    }
+  }
+
+  @if list.index($states, selected) != null or list.index($states, mixed) != null {
+    @return get-text-color($brightness: dark, $name: high_emphasis);
+  } @else {
+    @return map.get($tokens, selected);
+  }
+}
+
+@function get-interactive-list-title-text-color() {
+  $tokens: map.get($text-color-tokens, interactive-list);
+
+  @return map.get($tokens, title);
+}
+
+@function get-interactive-list-edge-element-text-color($state: enabled) {
+  $tokens: map.get($text-color-tokens, interactive-list);
+  $edge-element-tokens: map.get($tokens, edge-element);
+  $available-states: helpers.get-states();
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @return map.get($edge-element-tokens, $state);
+}
+
+@function get-interactive-list-body-title-text-color($state: enabled) {
+  $tokens: map.get($text-color-tokens, interactive-list);
+  $body-tokens: map.get($tokens, body);
+  $body-title-tokens: map.get($body-tokens, title);
+  $available-states: helpers.get-states();
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @return map.get($body-title-tokens, $state);
+}
+
+@function get-interactive-list-body-description-text-color($state: enabled) {
+  $tokens: map.get($text-color-tokens, interactive-list);
+  $body-tokens: map.get($tokens, body);
+  $body-description-tokens: map.get($body-tokens, description);
+  $available-states: helpers.get-states();
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @return map.get($body-description-tokens, $state);
+}
+
+@function get-interactive-table-text-color() {
+  @return map.get($text-color-tokens, interactive-table);
+}
+
+@function get-radio-text-color($states: (enabled)) {
+  $tokens: map.get($text-color-tokens, radio);
+  $available-states: helpers.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error error-message.any-one-of(
+        $value: $state,
+        $available-values: $available-states
+      );
+    }
+  }
+
+  @if list.index($states, selected) != null {
+    @return map.get($tokens, selected);
+  } @else {
+    @return get-text-color($brightness: dark, $name: high_emphasis);
+  }
+}
+
+@function get-field-text-color($color: neutral, $state: enabled) {
+  $tokens: map.get($text-color-tokens, field);
+  $color-tokens: map.get($tokens, $color);
+  $available-colors: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-colors, $color) == null {
+    @error error-message.any-one-of($value: $color,
+    $available-values: $available-colors );
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of($value: $state,
+    $available-values: $available-states );
+  }
+
+  @return map.get($color-tokens, $state);
+}

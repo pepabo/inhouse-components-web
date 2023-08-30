@@ -1,0 +1,18 @@
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+
+$default-option: (
+  content: "attr(data-icon)"
+);
+
+$proto: (
+  display: inline-block,
+  font-weight: normal,
+  font-family: adapter.compose-font-stack(icon),
+  font-style: normal,
+  line-height: 1,
+  direction: ltr,
+  letter-spacing: normal,
+  white-space: nowrap,
+  text-transform: none,
+  word-wrap: normal,
+);

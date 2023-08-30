@@ -1,0 +1,27 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$content-size-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  content
+);
+
+@function get-content-sizes() {
+  @return map.keys($content-size-tokens);
+}
+
+@function get-content-size($level: m) {
+  $available-levels: get-content-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($content-size-tokens, $level);
+}

@@ -1,0 +1,33 @@
+@use "./radius" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+// 0に単位をつけないとテストが通らないのでLintを無視する
+/* stylelint-disable length-zero-no-unit */
+
+@function test-get-radius-size() {
+  @return assert.equals(
+    functions.get-radius-size($level: m),
+    0.25rem
+  );
+}
+
+@function test-get-avatar-radius-size() {
+  @return assert.equals(
+    functions.get-avatar-radius-size($level: m),
+    1.25rem
+  );
+}
+
+@function test-get-button-radius-size() {
+  @return assert.equals(
+    functions.get-button-radius-size(),
+    0.25rem
+  );
+}
+
+@function test-get-thumbnail-radius-size() {
+  @return assert.equals(
+    functions.get-thumbnail-radius-size(),
+    0rem
+  );
+}

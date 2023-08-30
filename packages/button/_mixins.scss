@@ -1,0 +1,417 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/icon/mixins" as icon;
+@use "@pepabo-inhouse/skeleton/mixins" as skeleton;
+@use "./variables";
+@use "./functions";
+
+// ソースコードの読みやすさを優先させて、以下のルールのlintの対象から除外する
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-duplicate-selectors */
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include -proto($options);
+  @include -appearance-style(
+    $appearance: map.get($options, appearance),
+    $brightness: map.get($options, brightness),
+    $color: map.get($options, color),
+    $state: enabled
+  );
+  @include -appearance-state-ruleset(
+    $appearance: map.get($options, appearance),
+    $brightness: map.get($options, brightness),
+    $color: map.get($options, color),
+  );
+
+  & > * {
+    @include -child-element-style(
+      $appearance: map.get($options, appearance),
+      $shape: map.get($options, shape),
+      $size: map.get($options, size)
+    );
+  }
+
+  @each $appearance in adapter.get-button-appearances() {
+    &.-appearance-#{"" + $appearance} {
+      @include -appearance-style(
+        $appearance: $appearance,
+        $brightness: map.get($options, brightness),
+        $color: map.get($options, color),
+        $state: enabled
+      );
+      @include -appearance-state-ruleset(
+        $appearance: $appearance,
+        $brightness: map.get($options, brightness),
+        $color: map.get($options, color),
+      );
+    }
+  }
+
+  @each $intention in adapter.get-button-colors() {
+    &.-color-#{$intention} {
+      @include -appearance-style(
+        $appearance: map.get($options, appearance),
+        $brightness: map.get($options, brightness),
+        $color: $intention,
+        $state: enabled
+      );
+      @include -appearance-state-ruleset(
+        $appearance: map.get($options, appearance),
+        $brightness: map.get($options, brightness),
+        $color: $intention,
+      );
+    }
+
+    @each $appearance in adapter.get-button-appearances() {
+      &.-color-#{$intention}.-appearance-#{"" + $appearance} {
+        @include -appearance-style(
+          $appearance: $appearance,
+          $brightness: map.get($options, brightness),
+          $color: $intention,
+          $state: enabled
+        );
+        @include -appearance-state-ruleset(
+          $appearance: $appearance,
+          $brightness: map.get($options, brightness),
+          $color: $intention,
+        );
+      }
+    }
+  }
+
+  @each $brightness in adapter.get-brightnesses() {
+    &.-brightness-#{$brightness} {
+      @include -appearance-style(
+        $appearance: map.get($options, appearance),
+        $brightness: $brightness,
+        $color: map.get($options, color),
+        $state: enabled
+      );
+      @include -appearance-state-ruleset(
+        $appearance: map.get($options, appearance),
+        $brightness: $brightness,
+        $color: map.get($options, color),
+      );
+    }
+
+    @each $appearance in adapter.get-button-appearances() {
+      &.-brightness-#{$brightness}.-appearance-#{"" + $appearance} {
+        @include -appearance-style(
+          $appearance: $appearance,
+          $brightness: $brightness,
+          $color: map.get($options, color),
+          $state: enabled
+        );
+        @include -appearance-state-ruleset(
+          $appearance: $appearance,
+          $brightness: $brightness,
+          $color: map.get($options, color),
+        );
+      }
+
+      @each $intention in adapter.get-button-colors() {
+        &.-brightness-#{$brightness}.-appearance-#{"" + $appearance}.-color-#{$intention} {
+          @include -appearance-style(
+            $appearance: $appearance,
+            $brightness: $brightness,
+            $color: $intention,
+            $state: enabled
+          );
+          @include -appearance-state-ruleset(
+            $appearance: $appearance,
+            $brightness: $brightness,
+            $color: $intention,
+          );
+        }
+      }
+    }
+  }
+
+  @each $shape in adapter.get-shapes() {
+    &.-shape-#{$shape} {
+      @include -shape-style(
+        $appearance: map.get($options, appearance),
+        $shape: $shape,
+        $size: map.get($options, size)
+      );
+    }
+
+    @each $appearance in adapter.get-button-appearances() {
+      &.-shape-#{$shape}.-appearance-#{"" + $appearance} {
+        @include -shape-style(
+          $appearance: $appearance,
+          $shape: $shape,
+          $size: map.get($options, size)
+        );
+      }
+    }
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      @include -size-style(
+        $appearance: map.get($options, appearance),
+        $shape: map.get($options, shape),
+        $size: $size
+      );
+    }
+
+    @each $shape in adapter.get-shapes() {
+      &.-size-#{$size}.-shape-#{$shape} {
+        @include -shape-style(
+          $appearance: map.get($options, appearance),
+          $shape: $shape,
+          $size: $size
+        );
+      }
+
+      @each $appearance in adapter.get-button-appearances() {
+        &.-size-#{$size}.-shape-#{$shape}.-appearance-#{"" + $appearance} {
+          @include -shape-style(
+            $appearance: $appearance,
+            $shape: $shape,
+            $size: $size
+          );
+        }
+      }
+    }
+  }
+
+  @each $width in adapter.get-widths() {
+    &.-width-#{$width} {
+      width: adapter.get-width($width: $width);
+    }
+  }
+}
+
+@mixin skeleton-style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include skeleton.style;
+
+  width: adapter.get-width($width: map.get($options, width));
+  height: adapter.get-interactive-component-height($level: map.get($options, size));
+  border-radius:
+    functions.get-border-radius(
+      $shape: map.get($options, shape),
+      $size: map.get($options, size)
+    );
+
+  @each $shape in adapter.get-shapes() {
+    &.-shape-#{$shape} {
+      border-radius:
+        functions.get-border-radius(
+          $shape: $shape,
+          $size: map.get($options, size)
+        );
+    }
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      height: adapter.get-interactive-component-height($level: $size);
+    }
+
+    @each $shape in adapter.get-shapes() {
+      &.-size-#{$size}.-shape-#{$shape} {
+        height: adapter.get-interactive-component-height($level: $size);
+        border-radius:
+          functions.get-border-radius(
+            $shape: $shape,
+            $size: $size
+          );
+      }
+    }
+  }
+
+  @each $width in adapter.get-widths() {
+    &.-width-#{$width} {
+      width: adapter.get-width($width: $width);
+    }
+  }
+}
+
+@mixin export {
+  .in-button {
+    @include style;
+  }
+
+  .in-skeleton-button {
+    @include skeleton-style;
+  }
+}
+
+@mixin -proto($options) {
+  position: relative;
+  display: inline-flex;
+  gap: adapter.get-spacing-size($level: xxs);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: adapter.get-width($width: map.get($options, width));
+  height: adapter.get-interactive-component-height($level: map.get($options, size));
+  padding: 0;
+  overflow: hidden;
+  font-size: adapter.get-font-size($level: map.get($options, size));
+  font-family: inherit;
+  line-height:
+    adapter.get-line-height(
+      $level: map.get($options, size),
+      $density: normal
+    );
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  vertical-align: text-bottom;
+  background-color: transparent;
+  border-style: solid;
+  border-radius:
+    functions.get-border-radius(
+      $shape: map.get($options, shape),
+      $size: map.get($options, size)
+    );
+  outline: 0;
+  cursor: pointer;
+  transition: 0;
+  appearance: none;
+  user-select: none;
+}
+
+@mixin -appearance-style($appearance, $brightness, $color, $state) {
+  color:
+    adapter.get-button-text-color(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $color: $color,
+      $state: $state
+    );
+  font-weight: functions.get-font-weight($appearance: $appearance);
+  background-image:
+    adapter.get-button-surface-image(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $color: $color,
+      $own-brightness: adapter.get-background-brightness(
+        $background-color: adapter.get-button-surface-color(
+          $appearance: $appearance,
+          $brightness: $brightness,
+          $color: $color,
+          $state: $state
+        )
+      ),
+      $state: $state
+    );
+  border-color:
+    adapter.get-button-border-color(
+      $appearance: $appearance,
+      $color: $color,
+      $state: $state
+    );
+  border-width:
+    adapter.get-button-border-size(
+      $appearance: $appearance
+    );
+  box-shadow:
+    functions.get-box-shadow(
+      $appearance: $appearance,
+      $color: $color,
+      $state: $state
+    );
+}
+
+@mixin -appearance-state-ruleset($appearance, $brightness, $color) {
+  &:hover,
+  &.--hover {
+    @include -appearance-style(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $color: $color,
+      $state: hover
+    );
+  }
+
+  &:focus,
+  &.--focused {
+    @include -appearance-style(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $color: $color,
+      $state: focused
+    );
+  }
+
+  &:disabled,
+  &.--disabled {
+    @include -appearance-style(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $color: $color,
+      $state: disabled
+    );
+
+    cursor: default;
+    opacity: adapter.get-disabled-surface-opacity();
+  }
+}
+
+@mixin -shape-style($appearance, $shape, $size) {
+  border-radius:
+    functions.get-border-radius(
+      $shape: $shape,
+      $size: $size
+    );
+
+  & > * {
+    @include -child-element-style(
+      $appearance: $appearance,
+      $shape: $shape,
+      $size: $size
+    );
+  }
+}
+
+@mixin -size-style($appearance, $shape, $size) {
+  height: adapter.get-interactive-component-height($level: $size);
+  font-size: adapter.get-font-size($level: $size);
+  line-height:
+    adapter.get-line-height(
+      $level: $size,
+      $density: normal
+    );
+
+  & > * {
+    @include -child-element-style(
+      $appearance: $appearance,
+      $shape: $shape,
+      $size: $size
+    );
+  }
+}
+
+@mixin -child-element-style($appearance, $shape, $size) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:first-child {
+    margin-left: functions.get-horizontal-gap($shape: $shape);
+  }
+
+  &:last-child {
+    margin-right: functions.get-horizontal-gap($shape: $shape);
+  }
+
+  &:only-child._leading {
+    width:
+      functions.get-only-leading-width(
+        $appearance: $appearance,
+        $size: $size
+      );
+    margin-right: 0;
+    margin-left: 0;
+    font-size: adapter.get-icon-only-button-pict-height($level: $size);
+  }
+}

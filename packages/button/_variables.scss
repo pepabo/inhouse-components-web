@@ -1,0 +1,10 @@
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+
+$default-option: (
+  appearance: flat,
+  brightness: light,
+  color: neutral,
+  size: m,
+  shape: square,
+  width: auto,
+);

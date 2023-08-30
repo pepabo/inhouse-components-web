@@ -1,0 +1,136 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter/mixins" as adapter-mixins;
+@use "@pepabo-inhouse/adapter/functions" as adapter-functions;
+@use "./variables";
+@use "./functions";
+
+@mixin row($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-top: functions.compose-row-top-gap(adapter-functions.get-boundary-size-first-key());
+  margin-right: functions.compose-row-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+  margin-left: functions.compose-row-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+
+  @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
+    @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
+      margin-top: functions.compose-row-top-gap($boundary-size-level);
+      margin-right: functions.compose-row-horizontal-gap($boundary-size-level);
+      margin-left: functions.compose-row-horizontal-gap($boundary-size-level);
+    }
+  }
+
+  &.-align-items-start {
+    align-items: flex-start;
+  }
+
+  &.-align-items-center {
+    align-items: center;
+  }
+
+  &.-align-items-end {
+    align-items: flex-end;
+  }
+
+  &.-align-items-stretch {
+    align-items: stretch;
+  }
+
+  &.-justify-content-start {
+    justify-content: flex-start;
+  }
+
+  &.-justify-content-center {
+    justify-content: center;
+  }
+
+  &.-justify-content-end {
+    justify-content: flex-end;
+  }
+
+  &.-justify-content-around {
+    justify-content: space-around;
+  }
+
+  &.-justify-content-between {
+    justify-content: space-between;
+  }
+
+  &.-is-gapless {
+    margin: 0;
+    padding: 0;
+
+    > * {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+@mixin col($option: variables.$default-option) {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin-top: functions.compose-col-top-gap(adapter-functions.get-boundary-size-first-key());
+  padding-right: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+  padding-left: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+
+  @for $i from 1 through variables.$total-col-count {
+    &.-col-#{$i} {
+      @include -col($i);
+    }
+  }
+
+  @for $i from 0 through (variables.$total-col-count - 1) {
+    &.-offset-#{$i} {
+      @include -offset($option, $i);
+    }
+  }
+
+  @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
+    @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
+      margin-top: functions.compose-col-top-gap($boundary-size-level);
+      padding-right: functions.compose-col-horizontal-gap($boundary-size-level);
+      padding-left: functions.compose-col-horizontal-gap($boundary-size-level);
+
+      @for $i from 1 through variables.$total-col-count {
+        &.-col-#{$boundary-size-level}-#{$i} {
+          @include -col($i);
+        }
+      }
+
+      @for $i from 0 through (variables.$total-col-count - 1) {
+        &.-offset-#{$boundary-size-level}-#{$i} {
+          @include -offset($option, $i);
+        }
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-row {
+    @include row;
+  }
+
+  .in-col {
+    @include col;
+  }
+}
+
+@mixin -col($count) {
+  flex: 0 0 auto;
+  width: functions.get-col-width($count);
+}
+
+@mixin -offset($option, $count) {
+  @if functions.get-direction($option) == ltr {
+    margin-left: functions.get-col-width($count);
+  } @else if functions.get-direction($option) == rtl {
+    margin-right: functions.get-col-width($count);
+  }
+}

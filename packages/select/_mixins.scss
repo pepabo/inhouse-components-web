@@ -1,0 +1,255 @@
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+@use "./functions";
+@use "sass:math";
+@use "sass:map";
+
+// Prettierによるソースコードの整形を優先させて、以下のルールのlintの対象から除外する
+/* stylelint-disable declaration-colon-newline-after */
+/* stylelint-disable indentation */
+/* stylelint-disable scss/operator-no-newline-after */
+/* stylelint-disable string-quotes */
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: text-bottom;
+
+  ._select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: inherit;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    transition: adapter.get-transition-value();
+    appearance: none;
+
+    @include -focus-rule {
+      background-color: adapter.get-primitive-color($name: white) !important;
+    }
+
+    @include -disabled-rule {
+      cursor: not-allowed;
+    }
+  }
+
+  ._icon {
+    position: absolute;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+
+  // width
+  width: auto; // stylelint-disable-line order/properties-order
+
+  @include -width-rule(
+    $width: map.get($options, width)
+  );
+
+  @each $width in functions.get-available-width() {
+    &.-width-#{$width} {
+      @include -width-rule($width: $width);
+    }
+  }
+
+  // color
+  @include -color-rule(
+    $intention: map.get($options, color)
+  );
+
+  @each $intention in functions.get-available-semantic-intentions() {
+    &.-color-#{$intention} {
+      @include -color-rule($intention: $intention);
+    }
+  }
+
+  // size
+  @include -size-rule($level: map.get($options, size));
+
+  @each $level in functions.get-available-sizes() {
+    &.-size-#{$level} {
+      @include -size-rule($level: $level);
+    }
+  }
+
+  // appearance
+  @include -appearance-rule(
+    $appearance: map.get($options, appearance),
+    $intention: map.get($options, color)
+  );
+
+  @each $appearance in functions.get-available-appearance() {
+    &.-appearance-#{$appearance} {
+      @each $intention in functions.get-available-semantic-intentions() {
+        &.-color-#{$intention} {
+          @include -appearance-rule($appearance: $appearance, $intention: $intention);
+        }
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-select {
+    @include style;
+  }
+}
+
+@mixin -hover-rule {
+  &:hover,
+  &:active,
+  &.--hover {
+    @content;
+  }
+}
+
+@mixin -focus-rule {
+  &:focus,
+  &.--focused {
+    @content;
+  }
+}
+
+@mixin -disabled-rule {
+  &:disabled,
+  &.--disabled {
+    @content;
+  }
+}
+
+@mixin -width-rule($width: auto) {
+  @if $width == auto {
+    width: auto;
+  } @else if $width == full {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  } @else if $width == half {
+    min-width: (100% * 0.5);
+  } @else if $width == third {
+    min-width: math.div(100%, 3);
+  }
+}
+
+@mixin -color-rule($intention: neutral) {
+  ._select {
+    color: adapter.get-field-text-color(
+      $color: $intention,
+      $state: enabled
+    );
+    background-color: adapter.get-field-surface-color(
+      $color: $intention,
+      $state: enabled
+    );
+
+    @include -hover-rule {
+      background-color: adapter.get-field-surface-color(
+        $color: $intention,
+        $state: hover
+      );
+    }
+
+    @include -disabled-rule {
+      color: adapter.get-field-text-color(
+        $color: $intention,
+        $state: disabled
+      );
+      background-color: adapter.get-field-surface-color(
+        $color: $intention,
+        $state: disabled
+      );
+
+      & + ._icon {
+        background-color: adapter.get-field-text-color(
+          $color: $intention,
+          $state: disabled
+        );
+      }
+    }
+  }
+
+  ._icon {
+    background-color: adapter.get-field-text-color(
+      $color: $intention,
+      $state: enabled
+    );
+  }
+}
+
+@mixin -size-rule($level: m) {
+  ._select {
+    height: adapter.get-interactive-component-height($level: $level);
+    padding: 0 adapter.get-interactive-component-height($level: $level)
+      0
+      adapter.get-spacing-size($level: $level);
+    font-size: adapter.get-font-size($level: $level);
+  }
+
+  ._icon {
+    top: adapter.get-interactive-component-height($level: $level) * 0.45;
+    right: adapter.get-interactive-component-height($level: $level) * 0.4;
+    width: adapter.get-interactive-component-height($level: $level) * 0.2;
+    height: adapter.get-interactive-component-height($level: $level) * 0.1;
+  }
+}
+
+@mixin -appearance-rule($appearance: outlined, $intention: neutral) {
+  @if $appearance == outlined {
+    ._select {
+      border-radius: adapter.get-radius-size($level: m);
+      box-shadow: inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-field-border-color(
+          $color: $intention,
+          $state: enabled
+        )};
+
+      @include -hover-rule {
+        box-shadow: inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-field-border-color(
+            $color: $intention,
+            $state: hover
+          )};
+      }
+
+      @include -focus-rule {
+        box-shadow: inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-field-border-color(
+              $color: $intention,
+              $state: focused
+            )},
+          #{adapter.get-focus-ring-box-shadow(
+              $color:
+                adapter.get-field-border-color(
+                  $color: $intention,
+                  $state: focused
+                )
+            )};
+      }
+
+      @include -disabled-rule {
+        box-shadow: inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-field-border-color(
+            $color: $intention,
+            $state: disabled
+          )};
+      }
+    }
+  } @else if $appearance == filled {
+    ._select {
+      border-radius: 0;
+      box-shadow: inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-field-border-color($color: $intention, $state: enabled)};
+
+      @include -hover-rule {
+        box-shadow: inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-field-border-color($color: $intention, $state: hover)};
+      }
+
+      @include -focus-rule {
+        box-shadow: inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-field-border-color($color: $intention, $state: focused)}, #{adapter.get-focus-ring-box-shadow($color: adapter.get-field-border-color($color: $intention, $state: focused))};
+      }
+
+      @include -disabled-rule {
+        box-shadow: inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-field-border-color($color: $intention, $state: disabled)};
+      }
+    }
+  }
+}

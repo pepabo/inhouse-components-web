@@ -1,0 +1,21 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$button-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  button
+);
+
+@function get-button-color($color: neutral) {
+  $tokens: map.get($button-color-tokens, base);
+  $available-colors: helpers.get-button-colors();
+
+  @if list.index($available-colors, $color) == null {
+    @return $color;
+  } @else {
+    @return map.get($tokens, $color);
+  }
+}

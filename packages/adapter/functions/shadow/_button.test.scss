@@ -1,0 +1,16 @@
+@use "./button" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-solid-button-highlight-box-shadow() {
+  @return assert.equals(
+    "#{functions.get-solid-button-highlight-box-shadow()}",
+    "0px 1px 1px 0px rgba(255, 255, 255, 0.5)"
+  );
+}
+
+@function test-get-solid-button-shadow-box-shadow() {
+  @return assert.equals(
+    "#{functions.get-solid-button-shadow-box-shadow()}",
+    "0px -1px 1px 0px rgba(0, 0, 0, 0.1)"
+  );
+}

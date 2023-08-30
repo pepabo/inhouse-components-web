@@ -1,0 +1,30 @@
+extends:
+  - stylelint-config-standard-scss
+  - stylelint-config-rational-order
+rules:
+  max-line-length: null
+
+  # -some-class のような名前が引っかかるので切る
+  selector-class-pattern: null
+  scss/at-mixin-pattern: null
+  scss/at-function-pattern: null
+
+  # variables に複数の map 使うので切る
+  scss/dollar-variable-empty-line-before: null
+
+  # 確認したら有効にしてもよさそう
+  scss/dollar-variable-colon-space-after: null
+
+  # 計算の過程が見えなくなるので切る
+  number-max-precision: null
+
+  # -webkit-box だけ確認したら有効にしてもよさそう
+  value-no-vendor-prefix: null
+
+  color-function-notation: null
+
+  # あとで直していく
+  scss/at-if-no-null: null
+
+  # クオートは variables の側でされているので
+  font-family-name-quotes: null

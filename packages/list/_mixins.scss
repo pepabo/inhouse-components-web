@@ -1,0 +1,180 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/cell/mixins" as cell;
+@use "@pepabo-inhouse/icon/mixins" as icon;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include -proto;
+
+  &.-has-background {
+    padding: adapter.get-cell-vertical-spacing-size(map.get($option, density)) 0;
+  }
+
+  ul,
+  ol {
+    @include -proto;
+    @include -child-list($density: map.get($option, density));
+  }
+
+  li {
+    @include cell.style((
+      density: map.get($option, density),
+      size: map.get($option, size),
+    ));
+
+    position: relative;
+    padding-left: adapter.get-list-leading-width();
+    counter-increment: list;
+
+    &::before {
+      @if map.get($option, list-style-type) == disc {
+        @include -disc;
+      } @else if map.get($option, list-style-type) == decimal {
+        @include -decimal;
+      }
+
+      @include cell.style((
+        density: map.get($option, density),
+        size: map.get($option, size),
+      ));
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: adapter.get-list-leading-width();
+      text-align: center;
+    }
+  }
+
+  ul > li {
+    &::before {
+      @include -disc;
+      @include cell.style((
+        density: map.get($option, density),
+        size: map.get($option, size),
+      ));
+    }
+  }
+
+  ol > li {
+    &::before {
+      @include -decimal;
+      @include cell.style((
+        density: map.get($option, density),
+        size: map.get($option, size),
+      ));
+    }
+  }
+
+  @each $size in adapter.get-cell-sizes() {
+    &.-size-#{$size} {
+      li {
+        @include cell.style((
+          density: map.get($option, density),
+          size: $size
+        ));
+
+        &::before {
+          @include cell.style((
+            density: map.get($option, density),
+            size: $size
+          ));
+        }
+      }
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    &.-density-#{$density} {
+      li {
+        @include cell.style((
+          density: $density,
+          size: map.get($option, size)
+        ));
+
+        &::before {
+          @include cell.style((
+            density: $density,
+            size: map.get($option, size)
+          ));
+        }
+      }
+
+      ul,
+      ol {
+        @include -child-list($density: $density);
+      }
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    @each $size in adapter.get-cell-sizes() {
+      &.-density-#{$density}.-size-#{$size} {
+        li {
+          @include cell.style((
+            density: $density,
+            size: $size
+          ));
+
+          &::before {
+            @include cell.style((
+              density: $density,
+              size: $size
+            ));
+          }
+        }
+      }
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    &.-density-#{$density}.-has-background {
+      padding: adapter.get-cell-vertical-spacing-size($density) 0;
+    }
+  }
+}
+
+@mixin export {
+  $ol-option: variables.$default-option;
+  $ul-option: map.set(variables.$default-option, list-style-type, disc);
+
+  .in-ol {
+    @include style($ol-option);
+  }
+
+  .in-ul {
+    @include style($ul-option);
+  }
+}
+
+@mixin -proto() {
+  margin: 0;
+  padding: 0;
+  color:
+    adapter.get-text-color(
+      $brightness: light,
+      $name: high_emphasis
+    );
+  list-style-type: none;
+  counter-reset: list;
+}
+
+@mixin -child-list($density) {
+  margin-top: adapter.get-cell-vertical-spacing-size($density);
+  margin-bottom: calc(-1 * #{adapter.get-cell-vertical-spacing-size($density)});
+}
+
+@mixin -disc() {
+  @include icon.style;
+
+  content: "bullet_circle";
+}
+
+@mixin -decimal() {
+  font-family: inherit;
+  content: counter(list) ".";
+}

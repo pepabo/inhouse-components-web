@@ -1,0 +1,32 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-font-weight($element) {
+  $available-elements: header, data;
+
+  @if list.index($available-elements, $element) == null {
+    @error "$element には #{$available-elements} のいずれかのみ指定できます";
+  }
+
+  @if $element == header {
+    @return bold;
+  } @else {
+    @return normal;
+  }
+}
+
+@function get-sort-button-rotation($order) {
+  $available-orders: adapter.get-orders();
+
+  @if list.index($available-orders, $order) == null {
+    @error "$order には #{$available-orders} のいずれかのみ指定できます";
+  }
+
+  @if $order == desc {
+    @return 180deg;
+  } @else {
+    @return 0deg;
+  }
+}

@@ -1,0 +1,31 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$boundary-size-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  boundary
+);
+
+@function get-boundary-sizes() {
+  @return map.keys($boundary-size-tokens);
+}
+
+@function get-boundary-size-first-key() {
+  @return list.nth(get-boundary-sizes(), 1);
+}
+
+@function get-boundary-size($level: m) {
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($boundary-size-tokens, $level);
+}

@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin skeleton-text($level: m, $density: normal) {
+  display: flex;
+  align-items: center;
+  height:
+    adapter.get-line-height(
+      $level: $level,
+      $density: $density
+    );
+
+  &::after {
+    @include style;
+
+    display: block;
+    width: 100%;
+    height:
+      adapter.get-font-size(
+        $level: $level
+      );
+    content: "";
+  }
+}
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  background-color: adapter.get-skeleton-surface-color();
+  animation-name: heartbeat;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+@keyframes heartbeat {
+  0% { opacity: 30%; }
+  50% { opacity: 100%; }
+  100% { opacity: 30%; }
+}

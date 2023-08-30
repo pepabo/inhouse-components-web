@@ -1,0 +1,7 @@
+@function any-one-of($value, $available-values) {
+  @return "#{$value}は指定できません。#{$available-values}のいずれかを指定してください。";
+}
+
+@function not-specified($value) {
+  @return "#{$value}がTokenで指定されていません。";
+}

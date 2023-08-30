@@ -1,0 +1,317 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+@use "../color/button" as button-color;
+@use "../color/primitive" as primitive-color;
+@use "../color/overlay" as overlay-color;
+@use "../opacity/surface" as surface-opacity;
+
+$surface-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  surface
+);
+
+@function get-surface-color($brightness: light, $priority: primary) {
+  $tokens: map.get($surface-color-tokens, base);
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-priorities: helpers.get-priorities();
+
+  @if list.index($available-priorities, $priority) == null {
+    @error error-message.any-one-of(
+      $value: $priority,
+      $available-values: $available-priorities
+    );
+  }
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $priority,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  $brightness-tokens: map.get($tokens, $brightness);
+
+  @return map.get($brightness-tokens, $priority);
+}
+
+@function get-avatar-surface-color() {
+  @return map.get($surface-color-tokens, avatar);
+}
+
+@function get-bottom-navigation-surface-color($appearance: white) {
+  $tokens: map.get($surface-color-tokens, bottom-navigation);
+  $available-appearances: helpers.get-bottom-navigation-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @return map.get($tokens, $appearance);
+}
+
+@function get-solid-button-scrim-color($position: start) {
+  $tokens: map.get(map.get(map.get($surface-color-tokens, button), solid), scrim);
+  $available-positions: start, end;
+
+  @if list.index($available-positions, $position) == null {
+    @error error-message.any-one-of(
+      $value: $position,
+      $available-values: $available-positions
+    );
+  }
+
+  @return map.get($tokens, $position);
+}
+
+@function get-button-surface-color(
+  $appearance: flat,
+  $brightness: light,
+  $color: neutral,
+  $state: enabled
+) {
+  $available-appearances: helpers.get-button-appearances();
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-colors: helpers.get-button-colors();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  @if list.index($available-colors, $color) == null {
+    @if helpers.is-color-code($value: $color) == false {
+      @error error-message.any-one-of(
+        $value: $color,
+        $available-values: $available-colors
+      );
+    }
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  @if $appearance == flat {
+    @return button-color.get-button-color($color: $color);
+  } @else if $appearance == outlined {
+    @return get-surface-color(
+      $brightness: light,
+      $priority: primary
+    );
+  } @else if $appearance == solid {
+    @return button-color.get-button-color($color: $color);
+  } @else if $appearance == white {
+    @return get-surface-color(
+      $brightness: light,
+      $priority: primary
+    );
+  } @else if $appearance == transparent {
+    // 単純にtransparentにするとlinear-gradientが崩れるので、あえてrgbaで指定する
+    @return rgba(
+      get-surface-color(
+        $brightness: light,
+        $priority: primary
+      ),
+      0
+    );
+  } @else if $appearance == hollow {
+    @if $state == hover {
+      @return button-color.get-button-color($color: $color);
+    } @else if $state == focused {
+      @return button-color.get-button-color($color: $color);
+    } @else {
+      @if $brightness == light {
+        @return rgba(
+          primitive-color.get-primitive-color(white, 1000),
+          surface-opacity.get-hollow-button-surface-opacity()
+        );
+      } @else if $brightness == dark {
+        @return rgba(
+          primitive-color.get-primitive-color(black, 1000),
+          surface-opacity.get-hollow-button-surface-opacity()
+        );
+      }
+    }
+  } @else {
+    @return button-color.get-button-color($color: $color);
+  }
+}
+
+@function get-button-surface-image(
+  $appearance: flat,
+  $brightness: light,
+  $color: neutral,
+  $own-brightness: light,
+  $state: enabled
+) {
+  $available-appearances: helpers.get-button-appearances();
+  $available-brightnesses: helpers.get-brightnesses();
+  $available-colors: helpers.get-button-colors();
+  $available-own-brightnesses: helpers.get-brightnesses();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  @if list.index($available-colors, $color) == null {
+    @if helpers.is-color-code($value: $color) == false {
+      @error error-message.any-one-of(
+        $value: $color,
+        $available-values: $available-colors
+      );
+    }
+  }
+
+  @if list.index($available-own-brightnesses, $own-brightness) == null {
+    @error error-message.any-one-of(
+      $value: $own-brightness,
+      $available-values: $available-own-brightnesses
+    );
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of(
+      $value: $state,
+      $available-values: $available-states
+    );
+  }
+
+  $background-overlay-color: overlay-color.get-background-overlay-color(
+    $brightness:
+    helpers.get-button-background-overlay-brightness(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $own-brightness: $own-brightness,
+    ),
+    $state: $state,
+  );
+  $background-overlay-color-linear-gradient: linear-gradient(
+    $background-overlay-color,
+    $background-overlay-color
+  );
+  $background-scrim-linear-gradient: linear-gradient(
+    get-solid-button-scrim-color($position: start),
+    get-solid-button-scrim-color($position: end)
+  );
+  $background-color: get-button-surface-color(
+    $brightness: $brightness,
+    $color: $color,
+    $appearance: $appearance,
+    $state: $state,
+  );
+  $background-color-linear-gradient: linear-gradient(
+    $background-color,
+    $background-color
+  );
+
+  @if $appearance == solid {
+    @return $background-overlay-color-linear-gradient,
+      $background-scrim-linear-gradient, $background-color-linear-gradient;
+  } @else {
+    @return $background-overlay-color-linear-gradient,
+      $background-color-linear-gradient;
+  }
+}
+
+@function get-checkbox-surface-color($states: (enabled)) {
+  $tokens: map.get($surface-color-tokens, checkbox);
+  $available-states: helpers.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error error-message.any-one-of(
+        $value: $state,
+        $available-values: $available-states
+      );
+    }
+  }
+
+  @if list.index($states, selected) != null or list.index($states, mixed) != null {
+    @return map.get($tokens, selected);
+  } @else {
+    @return primitive-color.get-primitive-color(white, 1000);
+  }
+}
+
+@function get-header-surface-color($appearance: white) {
+  $header-tokens: map.get($surface-color-tokens, header);
+  $available-appearances: helpers.get-header-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error error-message.any-one-of(
+      $value: $appearance,
+      $available-values: $available-appearances
+    );
+  }
+
+  @return map.get($header-tokens, #{$appearance});
+}
+
+@function get-progress-indicator-track-surface-color() {
+  $tokens: map.get($surface-color-tokens, progress-indicator);
+
+  @return map.get($tokens, track);
+}
+
+@function get-progress-indicator-indicator-surface-color() {
+  $tokens: map.get($surface-color-tokens, progress-indicator);
+
+  @return map.get($tokens, indicator);
+}
+
+@function get-radio-surface-color() {
+  @return get-surface-color($brightness: light, $priority: primary);
+}
+
+@function get-skeleton-surface-color() {
+  @return map.get($surface-color-tokens, skeleton);
+}
+
+@function get-field-surface-color($color: neutral, $state: enabled) {
+  $tokens: map.get($surface-color-tokens, field);
+  $color-tokens: map.get($tokens, $color);
+  $available-colors: helpers.get-semantic-intentions();
+  $available-states: helpers.get-states();
+
+  @if list.index($available-colors, $color) == null {
+    @error error-message.any-one-of($value: $color,
+    $available-values: $available-colors );
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error error-message.any-one-of($value: $state,
+    $available-values: $available-states );
+  }
+
+  @return map.get($color-tokens, $state);
+}

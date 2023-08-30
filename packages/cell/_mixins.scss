@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: adapter.get-cell-vertical-spacing-size(map.get($option, density));
+  padding-bottom: adapter.get-cell-vertical-spacing-size(map.get($option, density));
+
+  @each $key, $value in adapter.get-text-style($density: normal, $level: map.get($option, size)) {
+    #{$key}: #{$value};
+  }
+}

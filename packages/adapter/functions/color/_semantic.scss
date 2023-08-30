@@ -1,0 +1,30 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$semantic-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  semantic
+);
+
+@function get-semantic-color($intention: neutral, $level: 1000) {
+  $available-semantics: helpers.get-semantic-intentions();
+
+  @if list.index($available-semantics, $intention) == null {
+    @error error-message.any-one-of(
+      $value: $intention,
+      $available-values: $available-semantics
+    );
+  }
+
+  $semantic-tokens: map.get($semantic-color-tokens, $intention);
+  $value: map.get($semantic-tokens, "#{$level}");
+
+  @if $value == null {
+    @error error-message.not-specified($value: $level);
+  }
+
+  @return $value;
+}

@@ -1,0 +1,36 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+
+@function get-action-background-color($appearance: white, $state: enabled) {
+  $available-appearances: adapter.get-bottom-navigation-appearances();
+  $available-states: adapter.get-states();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearanceには #{$available-appearances} のいずれかのみ指定できます。";
+  }
+
+  @if list.index($available-states, $state) == null {
+    @error "$stateには #{$available-states} のいずれかのみ指定できます。";
+  }
+
+  @if $appearance == white {
+    @return adapter.get-background-overlay-color($brightness: light, $state: $state);
+  } @else if $appearance == filled {
+    @return adapter.get-background-overlay-color($brightness: dark, $state: $state);
+  }
+}
+
+@function get-action-opacity($appearance: white, $is-activated: false) {
+  $available-appearances: adapter.get-bottom-navigation-appearances();
+
+  @if list.index($available-appearances, $appearance) == null {
+    @error "$appearanceには #{$available-appearances} のいずれかのみ指定できます。";
+  }
+
+  @if $appearance == filled and $is-activated == false {
+    @return adapter.get-disabled-surface-opacity();
+  } @else {
+    @return 1;
+  }
+}

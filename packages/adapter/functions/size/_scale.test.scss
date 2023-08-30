@@ -1,0 +1,9 @@
+@use "./scale" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-sizing-scale-size($level: 16) {
+  @return assert.equals(
+    functions.get-sizing-scale-size(),
+    1rem
+  );
+}

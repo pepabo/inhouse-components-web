@@ -1,0 +1,40 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../../error-message";
+
+$font-family-tokens: map.get(
+  map.get(tokens.$tokens, typography),
+  font-family
+);
+
+@function get-font-family($name) {
+  $value: map.get($font-family-tokens, $name);
+
+  @if $value == null {
+    @error error-message.not-specified($value: $name);
+  }
+
+  @return $value;
+}
+
+@function compose-font-stack($name) {
+  @if $name == latin {
+    @return #{map.get($font-family-tokens, sans-latin)},
+      #{map.get($font-family-tokens, ui)}, sans-serif;
+  } @else if $name == japanese {
+    @return #{map.get($font-family-tokens, sans-latin)},
+      #{map.get($font-family-tokens, sans-japanese)},
+      #{map.get($font-family-tokens, ui)}, sans-serif;
+  } @else if $name == japanese-kerning {
+    @return #{map.get($font-family-tokens, sans-latin)},
+      #{map.get($font-family-tokens, sans-japanese-kerning)},
+      #{map.get($font-family-tokens, ui)}, sans-serif;
+  } @else if $name == monospace {
+    @return #{map.get($font-family-tokens, monospace)}, monospace;
+  } @else if $name == icon {
+    @return #{map.get($font-family-tokens, icon)};
+  } @else {
+    @error error-message.not-specified($value: $name);
+  }
+}

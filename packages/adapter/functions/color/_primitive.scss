@@ -1,0 +1,26 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$primitive-color-tokens: map.get(
+  map.get(tokens.$tokens, color),
+  primitive
+);
+
+@function get-primitive-color($name, $level: 1000) {
+  $primitive-color-name: map.get($primitive-color-tokens, "#{$name}");
+
+  @if $primitive-color-name == null {
+    @error error-message.not-specified($value: $name);
+  }
+
+  $value: map.get($primitive-color-name, "#{$level}");
+
+  @if $value == null {
+    @error error-message.not-specified($value: $level);
+  }
+
+  @return $value;
+}

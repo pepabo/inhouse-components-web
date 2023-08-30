@@ -1,0 +1,314 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter/functions" as adapter-functions;
+@use "@pepabo-inhouse/adapter/mixins" as adapter-mixins;
+@use "@pepabo-inhouse/cell/mixins" as cell;
+@use "@pepabo-inhouse/skeleton/mixins" as skeleton;
+@use "@pepabo-inhouse/thumbnail/mixins" as thumbnail;
+@use "./variables";
+@use "./functions";
+
+// ソースコードの読みやすさを優先させて、以下のルールのlintの対象から除外する
+/* stylelint-disable no-descending-specificity */
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include -table-proto;
+
+  tr {
+    color:
+      adapter-functions.get-text-color(
+        $brightness: light,
+        $name: high_emphasis
+      );
+  }
+
+  thead {
+    th {
+      @include -thead-th-proto;
+    }
+
+    &.-is-sticky {
+      th {
+        @include -sticky-th-style;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background-color:
+        adapter-functions.get-background-overlay-color(
+          $brightness: light,
+          $state: enabled
+        );
+      cursor: default;
+
+      &:hover,
+      &.--hover {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: hover
+          );
+      }
+
+      &.--disabled {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: disabled
+          );
+        opacity: adapter-functions.get-disabled-surface-opacity();
+
+        &:hover,
+        &.--hover {
+          background-color:
+            adapter-functions.get-background-overlay-color(
+              $brightness: light,
+              $state: disabled
+            );
+        }
+      }
+
+      &.--selected {
+        background-color:
+          adapter-functions.get-background-overlay-color(
+            $brightness: light,
+            $state: selected
+          );
+
+        &:hover,
+        &.--hover {
+          background-color:
+            adapter-functions.get-background-overlay-color(
+              $brightness: light,
+              $state: selected
+            );
+        }
+      }
+
+      &.-is-draggable {
+        cursor: grab;
+
+        &:active,
+        &.--dragged {
+          background-color:
+            adapter-functions.get-background-overlay-color(
+              $brightness: light,
+              $state: dragged
+            );
+          box-shadow: adapter-functions.get-elevation-box-shadow($level: 3);
+          cursor: grabbing;
+        }
+      }
+    }
+  }
+
+  th {
+    @include -table-cell-style($density: map.get($option, density), $element: header);
+  }
+
+  td {
+    @include -table-cell-style($density: map.get($option, density), $element: data);
+  }
+
+  ._media {
+    ._thumbnail {
+      @include thumbnail.style((size: m));
+    }
+
+    @each $size in adapter-functions.get-thumbnail-sizes() {
+      &.-size-#{$size} {
+        ._thumbnail {
+          @include thumbnail.style((size: $size));
+        }
+      }
+    }
+  }
+
+  ._icon {
+    @include -icon-proto;
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    &.-density-#{$density} {
+      th,
+      td {
+        @include cell.style((density: $density, size: m));
+      }
+    }
+  }
+}
+
+@mixin skeleton-style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  @include -table-proto;
+
+  tr {
+    color:
+      adapter-functions.get-text-color(
+        $brightness: light,
+        $name: high_emphasis
+      );
+  }
+
+  thead {
+    th {
+      @include -thead-th-proto;
+
+      & > ._skeleton {
+        @include skeleton.skeleton-text(
+          $level: s,
+          $density: map.get($option, density)
+        );
+
+        max-width: 6rem;
+      }
+    }
+
+    &.-is-sticky {
+      th {
+        @include -sticky-th-style;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background-color:
+        adapter-functions.get-background-overlay-color(
+          $brightness: light,
+          $state: enabled
+        );
+      cursor: default;
+    }
+  }
+
+  th {
+    @include -table-cell-style($density: map.get($option, density), $element: header);
+
+    & > ._skeleton {
+      @include skeleton.skeleton-text(
+        $level: s,
+        $density: map.get($option, density)
+      );
+
+      max-width: 6rem;
+    }
+  }
+
+  td {
+    @include -table-cell-style($density: map.get($option, density), $element: data);
+
+    & > ._skeleton {
+      @include skeleton.skeleton-text(
+        $level: s,
+        $density: map.get($option, density)
+      );
+
+      max-width: 6rem;
+    }
+  }
+
+  ._media {
+    ._thumbnail {
+      @include thumbnail.skeleton-style((size: m));
+    }
+
+    @each $size in adapter-functions.get-thumbnail-sizes() {
+      &.-size-#{$size} {
+        ._thumbnail {
+          @include thumbnail.style((size: $size));
+        }
+      }
+    }
+  }
+
+  ._icon {
+    @include -icon-proto;
+  }
+
+  @each $density in adapter-functions.get-densities() {
+    &.-density-#{$density} {
+      th,
+      td {
+        @include cell.style((density: $density, size: m));
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-interactive-table {
+    @include style;
+  }
+
+  .in-skeleton-interactive-table {
+    @include skeleton-style;
+  }
+}
+
+@mixin -table-proto() {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-spacing: 0;
+}
+
+@mixin -thead-th-proto() {
+  text-align: start;
+  background-color:
+    adapter-functions.get-surface-color(
+      $brightness: light,
+      $priority: primary
+    );
+}
+
+@mixin -icon-proto() {
+  width: adapter-functions.get-interactive-table-pict-width();
+  height: adapter-functions.get-interactive-table-pict-height();
+  font-size: adapter-functions.get-interactive-table-pict-height();
+}
+
+@mixin -table-cell-style($density, $element) {
+  padding: 0 adapter-functions.get-gap-size($level: m);
+  font-weight: functions.get-font-weight($element: $element);
+  border-color: adapter-functions.get-interactive-table-border-color($element: $element);
+  border-bottom-width: adapter-functions.get-border-size($level: m);
+  border-bottom-style: solid;
+
+  @include cell.style((density: $density, size: m));
+
+  ._wrapper {
+    display: flex;
+    gap: adapter-functions.get-spacing-size(xs);
+    align-items: center;
+  }
+
+  ._control {
+    @each $order in adapter-functions.get-orders() {
+      &.-order-#{$order} {
+        transform: rotate(functions.get-sort-button-rotation($order: $order));
+      }
+    }
+  }
+
+  @each $align in adapter-functions.get-interactive-table-align-values() {
+    &.-align-#{$align} {
+      text-align: #{$align};
+
+      ._wrapper {
+        justify-content: flex-#{$align};
+      }
+    }
+  }
+}
+
+@mixin -sticky-th-style() {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

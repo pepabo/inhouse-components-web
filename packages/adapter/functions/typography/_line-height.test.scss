@@ -1,0 +1,9 @@
+@use "./line-height" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-line-height() {
+  @return assert.equals(
+    functions.get-line-height($level: m, $density: normal),
+    1.5rem
+  );
+}

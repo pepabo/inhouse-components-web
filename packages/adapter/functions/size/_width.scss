@@ -1,0 +1,155 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/flavor/tokens";
+@use "../helpers";
+@use "../../error-message";
+
+$width-tokens: map.get(
+  map.get(tokens.$tokens, size),
+  width
+);
+
+@function get-width($width: auto) {
+  $available-widths: helpers.get-widths();
+
+  @if list.index($available-widths, $width) == null {
+    @error error-message.any-one-of(
+      $value: $width,
+      $available-values: $available-widths
+    );
+  }
+
+  @if $width == full {
+    @return calc(100% / 1);
+  } @else if $width == half {
+    @return calc(100% / 2);
+  } @else if $width == third {
+    @return calc(100% / 3);
+  } @else if $width == auto {
+    @return auto;
+  } @else {
+    @return auto;
+  }
+}
+
+@function get-avatar-width($level: m) {
+  $tokens: map.get($width-tokens, avatar);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}
+
+@function get-bottom-navigation-pict-width() {
+  $tokens: map.get($width-tokens, bottom-navigation);
+
+  @return map.get($tokens, pict);
+}
+
+@function get-icon-only-button-pict-width($level: m) {
+  $tokens: map.get($width-tokens, button);
+  $pict-tokens: map.get($tokens, pict);
+  $icon-only-tokens: map.get($pict-tokens, icon-only);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($icon-only-tokens, $level);
+}
+
+@function get-checkbox-parent-width() {
+  $tokens: map.get($width-tokens, checkbox);
+
+  @return map.get($tokens, parent);
+}
+
+@function get-checkbox-child-width() {
+  $tokens: map.get($width-tokens, checkbox);
+
+  @return map.get($tokens, child);
+}
+
+@function get-description-list-leading-width() {
+  $tokens: map.get($width-tokens, description-list);
+
+  @return map.get($tokens, leading);
+}
+
+@function get-interactive-list-pict-width() {
+  $tokens: map.get($width-tokens, interactive-list);
+
+  @return map.get($tokens, pict);
+}
+
+@function get-interactive-list-edge-element-width() {
+  $tokens: map.get($width-tokens, interactive-list);
+
+  @return map.get($tokens, edge-element);
+}
+
+@function get-interactive-table-pict-width() {
+  $tokens: map.get($width-tokens, interactive-table);
+
+  @return map.get($tokens, pict);
+}
+
+@function get-list-leading-width() {
+  $tokens: map.get($width-tokens, list);
+
+  @return map.get($tokens, leading);
+}
+
+@function get-circular-progress-indicator-width() {
+  $tokens: map.get($width-tokens, progress-indicator);
+
+  @return map.get($tokens, circular);
+}
+
+@function get-radio-parent-width() {
+  $tokens: map.get($width-tokens, radio);
+
+  @return map.get($tokens, parent);
+}
+
+@function get-radio-child-background-width() {
+  $tokens: map.get($width-tokens, radio);
+  $child-tokens: map.get($tokens, child);
+
+  @return map.get($child-tokens, background);
+}
+
+@function get-radio-child-foreground-width() {
+  $tokens: map.get($width-tokens, radio);
+  $child-tokens: map.get($tokens, child);
+
+  @return map.get($child-tokens, foreground);
+}
+
+@function get-side-navigation-width() {
+  @return map.get($width-tokens, side-navigation);
+}
+
+@function get-thumbnail-width($level: m) {
+  $tokens: map.get($width-tokens, thumbnail);
+  $available-levels: helpers.get-sizes();
+
+  @if list.index($available-levels, $level) == null {
+    @error error-message.any-one-of(
+      $value: $level,
+      $available-values: $available-levels
+    );
+  }
+
+  @return map.get($tokens, $level);
+}

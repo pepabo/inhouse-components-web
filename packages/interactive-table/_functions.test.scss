@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-font-weight() {
+  @return assert.equals(
+    functions.get-font-weight($element: header),
+    bold
+  );
+}
+
+@function test-get-sort-button-rotation() {
+  @return assert.equals(
+    functions.get-sort-button-rotation($order: asc),
+    0deg
+  );
+}

@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-position() {
+  @return assert.equals(
+    functions.get-position($position: relative),
+    relative
+  );
+}
+
+@function test-get-z-index() {
+  @return assert.equals(
+    functions.get-z-index($position: relative),
+    20
+  );
+}
+
+@function test-get-background-color() {
+  @return assert.equals(
+    functions.get-background-color($appearance: white),
+    #fff
+  );
+}
+
+@function test-get-color() {
+  @return assert.equals(
+    functions.get-color($appearance: filled, $brightness: light),
+    #fff
+  );
+}
+
+@function test-get-box-shadow() {
+  @return assert.equals(
+    "#{functions.get-box-shadow($appearance: transparent)}",
+    "0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+  );
+}

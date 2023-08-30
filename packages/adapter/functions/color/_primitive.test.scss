@@ -1,0 +1,9 @@
+@use "./primitive" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-primitive-color() {
+  @return assert.equals(
+    functions.get-primitive-color($name: blue, $level: 600),
+    #1f7acc
+  );
+}
