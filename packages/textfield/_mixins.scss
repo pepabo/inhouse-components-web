@@ -37,6 +37,18 @@
     }
   }
 
+    &.-icon-before {
+      ._icon {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+    }
+
   textarea._input {
     resize: vertical;
   }
@@ -162,6 +174,20 @@
       );
     }
   }
+
+  ._icon {
+    color: adapter.get-field-text-color(
+      $color: $intention,
+      $state: enabled
+    );
+
+    @include -disabled-rule {
+      color: adapter.get-field-text-color(
+        $color: $intention,
+        $state: disabled
+      );
+    }
+  }
 }
 
 @mixin -size-rule($level: m) {
@@ -176,6 +202,23 @@
   textarea._input {
     min-height: adapter.get-interactive-component-height($level: $level);
     line-height: adapter.get-line-height($level: $level, $density: normal);
+  }
+
+  &.-icon-before ._input {
+    @if $level == s {
+      padding-left: #{adapter.get-spacing-size($level: xs) + adapter.get-font-size($level: m) + adapter.get-spacing-size($level: xs)};
+    } @else if $level == m {
+      padding-left: #{adapter.get-spacing-size($level: s) + adapter.get-font-size($level: m) + adapter.get-spacing-size($level: xs)};
+    } @else if $level == l {
+      padding-left: #{adapter.get-spacing-size($level: m) + adapter.get-font-size($level: m) + adapter.get-spacing-size($level: xs)};
+    }
+  }
+
+  &.-icon-before ._icon {
+    left: adapter.get-spacing-size($level: s);
+    width: adapter.get-font-size($level: $level);
+    height: adapter.get-interactive-component-height($level: $level);
+    font-size: adapter.get-font-size($level: $level);
   }
 }
 
