@@ -156,6 +156,7 @@
 @mixin -color-rule($intention: neutral) {
   ._input {
     color: adapter.get-text-color($brightness: light, $name: high_emphasis);
+    background-color: adapter.get-surface-color($brightness: light, $priority: tertiary);
 
     &::placeholder {
       color: adapter.get-text-color($brightness: light, $name: low_emphasis);
@@ -202,6 +203,7 @@
 @mixin -appearance-rule($appearance: outlined, $intention: neutral) {
   @if $appearance == outlined {
     ._input {
+      background-color: adapter.get-surface-color($brightness: light, $priority: primary);
       border-radius: adapter.get-radius-size($level: m);
       box-shadow: inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-field-border-color(
           $color: $intention,
@@ -231,6 +233,7 @@
     }
   } @else if $appearance == filled {
     ._input {
+      background-color: adapter.get-surface-color($brightness: light, $priority: tertiary);
       border-radius: adapter.get-radius-size($level: m) adapter.get-radius-size($level: m) 0 0;
       box-shadow: inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-field-border-color(
           $color: $intention,

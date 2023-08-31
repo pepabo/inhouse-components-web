@@ -170,6 +170,7 @@
 @mixin -appearance-rule($appearance: outlined, $intention: neutral) {
   @if $appearance == outlined {
     ._select {
+      background-color: adapter.get-surface-color($brightness: light, $priority: primary);
       border-radius: adapter.get-radius-size($level: m);
       box-shadow: inset 0 0 0 #{adapter.get-border-size($level: m)} #{adapter.get-field-border-color(
           $color: $intention,
@@ -199,7 +200,8 @@
     }
   } @else if $appearance == filled {
     ._select {
-      border-radius: 0;
+      background-color: adapter.get-surface-color($brightness: light, $priority: tertiary);
+      border-radius: adapter.get-radius-size($level: m) adapter.get-radius-size($level: m) 0 0;
       box-shadow: inset 0 #{0 - adapter.get-border-size($level: m)} 0 0 #{adapter.get-field-border-color($color: $intention, $state: enabled)};
 
       @include -hover-rule {
