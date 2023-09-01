@@ -32,10 +32,6 @@
       cursor: text;
     }
 
-    @include -focus-rule {
-      background-color: adapter.get-primitive-color($name: white) !important;
-    }
-
     @include -disabled-rule {
       opacity: adapter.get-disabled-surface-opacity();
 
