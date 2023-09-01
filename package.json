@@ -40,7 +40,7 @@
     "rimraf": "^5.0.1",
     "sass": "1.62.1",
     "stylelint": "14.16.1",
-    "stylelint-config-rational-order": "0.1.2",
+    "stylelint-config-rational-order": "npm:stylelint-config-rational-order-fix@^0.1.9",
     "stylelint-config-standard-scss": "2.0.1",
     "ts-node": "10.9.1",
     "typescript": "5.0.4"
