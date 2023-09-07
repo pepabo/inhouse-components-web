@@ -15,10 +15,14 @@
   padding-right: functions.get-horizontal-gap(adapter-functions.get-boundary-size-first-key());
   padding-left: functions.get-horizontal-gap(adapter-functions.get-boundary-size-first-key());
 
-  @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
-    @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
-      padding-right: functions.get-horizontal-gap($boundary-size-level);
-      padding-left: functions.get-horizontal-gap($boundary-size-level);
+  @if map.get($options, gapless) == true {
+    @include -gapless-rule;
+  } @else {
+    @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
+      @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
+        padding-right: functions.get-horizontal-gap($boundary-size-level);
+        padding-left: functions.get-horizontal-gap($boundary-size-level);
+      }
     }
   }
 
@@ -31,10 +35,8 @@
   @include -size-rule($size: map.get($options, size));
 
   &.-is-gapless {
-    @include -gapless-rule($gapless: true);
+    @include -gapless-rule;
   }
-
-  @include -gapless-rule($gapless: map.get($options, gapless));
 }
 
 @mixin export {
@@ -47,9 +49,7 @@
   max-width: adapter-functions.get-content-size($level: $size);
 }
 
-@mixin -gapless-rule($gapless: false) {
-  @if $gapless {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-  }
+@mixin -gapless-rule {
+  padding-right: 0;
+  padding-left: 0;
 }
