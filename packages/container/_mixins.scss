@@ -3,8 +3,11 @@
 @use "@pepabo-inhouse/adapter/mixins" as adapter-mixins;
 @use "@pepabo-inhouse/adapter/functions" as adapter-functions;
 @use "./functions";
+@use "./variables";
 
-@mixin style() {
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
   box-sizing: border-box;
   width: 100%;
   margin-right: auto;
@@ -21,9 +24,11 @@
 
   @each $content-size in adapter-functions.get-content-sizes() {
     &.-size-#{$content-size} {
-      max-width: adapter-functions.get-content-size($level: $content-size);
+      @include -size-rule($size: $content-size);
     }
   }
+
+  @include -size-rule($size: map.get($options, size));
 
   &.-is-gapless {
     padding-right: 0;
@@ -35,4 +40,8 @@
   .in-container {
     @include style;
   }
+}
+
+@mixin -size-rule($size: m) {
+  max-width: adapter-functions.get-content-size($level: $size);
 }
