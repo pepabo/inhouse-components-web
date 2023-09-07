@@ -31,9 +31,10 @@
   @include -size-rule($size: map.get($options, size));
 
   &.-is-gapless {
-    padding-right: 0;
-    padding-left: 0;
+    @include -gapless-rule($gapless: true);
   }
+
+  @include -gapless-rule($gapless: map.get($options, gapless));
 }
 
 @mixin export {
@@ -44,4 +45,11 @@
 
 @mixin -size-rule($size: m) {
   max-width: adapter-functions.get-content-size($level: $size);
+}
+
+@mixin -gapless-rule($gapless: false) {
+  @if $gapless {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
 }
