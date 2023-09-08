@@ -5,8 +5,8 @@
 @use "./variables";
 @use "./functions";
 
-@mixin row($option: variables.$default-option) {
-  $option: map.merge(variables.$default-option, $option);
+@mixin row($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
 
   display: flex;
   flex-wrap: wrap;
@@ -70,7 +70,8 @@
   }
 }
 
-@mixin col($option: variables.$default-option) {
+@mixin col($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
   flex-shrink: 0;
   box-sizing: border-box;
   width: 100%;
@@ -87,7 +88,7 @@
 
   @for $i from 0 through (variables.$total-col-count - 1) {
     &.-offset-#{$i} {
-      @include -offset($option, $i);
+      @include -offset($options, $i);
     }
   }
 
@@ -105,11 +106,12 @@
 
       @for $i from 0 through (variables.$total-col-count - 1) {
         &.-offset-#{$boundary-size-level}-#{$i} {
-          @include -offset($option, $i);
+          @include -offset($options, $i);
         }
       }
     }
   }
+  @include -col($count: map.get($options, count));
 }
 
 @mixin export {
@@ -127,10 +129,10 @@
   width: functions.get-col-width($count);
 }
 
-@mixin -offset($option, $count) {
-  @if functions.get-direction($option) == ltr {
+@mixin -offset($options, $count) {
+  @if functions.get-direction($options) == ltr {
     margin-left: functions.get-col-width($count);
-  } @else if functions.get-direction($option) == rtl {
+  } @else if functions.get-direction($options) == rtl {
     margin-right: functions.get-col-width($count);
   }
 }

@@ -2,7 +2,9 @@
 @use "sass:map";
 
 $default-option: (
-  direction: ltr
+  direction: ltr,
+  count: 12,
+  size: m,
 );
 
 $total-col-count: 12;
