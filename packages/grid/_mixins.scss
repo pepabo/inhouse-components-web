@@ -8,20 +8,10 @@
 @mixin row($options: variables.$default-option) {
   $options: map.merge(variables.$default-option, $options);
 
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
   box-sizing: border-box;
-  margin-top: functions.compose-row-top-gap(adapter-functions.get-boundary-size-first-key());
-  margin-right: functions.compose-row-horizontal-gap(adapter-functions.get-boundary-size-first-key());
-  margin-left: functions.compose-row-horizontal-gap(adapter-functions.get-boundary-size-first-key());
-
-  @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
-    @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
-      margin-top: functions.compose-row-top-gap($boundary-size-level);
-      margin-right: functions.compose-row-horizontal-gap($boundary-size-level);
-      margin-left: functions.compose-row-horizontal-gap($boundary-size-level);
-    }
-  }
 
   &.-align-items-start {
     align-items: flex-start;
@@ -72,13 +62,9 @@
 
 @mixin col($options: variables.$default-option) {
   $options: map.merge(variables.$default-option, $options);
-  flex-shrink: 0;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  margin-top: functions.compose-col-top-gap(adapter-functions.get-boundary-size-first-key());
-  padding-right: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
-  padding-left: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
 
   @for $i from 1 through variables.$total-col-count {
     &.-col-#{$i} {
@@ -94,9 +80,6 @@
 
   @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
     @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
-      margin-top: functions.compose-col-top-gap($boundary-size-level);
-      padding-right: functions.compose-col-horizontal-gap($boundary-size-level);
-      padding-left: functions.compose-col-horizontal-gap($boundary-size-level);
 
       @for $i from 1 through variables.$total-col-count {
         &.-col-#{$boundary-size-level}-#{$i} {
@@ -125,8 +108,7 @@
 }
 
 @mixin -col($count) {
-  flex: 0 0 auto;
-  width: functions.get-col-width($count);
+  grid-column: span $count;
 }
 
 @mixin -offset($options, $count) {
