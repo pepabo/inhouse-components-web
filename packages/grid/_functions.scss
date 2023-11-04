@@ -4,16 +4,8 @@
 @use "@pepabo-inhouse/adapter/functions" as adapter;
 @use "./variables";
 
-@function get-direction($option) {
-  @return map.get($option, direction);
-}
-
 @function compose-col-horizontal-gap($boundary-size-level) {
   @return -get-gap($boundary-size-level);
-}
-
-@function get-col-width($count) {
-  @return percentage(math.div($count, variables.$total-col-count));
 }
 
 @function -get-gap($boundary-size-level) {

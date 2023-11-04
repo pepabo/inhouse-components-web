@@ -7,9 +7,9 @@
 
 @mixin row($options: variables.$default-row-option) {
   $options: map.merge(variables.$default-row-option, $options);
+
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
   box-sizing: border-box;
 
   @if map.get($options, direction) == ltr {
@@ -18,13 +18,20 @@
     direction: rtl;
   }
 
-  &.-is-gapless {
+  @if map.get($options, is-gapless) == true {
     gap: 0;
+  } @else if map.get($options, is-gapless) == false {
+    gap: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+
+    &.-is-gapless {
+      gap: 0;
+    }
   }
 }
 
 @mixin col($options: variables.$default-col-option) {
   $options: map.merge(variables.$default-col-option, $options);
+
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
@@ -32,32 +39,32 @@
   @for $i from 1 through variables.$total-col-count {
     &.-col-#{$i} {
       @include -col($i);
-    }
-  }
 
-  @for $i from 0 through (variables.$total-col-count - 1) {
-    &.-offset-#{$i} {
-      @include -offset($options, $i);
+      @for $offset from 0 through (variables.$total-col-count - 1) {
+        &.-offset-#{$offset} {
+          @include -col($i, $offset);
+        }
+      }
     }
   }
 
   @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
     @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
-
       @for $i from 1 through variables.$total-col-count {
         &.-col-#{$boundary-size-level}-#{$i} {
           @include -col($i);
-        }
-      }
 
-      @for $i from 0 through (variables.$total-col-count - 1) {
-        &.-offset-#{$boundary-size-level}-#{$i} {
-          @include -offset($options, $i);
+          @for $offset from 0 through (variables.$total-col-count - 1) {
+            &.-offset-#{$boundary-size-level}-#{$offset} {
+              @include -col($i, $offset);
+            }
+          }
         }
       }
     }
   }
-  @include -col($count: map.get($options, count));
+
+  @include -col($count: map.get($options, count), $offset: map.get($options, offset));
 }
 
 @mixin export {
@@ -70,14 +77,10 @@
   }
 }
 
-@mixin -col($count) {
-  grid-column: span $count;
-}
-
-@mixin -offset($options, $count) {
-  @if functions.get-direction($options) == ltr {
-    margin-left: functions.get-col-width($count);
-  } @else if functions.get-direction($options) == rtl {
-    margin-right: functions.get-col-width($count);
+@mixin -col($count, $offset: 0) {
+  @if $offset != null and $offset > 0 {
+    grid-column: ($offset + 1)  / span $count;
+  } @else {
+    grid-column: span $count;
   }
 }
