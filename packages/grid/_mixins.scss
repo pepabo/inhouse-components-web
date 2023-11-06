@@ -5,111 +5,142 @@
 @use "./variables";
 @use "./functions";
 
-@mixin row($option: variables.$default-option) {
-  $option: map.merge(variables.$default-option, $option);
+@mixin row($options: variables.$default-row-option) {
+  $options: map.merge(variables.$default-row-option, $options);
 
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   box-sizing: border-box;
-  margin-top: functions.compose-row-top-gap(adapter-functions.get-boundary-size-first-key());
-  margin-right: functions.compose-row-horizontal-gap(adapter-functions.get-boundary-size-first-key());
-  margin-left: functions.compose-row-horizontal-gap(adapter-functions.get-boundary-size-first-key());
 
-  @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
-    @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
-      margin-top: functions.compose-row-top-gap($boundary-size-level);
-      margin-right: functions.compose-row-horizontal-gap($boundary-size-level);
-      margin-left: functions.compose-row-horizontal-gap($boundary-size-level);
+  @if map.get($options, direction) == ltr {
+    direction: ltr;
+  } @else if map.get($options, direction) == rtl {
+    direction: rtl;
+  }
+
+  @if map.get($options, is-gapless) == true {
+    gap: 0;
+  } @else if map.get($options, is-gapless) == false {
+    gap: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
+
+    &.-is-gapless {
+      gap: 0;
     }
   }
 
-  &.-align-items-start {
-    align-items: flex-start;
+  @if map.get($options, align-content) == start {
+    align-content: start;
+  } @else if map.get($options, align-content) == end {
+    align-content: end;
+  } @else if map.get($options, align-content) == center {
+    align-content: center;
+  } @else if map.get($options, align-content) == stretch {
+    align-content: stretch;
+  } @else if map.get($options, align-content) == space-around {
+    align-content: space-around;
+  } @else if map.get($options, align-content) == space-between {
+    align-content: space-between;
   }
 
-  &.-align-items-center {
-    align-items: center;
+  &.-align-content-start {
+    align-content: start;
   }
 
-  &.-align-items-end {
-    align-items: flex-end;
+  &.-align-content-end {
+    align-content: end;
   }
 
-  &.-align-items-stretch {
-    align-items: stretch;
+  &.-align-content-center {
+    align-content: center;
+  }
+
+  &.-align-content-stretch {
+    align-content: stretch;
+  }
+
+  &.-align-content-space-around {
+    align-content: space-around;
+  }
+
+  &.-align-content-space-between {
+    align-content: space-between;
+  }
+
+  @if map.get($options, justify-content) == start {
+    justify-content: start;
+  } @else if map.get($options, justify-content) == end {
+    justify-content: end;
+  } @else if map.get($options, justify-content) == center {
+    justify-content: center;
+  } @else if map.get($options, justify-content) == stretch {
+    justify-content: stretch;
+  } @else if map.get($options, justify-content) == space-around {
+    justify-content: space-around;
+  } @else if map.get($options, justify-content) == space-between {
+    justify-content: space-between;
   }
 
   &.-justify-content-start {
-    justify-content: flex-start;
+    justify-content: start;
+  }
+
+  &.-justify-content-end {
+    justify-content: end;
   }
 
   &.-justify-content-center {
     justify-content: center;
   }
 
-  &.-justify-content-end {
-    justify-content: flex-end;
+  &.-justify-content-stretch {
+    justify-content: stretch;
   }
 
-  &.-justify-content-around {
+  &.-justify-content-space-around {
     justify-content: space-around;
   }
 
-  &.-justify-content-between {
+  &.-justify-content-space-between {
     justify-content: space-between;
-  }
-
-  &.-is-gapless {
-    margin: 0;
-    padding: 0;
-
-    > * {
-      margin: 0;
-      padding: 0;
-    }
   }
 }
 
-@mixin col($option: variables.$default-option) {
-  flex-shrink: 0;
+@mixin col($options: variables.$default-col-option) {
+  $options: map.merge(variables.$default-col-option, $options);
+
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  margin-top: functions.compose-col-top-gap(adapter-functions.get-boundary-size-first-key());
-  padding-right: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
-  padding-left: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
 
   @for $i from 1 through variables.$total-col-count {
     &.-col-#{$i} {
-      @include -col($i);
-    }
-  }
+      @include -grid-column($i);
 
-  @for $i from 0 through (variables.$total-col-count - 1) {
-    &.-offset-#{$i} {
-      @include -offset($option, $i);
+      @for $offset from 0 through (variables.$total-col-count - 1) {
+        &.-offset-#{$offset} {
+          @include -grid-column($i, $offset);
+        }
+      }
     }
   }
 
   @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
     @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
-      margin-top: functions.compose-col-top-gap($boundary-size-level);
-      padding-right: functions.compose-col-horizontal-gap($boundary-size-level);
-      padding-left: functions.compose-col-horizontal-gap($boundary-size-level);
-
       @for $i from 1 through variables.$total-col-count {
         &.-col-#{$boundary-size-level}-#{$i} {
-          @include -col($i);
-        }
-      }
+          @include -grid-column($i);
 
-      @for $i from 0 through (variables.$total-col-count - 1) {
-        &.-offset-#{$boundary-size-level}-#{$i} {
-          @include -offset($option, $i);
+          @for $offset from 0 through (variables.$total-col-count - 1) {
+            &.-offset-#{$boundary-size-level}-#{$offset} {
+              @include -grid-column($i, $offset);
+            }
+          }
         }
       }
     }
   }
+
+  @include -grid-column($count: map.get($options, count), $offset: map.get($options, offset));
 }
 
 @mixin export {
@@ -122,15 +153,10 @@
   }
 }
 
-@mixin -col($count) {
-  flex: 0 0 auto;
-  width: functions.get-col-width($count);
-}
-
-@mixin -offset($option, $count) {
-  @if functions.get-direction($option) == ltr {
-    margin-left: functions.get-col-width($count);
-  } @else if functions.get-direction($option) == rtl {
-    margin-right: functions.get-col-width($count);
+@mixin -grid-column($count, $offset: 0) {
+  @if $offset != null and $offset > 0 {
+    grid-column: ($offset + 1)  / span $count;
+  } @else {
+    grid-column: span $count;
   }
 }

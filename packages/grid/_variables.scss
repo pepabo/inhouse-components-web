@@ -1,8 +1,16 @@
 @use "sass:list";
 @use "sass:map";
 
-$default-option: (
-  direction: ltr
+$total-col-count: 12;
+
+$default-row-option: (
+  direction: ltr,
+  is-gapless: false,
+  align-content: start,
+  justify-content: start,
 );
 
-$total-col-count: 12;
+$default-col-option: (
+  count: 12,
+  size: m,
+);
