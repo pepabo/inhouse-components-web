@@ -27,6 +27,82 @@
       gap: 0;
     }
   }
+
+  @if map.get($options, align-content) == start {
+    align-content: start;
+  } @else if map.get($options, align-content) == end {
+    align-content: end;
+  } @else if map.get($options, align-content) == center {
+    align-content: center;
+  } @else if map.get($options, align-content) == stretch {
+    align-content: stretch;
+  } @else if map.get($options, align-content) == space-around {
+    align-content: space-around;
+  } @else if map.get($options, align-content) == space-between {
+    align-content: space-between;
+  }
+
+  &.-align-content-start {
+    align-content: start;
+  }
+
+  &.-align-content-end {
+    align-content: end;
+  }
+
+  &.-align-content-center {
+    align-content: center;
+  }
+
+  &.-align-content-stretch {
+    align-content: stretch;
+  }
+
+  &.-align-content-space-around {
+    align-content: space-around;
+  }
+
+  &.-align-content-space-between {
+    align-content: space-between;
+  }
+
+  @if map.get($options, justify-content) == start {
+    justify-content: start;
+  } @else if map.get($options, justify-content) == end {
+    justify-content: end;
+  } @else if map.get($options, justify-content) == center {
+    justify-content: center;
+  } @else if map.get($options, justify-content) == stretch {
+    justify-content: stretch;
+  } @else if map.get($options, justify-content) == space-around {
+    justify-content: space-around;
+  } @else if map.get($options, justify-content) == space-between {
+    justify-content: space-between;
+  }
+
+  &.-justify-content-start {
+    justify-content: start;
+  }
+
+  &.-justify-content-end {
+    justify-content: end;
+  }
+
+  &.-justify-content-center {
+    justify-content: center;
+  }
+
+  &.-justify-content-stretch {
+    justify-content: stretch;
+  }
+
+  &.-justify-content-space-around {
+    justify-content: space-around;
+  }
+
+  &.-justify-content-space-between {
+    justify-content: space-between;
+  }
 }
 
 @mixin col($options: variables.$default-col-option) {
