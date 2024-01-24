@@ -323,6 +323,10 @@
     "upload.svg": {
       "name": "upload",
       "codePoint": 61805
+    },
+    "x.svg": {
+      "name": "x",
+      "codePoint": 61810
     }
   },
   "version": "0.3.0"
