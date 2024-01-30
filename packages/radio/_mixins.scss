@@ -67,7 +67,6 @@
 
 @mixin -proto() {
   position: relative;
-  display: block;
   box-sizing: border-box;
   width: adapter.get-radio-parent-width();
   height: adapter.get-radio-parent-height();
