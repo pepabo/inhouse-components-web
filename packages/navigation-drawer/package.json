@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/navigation-drawer",
   "description": "Inhouse Components for the web navigation drawer component",
-  "version": "0.43.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,13 +11,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^0.43.0",
-    "@pepabo-inhouse/header": "^0.43.0",
-    "@pepabo-inhouse/scrim": "^0.43.0"
+    "@pepabo-inhouse/adapter": "^1.0.0",
+    "@pepabo-inhouse/header": "^1.0.0",
+    "@pepabo-inhouse/scrim": "^1.0.0"
   },
   "devDependencies": {
-    "@pepabo-inhouse/constants": "^0.43.0",
-    "@pepabo-inhouse/flavor": "^0.43.0",
+    "@pepabo-inhouse/constants": "^1.0.0",
+    "@pepabo-inhouse/flavor": "^1.0.0",
     "@pepabo-inhouse/tokens": "^0.14.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/constants",
   "description": "Inhouse is core design system to support pepabo brand.",
-  "version": "0.43.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
