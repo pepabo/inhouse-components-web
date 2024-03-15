@@ -1,0 +1,9 @@
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+
+$default-options: (
+  intention: neutral,
+  background-color-level: 100,
+  text-color: adapter.get-text-color(light, high_emphasis),
+  size: m,
+  button-text-color: adapter.get-implication-color(interactive, 600)
+);

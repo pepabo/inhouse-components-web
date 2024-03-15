@@ -1,0 +1,67 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin style($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: adapter.get-semantic-color(map-get($options, intention), map-get($options, background-color-level));
+  color: map-get($options, text-color);
+  font-size: adapter.get-font-size(map-get($options, size));
+  padding: adapter.get-spacing-size(map-get($options, size));
+  gap: adapter.get-spacing-size(map-get($options, size));
+  border-radius: adapter.get-radius-size(map-get($options, size));
+  box-shadow: adapter.get-elevation-box-shadow(1);
+
+  &.-inline {
+    display: inline-flex;
+    justify-content: flex-start;
+  }
+
+  &.-color-positive {
+    @include -state-style(positive);
+  }
+
+  &.-color-negative {
+    @include -state-style(negative);
+  }
+
+  &.-color-notice {
+    @include -state-style(notice);
+  }
+
+  ._group {
+    display: flex;
+    align-items: center;
+    gap: adapter.get-spacing-size(map-get($options, size));
+  }
+
+  ._button {
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: adapter.get-font-size(map-get($options, size));
+    font-weight: bold;
+    color: map-get($options, button-text-color);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+@mixin -state-style($state) {
+  background-color: adapter.get-semantic-color($state, 100);
+  color: adapter.get-semantic-color($state, 800);
+
+  ._button {
+    color: inherit;
+  }
+}
+
+@mixin export {
+  .in-snackbar {
+    @include style;
+  }
+}
