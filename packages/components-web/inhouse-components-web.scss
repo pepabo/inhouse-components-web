@@ -20,6 +20,7 @@
 @use "@pepabo-inhouse/side-navigation";
 @use "@pepabo-inhouse/table";
 @use "@pepabo-inhouse/textfield";
+@use "@pepabo-inhouse/snackbar";
 
 // @import が存在しているので最初に flavor を読む
 // see: https://git.pepabo.com/inhouse/components-web/issues/355
@@ -43,3 +44,4 @@
 @include side-navigation.export;
 @include table.export;
 @include textfield.export;
+@include snackbar.export;
