@@ -10,21 +10,19 @@ export const Snackbar: FC<Props> = ({ color = "" }) => {
   return (
     <>
       <div className={`in-snackbar -color-${color}`}>
-        <div className="_group">
-          <span className="in-icon _icon" data-icon="check" />
-          <span>アイテム1を削除しました</span>
+        <span className="in-icon _icon" data-icon="check" />
+        <span>アイテム1を削除しました</span>
+        <div className="_trailing">
+          <button className="in-button -size-s">
+            <div className="_body">もとに戻す</div>
+          </button>
         </div>
-        <button className="_button" type="button">
-          もとに戻す
-        </button>
       </div>
       <div className={`in-snackbar -color-${color} -inline`}>
-        <div className="_group">
-          <span className="in-icon _icon" data-icon="check" />
-          <span>アイテム1を削除しました</span>
-        </div>
-        <button className="_button" type="button">
-          もとに戻す
+        <span className="in-icon _icon" data-icon="check" />
+        <span>アイテム1を削除しました</span>
+        <button className="in-button -size-s">
+          <div className="_body">もとに戻す</div>
         </button>
       </div>
     </>
