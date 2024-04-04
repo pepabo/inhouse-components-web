@@ -1,6 +1,6 @@
 import type { StoryFn, Meta } from "@storybook/react";
 import React from "react";
-import Snackbar, { Props } from "./components/snackbar/Snackbar";
+import Snackbar, { Props } from "./components/Snackbar";
 
 export default {
   title: "Components/Snackbar",
@@ -9,8 +9,8 @@ export default {
 
 const Template: StoryFn<Props> = (args) => <Snackbar {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Neutral = Template.bind({});
+Neutral.args = {};
 
 export const Positive = Template.bind({});
 Positive.args = { color: "positive" };

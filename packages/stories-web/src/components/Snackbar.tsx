@@ -1,12 +1,16 @@
 import React, { FC, InputHTMLAttributes } from "react";
+import { SemanticColor } from "./types";
 
 type HTMLProps = InputHTMLAttributes<HTMLInputElement>;
 
 export interface Props extends HTMLProps {
-  color?: string;
+  color?: Extract<
+    SemanticColor,
+    "neutral" | "positive" | "negative" | "notice"
+  >;
 }
 
-export const Snackbar: FC<Props> = ({ color = "" }) => {
+export const Snackbar: FC<Props> = ({ color = "neutral" }) => {
   return (
     <>
       <div className={`in-snackbar -color-${color}`}>

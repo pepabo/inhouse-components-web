@@ -7,8 +7,8 @@
 
   display: flex;
   align-items: center;
-  background-color: adapter.get-semantic-color(map-get($options, intention), map-get($options, background-color-level));
-  color: map-get($options, text-color);
+  background-color: adapter.get-semantic-color(map-get($options, color), 100);
+  color: map-get($options, adapter.get-semantic-color(map-get($options, color), 600));
   font-size: adapter.get-font-size(map-get($options, size));
   padding: adapter.get-spacing-size(map-get($options, size));
   gap: adapter.get-spacing-size(map-get($options, size));
