@@ -7,17 +7,13 @@
 
   display: flex;
   align-items: center;
-  background-color: adapter.get-semantic-color(map-get($options, color), 100);
-  color: adapter.get-semantic-color(map-get($options, color), 900);
   font-size: adapter.get-font-size(map-get($options, size));
   padding: adapter.get-spacing-size(map-get($options, size));
   gap: adapter.get-spacing-size(map-get($options, size));
   border-radius: adapter.get-radius-size(map-get($options, size));
   box-shadow: adapter.get-elevation-box-shadow(1);
 
-  &.-inline {
-    display: inline-flex;
-  }
+  @include -state-style(map-get($options, color));
 
   &.-color-positive {
     @include -state-style(positive);
@@ -29,6 +25,10 @@
 
   &.-color-notice {
     @include -state-style(notice);
+  }
+
+  &.-inline {
+    display: inline-flex;
   }
 
   ._trailing {
