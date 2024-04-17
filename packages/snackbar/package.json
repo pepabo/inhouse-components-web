@@ -1,0 +1,20 @@
+{
+  "name": "@pepabo-inhouse/snackbar",
+  "description": "Inhouse Components for the web snackbar component",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/snackbar"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@pepabo-inhouse/adapter": "^0.43.0"
+  },
+  "devDependencies": {
+    "@pepabo-inhouse/flavor": "^0.43.0",
+    "@pepabo-inhouse/tokens": "^0.14.0"
+  }
+}

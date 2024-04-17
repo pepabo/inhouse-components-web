@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin style($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
+
+  display: flex;
+  align-items: center;
+  font-size: adapter.get-font-size(map-get($options, size));
+  padding: adapter.get-spacing-size(map-get($options, size));
+  gap: adapter.get-spacing-size(map-get($options, size));
+  border-radius: adapter.get-radius-size(map-get($options, size));
+  box-shadow: adapter.get-elevation-box-shadow(1);
+  visibility: hidden;
+  opacity: 0;
+  translate: 0 10%;
+  transition: all 0.4s;
+  @include -state-style(map-get($options, color));
+
+  &.-color-positive {
+    @include -state-style(positive);
+  }
+
+  &.-color-negative {
+    @include -state-style(negative);
+  }
+
+  &.-color-notice {
+    @include -state-style(notice);
+  }
+
+  &.-inline {
+    display: inline-flex;
+  }
+
+  &:active,
+  &.--active {
+    visibility: visible;
+    opacity: 1;
+    translate: 0 0;
+    transition: all 0.4s;
+  }
+
+
+  ._trailing {
+    margin-left: auto;
+  }
+}
+
+@mixin -state-style($state) {
+  background-color: adapter.get-semantic-color($state, 100);
+  color: adapter.get-semantic-color($state, 800);
+}
+
+@mixin export {
+  .in-snackbar {
+    @include style;
+  }
+}
