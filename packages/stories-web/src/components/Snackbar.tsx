@@ -19,10 +19,13 @@ export const Snackbar: FC<Props> = ({
 }) => {
   return (
     <>
+      {/* note: 表示したときにキーボードでアクションを実行できるよう、focusを当てる */}
       <div
         className={`in-snackbar -color-${color} ${isActive ? "--active" : ""} ${
           isInline ? "-inline" : ""
         }`}
+        aria-live="polite"
+        aria-atomic="true"
       >
         <span className="in-icon" data-icon="check" />
         <span>アイテム1を削除しました</span>
