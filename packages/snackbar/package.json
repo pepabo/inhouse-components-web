@@ -11,10 +11,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^0.43.0"
+    "@pepabo-inhouse/adapter": "^1.0.0"
   },
   "devDependencies": {
-    "@pepabo-inhouse/flavor": "^0.43.0",
+    "@pepabo-inhouse/flavor": "^1.0.0",
     "@pepabo-inhouse/tokens": "^0.14.0"
   }
 }
