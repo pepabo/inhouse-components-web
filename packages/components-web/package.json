@@ -39,7 +39,7 @@
     "@pepabo-inhouse/textfield": "^1.0.0",
     "@pepabo-inhouse/thumbnail": "^1.0.0",
     "@pepabo-inhouse/tokens": "^0.14.0",
-    "@pepabo-inhouse/snackbar": "^0.1.0",
+    "@pepabo-inhouse/snackbar": "^1.0.0",
     "autoprefixer": "10.4.14",
     "cssnano": "5.1.15",
     "postcss": "8.4.23",
