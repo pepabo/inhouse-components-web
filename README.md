@@ -20,6 +20,7 @@
 - [Radio](packages/radio)
 - [Select](packages/select)
 - [Side Navigation](packages/side-navigation)
+- [Snackbar](packages/snackbar)
 - [Table](packages/table)
 - [Textfield](packages/textfield)
 
