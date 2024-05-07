@@ -81,7 +81,6 @@ $ npm install @pepabo-inhouse/flavor@npm:@some-org/some-flavor --save
 
 ```bash
 npm install
-npm run bootstrap
 
 # Sass を書きたい場合、 watch すると .scss の保存を検知してコンパイルできるか自動で試してくれます
 npm run watch

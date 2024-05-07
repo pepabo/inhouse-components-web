@@ -14,7 +14,7 @@
     "@pepabo-inhouse/adapter": "^1.0.0"
   },
   "devDependencies": {
-    "@gyugyu/webfonts-generator": "^1.0.0-2",
+    "@gyugyu/webfonts-generator": "^1.0.0",
     "@pepabo-inhouse/flavor": "^1.0.0",
     "@pepabo-inhouse/tokens": "^0.14.0"
   },

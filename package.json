@@ -7,7 +7,6 @@
     "npm": "10.x"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap --no-ci",
     "start": "lerna run start --stream",
     "watch": "lerna run watch --stream",
     "build": "npm run clean && npm run compile",
