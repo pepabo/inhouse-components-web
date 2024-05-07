@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/snackbar",
   "description": "Inhouse Components for the web snackbar component",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
