@@ -1,5 +1,9 @@
 {
   "fileRefs": {
+    "youtube.svg": {
+      "name": "youtube",
+      "codePoint": 61811
+    },
     "x.svg": {
       "name": "x",
       "codePoint": 61810
@@ -7,6 +11,10 @@
     "upload.svg": {
       "name": "upload",
       "codePoint": 61805
+    },
+    "tiktok.svg": {
+      "name": "tiktok",
+      "codePoint": 61812
     },
     "star.svg": {
       "name": "star",
@@ -68,6 +76,10 @@
       "name": "pencil",
       "codePoint": 61754
     },
+    "parameters.svg": {
+      "name": "parameters",
+      "codePoint": 61813
+    },
     "outside.svg": {
       "name": "outside",
       "codePoint": 61753
@@ -76,9 +88,25 @@
       "name": "out",
       "codePoint": 61803
     },
+    "notion.svg": {
+      "name": "notion",
+      "codePoint": 61814
+    },
+    "note.svg": {
+      "name": "note",
+      "codePoint": 61815
+    },
     "node.svg": {
       "name": "node",
       "codePoint": 61752
+    },
+    "multi_pane.svg": {
+      "name": "multi_pane",
+      "codePoint": 61816
+    },
+    "misskey.svg": {
+      "name": "misskey",
+      "codePoint": 61817
     },
     "minus_on_circle.svg": {
       "name": "minus_on_circle",
@@ -128,6 +156,10 @@
       "name": "last_page",
       "codePoint": 61795
     },
+    "instagram.svg": {
+      "name": "instagram",
+      "codePoint": 61818
+    },
     "info_on_circle.svg": {
       "name": "info_on_circle",
       "codePoint": 61782
@@ -156,6 +188,10 @@
       "name": "hatena_bookmark",
       "codePoint": 61780
     },
+    "github.svg": {
+      "name": "github",
+      "codePoint": 61819
+    },
     "gear.svg": {
       "name": "gear",
       "codePoint": 61712
@@ -175,6 +211,10 @@
     "first_page.svg": {
       "name": "first_page",
       "codePoint": 61793
+    },
+    "figma.svg": {
+      "name": "figma",
+      "codePoint": 61820
     },
     "facebook.svg": {
       "name": "facebook",
@@ -203,6 +243,10 @@
     "download.svg": {
       "name": "download",
       "codePoint": 61742
+    },
+    "discord.svg": {
+      "name": "discord",
+      "codePoint": 61821
     },
     "cross_on_circle.svg": {
       "name": "cross_on_circle",
@@ -296,6 +340,10 @@
       "name": "arrow_right",
       "codePoint": 61765
     },
+    "arrow_order.svg": {
+      "name": "arrow_order",
+      "codePoint": 61822
+    },
     "arrow_left.svg": {
       "name": "arrow_left",
       "codePoint": 61764
@@ -329,5 +377,5 @@
       "codePoint": 61804
     }
   },
-  "version": "1.0.0-2"
+  "version": "1.0.0"
 }
