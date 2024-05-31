@@ -1,0 +1,15 @@
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+
+$default-option: (
+  appearance: filled,
+  color: primary,
+  gapless: false,
+  shape: rounded,
+);
+
+$available-appearance: (
+  elevated,
+  filled,
+  outlined
+);
+

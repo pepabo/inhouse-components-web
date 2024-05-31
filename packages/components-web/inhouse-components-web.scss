@@ -2,6 +2,7 @@
 @use "@pepabo-inhouse/avatar";
 @use "@pepabo-inhouse/bottom-navigation";
 @use "@pepabo-inhouse/button";
+@use "@pepabo-inhouse/card";
 @use "@pepabo-inhouse/checkbox";
 @use "@pepabo-inhouse/container";
 @use "@pepabo-inhouse/description-list";
@@ -29,6 +30,7 @@
 @include avatar.export;
 @include bottom-navigation.export;
 @include button.export;
+@include card.export;
 @include checkbox.export;
 @include container.export;
 @include description-list.export;

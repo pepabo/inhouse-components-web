@@ -1,0 +1,21 @@
+{
+  "name": "@pepabo-inhouse/card",
+  "description": "Inhouse Components for the web card component",
+  "version": "1.1.0-alpha.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/card"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@pepabo-inhouse/adapter": "^1.0.0",
+    "@pepabo-inhouse/skeleton": "^1.0.0"
+  },
+  "devDependencies": {
+    "@pepabo-inhouse/flavor": "^1.0.0",
+    "@pepabo-inhouse/tokens": "^0.14.0"
+  }
+}
