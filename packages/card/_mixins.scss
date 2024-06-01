@@ -81,7 +81,7 @@
 
 @mixin -appearance-rule($appearance: filled) {
   @if $appearance == outlined {
-    border: 1px solid;
+    border: 1px solid adapter.get-border-color($brightness: light, $name: low_emphasis);
   } @else if $appearance == elevated {
     @include adapter.elevation(1);
   } @else if $appearance == filled {
