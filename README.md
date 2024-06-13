@@ -7,6 +7,7 @@
 - [App Bar](packages/app-bar)
 - [Bottom Navigation](packages/bottom-navigation)
 - [Button](packages/button)
+- [Card](packages/card)
 - [Checkbox](packages/checkbox)
 - [Container](packages/container)
 - [Description List](packages/description-list)
