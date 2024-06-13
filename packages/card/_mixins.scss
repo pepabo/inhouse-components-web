@@ -1,0 +1,113 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter" as adapter;
+@use "@pepabo-inhouse/constants/variables" as constants;
+@use "./variables" as variables;
+
+@function get-available-appearance() {
+  @return variables.$available-appearance;
+}
+
+@function get-available-priority() {
+  @return constants.$priorities;
+}
+
+@function get-available-shape() {
+  @return constants.$shapes;
+}
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  // appearance
+  // $appearance: map.get($options, appearance);
+  @include -appearance-rule($appearance: map.get($options, appearance));
+
+  @each $appearance in get-available-appearance() {
+    &.-appearance-#{$appearance} {
+      @include -appearance-rule($appearance: $appearance);
+    }
+  }
+
+  // color
+  // $color: map.get($options, color);
+  @include -color-rule($color: map.get($options, color));
+
+  @each $priority in get-available-priority() {
+    &.-color-#{$priority} {
+      @include -color-rule($color: $priority);
+    }
+  }
+
+  // gapless
+  // $gapless: map.get($options, gapless);
+  @if map.get($options, gapless) == true {
+    @include -gapless-rule;
+  } @else {
+    padding: adapter.get-spacing-size(m);
+    @include adapter.mq-boundary(up, m) {
+      padding: adapter.get-spacing-size(l);
+    }
+  }
+
+  &.-is-gapless {
+    @include -gapless-rule;
+  }
+
+  // shape
+  // $shape: map.get($options, shape);
+  @include -shape-rule($shape: map.get($options, shape));
+
+  @each $shape in get-available-shape() {
+    &.-shape-#{$shape} {
+      @include -shape-rule($shape: $shape);
+    }
+  }
+
+  ._media {
+    line-height: 0;
+    ._thumbnail {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+}
+
+@mixin export {
+  .in-card {
+    @include style;
+  }
+}
+
+@mixin -appearance-rule($appearance: filled) {
+  @if $appearance == outlined {
+    border: 1px solid adapter.get-border-color($brightness: light, $name: low_emphasis);
+  } @else if $appearance == elevated {
+    @include adapter.elevation(1);
+  } @else if $appearance == filled {
+    // nothing
+  }
+}
+
+@mixin -color-rule($color: primary) {
+  @if $color == primary {
+    background: adapter.get-surface-color($brightness: light, $priority: primary);
+  } @else if $color == secondary {
+    background: adapter.get-surface-color($brightness: light, $priority: secondary);
+  } @else if $color == tertiary {
+    background: adapter.get-surface-color($brightness: light, $priority: tertiary);
+  }
+}
+
+@mixin -gapless-rule {
+  padding: 0;
+}
+
+@mixin -shape-rule($shape: circle) {
+  @if $shape == circle {
+    border-radius: adapter.get-radius-size($level: l);
+    overflow: hidden;
+  } @else if $shape == square {
+    border-radius: 0;
+  }
+}
