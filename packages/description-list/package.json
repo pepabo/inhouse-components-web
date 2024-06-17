@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "@pepabo-inhouse/flavor": "^1.0.0",
-    "@pepabo-inhouse/tokens": "^0.14.0"
+    "@pepabo-inhouse/tokens": "^0.17.0"
   }
 }
