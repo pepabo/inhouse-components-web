@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/interactive-table",
   "description": "Inhouse Components for the web interactive-table component",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,14 +11,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^1.0.0",
-    "@pepabo-inhouse/cell": "^1.0.0",
-    "@pepabo-inhouse/skeleton": "^1.0.0",
-    "@pepabo-inhouse/thumbnail": "^1.0.0"
+    "@pepabo-inhouse/adapter": "^1.1.0",
+    "@pepabo-inhouse/cell": "^1.1.0",
+    "@pepabo-inhouse/skeleton": "^1.1.0",
+    "@pepabo-inhouse/thumbnail": "^1.1.0"
   },
   "devDependencies": {
     "@pepabo-inhouse/constants": "^1.0.0",
-    "@pepabo-inhouse/flavor": "^1.0.0",
+    "@pepabo-inhouse/flavor": "^1.1.0",
     "@pepabo-inhouse/tokens": "^0.17.0"
   }
 }
