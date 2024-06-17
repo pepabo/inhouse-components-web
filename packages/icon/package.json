@@ -16,7 +16,7 @@
   "devDependencies": {
     "@gyugyu/webfonts-generator": "^1.0.0",
     "@pepabo-inhouse/flavor": "^1.0.0",
-    "@pepabo-inhouse/tokens": "^0.14.0"
+    "@pepabo-inhouse/tokens": "^0.17.0"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
