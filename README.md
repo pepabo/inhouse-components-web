@@ -25,6 +25,9 @@
 - [Table](packages/table)
 - [Textfield](packages/textfield)
 
+### Storybook
+[inhouse-components-web](https://pepabo.github.io/inhouse-components-web)
+
 ## Customization
 
 components-web にはビルド済みの production ready な CSS とは別で、 Sass と NPM を使った flavor によるカスタマイズの仕組みが備わっています。
