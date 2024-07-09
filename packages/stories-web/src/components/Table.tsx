@@ -7,6 +7,7 @@ export interface Props extends HTMLProps {
   children: ReactNode
   density?: Density
   size?: Extract<Size, 's' | 'm' | 'l'>
+  hasBackground?: boolean
 }
 
 const Table: FC<Props> = (props: Props) => {
@@ -14,6 +15,7 @@ const Table: FC<Props> = (props: Props) => {
     children,
     density,
     size,
+    hasBackground,
     ...rest
   } = props;
 
@@ -25,6 +27,10 @@ const Table: FC<Props> = (props: Props) => {
 
   if (typeof size !== 'undefined') {
     classes.push(`-size-${size}`)
+  }
+
+  if (hasBackground) {
+    classes.push(`-has-background`)
   }
 
   return (

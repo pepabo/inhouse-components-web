@@ -62,6 +62,14 @@
   td {
     border-bottom: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: mid_emphasis);
   }
+
+  @if map.get($option, hasBackground) == true {
+    @include -background-rule;
+  }
+
+  &.-has-background {
+    @include -background-rule;
+  }
 }
 
 @mixin -align() {
@@ -75,5 +83,14 @@
 @mixin export {
   .in-table {
     @include style;
+  }
+}
+
+@mixin -background-rule {
+  tr:nth-child(even) td {
+    background-color: adapter.get-surface-color(light, secondary);
+  }
+  tr:nth-child(odd) td {
+    background-color: adapter.get-surface-color(light, primary);
   }
 }
