@@ -67,8 +67,16 @@
     @include -background-rule;
   }
 
+  @if map.get($option, hasGirdBorder) == true {
+    @include -grid-border;
+  }
+
   &.-has-background {
     @include -background-rule;
+  }
+
+  &.-has-grid-border {
+    @include -grid-border;
   }
 }
 
@@ -92,5 +100,11 @@
   }
   tr:nth-child(odd) td {
     background-color: adapter.get-surface-color(light, primary);
+  }
+}
+
+@mixin -grid-border {
+  th, td {
+    border: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: mid_emphasis);
   }
 }

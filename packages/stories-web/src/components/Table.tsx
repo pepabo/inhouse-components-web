@@ -8,6 +8,7 @@ export interface Props extends HTMLProps {
   density?: Density
   size?: Extract<Size, 's' | 'm' | 'l'>
   hasBackground?: boolean
+  hasGridBorder?: boolean
 }
 
 const Table: FC<Props> = (props: Props) => {
@@ -16,6 +17,7 @@ const Table: FC<Props> = (props: Props) => {
     density,
     size,
     hasBackground,
+    hasGridBorder,
     ...rest
   } = props;
 
@@ -31,6 +33,10 @@ const Table: FC<Props> = (props: Props) => {
 
   if (hasBackground) {
     classes.push(`-has-background`)
+  }
+
+  if (hasGridBorder) {
+    classes.push(`-has-grid-border`)
   }
 
   return (

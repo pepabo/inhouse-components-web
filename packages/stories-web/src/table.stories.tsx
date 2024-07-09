@@ -31,6 +31,12 @@ Index.args = {
         <td className="-align-right">9,000,000</td>
         <td>スウェーデン語</td>
       </tr>
+      <tr>
+        <td>日本</td>
+        <td>東京</td>
+        <td className="-align-right">120,000,000</td>
+        <td>日本語</td>
+      </tr>
     </tbody>
   ),
   density: 'normal',
