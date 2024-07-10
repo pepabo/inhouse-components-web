@@ -62,6 +62,22 @@
   td {
     border-bottom: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: mid_emphasis);
   }
+
+  @if map.get($option, hasBackground) == true {
+    @include -background-rule;
+  }
+
+  @if map.get($option, hasGirdBorder) == true {
+    @include -grid-border;
+  }
+
+  &.-has-background {
+    @include -background-rule;
+  }
+
+  &.-has-grid-border {
+    @include -grid-border;
+  }
 }
 
 @mixin -align() {
@@ -75,5 +91,20 @@
 @mixin export {
   .in-table {
     @include style;
+  }
+}
+
+@mixin -background-rule {
+  tr:nth-child(even) td {
+    background-color: adapter.get-surface-color(light, secondary);
+  }
+  tr:nth-child(odd) td {
+    background-color: adapter.get-surface-color(light, primary);
+  }
+}
+
+@mixin -grid-border {
+  th, td {
+    border: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: mid_emphasis);
   }
 }
