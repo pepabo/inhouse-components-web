@@ -8,3 +8,4 @@ lerna-debug.log
 __screenshots__
 .pull_requests
 CHANGELOG.md
+packages/*/package-lock.json
