@@ -1,0 +1,75 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin style($options: variables.$default-options) {
+  display: flex;
+  $options: map.merge(variables.$default-options, $options);
+  padding: adapter.get-spacing-size(map.get($options, size));
+  border-radius: adapter.get-radius-size(map.get($options, size));
+  box-shadow: adapter.get-elevation-box-shadow(1);
+  font-size: adapter.get-font-size(map.get($options, size));
+  line-height: adapter.get-line-height($level: map.get($options, size), $density: normal);
+
+  ._leading {
+    padding-right: adapter.get-spacing-size(s);
+  }
+
+  ._title {
+    margin-top: 0;
+  }
+
+  @include -state-style(map-get($options, color));
+  @include -size-style(map-get($options, size));
+
+  &.-color-informative {
+    @include -state-style(informative);
+  }
+
+  &.-color-positive {
+    @include -state-style(positive);
+  }
+
+  &.-color-negative {
+    @include -state-style(negative);
+  }
+
+  &.-color-notice {
+    @include -state-style(notice);
+  }
+
+  @each $size in 's', 'm', 'l' {
+    &.-size-#{$size} {
+      @include -size-style($size);
+    }
+  }
+}
+
+@mixin -state-style($state) {
+  background-color: adapter.get-semantic-color($state, 100);
+  color: adapter.get-semantic-color($state, 800);
+
+  ._leading:after {
+    content: map-get(variables.$icon-map, $state);
+  }
+}
+
+@mixin -size-style($size) {
+  font-size: adapter.get-font-size($size);
+  line-height: adapter.get-line-height($level: $size, $density: normal);
+
+  ._leading {
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+  }
+
+  ._title {
+    padding-bottom: adapter.get-spacing-size(map-get(variables.$title-margin-map, $size));
+  }
+}
+
+@mixin export {
+  .in-alert {
+    @include style;
+  }
+}
