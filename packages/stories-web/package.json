@@ -42,6 +42,7 @@
     "@pepabo-inhouse/table": "^1.2.0",
     "@pepabo-inhouse/textfield": "^1.2.0",
     "@pepabo-inhouse/thumbnail": "^1.2.0",
+    "@pepabo-inhouse/alert": "^1.2.0",
     "@pepabo-inhouse/tokens": "^0.17.0",
     "@storybook/addon-essentials": "^7.0.6",
     "@storybook/react": "^7.0.6",

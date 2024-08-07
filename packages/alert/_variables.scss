@@ -1,0 +1,17 @@
+$default-options: (
+  color: informative,
+  size: m
+);
+
+$icon-map: (
+  informative: "info_on_circle",
+  positive: "check",
+  notice: "exclamation_on_triangle",
+  negative: "exclamation_on_triangle",
+);
+
+$title-margin-map: (
+  s: xxs,
+  m: xs,
+  l: s
+)
