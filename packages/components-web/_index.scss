@@ -1,4 +1,5 @@
 @forward "@pepabo-inhouse/adapter";
+@forward "@pepabo-inhouse/alert" as alert-*;
 @forward "@pepabo-inhouse/app-bar" as app-bar-*;
 @forward "@pepabo-inhouse/avatar" as avatar-*;
 @forward "@pepabo-inhouse/button" as button-*;
