@@ -1,3 +1,4 @@
+@use "@pepabo-inhouse/alert";
 @use "@pepabo-inhouse/app-bar";
 @use "@pepabo-inhouse/avatar";
 @use "@pepabo-inhouse/bottom-navigation";
@@ -27,6 +28,7 @@
 // @import が存在しているので最初に flavor を読む
 // see: https://git.pepabo.com/inhouse/components-web/issues/355
 @include flavor.export;
+@include alert.export;
 @include app-bar.export;
 @include avatar.export;
 @include bottom-navigation.export;
