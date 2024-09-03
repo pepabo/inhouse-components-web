@@ -24,6 +24,10 @@
       "name": "share",
       "codePoint": 61718
     },
+    "rss_feed.svg": {
+      "name": "rss_feed",
+      "codePoint": 61823
+    },
     "roller.svg": {
       "name": "roller",
       "codePoint": 61807
