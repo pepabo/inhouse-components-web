@@ -1,6 +1,6 @@
 # Inhouse Components for the web
 
-- [Installation & Usage](packages/inhouse-components-web/README.md)
+- [Installation & Usage](packages/components-web/README.md)
 
 ## Components
 
