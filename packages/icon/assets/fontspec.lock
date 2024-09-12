@@ -20,6 +20,10 @@
       "name": "star",
       "codePoint": 61719
     },
+    "spotify.svg": {
+      "name": "spotify",
+      "codePoint": 61825
+    },
     "share.svg": {
       "name": "share",
       "codePoint": 61718
@@ -47,6 +51,10 @@
     "qr_code.svg": {
       "name": "qr_code",
       "codePoint": 61790
+    },
+    "podcast.svg": {
+      "name": "podcast",
+      "codePoint": 61824
     },
     "plus_on_circle.svg": {
       "name": "plus_on_circle",
