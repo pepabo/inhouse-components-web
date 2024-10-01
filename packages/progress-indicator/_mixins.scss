@@ -62,13 +62,19 @@
     left: adapter.get-spacing-size($level: xxs);
     display: block;
     box-sizing: border-box;
-    border: adapter.get-progress-indicator-border-size() solid adapter.get-progress-indicator-indicator-surface-color();
+    border-style: solid;
+    border-color: adapter.get-progress-indicator-indicator-surface-color();
     border-radius: 50%;
     transform: rotate(45deg);
     transform-origin: center;
     transition: clip-path 0.1s ease;
     content: "";
     clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 50% 50%);
+  }
+  @each $size in 's', 'm', 'l' {
+    &.-size-#{$size} {
+      @include -size-style($size);
+    }
   }
 
   @for $i from 0 to 25 {
@@ -312,6 +318,14 @@
         0% 0%,
         50% 50%
       );
+  }
+}
+
+@mixin -size-style($size) {
+  width: adapter.get-circular-progress-indicator-width();
+  height: adapter.get-circular-progress-indicator-height();
+  &::after {
+    border-width: adapter.get-progress-indicator-border-size($size);
   }
 }
 
