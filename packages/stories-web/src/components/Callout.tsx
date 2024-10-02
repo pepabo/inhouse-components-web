@@ -10,8 +10,8 @@ export interface Props {
   size?: Extract<Size, 's' | 'm' | 'l'>;
 }
 
-const Alert: FC<Props> = (props: Props) => {
-  const wrapperClasses = ['in-alert']
+const Callout: FC<Props> = (props: Props) => {
+  const wrapperClasses = ['in-callout']
   const {
     color = "informative",
     size = "m",
@@ -31,4 +31,4 @@ const Alert: FC<Props> = (props: Props) => {
   )
 }
 
-export default Alert
+export default Callout
