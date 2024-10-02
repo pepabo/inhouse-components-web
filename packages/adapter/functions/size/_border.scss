@@ -49,7 +49,7 @@ $border-size-tokens: map.get(
   @return map.get($border-size-tokens, focus-ring);
 }
 
-@function get-progress-indicator-border-size($size: m) {
+@function get-progress-indicator-border-size($size: l) {
   $tokens: map.get($border-size-tokens, progress-indicator);
   $available-sizes: ('s', 'm', 'l');
 
