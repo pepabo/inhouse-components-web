@@ -1,14 +1,14 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
-import Alert, { Props } from './components/Alert'
+import Callout, { Props } from './components/Callout'
 
 export default {
-  title: 'Components/Alert',
-  component: Alert,
+  title: 'Components/Callout',
+  component: Callout,
   size: 'm',
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <Alert {...args} ></Alert>
+const Template: StoryFn<Props> = (args) => <Callout {...args} ></Callout>
 
 export const Index = Template.bind({})
 Index.args = {
