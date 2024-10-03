@@ -1,18 +1,24 @@
 import React, { FC } from 'react'
+import { Size } from '../types';
 
 export interface Props {
   max: number
   value?: number
+  size?: Extract<Size, 's' | 'm' | 'l'>
 }
 
 const Circular: FC<Props> = (props: Props) => {
   const {
     max,
     value,
+    size,
     ...rest
   } = props
 
   const classes = ['in-circular-progress-indicator']
+  if (typeof size !== 'undefined') {
+    classes.push(`-size-${size}`)
+  }
 
   let percentage
 

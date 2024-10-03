@@ -18,6 +18,6 @@
   "devDependencies": {
     "@pepabo-inhouse/constants": "^2.0.0",
     "@pepabo-inhouse/flavor": "^2.0.0",
-    "@pepabo-inhouse/tokens": "^0.17.0"
+    "@pepabo-inhouse/tokens": "^2.0.0"
   }
 }

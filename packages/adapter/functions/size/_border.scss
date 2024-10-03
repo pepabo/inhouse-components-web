@@ -49,8 +49,18 @@ $border-size-tokens: map.get(
   @return map.get($border-size-tokens, focus-ring);
 }
 
-@function get-progress-indicator-border-size() {
-  @return map.get($border-size-tokens, progress-indicator);
+@function get-progress-indicator-border-size($size: l) {
+  $tokens: map.get($border-size-tokens, progress-indicator);
+  $available-sizes: ('s', 'm', 'l');
+
+  @if list.index($available-sizes, $size) == null {
+    @error error-message.any-one-of(
+      $value: $size,
+      $available-values: $available-sizes
+    );
+  }
+
+  @return map.get($tokens, $size);
 }
 
 @function get-radio-border-size() {
