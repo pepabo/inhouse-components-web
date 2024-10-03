@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/button",
   "description": "Inhouse Components for the web button component",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,13 +11,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^2.0.0",
-    "@pepabo-inhouse/icon": "^2.0.0",
-    "@pepabo-inhouse/skeleton": "^2.0.0"
+    "@pepabo-inhouse/adapter": "^2.1.0",
+    "@pepabo-inhouse/icon": "^2.1.0",
+    "@pepabo-inhouse/skeleton": "^2.1.0"
   },
   "devDependencies": {
     "@pepabo-inhouse/constants": "^2.0.0",
-    "@pepabo-inhouse/flavor": "^2.0.0",
+    "@pepabo-inhouse/flavor": "^2.1.0",
     "@pepabo-inhouse/tokens": "^2.0.0"
   }
 }
