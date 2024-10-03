@@ -65,6 +65,7 @@
     border-style: solid;
     border-color: adapter.get-progress-indicator-indicator-surface-color();
     border-radius: 50%;
+    border-width: adapter.get-progress-indicator-border-size($size: l);
     transform: rotate(45deg);
     transform-origin: center;
     transition: clip-path 0.1s ease;
