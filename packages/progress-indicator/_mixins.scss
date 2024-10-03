@@ -51,6 +51,8 @@
 
 @mixin circular($option: variables.$default-option) {
   position: relative;
+  width: adapter.get-circular-progress-indicator-width();
+  height: adapter.get-circular-progress-indicator-height();
 
   &::after {
     position: absolute;
@@ -320,8 +322,6 @@
 }
 
 @mixin -size-style($size) {
-  width: adapter.get-circular-progress-indicator-width();
-  height: adapter.get-circular-progress-indicator-height();
   &::after {
     border-width: adapter.get-progress-indicator-border-size($size);
   }

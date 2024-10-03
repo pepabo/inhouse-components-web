@@ -11,7 +11,7 @@ const Circular: FC<Props> = (props: Props) => {
   const {
     max,
     value,
-    size = "m",
+    size,
     ...rest
   } = props
 
