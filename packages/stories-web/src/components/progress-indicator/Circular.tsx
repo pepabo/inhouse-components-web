@@ -16,7 +16,9 @@ const Circular: FC<Props> = (props: Props) => {
   } = props
 
   const classes = ['in-circular-progress-indicator']
-  classes.push(`-size-${size}`)
+  if (typeof size !== 'undefined') {
+    classes.push(`-size-${size}`)
+  }
 
   let percentage
 
