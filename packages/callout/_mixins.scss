@@ -14,10 +14,19 @@
 
   ._leading {
     padding-right: adapter.get-spacing-size(s);
+    line-height: inherit;
+  }
+
+  ._body {
+    display: flex;
+    flex-direction: column;
   }
 
   ._title {
-    margin-top: 0;
+    margin-block: 0;
+  }
+  ._content > *:first-child {
+    margin-block: 0;
   }
 
   @include -state-style(map-get($options, color));
@@ -59,12 +68,8 @@
   font-size: adapter.get-font-size($size);
   line-height: adapter.get-line-height($level: $size, $density: normal);
 
-  ._leading {
-    line-height: adapter.get-line-height($level: $size, $density: normal);
-  }
-
-  ._title {
-    padding-bottom: adapter.get-spacing-size(map-get(variables.$title-margin-map, $size));
+  ._body {
+    gap: adapter.get-spacing-size(map-get(variables.$title-margin-map, $size));
   }
 }
 
