@@ -18,12 +18,14 @@ Index.args = {
 export const Multiline = Template.bind({})
 Multiline.args = {
   children: <>
-    <div className="_title">更新に失敗しました</div>
-    以下の入力内容を確認してください。
-    <ul>
-      <li>郵便番号が入力されていません</li>
-      <li>決済方法が選択されていません</li>
-    </ul>
+    <p className="_title">更新に失敗しました</p>
+    <div className="_content">
+      <p>以下の入力内容を確認してください。</p>
+      <ul>
+        <li>郵便番号が入力されていません</li>
+        <li>決済方法が選択されていません</li>
+      </ul>
+    </div>
   </>,
   color: "negative"
 }

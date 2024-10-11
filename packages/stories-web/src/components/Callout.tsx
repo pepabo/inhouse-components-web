@@ -23,8 +23,8 @@ const Callout: FC<Props> = (props: Props) => {
 
   return (
     <div className={wrapperClasses.join(' ')}>
-      <span className="in-icon _leading"></span>
-      <div className="_content">
+      <span className="_leading in-icon"></span>
+      <div className="_body">
         { children }
       </div>
     </div>
