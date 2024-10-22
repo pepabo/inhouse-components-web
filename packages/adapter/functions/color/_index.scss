@@ -6,3 +6,5 @@
 @forward "./semantic";
 @forward "./surface";
 @forward "./text";
+
+// note: ./buttonは追加しません。ボタンのスタイリングはget-button-surfaceを直接利用するのではなくget-button-surface-colorやget-button-text-colorなどを利用してください。
