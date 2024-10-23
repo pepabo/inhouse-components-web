@@ -7,16 +7,16 @@
 
   display: flex;
   align-items: center;
-  font-size: adapter.get-font-size(map-get($options, size));
-  padding: adapter.get-spacing-size(map-get($options, size));
-  gap: adapter.get-spacing-size(map-get($options, size));
-  border-radius: adapter.get-radius-size(map-get($options, size));
+  font-size: adapter.get-font-size(map.get($options, size));
+  padding: adapter.get-spacing-size(map.get($options, size));
+  gap: adapter.get-spacing-size(map.get($options, size));
+  border-radius: adapter.get-radius-size(map.get($options, size));
   box-shadow: adapter.get-elevation-box-shadow(1);
   visibility: hidden;
   opacity: 0;
   translate: 0 10%;
   transition: all 0.4s;
-  @include -state-style(map-get($options, color));
+  @include -state-style(map.get($options, color));
 
   &.-color-positive {
     @include -state-style(positive);

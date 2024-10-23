@@ -237,7 +237,7 @@ $available-hexadecimal-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
   $background-luminance: -compose-luminance($background) + 0.05;
   $foreground-luminance: -compose-luminance($foreground) + 0.05;
 
-  @return math.div(max($background-luminance, $foreground-luminance), min($background-luminance, $foreground-luminance));
+  @return math.div(math.max($background-luminance, $foreground-luminance), math.min($background-luminance, $foreground-luminance));
 }
 
 // 輝度を計算する
