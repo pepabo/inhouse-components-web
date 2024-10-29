@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/description-list",
   "description": "Inhouse Components for the web description list component",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,12 +11,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^2.1.0",
-    "@pepabo-inhouse/cell": "^2.1.0",
-    "@pepabo-inhouse/icon": "^2.1.0"
+    "@pepabo-inhouse/adapter": "^3.0.0",
+    "@pepabo-inhouse/cell": "^3.0.0",
+    "@pepabo-inhouse/icon": "^3.0.0"
   },
   "devDependencies": {
-    "@pepabo-inhouse/flavor": "^2.1.0",
+    "@pepabo-inhouse/flavor": "^3.0.0",
     "@pepabo-inhouse/tokens": "^2.0.0"
   }
 }
