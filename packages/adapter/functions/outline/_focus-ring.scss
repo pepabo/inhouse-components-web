@@ -1,0 +1,17 @@
+@use "sass:list";
+@use "../color/border" as border-color;
+@use "../opacity/border" as border-opacity;
+@use "../size/border" as border-size;
+@use "../helpers";
+
+@function get-focus-ring-outline($brightness: light) {
+  $width: border-size.get-focus-ring-size();
+  $opacity: border-opacity.get-focus-ring-opacity();
+  $color: border-color.get-focus-ring-outline-color($brightness: $brightness);
+
+  @return #{$width} solid rgba($color, $opacity);
+}
+
+@function get-focus-ring-outline-offset() {
+  @return 0.125rem;
+}

@@ -123,6 +123,7 @@ $border-color-tokens: map.get(
   }
 }
 
+/// @deprecated この関数は非推奨です
 @function get-focus-ring-color($color: neutral) {
   $available-colors: list.join(
     helpers.get-semantic-intentions(),
@@ -146,6 +147,37 @@ $border-color-tokens: map.get(
     @return implication-color.get-implication-color(
       $name: $color,
       $level: 500
+    );
+  }
+}
+
+@function get-focus-ring-outline-color($brightness: light,) {
+  $focus-ring-color-tokens: map.get(
+    map.get(tokens.$tokens, color),
+    focus-ring
+  );
+
+  $available-brightnesses: helpers.get-brightnesses();
+
+  @if list.index($available-brightnesses, $brightness) == null {
+    @error error-message.any-one-of(
+      $value: $brightness,
+      $available-values: $available-brightnesses
+    );
+  }
+
+  @if map.get(
+    map.get($focus-ring-color-tokens, base),
+    $brightness
+  ) == null {
+    @return semantic-color.get-semantic-color(
+      $intention: interactive,
+      $level: 500
+    );
+  } @else {
+    @return map.get(
+      map.get($focus-ring-color-tokens, base),
+      $brightness
     );
   }
 }
