@@ -9,5 +9,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@pepabo-inhouse/tokens": "^2.2.0"
   }
 }
