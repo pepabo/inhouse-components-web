@@ -91,6 +91,7 @@
   border: none;
   outline: none;
   appearance: unset;
+  border-radius: adapter.get-radius-size($level: m);
 }
 
 @mixin -child-element-proto() {
@@ -114,6 +115,8 @@
 
   cursor: functions.get-cursor($states: $states);
   opacity: functions.get-opacity($states: $states);
+
+  @include -outline-style($states: $states);
 
   &::before {
     @include -background-style($states: $states);
@@ -142,4 +145,9 @@
   opacity: functions.get-foreground-opacity($states: $states);
   content: functions.get-foreground-content($states: $states);
   pointer-events: none;
+}
+
+@mixin -outline-style($states: (enabled)) {
+  outline: functions.get-outline($states: $states);
+  outline-offset: adapter.get-focus-ring-outline-offset();
 }
