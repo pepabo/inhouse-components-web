@@ -65,30 +65,37 @@
   $elevation-shadow: adapter.get-elevation-box-shadow($level: 1);
   $scrim-highlight: adapter.get-solid-button-highlight-box-shadow();
   $scrim-shadow: adapter.get-solid-button-shadow-box-shadow();
-  $focus-ring: adapter.get-focus-ring-box-shadow($color: $color);
 
   @if $appearance == flat or $appearance == outlined {
-    @if $state == focused {
-      @return $elevation-shadow, $focus-ring;
-    } @else if $state == disabled {
+    @if $state == disabled {
       @return none;
     } @else {
       @return $elevation-shadow;
     }
   } @else if $appearance == solid {
-    @if $state == focused {
-      @return $elevation-shadow, $scrim-highlight, $scrim-shadow, $focus-ring;
-    } @else if $state == disabled {
+    @if $state == disabled {
       @return $scrim-highlight, $scrim-shadow;
     } @else {
       @return $elevation-shadow, $scrim-highlight, $scrim-shadow;
     }
   } @else {
-    @if $state == focused {
-      @return $focus-ring;
-    } @else {
-      @return none;
-    }
+    @return none;
+  }
+}
+
+@function get-outline($state: enabled) {
+  $available-states: adapter.get-states();
+
+  @if list.index($available-states, $state) == null {
+    @error "$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  $focus-ring: adapter.get-focus-ring-outline();
+
+  @if $state == focused {
+    @return $focus-ring;
+  } @else {
+    @return none;
   }
 }
 
