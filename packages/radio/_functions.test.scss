@@ -21,3 +21,10 @@
     -0.625rem
   );
 }
+
+@function test-get-outline() {
+  @return assert.equals(
+    "#{functions.get-outline($states: (focused))}",
+    "0.25rem solid #3e93de"
+  );
+}

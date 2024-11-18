@@ -92,6 +92,9 @@
 
   cursor: functions.get-cursor($states: $states);
   opacity: functions.get-opacity($states: $states);
+  outline: functions.get-outline($states: $states);
+  outline-offset: adapter.get-focus-ring-outline-offset();
+  border-radius: 50%;
 
   &::before {
     @include -background-style($states: $states);
