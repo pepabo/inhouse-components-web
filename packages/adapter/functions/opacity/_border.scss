@@ -8,6 +8,7 @@ $border-opacity-tokens: map.get(
   border
 );
 
+/// @deprecated この関数は非推奨です
 @function get-focus-ring-opacity() {
   @return map.get($border-opacity-tokens, focus-ring);
 }

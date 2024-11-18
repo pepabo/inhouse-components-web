@@ -6,10 +6,9 @@
 
 @function get-focus-ring-outline($brightness: light) {
   $width: border-size.get-focus-ring-size();
-  $opacity: border-opacity.get-focus-ring-opacity();
   $color: border-color.get-focus-ring-outline-color($brightness: $brightness);
 
-  @return #{$width} solid rgba($color, $opacity);
+  @return #{$width} solid $color;
 }
 
 @function get-focus-ring-outline-offset() {

@@ -4,7 +4,7 @@
 @function test-get-focus-ring-outline() {
   @return assert.equals(
     "#{functions.get-focus-ring-outline()}",
-    "0.25rem solid rgba(62, 147, 222, 0.15)"
+    "0.25rem solid #3e93de"
   );
 }
 
