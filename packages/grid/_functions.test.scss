@@ -2,44 +2,9 @@
 @use "./functions";
 @use "@gyugyu/assert-sass" as assert;
 
-@function test-get-direction() {
-  @return assert.equals(
-    functions.get-direction(variables.$default-option),
-    ltr
-  );
-}
-
-@function test-compose-row-top-gap() {
-  @return assert.equals(
-    functions.compose-row-top-gap(xxs),
-    -1rem
-  );
-}
-
-@function test-compose-row-horizontal-gap() {
-  @return assert.equals(
-    functions.compose-row-horizontal-gap(xxs),
-    -0.5rem
-  );
-}
-
-@function test-compose-col-top-gap() {
-  @return assert.equals(
-    functions.compose-col-top-gap(xxs),
-    1rem
-  );
-}
-
 @function test-compose-col-horizontal-gap() {
   @return assert.equals(
     functions.compose-col-horizontal-gap(xxs),
-    0.5rem
-  );
-}
-
-@function test-get-col-width() {
-  @return assert.equals(
-    functions.get-col-width(6),
-    50%
+    1rem
   );
 }

@@ -1,0 +1,16 @@
+@use "./focus-ring" as functions;
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-focus-ring-outline() {
+  @return assert.equals(
+    "#{functions.get-focus-ring-outline()}",
+    "0.25rem solid #3e93de"
+  );
+}
+
+@function test-get-focus-ring-outline-offset() {
+  @return assert.equals(
+    functions.get-focus-ring-outline-offset(),
+    0.125rem
+  );
+}

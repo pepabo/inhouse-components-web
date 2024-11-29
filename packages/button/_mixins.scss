@@ -320,6 +320,8 @@
       $color: $color,
       $state: $state
     );
+  outline: functions.get-outline($state: $state);
+  outline-offset: adapter.get-focus-ring-outline-offset();
 }
 
 @mixin -appearance-state-ruleset($appearance, $brightness, $color) {

@@ -48,22 +48,29 @@
     }
   }
 
-  $focus-ring: -get-focus-ring($states: $states);
   $border-overlay: -get-border-overlay($states: $states);
   $border: -get-border($states: $states);
 
-  @if list.index($states, focused) != null {
-    @if list.index($states, selected) != null or list.index($states, mixed) != null {
-      @return $focus-ring, $border;
-    } @else {
-      @return $focus-ring, $border-overlay, $border;
-    }
+  @if list.index($states, selected) != null or list.index($states, mixed) != null {
+    @return $border;
   } @else {
-    @if list.index($states, selected) != null or list.index($states, mixed) != null {
-      @return $border;
-    } @else {
-      @return $border-overlay, $border;
+    @return $border-overlay, $border;
+  }
+}
+
+@function get-outline($states: (enabled), $brightness: light) {
+  $available-states: adapter.get-states();
+
+  @each $state in $states {
+    @if list.index($available-states, $state) == null {
+      @error "$statesには #{$available-states} を組み合わせた配列のみ指定できます";
     }
+  }
+
+  @if list.index($states, focused) != null {
+    @return adapter.get-focus-ring-outline($brightness: $brightness);
+  } @else {
+    @return none;
   }
 }
 
@@ -99,6 +106,7 @@
   }
 }
 
+/// @deprecated この関数は非推奨です
 @function -get-focus-ring($states: (enabled)) {
   @if list.index($states, selected) != null or list.index($states, mixed) != null {
     @return adapter.get-focus-ring-box-shadow($color: informative);

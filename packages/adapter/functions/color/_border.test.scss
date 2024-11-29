@@ -40,6 +40,13 @@
   );
 }
 
+@function test-get-focus-ring-outline-color() {
+  @return assert.equals(
+    functions.get-focus-ring-outline-color($brightness: light),
+    #3e93de
+  );
+}
+
 @function test-get-interactive-list-border-color() {
   @return assert.equals(
     functions.get-interactive-list-border-color(),

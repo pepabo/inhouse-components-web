@@ -4,6 +4,7 @@
 @use "../size/border" as border-size;
 @use "../helpers";
 
+/// @deprecated この関数は非推奨です。代わりに package/adapter/functions/outline/_focus-ring.scss を参照してください。
 @function get-focus-ring-box-shadow($color: neutral) {
   $width: border-size.get-focus-ring-size();
   $opacity: border-opacity.get-focus-ring-opacity();
