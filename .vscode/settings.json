@@ -15,5 +15,7 @@
   "files.insertFinalNewline": true,
   "[markdown]": {
     "files.trimTrailingWhitespace": false
-  }
+  },
+  "stylelint.stylelintPath": "node_modules/stylelint",
+  "stylelint.validate": ["scss"]
 }
