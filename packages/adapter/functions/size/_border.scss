@@ -51,7 +51,7 @@ $border-size-tokens: map.get(
 
 @function get-progress-indicator-border-size($size: l) {
   $tokens: map.get($border-size-tokens, progress-indicator);
-  $available-sizes: ('s', 'm', 'l');
+  $available-sizes: ("s", "m", "l");
 
   @if list.index($available-sizes, $size) == null {
     @error error-message.any-one-of(

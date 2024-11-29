@@ -16,6 +16,9 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
+
+  // width
+  width: auto; // stylelint-disable-line order/properties-order
   vertical-align: text-bottom;
 
   ._select {
@@ -43,9 +46,6 @@
     position: absolute;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
   }
-
-  // width
-  width: auto; // stylelint-disable-line order/properties-order
 
   @include -width-rule(
     $width: map.get($options, width)

@@ -98,13 +98,15 @@
   tr:nth-child(even) td {
     background-color: adapter.get-surface-color(light, secondary);
   }
+
   tr:nth-child(odd) td {
     background-color: adapter.get-surface-color(light, primary);
   }
 }
 
 @mixin -grid-border {
-  th, td {
+  th,
+  td {
     border: adapter.get-table-border-size() solid adapter.get-border-color($brightness: light, $name: mid_emphasis);
   }
 }

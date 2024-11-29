@@ -89,9 +89,9 @@
   padding: 0;
   background-color: transparent;
   border: none;
+  border-radius: adapter.get-radius-size($level: m);
   outline: none;
   appearance: unset;
-  border-radius: adapter.get-radius-size($level: m);
 }
 
 @mixin -child-element-proto() {
