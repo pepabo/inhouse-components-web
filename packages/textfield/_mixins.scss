@@ -16,6 +16,9 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
+
+  // width
+  width: auto; // stylelint-disable-line order/properties-order
   vertical-align: text-bottom;
 
   ._input {
@@ -56,9 +59,6 @@
   textarea._input {
     resize: vertical;
   }
-
-  // width
-  width: auto; // stylelint-disable-line order/properties-order
 
   @include -width-rule(
     $width: map.get($options, width)

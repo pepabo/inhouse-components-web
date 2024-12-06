@@ -44,6 +44,7 @@
     @include -gapless-rule;
   } @else {
     padding: adapter.get-spacing-size(m);
+
     @include adapter.mq-boundary(up, m) {
       padding: adapter.get-spacing-size(l);
     }
@@ -65,12 +66,12 @@
 
   ._media {
     line-height: 0;
+
     ._thumbnail {
       max-width: 100%;
       height: auto;
     }
   }
-
 }
 
 @mixin export {
@@ -105,8 +106,8 @@
 
 @mixin -shape-rule($shape: circle) {
   @if $shape == circle {
-    border-radius: adapter.get-radius-size($level: l);
     overflow: hidden;
+    border-radius: adapter.get-radius-size($level: l);
   } @else if $shape == square {
     border-radius: 0;
   }

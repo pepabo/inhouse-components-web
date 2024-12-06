@@ -5,12 +5,12 @@
 
 @mixin style($options: variables.$default-options) {
   display: flex;
-  $options: map.merge(variables.$default-options, $options);
   padding: adapter.get-spacing-size(map.get($options, size));
-  border-radius: adapter.get-radius-size(map.get($options, size));
-  box-shadow: adapter.get-elevation-box-shadow(1);
   font-size: adapter.get-font-size(map.get($options, size));
   line-height: adapter.get-line-height($level: map.get($options, size), $density: normal);
+  border-radius: adapter.get-radius-size(map.get($options, size));
+  box-shadow: adapter.get-elevation-box-shadow(1);
+  $options: map.merge(variables.$default-options, $options);
 
   ._leading {
     padding-right: adapter.get-spacing-size(s);
@@ -54,7 +54,7 @@
     @include -state-style(notice);
   }
 
-  @each $size in 's', 'm', 'l' {
+  @each $size in "s", "m", "l" {
     &.-size-#{$size} {
       @include -size-style($size);
     }
@@ -62,10 +62,10 @@
 }
 
 @mixin -state-style($state) {
-  background-color: adapter.get-semantic-color($state, 100);
   color: adapter.get-semantic-color($state, 800);
+  background-color: adapter.get-semantic-color($state, 100);
 
-  ._leading:after {
+  ._leading::after {
     content: map.get(variables.$icon-map, $state);
   }
 }

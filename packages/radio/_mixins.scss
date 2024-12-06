@@ -90,11 +90,11 @@
 @mixin -ruleset($states: (enabled)) {
   @include -proto;
 
-  cursor: functions.get-cursor($states: $states);
-  opacity: functions.get-opacity($states: $states);
+  border-radius: 50%;
   outline: functions.get-outline($states: $states);
   outline-offset: adapter.get-focus-ring-outline-offset();
-  border-radius: 50%;
+  cursor: functions.get-cursor($states: $states);
+  opacity: functions.get-opacity($states: $states);
 
   &::before {
     @include -background-style($states: $states);
