@@ -125,7 +125,7 @@
       );
   }
 
-  &:focus,
+  &:focus-visible,
   &.--focused {
     background-color:
       functions.get-action-background-color(

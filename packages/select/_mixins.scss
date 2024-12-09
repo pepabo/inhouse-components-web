@@ -109,7 +109,7 @@
 }
 
 @mixin -focus-rule {
-  &:focus,
+  &:focus-visible,
   &.--focused {
     @content;
   }

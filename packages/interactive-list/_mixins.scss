@@ -43,7 +43,7 @@
     & > a,
     & > button,
     & > label {
-      &:focus,
+      &:focus-visible,
       &.--focused {
         background-color:
           adapter-functions.get-background-overlay-color(
@@ -160,7 +160,7 @@
           $state: selected
         );
 
-      &:focus,
+      &:focus-visible,
       &:hover {
         background-color:
           adapter-functions.get-background-overlay-color(
@@ -178,7 +178,7 @@
           $state: activated
         );
 
-      &:focus,
+      &:focus-visible,
       &:hover {
         background-color:
           adapter-functions.get-background-overlay-color(

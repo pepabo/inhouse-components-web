@@ -335,7 +335,7 @@
     );
   }
 
-  &:focus,
+  &:focus-visible,
   &.--focused {
     @include -appearance-style(
       $appearance: $appearance,

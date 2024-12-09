@@ -15,7 +15,7 @@
     @include -ruleset($states: (hover));
   }
 
-  &:focus,
+  &:focus-visible,
   &.--focused {
     @include -ruleset($states: (focused));
   }
@@ -30,9 +30,9 @@
     @include -ruleset($states: (disabled));
   }
 
-  &:checked:focus,
+  &:checked:focus-visible,
   &:checked.--focused,
-  &.--selected:focus,
+  &.--selected:focus-visible,
   &.--selected.--focused {
     @include -ruleset($states: (selected, focused));
   }
