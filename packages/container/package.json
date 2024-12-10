@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/container",
   "description": "Inhouse Components for the web container component",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,7 +11,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^3.1.0"
+    "@pepabo-inhouse/adapter": "^3.2.0"
   },
   "devDependencies": {
     "@pepabo-inhouse/constants": "^3.1.0",
