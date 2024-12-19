@@ -12,7 +12,7 @@ export interface Props extends HTMLProps {
   leading?: ReactNode
   shape?: Shape
   size?: Extract<Size, 'xs' | 's' | 'm' | 'l' | 'xl'>
-  state?: Extract<State, 'enabled' | 'hover' | 'focused' | 'disabled'>
+  state?: Extract<State, 'enabled' | 'hover' | 'active' | 'focused' | 'disabled'>
   trailing?: ReactNode
   width?: Width
 }
