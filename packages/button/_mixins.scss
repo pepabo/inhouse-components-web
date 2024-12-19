@@ -335,6 +335,16 @@
     );
   }
 
+  &:active,
+  &.--active {
+    @include -appearance-style(
+      $appearance: $appearance,
+      $brightness: $brightness,
+      $color: $color,
+      $state: active
+    );
+  }
+
   &:focus-visible,
   &.--focused {
     @include -appearance-style(
