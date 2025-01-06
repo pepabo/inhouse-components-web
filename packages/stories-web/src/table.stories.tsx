@@ -16,25 +16,25 @@ Index.args = {
       <tr>
         <th>国</th>
         <th>首都</th>
-        <th className="-align-right">人口</th>
+        <th className="-align-end">人口</th>
         <th>言語</th>
       </tr>
       <tr>
         <td>アメリカ合衆国</td>
         <td>ワシントンD.C.</td>
-        <td className="-align-right">390,000,000</td>
+        <td className="-align-end">390,000,000</td>
         <td>英語</td>
       </tr>
       <tr>
         <td>スウェーデン</td>
         <td>ストックホルム</td>
-        <td className="-align-right">9,000,000</td>
+        <td className="-align-end">9,000,000</td>
         <td>スウェーデン語</td>
       </tr>
       <tr>
         <td>日本</td>
         <td>東京</td>
-        <td className="-align-right">120,000,000</td>
+        <td className="-align-end">120,000,000</td>
         <td>日本語</td>
       </tr>
     </tbody>
