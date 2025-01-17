@@ -18,6 +18,11 @@ const ButtonDemo: FC<Props> = (props: Props) => (
     <Button
       {...props}
       body='Button'
+      state='active'
+    />
+    <Button
+      {...props}
+      body='Button'
       state='focused'
     />
     <Button
