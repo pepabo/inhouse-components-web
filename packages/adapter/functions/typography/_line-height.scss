@@ -6,6 +6,12 @@
 
 $line-height-tokens: map.get(map.get(tokens.$tokens, size), line-height);
 
+/// 基本的なline heightを取得します。
+///
+/// @group typography
+/// @example
+///   functions.get-line-height($level: m, $density: normal)
+///   // 1.5rem
 @function get-line-height($density: normal, $level: m) {
   $tokens: map.get($line-height-tokens, base);
   $available-densities: helpers.get-densities();
