@@ -8,12 +8,25 @@ $surface-opacity-tokens: map.get(
   surface
 );
 
+/// disabledの要素の表面の透過率を取得します
+///
+/// @group Opacity
+/// @example
+///   functions.get-disabled-surface-opacity()
+///   // 0.38
 @function get-disabled-surface-opacity() {
   $tokens: map.get($surface-opacity-tokens, base);
 
   @return map.get($tokens, disabled);
 }
 
+/// Hollow Button（写真やイラスト、色面の上に乗せる際に使うボタン）の表面の透過率を取得します。
+///
+/// @todo →要確認
+/// @group Opacity
+/// @example
+///   functions.get-hollow-button-surface-opacity()
+///   // 0.15
 @function get-hollow-button-surface-opacity() {
   $tokens: map.get($surface-opacity-tokens, button);
 
