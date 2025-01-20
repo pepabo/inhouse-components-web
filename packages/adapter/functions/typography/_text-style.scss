@@ -1,6 +1,13 @@
 @use "./font-size";
 @use "./line-height";
 
+/// font-sizeとline-heightのリストを取得します。
+/// ※ Sassのリスト型として取得されるので、使うことはほぼなさそうです。代わりに `text()` の利用を検討してください。
+///
+/// @group typography
+/// @example
+///   functions.get-text-style($level: m, $density: normal)
+///   // (font-size: 1rem, line-height: 1.5rem)
 @function get-text-style($density: normal, $level: m) {
   $value: (
     font-size: font-size.get-font-size($level),
