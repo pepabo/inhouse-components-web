@@ -5,10 +5,19 @@
 
 $font-size-tokens: map.get(map.get(tokens.$tokens, size), font);
 
+/// tokenで定義されているsizeのkeyを取得します
+///
+/// @group typography
 @function get-font-size-keys() {
   @return map.keys(map.get($font-size-tokens, base));
 }
 
+/// 基本的なfont sizeを取得します。
+///
+/// @group typography
+/// @example
+///   functions.get-font-size($level: m)
+///   // 1rem
 @function get-font-size($level: m) {
   $tokens: map.get($font-size-tokens, base);
   $available-levels: get-font-size-keys();
