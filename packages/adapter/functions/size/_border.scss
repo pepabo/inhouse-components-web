@@ -9,6 +9,12 @@ $border-size-tokens: map.get(
   border
 );
 
+/// https://github.com/pepabo/inhouse-tokens/blob/main/tokens/pepper/size/border.yamlの中から引数$levelに応じたborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-border-size(m)
+///   // ”0.0625rem”
 @function get-border-size($level: m) {
   $tokens: map.get($border-size-tokens, base);
   $available-levels: helpers.get-sizes();
@@ -23,10 +29,22 @@ $border-size-tokens: map.get(
   @return map.get($tokens, $level);
 }
 
+/// 基本的なavatarのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   get-avatar-border-size()
+///   // ”0”
 @function get-avatar-border-size() {
   @return map.get($border-size-tokens, avatar);
 }
 
+/// buttonのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-button-border-size($appearance: flat)
+///   // ”0.0625rem”
 @function get-button-border-size($appearance: flat) {
   $tokens: map.get($border-size-tokens, button);
   $available-appearances: helpers.get-button-appearances();
@@ -41,14 +59,32 @@ $border-size-tokens: map.get(
   @return map.get($tokens, "#{$appearance}");
 }
 
+/// 基本的なcheckboxのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-checkbox-border-size()
+///   // ”0.0625rem”
 @function get-checkbox-border-size() {
   @return map.get($border-size-tokens, checkbox);
 }
 
+/// 基本的なfocus ringのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-focus-ring-size()
+///   // 0.25rem
 @function get-focus-ring-size() {
   @return map.get($border-size-tokens, focus-ring);
 }
 
+/// 基本的なindicatorのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-progress-indicator-border-size()
+///   // 0.25rem
 @function get-progress-indicator-border-size($size: l) {
   $tokens: map.get($border-size-tokens, progress-indicator);
   $available-sizes: ("s", "m", "l");
@@ -63,10 +99,22 @@ $border-size-tokens: map.get(
   @return map.get($tokens, $size);
 }
 
+/// 基本的なradio buttonのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-radio-border-size()
+///   // 0.0625rem
 @function get-radio-border-size() {
   @return map.get($border-size-tokens, radio);
 }
 
+/// 基本的なtableのborder sizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-table-border-size()
+///   // 0.0625rem
 @function get-table-border-size() {
   @return map.get($border-size-tokens, table);
 }
