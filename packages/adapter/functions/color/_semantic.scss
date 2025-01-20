@@ -9,6 +9,12 @@ $semantic-color-tokens: map.get(
   semantic
 );
 
+/// 意味が付与されたsemantic colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-semantic-color(informative, 600)
+///   // “#1f7acc”
 @function get-semantic-color($intention: neutral, $level: 1000) {
   $available-semantics: helpers.get-semantic-intentions();
 
