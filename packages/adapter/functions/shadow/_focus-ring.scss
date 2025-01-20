@@ -5,6 +5,12 @@
 @use "../helpers";
 
 /// @deprecated この関数は非推奨です。代わりに package/adapter/functions/outline/_focus-ring.scss を参照してください。
+/// 要素へのFocusを表すFocus ringを表現するbox-shadowの値を取得します。
+///
+/// @group Shadow
+/// @example
+///   functions.get-focus-ring-box-shadow()
+///   // 0 0 0 0.25rem rgba(146, 151, 161, 0.15)
 @function get-focus-ring-box-shadow($color: neutral) {
   $width: border-size.get-focus-ring-size();
   $opacity: border-opacity.get-focus-ring-opacity();
