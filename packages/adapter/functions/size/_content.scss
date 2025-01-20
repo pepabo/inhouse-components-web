@@ -9,10 +9,22 @@ $content-size-tokens: map.get(
   content
 );
 
+/// コンテンツの$levelのセットを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-content-sizes()
+///   // "xs, s, m, l, xl”
 @function get-content-sizes() {
   @return map.keys($content-size-tokens);
 }
 
+/// コンテンツの$levelに対応するsizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-content-size(m)
+///   // “960px”
 @function get-content-size($level: m) {
   $available-levels: get-content-sizes();
 
