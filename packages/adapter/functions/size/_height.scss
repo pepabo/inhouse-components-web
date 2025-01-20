@@ -9,6 +9,12 @@ $height-tokens: map.get(
   height
 );
 
+/// interactive component heightの$levelのセットを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-interactive-component-height-keys()
+///   // "xs, s, m, l, xl”
 @function get-interactive-component-height-keys() {
   $tokens: map.get($height-tokens, base);
   $interactive-component-tokens: map.get($tokens, interactive-component);
@@ -16,6 +22,12 @@ $height-tokens: map.get(
   @return map.keys($interactive-component-tokens);
 }
 
+/// $levelに対応するinteractive component heightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-interactive-component-height($level: m)
+///   // “2.5rem”
 @function get-interactive-component-height($level: m) {
   $tokens: map.get($height-tokens, base);
   $interactive-component-tokens: map.get($tokens, interactive-component);
@@ -31,6 +43,12 @@ $height-tokens: map.get(
   @return map.get($interactive-component-tokens, $level);
 }
 
+/// $levelに対応するavatar heightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-avatar-height($level: m)
+///   // “2.5rem”
 @function get-avatar-height($level: m) {
   $tokens: map.get($height-tokens, avatar);
   $available-levels: helpers.get-sizes();
@@ -45,18 +63,37 @@ $height-tokens: map.get(
   @return map.get($tokens, $level);
 }
 
+/// bottom navigationのbody heightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-bottom-navigation-body-height()
+///   // ”3.5rem”
 @function get-bottom-navigation-body-height() {
   $tokens: map.get($height-tokens, bottom-navigation);
 
   @return map.get($tokens, body);
 }
 
+/// bottom navigationのpicture heightを取得します。
+///
+/// @todo pict-heightしか使ってなくてpict-widthは使ってないのでは？
+/// @group size
+/// @example
+///   functions.get-bottom-navigation-pict-height()
+///   // “1.5rem”
 @function get-bottom-navigation-pict-height() {
   $tokens: map.get($height-tokens, bottom-navigation);
 
   @return map.get($tokens, pict);
 }
 
+/// $levelに対応するアイコンのみのbuttonのpicture heightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-icon-only-button-pict-height(m)
+///   // “1.5rem”
 @function get-icon-only-button-pict-height($level: m) {
   $tokens: map.get($height-tokens, button);
   $pict-tokens: map.get($tokens, pict);
@@ -73,52 +110,106 @@ $height-tokens: map.get(
   @return map.get($icon-only-tokens, $level);
 }
 
+/// checkboxの外側の枠のheightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-checkbox-parent-height()
+///   // “1.5rem”
 @function get-checkbox-parent-height() {
   $tokens: map.get($height-tokens, checkbox);
 
   @return map.get($tokens, parent);
 }
 
+/// checkboxの内側のheightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-checkbox-child-height()
+///   // “1.25rem”
 @function get-checkbox-child-height() {
   $tokens: map.get($height-tokens, checkbox);
 
   @return map.get($tokens, child);
 }
 
+/// header heightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-header-height()
+///   // “3.5rem”
 @function get-header-height() {
   @return map.get($height-tokens, header);
 }
 
+/// interactive listのpicture heightを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-interactive-list-pict-height()
+///   // “1.5rem”
 @function get-interactive-list-pict-height() {
   $tokens: map.get($height-tokens, interactive-list);
 
   @return map.get($tokens, pict);
 }
 
+/// interactive listのtrailingおよびleadingの高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-interactive-list-edge-element-height()
+///   // ”2rem”
 @function get-interactive-list-edge-element-height() {
   $tokens: map.get($height-tokens, interactive-list);
 
   @return map.get($tokens, edge-element);
 }
 
+/// interactive tableのpictの高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-interactive-table-pict-height()
+///   // 1.5rem
 @function get-interactive-table-pict-height() {
   $tokens: map.get($height-tokens, interactive-table);
 
   @return map.get($tokens, pict);
 }
 
+/// circle progress indicatorの高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-circular-progress-indicator-height()
+///   // 3
 @function get-circular-progress-indicator-height() {
   $tokens: map.get($height-tokens, progress-indicator);
 
   @return map.get($tokens, circular);
 }
 
+/// radioをラップする要素の高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-radio-parent-height()
+///   // 1.5rem
 @function get-radio-parent-height() {
   $tokens: map.get($height-tokens, radio);
 
   @return map.get($tokens, parent);
 }
 
+/// radioの子要素のbackgroundの高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-radio-child-background-height()
+///   // 1.25rem
 @function get-radio-child-background-height() {
   $tokens: map.get($height-tokens, radio);
   $child-tokens: map.get($tokens, child);
@@ -126,6 +217,12 @@ $height-tokens: map.get(
   @return map.get($child-tokens, background);
 }
 
+/// radioの子要素のforegroundの高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-radio-child-foreground-height()
+///   // 0.75rem
 @function get-radio-child-foreground-height() {
   $tokens: map.get($height-tokens, radio);
   $child-tokens: map.get($tokens, child);
@@ -133,6 +230,12 @@ $height-tokens: map.get(
   @return map.get($child-tokens, foreground);
 }
 
+/// thumbnailの高さを取得します
+///
+/// @group size
+/// @example
+///   functions.get-thumbnail-height($level: m)
+///   // 3.5rem
 @function get-thumbnail-height($level: m) {
   $tokens: map.get($height-tokens, thumbnail);
   $available-levels: helpers.get-sizes();
