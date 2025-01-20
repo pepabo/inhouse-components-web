@@ -9,6 +9,12 @@ $sizing-scale-tokens: map.get(
   scale
 );
 
+/// $levelに応じたscale（16が基準のscale、remなどで使う）を取得する
+///
+/// @group size
+/// @example
+///   functions.get-sizing-scale-size()
+///   // 1rem
 @function get-sizing-scale-size($level: 16) {
   $value: map.get($sizing-scale-tokens, "#{$level}");
 
