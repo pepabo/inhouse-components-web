@@ -9,14 +9,32 @@ $boundary-size-tokens: map.get(
   boundary
 );
 
+/// 画面サイズの$levelのセットを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-boundary-sizes()
+///   // "xxs, xs, s, m, l, xl”
 @function get-boundary-sizes() {
   @return map.keys($boundary-size-tokens);
 }
 
+/// 画面サイズの$levelのセットの最初のkeyを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-boundary-size-first-key()
+///   // ”xxs”
 @function get-boundary-size-first-key() {
   @return list.nth(get-boundary-sizes(), 1);
 }
 
+/// 画面サイズの$levelに対応するsizeを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-boundary-size(m)
+///   // ”800px”
 @function get-boundary-size($level: m) {
   $available-levels: helpers.get-sizes();
 
