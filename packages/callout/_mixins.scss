@@ -12,6 +12,11 @@
   box-shadow: adapter.get-elevation-box-shadow(1);
   $options: map.merge(variables.$default-options, $options);
 
+  visibility: hidden;
+  opacity: 0%;
+  transition: all 0.4s;
+  translate: 0 10%;
+
   ._leading {
     padding-right: adapter.get-spacing-size(s);
     line-height: inherit;
@@ -33,6 +38,18 @@
 
   ._content > *:last-child {
     margin-block-end: 0;
+  }
+
+  &:active,
+  &.--active {
+    visibility: visible;
+    opacity: 100%;
+    translate: 0 0;
+    transition: all 0.4s;
+  }
+
+  ._trailing {
+    margin-left: auto;
   }
 
   @include -state-style(map.get($options, color));
