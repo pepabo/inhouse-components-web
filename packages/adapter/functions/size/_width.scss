@@ -9,6 +9,12 @@ $width-tokens: map.get(
   width
 );
 
+/// $width（full, half, third, auto）に応じた割合（calc）を取得します
+///
+/// @group size
+/// @example
+///   functions.get-width($width: third)
+///   // calc(100% / 3)
 @function get-width($width: auto) {
   $available-widths: helpers.get-widths();
 
@@ -32,6 +38,12 @@ $width-tokens: map.get(
   }
 }
 
+/// $levelに応じたavatarのwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-avatar-width($level: m)
+///   // 2.5rem
 @function get-avatar-width($level: m) {
   $tokens: map.get($width-tokens, avatar);
   $available-levels: helpers.get-sizes();
@@ -46,12 +58,26 @@ $width-tokens: map.get(
   @return map.get($tokens, $level);
 }
 
+/// bottom navigationのpictのwidthの値を取得します
+///
+/// @todo pictの説明を追加する
+/// @group size
+/// @example
+///   functions.get-bottom-navigation-pict-width()
+///   // 1.5rem
 @function get-bottom-navigation-pict-width() {
   $tokens: map.get($width-tokens, bottom-navigation);
 
   @return map.get($tokens, pict);
 }
 
+/// $levelに応じたicon buttonのpictのwidthの値を取得します
+///
+/// @todo pictの説明を追加する
+/// @group size
+/// @example
+///   functions.get-icon-only-button-pict-width($level: m)
+///   // 1.5rem
 @function get-icon-only-button-pict-width($level: m) {
   $tokens: map.get($width-tokens, button);
   $pict-tokens: map.get($tokens, pict);
@@ -68,60 +94,122 @@ $width-tokens: map.get(
   @return map.get($icon-only-tokens, $level);
 }
 
+/// checkboxをラップする要素のwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-checkbox-parent-width()
+///   // 1.5rem
 @function get-checkbox-parent-width() {
   $tokens: map.get($width-tokens, checkbox);
 
   @return map.get($tokens, parent);
 }
 
+/// checkboxの子要素のwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-checkbox-child-width()
+///   // 1.25rem
 @function get-checkbox-child-width() {
   $tokens: map.get($width-tokens, checkbox);
 
   @return map.get($tokens, child);
 }
 
+/// description listのleading要素のwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-description-list-leading-width()
+///   // 3rem
 @function get-description-list-leading-width() {
   $tokens: map.get($width-tokens, description-list);
 
   @return map.get($tokens, leading);
 }
 
+/// interactive listのpictの値を取得します
+///
+/// @todo pictの説明を追加する
+/// @group size
+/// @example
+///   functions.get-interactive-list-pict-width()
+///   // 1.5rem
 @function get-interactive-list-pict-width() {
   $tokens: map.get($width-tokens, interactive-list);
 
   @return map.get($tokens, pict);
 }
 
+/// interactive list のleadingおよびtrailing要素のwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-interactive-list-edge-element-width()
+///   // 2rem
 @function get-interactive-list-edge-element-width() {
   $tokens: map.get($width-tokens, interactive-list);
 
   @return map.get($tokens, edge-element);
 }
 
+/// interactive tableのpictのwidthの値を取得します
+///
+/// @todo pictの説明を追加する
+/// @group size
+/// @example
+///   functions.get-interactive-table-pict-width()
+///   // 1.5rem
 @function get-interactive-table-pict-width() {
   $tokens: map.get($width-tokens, interactive-table);
 
   @return map.get($tokens, pict);
 }
 
+/// listのleading要素のwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-list-leading-width()
+///   // 3rem
 @function get-list-leading-width() {
   $tokens: map.get($width-tokens, list);
 
   @return map.get($tokens, leading);
 }
 
+/// circular progress indicatorのwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-circular-progress-indicator-width()
+///   // 3rem
 @function get-circular-progress-indicator-width() {
   $tokens: map.get($width-tokens, progress-indicator);
 
   @return map.get($tokens, circular);
 }
 
+/// radioボタンの親要素のwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-radio-parent-width()
+///   // 1.5rem
 @function get-radio-parent-width() {
   $tokens: map.get($width-tokens, radio);
 
   @return map.get($tokens, parent);
 }
 
+/// radioボタンの子要素のbackgroundのwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-radio-child-background-width()
+///   // 1.25rem
 @function get-radio-child-background-width() {
   $tokens: map.get($width-tokens, radio);
   $child-tokens: map.get($tokens, child);
@@ -129,6 +217,12 @@ $width-tokens: map.get(
   @return map.get($child-tokens, background);
 }
 
+/// radioボタンの子要素のforegroundのwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-radio-child-foreground-width()
+///   // 0.75rem
 @function get-radio-child-foreground-width() {
   $tokens: map.get($width-tokens, radio);
   $child-tokens: map.get($tokens, child);
@@ -136,10 +230,22 @@ $width-tokens: map.get(
   @return map.get($child-tokens, foreground);
 }
 
+/// side navigationのwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-side-navigation-width()
+///   // 16rem
 @function get-side-navigation-width() {
   @return map.get($width-tokens, side-navigation);
 }
 
+/// $levelに応じたthumbnailのwidthの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-thumbnail-width($level: m)
+///   // 3.5rem
 @function get-thumbnail-width($level: m) {
   $tokens: map.get($width-tokens, thumbnail);
   $available-levels: helpers.get-sizes();
