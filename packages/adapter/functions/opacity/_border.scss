@@ -9,6 +9,12 @@ $border-opacity-tokens: map.get(
 );
 
 /// @deprecated この関数は非推奨です
+/// Focusが当たっていることを示す枠線の透過率を取得します。
+///
+/// @group Opacity
+/// @example
+///   functions.get-focus-ring-opacity()
+///   // 0.15
 @function get-focus-ring-opacity() {
   @return map.get($border-opacity-tokens, focus-ring);
 }
