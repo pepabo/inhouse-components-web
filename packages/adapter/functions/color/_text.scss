@@ -11,6 +11,12 @@ $text-color-tokens: map.get(
   text
 );
 
+/// テキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-text-color($brightness: light, $name: high_emphasis),
+///   // #393c41
 @function get-text-color($brightness: light, $name: high_emphasis) {
   $tokens: map.get($text-color-tokens, base);
   $available-brightnesses: helpers.get-brightnesses();
@@ -44,6 +50,15 @@ $text-color-tokens: map.get(
   @return map.get($brightness-tokens, $name);
 }
 
+/// ボトムナビゲーションのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-bottom-navigation-text-color(
+///     $appearance: white,
+///     $state: enabled
+///   ),
+///   // rgba(57, 60, 65, 0.6)
 @function get-bottom-navigation-text-color(
   $appearance: white,
   $state: enabled
@@ -71,6 +86,17 @@ $text-color-tokens: map.get(
   @return map.get($appearance-tokens, $state);
 }
 
+/// ボタンのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-button-text-color(
+///     $appearance: flat,
+///     $brightness: light,
+///     $color: neutral,
+///     $state: enabled
+///   ),
+///   // #ffffff
 @function get-button-text-color(
   $appearance: flat,
   $brightness: light,
@@ -141,6 +167,12 @@ $text-color-tokens: map.get(
   }
 }
 
+/// チェックボックスのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-checkbox-text-color($states: (enabled)),
+///   // #ffffff
 @function get-checkbox-text-color($states: (enabled)) {
   $tokens: map.get($text-color-tokens, checkbox);
   $available-states: helpers.get-states();
@@ -161,12 +193,23 @@ $text-color-tokens: map.get(
   }
 }
 
+/// インタラクティブリストのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-interactive-list-title-text-color(),
+///   // #393c41
 @function get-interactive-list-title-text-color() {
   $tokens: map.get($text-color-tokens, interactive-list);
 
   @return map.get($tokens, title);
 }
 
+/// インタラクティブリストのleadingおよびtrailingのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.interactive-list-edge-element-text-color(enabled)
 @function get-interactive-list-edge-element-text-color($state: enabled) {
   $tokens: map.get($text-color-tokens, interactive-list);
   $edge-element-tokens: map.get($tokens, edge-element);
@@ -182,6 +225,11 @@ $text-color-tokens: map.get(
   @return map.get($edge-element-tokens, $state);
 }
 
+/// インタラクティブリストのタイトルのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.interactive-list-body-title-text-color(enabled)
 @function get-interactive-list-body-title-text-color($state: enabled) {
   $tokens: map.get($text-color-tokens, interactive-list);
   $body-tokens: map.get($tokens, body);
@@ -198,6 +246,11 @@ $text-color-tokens: map.get(
   @return map.get($body-title-tokens, $state);
 }
 
+/// インタラクティブリストのデスクリプションのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.interactive-list-body-description-text-color(enabled)
 @function get-interactive-list-body-description-text-color($state: enabled) {
   $tokens: map.get($text-color-tokens, interactive-list);
   $body-tokens: map.get($tokens, body);
@@ -214,10 +267,21 @@ $text-color-tokens: map.get(
   @return map.get($body-description-tokens, $state);
 }
 
+/// インタラクティブテーブルのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-interactive-table-text-color()
 @function get-interactive-table-text-color() {
   @return map.get($text-color-tokens, interactive-table);
 }
 
+/// ラジオボタンのテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-radio-text-color($states: (enabled)),
+///   // #ffffff
 @function get-radio-text-color($states: (enabled)) {
   $tokens: map.get($text-color-tokens, radio);
   $available-states: helpers.get-states();
@@ -238,6 +302,15 @@ $text-color-tokens: map.get(
   }
 }
 
+/// フィールド要素のテキストカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-field-text-color(
+///     $color: neutral,
+///     $state: enabled
+///   ),
+///   // #393c41
 @function get-field-text-color($color: neutral, $state: enabled) {
   $tokens: map.get($text-color-tokens, field);
   $color-tokens: map.get($tokens, $color);
