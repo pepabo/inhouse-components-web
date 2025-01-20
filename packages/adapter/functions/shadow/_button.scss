@@ -3,12 +3,24 @@
 
 $button-shadow-tokens: map.get(map.get(tokens.$tokens, shadow), button);
 
+/// solid buttonのhighlight表示を行うためのscrim（box-shadow）の値を取得します。
+///
+/// @group Shadow
+/// @example
+///   functions.get-solid-button-highlight-box-shadow()
+///   // 0px 1px 1px 0px rgba(255, 255, 255, 0.5)
 @function get-solid-button-highlight-box-shadow() {
   $solid-button-tokens: map.get($button-shadow-tokens, solid);
 
   @return map.get($solid-button-tokens, highlight);
 }
 
+/// solid buttonのshadow表示を行うためのscrim（box-shadow）の値を取得します
+///
+/// @group Shadow
+/// @example
+///   functions.get-solid-button-shadow-box-shadow()
+///   // 0px -1px 1px 0px rgba(0, 0, 0, 0.1)
 @function get-solid-button-shadow-box-shadow() {
   $solid-button-tokens: map.get($button-shadow-tokens, solid);
 
