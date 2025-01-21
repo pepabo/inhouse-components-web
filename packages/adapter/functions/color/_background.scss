@@ -9,6 +9,12 @@ $background-color-tokens: map.get(
   background
 );
 
+/// 汎用的に使えるbackground colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-background-color($name: light, $type: well)
+///   // ”f7f8fa”
 @function get-background-color($name: light, $type: base) {
   $base-tokens: map.get($background-color-tokens, base);
   $brand-colors: brand, accent;
@@ -51,6 +57,12 @@ $background-color-tokens: map.get(
   }
 }
 
+/// モーダルなオーバーレイなどで使うscrimのbackground colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-scrim-background-color()
+///   // ”rgba(0, 0, 0, 0.32)”
 @function get-scrim-background-color() {
   @return map.get($background-color-tokens, scrim);
 }

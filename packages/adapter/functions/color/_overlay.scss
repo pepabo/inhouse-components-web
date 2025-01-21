@@ -9,6 +9,12 @@ $overlay-color-tokens: map.get(
   overlay
 );
 
+/// checkbox, radioなどinteractiveな要素にhoverやfocusしたときのoverlay colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-background-overlay-color(light, enabled)
+///   // “rgba(0, 0, 0, 0)”
 @function get-background-overlay-color($brightness: light, $state: enabled) {
   $tokens: map.get($overlay-color-tokens, background);
   $available-brightnesses: helpers.get-brightnesses();
@@ -33,6 +39,12 @@ $overlay-color-tokens: map.get(
   @return map.get($brightness-tokens, $state);
 }
 
+/// 画像にhoverやfocusしたときのoverlay colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-image-overlay-color(enabled)
+///   // “rgba(0, 0, 0, 0)”
 @function get-image-overlay-color($state: enabled) {
   $tokens: map.get($overlay-color-tokens, image);
   $available-states: helpers.get-states();

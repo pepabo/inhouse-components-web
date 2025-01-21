@@ -9,6 +9,12 @@ $button-color-tokens: map.get(
   button
 );
 
+/// buttonのbackground colorを取得します。注意事項あり
+///
+/// @group color
+/// @example
+///   functions.get-button-color(neutral)
+///   // “#585c63”
 @function get-button-color($color: neutral) {
   $tokens: map.get($button-color-tokens, base);
   $available-colors: helpers.get-button-colors();

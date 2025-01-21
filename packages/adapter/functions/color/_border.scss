@@ -14,6 +14,12 @@ $border-color-tokens: map.get(
   border
 );
 
+/// 汎用的に使えるborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-border-color($brightness: light, $name: high_emphasis)
+///   // ”rgba(57, 60, 65, 0.3)”
 @function get-border-color($brightness: light, $name: high_emphasis) {
   $tokens: map.get($border-color-tokens, base);
   $available-brightnesses: helpers.get-brightnesses();
@@ -43,10 +49,22 @@ $border-color-tokens: map.get(
   @return map.get($brightness-tokens, $name);
 }
 
+/// avatarのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-avatar-border-color()
+///   // ”rgba(0, 0, 0, 0)”
 @function get-avatar-border-color() {
   @return map.get($border-color-tokens, avatar);
 }
 
+/// buttonのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-button-border-color($appearance: flat, $color: neutral, $state: enabled)
+///   // ”transparent”
 @function get-button-border-color(
   $appearance: flat,
   $color: neutral,
@@ -104,6 +122,12 @@ $border-color-tokens: map.get(
   }
 }
 
+/// checkboxのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-checkbox-border-color($states: (enabled))
+///   //”rgba(57, 60, 65, 0.2)”
 @function get-checkbox-border-color($states: (enabled)) {
   $available-states: helpers.get-states();
 
@@ -124,6 +148,12 @@ $border-color-tokens: map.get(
 }
 
 /// @deprecated この関数は非推奨です
+/// focus ringのcolorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-focus-ring-color($color: neutral)
+///   //”#9297a1”
 @function get-focus-ring-color($color: neutral) {
   $available-colors: list.join(
     helpers.get-semantic-intentions(),
@@ -182,10 +212,22 @@ $border-color-tokens: map.get(
   }
 }
 
+/// interactive-listのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-interactive-list-border-color()
+///   // ”rgba(57, 60, 65, 0.2)”
 @function get-interactive-list-border-color() {
   @return map.get($border-color-tokens, interactive-list);
 }
 
+/// interactive-tableのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-interactive-table-border-color($element: header)
+///   // “rgba(57, 60, 65, 0.3)”
 @function get-interactive-table-border-color($element: header) {
   $tokens: map.get($border-color-tokens, interactive-table);
   $available-elements: header, data;
@@ -200,6 +242,12 @@ $border-color-tokens: map.get(
   @return map.get($tokens, $element);
 }
 
+/// radioのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-radio-border-color($states: (enabled))
+///   // ”rgba(57, 60, 65, 0.2)”
 @function get-radio-border-color($states: (enabled)) {
   $available-states: helpers.get-states();
 
@@ -219,10 +267,22 @@ $border-color-tokens: map.get(
   }
 }
 
+/// side-navigationのborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-side-navigation-border-color()
+///   // ”rgba(57, 60, 65, 0.2)”
 @function get-side-navigation-border-color() {
   @return map.get($border-color-tokens, side-navigation);
 }
 
+/// textfieldとselectで共通するfield部分のborder colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-field-border-color(neutral, enabled)
+///   // ”#afb3ba”
 @function get-field-border-color($color: neutral, $state: enabled) {
   $tokens: map.get($border-color-tokens, field);
   $color-tokens: map.get($tokens, $color);

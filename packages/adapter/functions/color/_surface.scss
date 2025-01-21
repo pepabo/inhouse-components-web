@@ -13,6 +13,13 @@ $surface-color-tokens: map.get(
   surface
 );
 
+/// 汎用的に使えるsurface colorを取得します。
+/// ページやビューなど最下層でbackground colorを持つ要素の上に乗った、形のあるオブジェクト表面の色がsurface colorです。
+///
+/// @group color
+/// @example
+///   functions.get-surface-color(light, secondary)
+///   // “#f7f8fa”
 @function get-surface-color($brightness: light, $priority: primary) {
   $tokens: map.get($surface-color-tokens, base);
   $available-brightnesses: helpers.get-brightnesses();
@@ -37,10 +44,22 @@ $surface-color-tokens: map.get(
   @return map.get($brightness-tokens, $priority);
 }
 
+/// avatarのsurface colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-avatar-surface-color()
+///   // “#f7f8fa”
 @function get-avatar-surface-color() {
   @return map.get($surface-color-tokens, avatar);
 }
 
+/// bottom-navigationのsurface colorを取得します。
+///
+/// @group color
+/// @example
+///   function get-bottom-navigation-surface-color(filled)
+///   // “#1f7acc”
 @function get-bottom-navigation-surface-color($appearance: white) {
   $tokens: map.get($surface-color-tokens, bottom-navigation);
   $available-appearances: helpers.get-bottom-navigation-appearances();
@@ -55,6 +74,12 @@ $surface-color-tokens: map.get(
   @return map.get($tokens, $appearance);
 }
 
+/// solidなappearanceのbuttonのグラデーションを構成するscrimのcolorを取得します。
+///
+/// @group color
+/// @example
+///   function.get-solid-button-scrim-color(start)
+///   // “rgba(255, 255, 255, 0.25)”
 @function get-solid-button-scrim-color($position: start) {
   $tokens: map.get(map.get(map.get($surface-color-tokens, button), solid), scrim);
   $available-positions: start, end;
@@ -69,6 +94,12 @@ $surface-color-tokens: map.get(
   @return map.get($tokens, $position);
 }
 
+/// buttonのsurface colorを取得します。
+///
+/// @group color
+/// @example
+///   function.get-button-surface-color($appearance: flat, $brightness: light, $color: neutral, $state: enabled)
+///   // “#585c63”
 @function get-button-surface-color(
   $appearance: flat,
   $brightness: light,
@@ -156,6 +187,13 @@ $surface-color-tokens: map.get(
   }
 }
 
+/// 最終的なbutton表面の色を定義したbackground-imageのグラデーションを取得します。
+/// 内部でget-button-surface-color()を使っています。
+///
+/// @group color
+/// @example
+///   function.get-button-surface-image($appearance: flat, $brightness: light, $color: neutral, $own-brightness: light, $state: enabled)
+///   // “linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), linear-gradient(#585c63, #585c63)”
 @function get-button-surface-image(
   $appearance: flat,
   $brightness: light,
@@ -243,6 +281,12 @@ $surface-color-tokens: map.get(
   }
 }
 
+/// checkboxのsurfaceのcolorを取得します。
+///
+/// @group color
+/// @example
+///   function.get-checkbox-surface-color(enabled)
+///   // “#ffffff”
 @function get-checkbox-surface-color($states: (enabled)) {
   $tokens: map.get($surface-color-tokens, checkbox);
   $available-states: helpers.get-states();
@@ -263,6 +307,12 @@ $surface-color-tokens: map.get(
   }
 }
 
+/// ヘッダーの背景色を取得します
+///
+/// @group color
+/// @example
+///   functions.get-header-surface-color($appearance: filled)
+///   // #1f7acc
 @function get-header-surface-color($appearance: white) {
   $header-tokens: map.get($surface-color-tokens, header);
   $available-appearances: helpers.get-header-appearances();
@@ -277,12 +327,24 @@ $surface-color-tokens: map.get(
   @return map.get($header-tokens, #{$appearance});
 }
 
+/// プログレスインジケーターの全体を表すtrack（溝）部分のカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-progress-indicator-track-surface-color()
+///   // #e5f3ff
 @function get-progress-indicator-track-surface-color() {
   $tokens: map.get($surface-color-tokens, progress-indicator);
 
   @return map.get($tokens, track);
 }
 
+/// プログレスインジケーターの進捗を表すindicator部分のカラーを取得します
+///
+/// @group color
+/// @example
+///   functions.get-progress-indicator-indicator-surface-color()
+///   // #3e93de
 @function get-progress-indicator-indicator-surface-color() {
   $tokens: map.get($surface-color-tokens, progress-indicator);
 
@@ -293,10 +355,25 @@ $surface-color-tokens: map.get(
   @return get-surface-color($brightness: light, $priority: primary);
 }
 
+/// スケルトン背景の背景色を取得します
+///
+/// @group color
+/// @example
+///   functions.get-skeleton-surface-color()
+///   // rgba(0, 0, 0, 0.2)
 @function get-skeleton-surface-color() {
   @return map.get($surface-color-tokens, skeleton);
 }
 
+/// フィールド要素の背景色を取得します
+///
+/// @group color
+/// @example
+///   functions.get-field-surface-color(
+///     $color: neutral,
+///     $state: enabled
+///   )
+///   // #f7f8fa
 @function get-field-surface-color($color: neutral, $state: enabled) {
   $tokens: map.get($surface-color-tokens, field);
   $color-tokens: map.get($tokens, $color);

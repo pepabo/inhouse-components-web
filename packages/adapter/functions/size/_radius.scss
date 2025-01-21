@@ -9,6 +9,12 @@ $radius-size-tokens: map.get(
   radius
 );
 
+/// $levelに応じたradiusの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-radius-size($level: m)
+///   // 0.25rem
 @function get-radius-size($level: m) {
   $tokens: map.get($radius-size-tokens, base);
   $available-levels: helpers.get-sizes();
@@ -23,6 +29,12 @@ $radius-size-tokens: map.get(
   @return map.get($tokens, $level);
 }
 
+/// $levelに応じたavatarのサイズを取得します
+///
+/// @group size
+/// @example
+///   functions.get-avatar-radius-size($level: m)
+///   // 1.25rem
 @function get-avatar-radius-size($level: m) {
   $tokens: map.get($radius-size-tokens, avatar);
   $available-levels: helpers.get-sizes();
@@ -37,10 +49,22 @@ $radius-size-tokens: map.get(
   @return map.get($tokens, $level);
 }
 
+/// buttonのradiusの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-button-radius-size()
+///   // 0.25rem
 @function get-button-radius-size() {
   @return map.get($radius-size-tokens, button);
 }
 
+/// thumbnailのradiusの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-thumbnail-radius-size()
+///   // 0rem
 @function get-thumbnail-radius-size() {
   @return map.get($radius-size-tokens, thumbnail);
 }

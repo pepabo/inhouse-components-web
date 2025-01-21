@@ -9,6 +9,12 @@ $implication-color-tokens: map.get(
   implication
 );
 
+/// implication colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-implication-color(interactive, 600)
+///   // ”#1f7acc”
 @function get-implication-color($name: interactive, $level: 1000) {
   $available-implications: helpers.get-implications();
 

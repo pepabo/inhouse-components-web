@@ -8,6 +8,12 @@ $font-family-tokens: map.get(
   font-family
 );
 
+/// font-familyを一つ取得します。
+///
+/// @group typography
+/// @example
+///   functions.get-font-family($name: sans-japanese)
+///   // "'Noto Sans JP'”
 @function get-font-family($name) {
   $value: map.get($font-family-tokens, $name);
 
@@ -18,6 +24,12 @@ $font-family-tokens: map.get(
   @return $value;
 }
 
+/// font-familyのセットを取得します。
+///
+/// @group typography
+/// @example
+///   functions.compose-font-stack($name: japanese)
+///   // "'Open Sans', 'Noto Sans JP', apple-system, BlinkMacSystemFont, Roboto, 'Lucida Grande', Helvetica, Arial, sans-serif”
 @function compose-font-stack($name) {
   @if $name == latin {
     @return #{map.get($font-family-tokens, sans-latin)},

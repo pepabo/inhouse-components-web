@@ -7,118 +7,292 @@
 @use "@pepabo-inhouse/constants/variables" as constants;
 @use "../error-message";
 
+/// 状態のパターンを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-states()
+///   // enabled, hover, focused, selected, activated, dragged, disabled, mixed,
 @function get-states() {
   @return constants.$states;
 }
 
+/// セマンティックカラーの名称を配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-semantic-intentions()
+///   // informative, neutral, positive, notice, negative, attention,
 @function get-semantic-intentions() {
   @return constants.$semantic-intentions;
 }
 
+/// Implicationのタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-implications()
+///   // interactive, favorite, rate
 @function get-implications() {
   @return constants.$implications;
 }
 
+/// 行間の密度のタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-densities()
+///   // dense,normal,comfort
 @function get-densities() {
   @return constants.$densities;
 }
 
+/// （テキストなどの）強調を表すタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-emphasises()
+///   // high_emphasis, mid_emphasis, low_emphasis
 @function get-emphasises() {
   @return constants.$emphasises;
 }
 
+/// サイズのタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-sizes()
+///   // xxs, xs, s, m, l, xl, xxl, xxxl
 @function get-sizes() {
   @return constants.$sizes;
 }
 
+/// （アニメーションなどにおける）transitionの値を取得します
+///
+/// @group helper
+/// @example
+///   functions.get-transition-value()
+///   // 0
 @function get-transition-value() {
   @return constants.$transition-value;
 }
 
+/// （カラーの指定などに利用する）優先度のタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-priorities()
+///   // primary, secondary, tertiary
 @function get-priorities() {
   @return constants.$priorities;
 }
 
+/// シェイプのパターンを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-shapes()
+///   // circle, square
 @function get-shapes() {
   @return constants.$shapes;
 }
 
+/// 明るさ（ライトモード/ダークモード）のタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-brightnesses()
+///   // light, dark
 @function get-brightnesses() {
   @return constants.$brightnesses;
 }
 
+/// 幅のサイズタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-widths()
+///   // auto, full, half, third
 @function get-widths() {
   @return constants.$widths;
 }
 
+/// 並び順のタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-orders()
+///   // asc, desc
 @function get-orders() {
   @return constants.$orders;
 }
 
+/// positionのパターンを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-positions()
+///   // relative, fixed, sticky
 @function get-positions() {
   @return constants.$positions;
 }
 
+/// Elevationのレベルを配列で取得します
+///
+/// @group helper
+/// @example
+///   function.get-elevation-levels
+///   // 0, 1, 2, 3, 4, 5, 6
 @function get-elevation-levels() {
   @return constants.$elevation-levels;
 }
 
+/// Layerのレベルを配列で取得します
+///
+/// @group helper
+/// @example
+///   function.get-layer-levels()
+///   // 1, 2, 3, 4, 5, 6
 @function get-layer-levels() {
   @return constants.$layer-levels;
 }
 
+/// Minor Stackを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-minor-stack-types()
+///   // over, on
 @function get-minor-stack-types() {
   @return constants.$minor-stack-types;
 }
 
+/// ヘッダーのアピアランス（表現）タイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-header-appearances()
+///   // white, filled, transparent
 @function get-header-appearances() {
   @return constants.$header-appearances;
 }
 
+/// scrimの表示スタイルを表すタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-scrim-appearances()
+///   // hollow, transparent
 @function get-scrim-appearances() {
   @return constants.$scrim-appearances;
 }
 
+/// ボトムナビゲーションのアピアランス（表現）タイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-bottom-navigation-appearances()
+///   // white, outline
 @function get-bottom-navigation-appearances() {
   @return constants.$bottom-navigation-appearances;
 }
 
+/// ボトムナビゲーションに配置できるアイテムの最小値を取得します
+///
+/// @group helper
+/// @example
+///   functions.get-bottom-navigation-item-min-length()
+///   // 3
 @function get-bottom-navigation-item-min-length() {
   @return constants.$bottom-navigation-item-min-length;
 }
 
+/// ボトムナビゲーションに配置できるアイテムの最大値を取得します
+///
+/// @group helper
+/// @example
+///   functions.get-bottom-navigation-item-max-length()
+///   // 5
 @function get-bottom-navigation-item-max-length() {
   @return constants.$bottom-navigation-item-max-length;
 }
 
+/// ボタンのアピアランス（表現）タイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-button-appearances()
+///   // flat, outlined, solid, white, transparent, hollow
 @function get-button-appearances() {
   @return constants.$button-appearances;
 }
 
+/// ボタンのカラータイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-button-colors()
+///   // neutral, negative, interactive, favorit
 @function get-button-colors() {
   @return constants.$button-colors;
 }
 
+/// セルのサイズパターンを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-cell-sizes()
+///   // s, m, l
 @function get-cell-sizes() {
   @return constants.$cell-sizes;
 }
 
+/// avatarのサイズを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-avatar-sizes()
+///   // xs, s, m, l
 @function get-avatar-sizes() {
   @return constants.$avatar-sizes;
 }
 
+/// Interactive Tableのアラインタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   function.get-interactive-table-align-values()
+///   // start, end
 @function get-interactive-table-align-values() {
   @return constants.$interactive-table-align-values;
 }
 
+/// tableのアラインタイプを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-table-align-values()
+///   // start, end
 @function get-table-align-values() {
   @return constants.$table-align-values;
 }
 
+/// thumbnailのサイズパターンを配列で取得します
+///
+/// @group helper
+/// @example
+///   functions.get-thumbnail-sizes()
+///   // s, m, l
 @function get-thumbnail-sizes() {
   @return constants.$thumbnail-sizes;
 }
 
+/// 背景色がlightかdarkかを判定します
+///
+/// @group helper
+/// @example
+///   functions.get-background-brightness(#ffffff)
+///   // light
 @function get-background-brightness($background-color) {
   $min-contrast: 3.1;
 
@@ -131,10 +305,22 @@
   }
 }
 
+/// Major Stackの範囲を配列で取得します
+///
+/// @group helper
+/// @example
+///    functions.get-major-stack-range()
+///    10000
 @function get-major-stack-range() {
   @return constants.$major-stack-range;
 }
 
+/// Major Stack対応するz-indexを取得します
+///
+/// @group helper
+/// @example
+///    functions.get-major-stack-z-index($layer: 2)
+///    20000
 @function get-major-stack-z-index($layer: 1) {
   $available-layer-levels: get-layer-levels();
 
@@ -148,10 +334,22 @@
   @return get-major-stack-range() * $layer;
 }
 
+/// ElevationのMinor Stack(over)の範囲を取得します
+///
+/// @group helper
+/// @example
+///   functions.get-minor-stack-over-range()
+///   // 1000
 @function get-minor-stack-over-range() {
   @return constants.$minor-stack-over-range;
 }
 
+/// ElevationのMinor Stack(on)の範囲を取得します
+///
+/// @group helper
+/// @example
+///   functions.get-minor-stack-on-range()
+///   // 10
 @function get-minor-stack-on-range() {
   @return constants.$minor-stack-on-range;
 }
@@ -160,6 +358,12 @@
   @return constants.$minor-stack-types;
 }
 
+/// マイナースタックを表すz-indexを取得します
+///
+/// @group helper
+/// @example
+///   functions.get-minor-stack-z-index($type: over, $level: 2)
+///   // 2000
 @function get-minor-stack-z-index($type: over, $level: 1) {
   $available-types: get-minor-stack-types();
   $available-levels: get-elevation-levels();
@@ -185,6 +389,12 @@
   }
 }
 
+/// ボタンのoverlayタイプを取得します
+///
+/// @group helper
+/// @example
+///   functions.get-button-background-overlay-brightness(flat,  light,  light)
+///   // light
 @function get-button-background-overlay-brightness(
   $appearance: flat,
   $brightness: light,
@@ -198,16 +408,31 @@
   }
 }
 
+/// （未使用？）
+///
+/// @group helper
 @function get-foreground-brightness($background-color) {
   @return if(get-foreground-brightness($background-color) == dark, light, dark);
 }
 
+/// 値が数値かどうかを判定します
+///
+/// @group helper
+/// @example
+///   functions.is-number(3)
+///   // true
 @function is-number($value) {
   @return meta.type-of($value) == "number";
 }
 
 $available-hexadecimal-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F";
 
+/// 値がカラーコードかどうかを判定します
+///
+/// @group helper
+/// @example
+///   functions.is-color-code(#000000)
+///   // true
 @function is-color-code($value) {
   $length: string.length("#{$value}");
 
@@ -231,8 +456,8 @@ $available-hexadecimal-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
   @return true;
 }
 
-// 二色間のコントラスト比を計算する
-// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// 二色間のコントラスト比を計算する
+/// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 @function -compose-contrast-ratio($background, $foreground) {
   $background-luminance: -compose-luminance($background) + 0.05;
   $foreground-luminance: -compose-luminance($foreground) + 0.05;
@@ -240,8 +465,8 @@ $available-hexadecimal-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
   @return math.div(math.max($background-luminance, $foreground-luminance), math.min($background-luminance, $foreground-luminance));
 }
 
-// 輝度を計算する
-// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// 輝度を計算する
+/// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 @function -compose-luminance($color) {
   $red: -compose-linear-channel-value(color.red($color));
   $green: -compose-linear-channel-value(color.green($color));

@@ -9,6 +9,12 @@ $primitive-color-tokens: map.get(
   primitive
 );
 
+/// 汎用的に使えるprimitive colorを取得します。
+///
+/// @group color
+/// @example
+///   functions.get-primitive-color($name: blue, $level: 600)
+///   // “#1f7acc”
 @function get-primitive-color($name, $level: 1000) {
   $primitive-color-name: map.get($primitive-color-tokens, "#{$name}");
 

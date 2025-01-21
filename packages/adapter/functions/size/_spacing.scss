@@ -9,6 +9,9 @@ $spacing-size-tokens: map.get(
   spacing
 );
 
+/// $evelに応じたspacingの値を取得します
+///
+/// @group size
 @function get-spacing-size($level: m) {
   $tokens: map.get($spacing-size-tokens, base);
   $available-levels: helpers.get-sizes();
@@ -23,6 +26,12 @@ $spacing-size-tokens: map.get(
   @return map.get($tokens, $level);
 }
 
+/// cellの垂直方向のspacingの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-cell-vertical-spacing-size($density: normal)
+///   // 0.75rem
 @function get-cell-vertical-spacing-size($density: normal) {
   $tokens: map.get($spacing-size-tokens, cell);
   $vertical-tokens: map.get($tokens, vertical);
@@ -38,6 +47,12 @@ $spacing-size-tokens: map.get(
   @return map.get($vertical-tokens, $density);
 }
 
+/// interactive listのspacingの値を取得します
+///
+/// @group size
+/// @example
+///   functions.get-interactive-list-spacing-size()
+///   // 0.5rem
 @function get-interactive-list-spacing-size() {
   @return map.get($spacing-size-tokens, interactive-list);
 }
