@@ -40,14 +40,6 @@
     margin-block-end: 0;
   }
 
-  &:active,
-  &.--active {
-    visibility: visible;
-    opacity: 100%;
-    translate: 0 0;
-    transition: all 0.4s;
-  }
-
   ._trailing {
     margin-left: auto;
   }

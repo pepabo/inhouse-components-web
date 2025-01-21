@@ -8,8 +8,7 @@ export interface Props {
     "informative" | "positive" | "negative" | "notice"
   >;
   size?: Extract<Size, 's' | 'm' | 'l'>;
-  isActive?: boolean;
-  hasCloseButton?: boolean;
+  hasButton?: boolean;
 }
 
 const Callout: FC<Props> = (props: Props) => {
@@ -17,17 +16,12 @@ const Callout: FC<Props> = (props: Props) => {
   const {
     color = "informative",
     size = "m",
-    isActive = true,
-    hasCloseButton = false,
+    hasButton = false,
     children
   } = props
 
   wrapperClasses.push(`-color-${color}`)
   wrapperClasses.push(`-size-${size}`)
-
-  if (hasCloseButton === false || isActive === true) {
-    wrapperClasses.push(`--active`)
-  }
 
   return (
     <div
@@ -38,7 +32,7 @@ const Callout: FC<Props> = (props: Props) => {
       <div className="_body">
         { children }
       </div>
-      { hasCloseButton && (
+      { hasButton && (
         <div className="_trailing">
           <button className="in-button -size-s -appearance-transparent">
             <div className="_body">閉じる</div>
