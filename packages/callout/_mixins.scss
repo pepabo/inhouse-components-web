@@ -12,11 +12,6 @@
   box-shadow: adapter.get-elevation-box-shadow(1);
   $options: map.merge(variables.$default-options, $options);
 
-  visibility: hidden;
-  opacity: 0%;
-  transition: all 0.4s;
-  translate: 0 10%;
-
   ._leading {
     padding-right: adapter.get-spacing-size(s);
     line-height: inherit;
