@@ -24,10 +24,7 @@ const Callout: FC<Props> = (props: Props) => {
   wrapperClasses.push(`-size-${size}`)
 
   return (
-    <div
-      className={wrapperClasses.join(' ')}
-      aria-live="polite"
-    >
+    <div className={wrapperClasses.join(' ')}>
       <span className="_leading in-icon"></span>
       <div className="_body">
         { children }
