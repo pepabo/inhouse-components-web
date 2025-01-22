@@ -35,6 +35,10 @@
     margin-block-end: 0;
   }
 
+  ._trailing {
+    margin-left: auto;
+  }
+
   @include -state-style(map.get($options, color));
   @include -size-style(map.get($options, size));
 

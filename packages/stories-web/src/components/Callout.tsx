@@ -8,6 +8,7 @@ export interface Props {
     "informative" | "positive" | "negative" | "notice"
   >;
   size?: Extract<Size, 's' | 'm' | 'l'>;
+  hasButton?: boolean;
 }
 
 const Callout: FC<Props> = (props: Props) => {
@@ -15,6 +16,7 @@ const Callout: FC<Props> = (props: Props) => {
   const {
     color = "informative",
     size = "m",
+    hasButton = false,
     children
   } = props
 
@@ -27,6 +29,13 @@ const Callout: FC<Props> = (props: Props) => {
       <div className="_body">
         { children }
       </div>
+      { hasButton && (
+        <div className="_trailing">
+          <button className="in-button -size-s -appearance-transparent">
+            <div className="_body">閉じる</div>
+          </button>
+        </div>
+      )}
     </div>
   )
 }
