@@ -15,6 +15,10 @@
   },
   "devDependencies": {
     "@pepabo-inhouse/flavor": "^3.1.0",
-    "@pepabo-inhouse/tokens": "^2.2.0"
+    "@pepabo-inhouse/tokens": "^2.2.0",
+    "sassdoc": "^2.7.4"
+  },
+  "scripts": {
+    "build": "sassdoc . -d dist"
   }
 }
