@@ -61,7 +61,7 @@
   },
   "scripts": {
     "start": "storybook dev",
-    "build": "storybook build -c .storybook -o ../../dist",
+    "build": "storybook build -c .storybook -o dist",
     "clean": "rm -rf dist"
   },
   "browserslist": [
