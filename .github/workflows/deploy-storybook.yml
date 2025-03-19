@@ -19,6 +19,14 @@ jobs:
         run: npm ci
       - name: Build packages
         run: npm run compile
+      - name: make public directory
+        run: mkdir dist
+      - name: Create redirect HTML
+        run: echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=/inhouse-components-web/stories-web"></head><body></body></html>' > dist/index.html
+      - name: Move adapter dist
+        run: mv packages/adapter/dist dist/adapter
+      - name: Move stories-web dist
+        run: mv packages/stories-web/dist dist/stories-web
       - name: Upload Documents
         uses: actions/upload-pages-artifact@v3
         with:
