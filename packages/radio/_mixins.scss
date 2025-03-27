@@ -110,14 +110,7 @@
 
   width: adapter.get-radio-child-background-width();
   height: adapter.get-radio-child-background-height();
-  margin-top:
-    functions.compose-child-element-margin(
-      $child-element-size: adapter.get-radio-child-background-height()
-    );
-  margin-left:
-    functions.compose-child-element-margin(
-      $child-element-size: adapter.get-radio-child-background-width()
-    );
+  transform: translate(-50%, -50%);
   background-color: adapter.get-radio-surface-color();
   border-radius: 50%;
   box-shadow: functions.get-background-box-shadow($states: $states);
@@ -132,8 +125,7 @@
 
   width: $foreground-size;
   height: $foreground-size;
-  margin-top: functions.compose-child-element-margin($child-element-size: $foreground-size);
-  margin-left: functions.compose-child-element-margin($child-element-size: $foreground-size);
+  transform: translate(-50%, -50%);
   color: adapter.get-radio-text-color($states: $states);
   font-size: $foreground-size;
   line-height: $foreground-size;
