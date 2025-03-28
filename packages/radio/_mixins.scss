@@ -110,10 +110,10 @@
 
   width: adapter.get-radio-child-background-width();
   height: adapter.get-radio-child-background-height();
-  transform: translate(-50%, -50%);
   background-color: adapter.get-radio-surface-color();
   border-radius: 50%;
   box-shadow: functions.get-background-box-shadow($states: $states);
+  transform: translate(-50%, -50%);
   content: "";
 }
 
@@ -125,11 +125,11 @@
 
   width: $foreground-size;
   height: $foreground-size;
-  transform: translate(-50%, -50%);
   color: adapter.get-radio-text-color($states: $states);
   font-size: $foreground-size;
   line-height: $foreground-size;
   text-align: center;
+  transform: translate(-50%, -50%);
   content: "circle";
   pointer-events: none;
 }
