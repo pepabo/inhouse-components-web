@@ -110,17 +110,10 @@
 
   width: adapter.get-radio-child-background-width();
   height: adapter.get-radio-child-background-height();
-  margin-top:
-    functions.compose-child-element-margin(
-      $child-element-size: adapter.get-radio-child-background-height()
-    );
-  margin-left:
-    functions.compose-child-element-margin(
-      $child-element-size: adapter.get-radio-child-background-width()
-    );
   background-color: adapter.get-radio-surface-color();
   border-radius: 50%;
   box-shadow: functions.get-background-box-shadow($states: $states);
+  transform: translate(-50%, -50%);
   content: "";
 }
 
@@ -132,12 +125,11 @@
 
   width: $foreground-size;
   height: $foreground-size;
-  margin-top: functions.compose-child-element-margin($child-element-size: $foreground-size);
-  margin-left: functions.compose-child-element-margin($child-element-size: $foreground-size);
   color: adapter.get-radio-text-color($states: $states);
   font-size: $foreground-size;
   line-height: $foreground-size;
   text-align: center;
+  transform: translate(-50%, -50%);
   content: "circle";
   pointer-events: none;
 }
