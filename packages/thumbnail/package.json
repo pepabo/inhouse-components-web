@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/thumbnail",
   "description": "Inhouse Components for the web thumbnail proto",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,8 +11,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^3.3.0",
-    "@pepabo-inhouse/skeleton": "^3.3.0"
+    "@pepabo-inhouse/adapter": "^3.3.1",
+    "@pepabo-inhouse/skeleton": "^3.3.1"
   },
   "devDependencies": {
     "@pepabo-inhouse/flavor": "^3.1.0",
