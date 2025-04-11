@@ -5,6 +5,6 @@
 @function test-compose-col-horizontal-gap() {
   @return assert.equals(
     functions.compose-col-horizontal-gap(xxs),
-    1rem
+    0.25rem
   );
 }
