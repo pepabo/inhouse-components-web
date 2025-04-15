@@ -4,6 +4,6 @@
 @function test-get-gap-size() {
   @return assert.equals(
     functions.get-gap-size($level: m),
-    1.5rem
+    1rem
   );
 }
