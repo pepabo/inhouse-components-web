@@ -15,6 +15,7 @@ $font-size-tokens: map.get(map.get(tokens.$tokens, size), font);
 /// 基本的なfont sizeを取得します。
 ///
 /// @group typography
+/// @param {string} $level [m] フォントサイズのデザイントークン。くわしくは https://github.com/pepabo/inhouse-tokens/blob/main/tokens/pepper/size/font.yaml を参照してください。
 /// @example
 ///   functions.get-font-size($level: m)
 ///   // 1rem
