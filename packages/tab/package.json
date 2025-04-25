@@ -1,0 +1,21 @@
+{
+  "name": "@pepabo-inhouse/tab",
+  "description": "Inhouse Components for the web tab component",
+  "version": "3.3.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/tab"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@pepabo-inhouse/adapter": "^3.3.1",
+    "@pepabo-inhouse/cell": "^3.3.1"
+  },
+  "devDependencies": {
+    "@pepabo-inhouse/flavor": "^3.1.0",
+    "@pepabo-inhouse/tokens": "^2.4.0"
+  }
+}
