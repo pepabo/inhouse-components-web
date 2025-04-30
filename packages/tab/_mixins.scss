@@ -8,10 +8,10 @@
   $options: map.merge(variables.$default-option, $options);
 
   ._list {
-    border-block-end: adapter.get-border-size($level: m) solid adapter.get-border-color($brightness: light, $name: high_emphasis);
     display: flex;
-    justify-content: map.get($options, align);
     gap: adapter.get-spacing-size(xs);
+    justify-content: map.get($options, align);
+    box-shadow: inset 0 calc(adapter.get-border-size($level: m) * -1) 0 0 adapter.get-border-color($brightness: light, $name: high_emphasis);
   }
 
   @each $align in variables.$available-align {
@@ -22,7 +22,7 @@
     }
   }
 
-  @if map.get($options, isGapless) == true {
+  @if map.get($options, is-gapless) == true {
     @include -is-gapless;
   }
 
@@ -31,18 +31,14 @@
   }
 
   ._item {
-    position: relative;
-    top: adapter.get-border-size($level: m);
-    margin: 0;
-    padding-inline: adapter.get-spacing-size(m);
     @include cell.style((density: map.get($options, density), size: map.get($options, size)));
-    border-top-left-radius: adapter.get-radius-size($level: m);
-    border-top-right-radius: adapter.get-radius-size($level: m);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+
+    top: adapter.get-border-size($level: m);
+    padding-inline: adapter.get-spacing-size(m);
     color: adapter.get-text-color($brightness: light, $name: high_emphasis);
-    outline: none;
     font-weight: bold;
+    border-radius: adapter.get-radius-size($level: m) adapter.get-radius-size($level: m) 0 0;
+    outline: none;
 
     &:not(.--activated) {
       cursor: pointer;
@@ -112,26 +108,31 @@
 @mixin -appearance-rule($appearance: "transparent") {
   @if $appearance == "transparent" {
     ._item {
+      position: relative;
       background: transparent;
       border: none;
+
       &::after {
-        content: "";
         position: absolute;
-        bottom: 0;
-        left: 0;
         right: 0;
+        bottom: adapter.get-border-size($level: m);
+        left: 0;
         height: adapter.get-border-size($level: xl);
         background: transparent;
+        content: "";
       }
+
       &.--activated {
         &::after {
           background: adapter.get-border-color($brightness: light, $name: high_emphasis);
         }
       }
+
       &:not(.--activated) {
         &:hover {
           background: adapter.get-background-overlay-color($brightness: light, $state: hover);
         }
+
         &:active {
           background: adapter.get-background-overlay-color($brightness: light, $state: active);
         }
@@ -139,20 +140,25 @@
     }
   } @else if $appearance == "outlined" {
     ._item {
+      position: initial;
       background: adapter.get-surface-color(light, secondary);
       border: adapter.get-border-size($level: m) solid adapter.get-border-color($brightness: light, $name: high_emphasis);
+
       &::after {
         display: none;
       }
+
       &.--activated {
         background: adapter.get-surface-color(light, primary);
         border-block-end-color: transparent;
       }
+
       &:not(.--activated) {
         &:hover {
           background: adapter.get-background-overlay-color($brightness: light, $state: hover);
           border-block-end-color: transparent;
         }
+
         &:active {
           background: adapter.get-background-overlay-color($brightness: light, $state: active);
           border-block-end-color: transparent;
@@ -170,24 +176,23 @@
   ._item {
     border-radius: 0;
 
-    &:not(:first-child) {
-      border-inline-start: none;
-      &:not(:last-child) {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-    }
-
     &:first-child {
       border-top-left-radius: adapter.get-radius-size($level: m);
       border-top-right-radius: 0;
     }
 
     &:last-child {
-      border-top-right-radius: adapter.get-radius-size($level: m);
       border-top-left-radius: 0;
+      border-top-right-radius: adapter.get-radius-size($level: m);
     }
 
-  }
+    &:not(:first-child) {
+      border-inline-start: none;
 
+      &:not(:last-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
 }
