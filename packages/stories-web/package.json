@@ -40,6 +40,7 @@
     "@pepabo-inhouse/side-navigation": "^3.3.1",
     "@pepabo-inhouse/skeleton": "^3.3.1",
     "@pepabo-inhouse/snackbar": "^3.3.1",
+    "@pepabo-inhouse/tab": "^3.3.1",
     "@pepabo-inhouse/table": "^3.3.1",
     "@pepabo-inhouse/textfield": "^3.3.1",
     "@pepabo-inhouse/thumbnail": "^3.3.1",
