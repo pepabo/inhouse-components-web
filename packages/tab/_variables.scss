@@ -1,7 +1,7 @@
 $default-option: (
   appearance: "transparent",
   align: start,
-  isGapless: false,
+  is-gapless: false,
   density: normal,
   size: m,
 );
@@ -15,4 +15,3 @@ $available-appearance: (
   "transparent",
   "outlined",
 );
-
