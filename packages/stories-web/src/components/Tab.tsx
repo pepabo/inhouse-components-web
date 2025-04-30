@@ -41,7 +41,7 @@ const Tab: FC<Props> = (props: Props) => {
     density,
     size,
     isGapless,
-    ariaLabel = 'メニュー',
+    ariaLabel,
     ...rest
   } = props;
 
