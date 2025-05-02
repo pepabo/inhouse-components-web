@@ -20,6 +20,7 @@
 @use "@pepabo-inhouse/scrim";
 @use "@pepabo-inhouse/select";
 @use "@pepabo-inhouse/side-navigation";
+@use "@pepabo-inhouse/tab";
 @use "@pepabo-inhouse/table";
 @use "@pepabo-inhouse/textfield";
 @use "@pepabo-inhouse/snackbar";
@@ -46,6 +47,7 @@
 @include radio.export;
 @include select.export;
 @include side-navigation.export;
+@include tab.export;
 @include table.export;
 @include textfield.export;
 @include snackbar.export;
