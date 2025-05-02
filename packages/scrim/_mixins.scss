@@ -29,3 +29,9 @@
     }
   }
 }
+
+@mixin export {
+  .in-scrim {
+    @include style;
+  }
+}
