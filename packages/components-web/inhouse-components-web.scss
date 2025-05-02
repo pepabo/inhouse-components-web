@@ -1,6 +1,7 @@
 @use "@pepabo-inhouse/app-bar";
 @use "@pepabo-inhouse/avatar";
 @use "@pepabo-inhouse/bottom-navigation";
+@use "@pepabo-inhouse/breadcrumb";
 @use "@pepabo-inhouse/button";
 @use "@pepabo-inhouse/callout";
 @use "@pepabo-inhouse/card";
@@ -31,6 +32,7 @@
 @include app-bar.export;
 @include avatar.export;
 @include bottom-navigation.export;
+@include breadcrumb.export;
 @include button.export;
 @include callout.export;
 @include card.export;

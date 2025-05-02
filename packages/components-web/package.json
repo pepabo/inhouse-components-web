@@ -15,6 +15,7 @@
     "@pepabo-inhouse/app-bar": "^3.3.1",
     "@pepabo-inhouse/avatar": "^3.3.1",
     "@pepabo-inhouse/bottom-navigation": "^3.3.1",
+    "@pepabo-inhouse/breadcrumb": "^3.3.1",
     "@pepabo-inhouse/button": "^3.3.1",
     "@pepabo-inhouse/callout": "^3.3.1",
     "@pepabo-inhouse/card": "^3.3.1",
