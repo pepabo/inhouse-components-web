@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter" as adapter;
+@use "./variables";
+
+@mixin style($options: variables.$default-option) {
+  @include adapter.text(
+    $level: s,
+    $density: normal
+  );
+  @include -color-rule(map.get($options, intention));
+
+  @each $intention in variables.$available-semantic-intentions {
+    &.-color-#{$intention} {
+      @include -color-rule($intention: $intention);
+    }
+  }
+}
+
+@mixin export {
+  .in-validation-message {
+    @include style;
+  }
+}
+
+@mixin -color-rule($intention: negative) {
+  @if $intention == negative {
+    color: adapter.get-semantic-color($intention: negative, $level: 600);
+  } @else if $intention == neutral {
+    color: adapter.get-semantic-color($intention: neutral, $level: 600);
+  }
+}
