@@ -6,7 +6,7 @@
 @mixin style($options: variables.$default-option) {
   @include adapter.text(
     $level: s,
-    $density: normal
+    $density: dense
   );
   @include -color-rule(map.get($options, intention));
 
