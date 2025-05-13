@@ -3,7 +3,7 @@ import { SemanticColor } from './types';
 
 export interface Props {
   children: string;
-  color?: Extract<SemanticColor, "negative" | "neutral">;
+  color?: SemanticColor;
 }
 
 const ValidationMessage: FC<Props> = (props: Props) => {

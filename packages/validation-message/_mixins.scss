@@ -10,7 +10,7 @@
   );
   @include -color-rule(map.get($options, intention));
 
-  @each $intention in variables.$available-semantic-intentions {
+  @each $intention in adapter.get-semantic-intentions() {
     &.-color-#{$intention} {
       @include -color-rule($intention: $intention);
     }
@@ -24,9 +24,17 @@
 }
 
 @mixin -color-rule($intention: negative) {
-  @if $intention == negative {
-    color: adapter.get-semantic-color($intention: negative, $level: 600);
+  @if $intention == informative {
+    color: adapter.get-semantic-color($intention: informative, $level: 600);
   } @else if $intention == neutral {
     color: adapter.get-semantic-color($intention: neutral, $level: 600);
+  } @else if $intention == positive {
+    color: adapter.get-semantic-color($intention: positive, $level: 600);
+  } @else if $intention == notice {
+    color: adapter.get-semantic-color($intention: notice, $level: 600);
+  } @else if $intention == negative {
+    color: adapter.get-semantic-color($intention: negative, $level: 600);
+  } @else if $intention == attention {
+    color: adapter.get-semantic-color($intention: attention, $level: 600);
   }
 }
