@@ -14,9 +14,7 @@
   $options: map.merge(variables.$default-option, $options);
 
   position: relative;
-  display: inline-flex;
-  flex-direction: column;
-  gap: adapter.get-gap-size($level: xxs);
+  display: inline-block;
   box-sizing: border-box;
 
   // width
