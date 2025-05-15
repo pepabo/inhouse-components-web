@@ -23,6 +23,12 @@
   } @else if map.get($options, is-gapless) == false {
     gap: functions.compose-col-horizontal-gap(adapter-functions.get-boundary-size-first-key());
 
+    @each $boundary-size-level in adapter-functions.get-boundary-sizes() {
+      @include adapter-mixins.mq-boundary(up, $boundary-size-level) {
+        gap: functions.compose-col-horizontal-gap($boundary-size-level);
+      }
+    }
+
     &.-is-gapless {
       gap: 0;
     }
