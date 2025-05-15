@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter" as adapter;
+@use "./variables";
+
+@mixin style($options: variables.$default-option) {
+  @include adapter.text(
+    $level: s,
+    $density: dense
+  );
+  @include -color-rule(map.get($options, intention));
+
+  @each $intention in adapter.get-semantic-intentions() {
+    &.-color-#{$intention} {
+      @include -color-rule($intention: $intention);
+    }
+  }
+}
+
+@mixin export {
+  .in-validation-message {
+    @include style;
+  }
+}
+
+@mixin -color-rule($intention: negative) {
+  @if $intention == informative {
+    color: adapter.get-semantic-color($intention: informative, $level: 600);
+  } @else if $intention == neutral {
+    color: adapter.get-semantic-color($intention: neutral, $level: 600);
+  } @else if $intention == positive {
+    color: adapter.get-semantic-color($intention: positive, $level: 600);
+  } @else if $intention == notice {
+    color: adapter.get-semantic-color($intention: notice, $level: 600);
+  } @else if $intention == negative {
+    color: adapter.get-semantic-color($intention: negative, $level: 600);
+  } @else if $intention == attention {
+    color: adapter.get-semantic-color($intention: attention, $level: 600);
+  }
+}

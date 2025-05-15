@@ -9,16 +9,16 @@ export type Props = Pick<
 const TextFieldDemo: FC<Props> = (props) => (
   <>
     <div>
-      <TextField {...props} />
-      <TextField {...props} state="hover" />
-      <TextField {...props} state="focused" />
-      <TextField {...props} state="disabled" disabled />
+      <TextField {...props} isRequired />
+      <TextField {...props} isRequired state="hover" />
+      <TextField {...props} isRequired state="focused" />
+      <TextField {...props} isRequired state="disabled" disabled />
     </div>
     <div>
-      <TextField {...props} tag="textarea" />
-      <TextField {...props} tag="textarea" state="hover" />
-      <TextField {...props} tag="textarea" state="focused" />
-      <TextField {...props} tag="textarea" state="disabled" disabled />
+      <TextField {...props} isRequired tag="textarea" />
+      <TextField {...props} isRequired tag="textarea" state="hover" />
+      <TextField {...props} isRequired tag="textarea" state="focused" />
+      <TextField {...props} isRequired tag="textarea" state="disabled" disabled />
     </div>
   </>
 );
