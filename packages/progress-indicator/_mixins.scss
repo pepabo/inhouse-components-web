@@ -73,6 +73,12 @@
     clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 50% 50%);
   }
 
+  &.-is-parent-color {
+    &::after {
+      border-color: currentColor;
+    }
+  }
+
   @each $size in "s", "m", "l" {
     &.-size-#{$size} {
       @include -size-style($size);

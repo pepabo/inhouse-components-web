@@ -5,6 +5,7 @@ export interface Props {
   max: number
   value?: number
   size?: Extract<Size, 's' | 'm' | 'l'>
+  isParentColor?: boolean
 }
 
 const Circular: FC<Props> = (props: Props) => {
@@ -12,6 +13,7 @@ const Circular: FC<Props> = (props: Props) => {
     max,
     value,
     size,
+    isParentColor,
     ...rest
   } = props
 
@@ -26,6 +28,10 @@ const Circular: FC<Props> = (props: Props) => {
     percentage = Math.round(value / max * 100)
   } else {
     percentage = Math.round(max / max * 100)
+  }
+
+  if (isParentColor) {
+    classes.push("-is-parent-color");
   }
 
   return (
