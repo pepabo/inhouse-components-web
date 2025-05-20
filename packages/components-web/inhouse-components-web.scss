@@ -25,8 +25,9 @@
 @use "@pepabo-inhouse/textfield";
 @use "@pepabo-inhouse/snackbar";
 
-// @import が存在しているので最初に flavor を読む
-// see: https://git.pepabo.com/inhouse/components-web/issues/355
+// flavor内で@import が存在しているので最初に flavor を読む
+// @import はCSSの先頭で宣言されている必要がある
+// see: https://www.w3.org/TR/css-cascade-3/#at-import
 @include flavor.export;
 @include app-bar.export;
 @include avatar.export;
