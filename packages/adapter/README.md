@@ -5,11 +5,9 @@
 ### Installation
 
 ```bash
-$ npm install git+ssh://git@git.pepabo.com/inhouse/adapter.git#version
+$ npm install @pepabo-inhouse/adapter
 
 # or
 
-$ yarn add git+ssh://git@git.pepabo.com/inhouse/adapter.git#version
+$ yarn add @pepabo-inhouse/adapter
 ```
-
-`version` は https://git.pepabo.com/inhouse/adapter/releases にあるリリースタグを指定します。
