@@ -166,11 +166,14 @@
 
 @mixin -size-rule($level: m) {
   ._input {
-    height: adapter.get-interactive-component-height($level: $level);
     padding: #{(adapter.get-interactive-component-height($level: $level) * 0.5) -
       (adapter.get-line-height($level: $level, $density: normal) * 0.5)}
       adapter.get-spacing-size($level: $level);
     font-size: adapter.get-font-size($level: $level);
+  }
+
+  input._input {
+    height: adapter.get-interactive-component-height($level: $level);
   }
 
   textarea._input {
