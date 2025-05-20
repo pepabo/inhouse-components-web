@@ -28,6 +28,10 @@
 ### Storybook
 [inhouse-components-web](https://pepabo.github.io/inhouse-components-web)
 
+### SassDoc
+
+[adapter](https://pepabo.github.io/inhouse-components-web/adapter/)
+
 ## Customization
 
 components-web にはビルド済みの production ready な CSS とは別で、 Sass と NPM を使った flavor によるカスタマイズの仕組みが備わっています。
