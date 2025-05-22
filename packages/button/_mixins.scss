@@ -179,11 +179,6 @@
     }
   }
 
-  @each $width in adapter.get-widths() {
-    &.-width-#{$width} {
-      width: adapter.get-width($width: $width);
-    }
-  }
 }
 
 @mixin skeleton-style($options: variables.$default-option) {
@@ -196,7 +191,6 @@
   border-radius:
     functions.get-border-radius(
       $shape: map.get($options, shape),
-      $size: map.get($options, size)
     );
 
   @each $shape in adapter.get-shapes() {
@@ -204,7 +198,6 @@
       border-radius:
         functions.get-border-radius(
           $shape: $shape,
-          $size: map.get($options, size)
         );
     }
   }
@@ -220,7 +213,6 @@
         border-radius:
           functions.get-border-radius(
             $shape: $shape,
-            $size: $size
           );
       }
     }
@@ -233,9 +225,96 @@
   }
 }
 
+@mixin extendStyle($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  position: relative;
+  display: inline-flex;
+  gap: adapter.get-spacing-size($level: xxs);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--in-button-width, adapter.get-width($width: map.get($options, width)));
+  height: var(--in-button-height, adapter.get-interactive-component-height($level: map.get($options, size)));
+  padding: 0;
+  overflow: hidden;
+  font-size: var(--in-button-font-size, adapter.get-font-size($level: map.get($options, size)));
+  font-family: inherit;
+  line-height: var(--in-button-line-height, adapter.get-line-height($level: map.get($options, size), $density: normal));
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  vertical-align: text-bottom;
+  // background-color: transparent;
+  background-color: var(--in-button-color, adapter.get-button-color($color: map.get($options, color)));
+  border-style: solid;
+  border-radius: var(--in-button-radius, functions.get-border-radius($shape: map.get($options, shape)));
+  outline: 0;
+  cursor: pointer;
+  transition: 0;
+  appearance: none;
+  user-select: none;
+
+  & > * {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &:first-child {
+      margin-inline-start: var(--in-button-padding-inline, functions.get-horizontal-gap($shape: map.get($options, shape)));
+    }
+
+    &:last-child {
+      margin-inline-end: var(--in-button-padding-inline, functions.get-horizontal-gap($shape: map.get($options, shape)));
+    }
+  }
+
+  &:has(> *:only-child._leading) {
+    aspect-ratio: 1 / 1;
+    & > *:only-child._leading {
+      margin-inline: 0;
+      font-size: var(--in-button-icon-only-button-pict-height, adapter.get-icon-only-button-pict-height($level: map.get($options, size)));
+    }
+  }
+
+  @each $intention in adapter.get-button-colors() {
+    &.-color-#{$intention} {
+      --in-button-color: #{adapter.get-button-color($color: $intention)};
+    }
+  }
+
+  @each $width in adapter.get-widths() {
+    &.-width-#{$width} {
+      --in-button-width: #{adapter.get-width($width: $width)};
+    }
+  }
+
+  @each $shape in adapter.get-shapes() {
+    &.-shape-#{$shape} {
+      --in-button-radius: #{functions.get-border-radius($shape: $shape)};
+      @if $shape == circle {
+        --in-button-padding-inline: #{adapter.get-spacing-size($level: m)};
+      } @else if $shape == square {
+        --in-button-padding-inline: #{adapter.get-spacing-size($level: s)};
+      }
+    }
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      --in-button-height: #{adapter.get-interactive-component-height($level: $size)};
+      --in-button-font-size: #{adapter.get-font-size($level: $size)};
+      --in-button-line-height: #{adapter.get-line-height($level: $size, $density: normal)};
+      --in-button-icon-only-button-pict-height: #{adapter.get-icon-only-button-pict-height($level: $size)};
+    }
+  }
+
+  // appearanceがhollowの場合だけはfont-weightをboldにする
+}
+
 @mixin export {
   .in-button {
-    @include style;
+    @include extendStyle;
   }
 
   .in-skeleton-button {
