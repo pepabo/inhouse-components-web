@@ -37,7 +37,6 @@
 /// @group responsive
 /// @param {String} $name - メディアクエリの方向（up または down）
 /// @param {String} $level - ブレークポイントのレベル（xxs, xs, s, m, l, xl）
-/// @content スタイルルール
 /// @example scss - 画面幅がm以上の場合のスタイル
 ///   .container {
 ///     @include mq-boundary(up, m) {
