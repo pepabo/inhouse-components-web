@@ -1,15 +1,54 @@
 @use "sass:map";
 @use "./functions";
 
+/// テキストのフォントサイズと行間を設定するmixin
+/// @group typography
+/// @param {String} $level [m] - フォントサイズのレベル（xxs, xs, s, m, l, xl, xxl, xxxl）
+/// @param {String} $density [normal] - 行間の密度（dense, normal, comfort）
+/// @example scss - 基本的な使用例
+///   .text {
+///     @include text($level: l, $density: comfort);
+///   }
+/// @example scss - デフォルト値での使用
+///   .text {
+///     @include text();
+///   }
 @mixin text($level: m, $density: normal) {
   font-size: functions.get-font-size($level: $level);
   line-height: functions.get-line-height($level: $level, $density: $density);
 }
 
+/// 要素にelevation（影）を適用するmixin
+/// @group shadow
+/// @param {Number} $level [1] - elevationのレベル（0-6）
+/// @example scss - 基本的な使用例
+///   .card {
+///     @include elevation($level: 2);
+///   }
+/// @example scss - デフォルト値での使用
+///   .card {
+///     @include elevation();
+///   }
 @mixin elevation($level: 1) {
   box-shadow: functions.get-elevation-box-shadow($level: $level);
 }
 
+/// メディアクエリのブレークポイントを設定するmixin
+/// @group responsive
+/// @param {String} $name - メディアクエリの方向（up または down）
+/// @param {String} $level - ブレークポイントのレベル（xxs, xs, s, m, l, xl）
+/// @example scss - 画面幅がm以上の場合のスタイル
+///   .container {
+///     @include mq-boundary(up, m) {
+///       max-width: 960px;
+///     }
+///   }
+/// @example scss - 画面幅がs以下の場合のスタイル
+///   .sidebar {
+///     @include mq-boundary(down, s) {
+///       display: none;
+///     }
+///   }
 @mixin mq-boundary($name, $level) {
   @if $name == up {
     @media screen and (min-width: functions.get-boundary-size($level)) {
