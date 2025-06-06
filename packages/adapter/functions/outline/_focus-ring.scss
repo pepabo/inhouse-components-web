@@ -4,6 +4,13 @@
 @use "../size/border" as border-size;
 @use "../helpers";
 
+/// フォーカスリングのoutlineスタイルを取得します。
+///
+/// @group outline
+/// @param {string} $brightness [light] outline colorの明暗です。周辺要素との視認性の兼ね合いを考慮して`light`か`dark`を指定してください。
+/// @example
+///   outline: functions.get-focus-ring-outline()
+///   // outline: 0.25rem solid #3e93de
 @function get-focus-ring-outline($brightness: light) {
   $width: border-size.get-focus-ring-size();
   $color: border-color.get-focus-ring-outline-color($brightness: $brightness);
@@ -11,6 +18,12 @@
   @return #{$width} solid $color;
 }
 
+/// フォーカスリングのoutlineのoffset値を取得します。
+///
+/// @group outline
+/// @example
+///   outline-offset: functions.get-focus-ring-outline-offset()
+///   // outline-offset: 0.125rem
 @function get-focus-ring-outline-offset() {
   @return 0.125rem;
 }
