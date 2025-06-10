@@ -13,6 +13,7 @@
   $options: map.merge(variables.$default-option, $options);
 
   @include -proto($options);
+  @include -css-variables-base($options);
   @include -appearance-style(
     $appearance: map.get($options, appearance),
     $brightness: map.get($options, brightness),
@@ -35,6 +36,7 @@
 
   @each $appearance in adapter.get-button-appearances() {
     &.-appearance-#{"" + $appearance} {
+      --inhouse-button-appearance: #{$appearance};
       @include -appearance-style(
         $appearance: $appearance,
         $brightness: map.get($options, brightness),
@@ -51,6 +53,7 @@
 
   @each $intention in adapter.get-button-colors() {
     &.-color-#{$intention} {
+      --inhouse-button-color: #{$intention};
       @include -appearance-style(
         $appearance: map.get($options, appearance),
         $brightness: map.get($options, brightness),
@@ -62,27 +65,12 @@
         $brightness: map.get($options, brightness),
         $color: $intention,
       );
-    }
-
-    @each $appearance in adapter.get-button-appearances() {
-      &.-color-#{$intention}.-appearance-#{"" + $appearance} {
-        @include -appearance-style(
-          $appearance: $appearance,
-          $brightness: map.get($options, brightness),
-          $color: $intention,
-          $state: enabled
-        );
-        @include -appearance-state-ruleset(
-          $appearance: $appearance,
-          $brightness: map.get($options, brightness),
-          $color: $intention,
-        );
-      }
     }
   }
 
   @each $brightness in adapter.get-brightnesses() {
     &.-brightness-#{$brightness} {
+      --inhouse-button-brightness: #{$brightness};
       @include -appearance-style(
         $appearance: map.get($options, appearance),
         $brightness: $brightness,
@@ -95,85 +83,53 @@
         $color: map.get($options, color),
       );
     }
-
-    @each $appearance in adapter.get-button-appearances() {
-      &.-brightness-#{$brightness}.-appearance-#{"" + $appearance} {
-        @include -appearance-style(
-          $appearance: $appearance,
-          $brightness: $brightness,
-          $color: map.get($options, color),
-          $state: enabled
-        );
-        @include -appearance-state-ruleset(
-          $appearance: $appearance,
-          $brightness: $brightness,
-          $color: map.get($options, color),
-        );
-      }
-
-      @each $intention in adapter.get-button-colors() {
-        &.-brightness-#{$brightness}.-appearance-#{"" + $appearance}.-color-#{$intention} {
-          @include -appearance-style(
-            $appearance: $appearance,
-            $brightness: $brightness,
-            $color: $intention,
-            $state: enabled
-          );
-          @include -appearance-state-ruleset(
-            $appearance: $appearance,
-            $brightness: $brightness,
-            $color: $intention,
-          );
-        }
-      }
-    }
   }
 
   @each $shape in adapter.get-shapes() {
     &.-shape-#{$shape} {
-      @include -shape-style(
-        $appearance: map.get($options, appearance),
-        $shape: $shape,
-        $size: map.get($options, size)
-      );
-    }
+      --inhouse-button-shape: #{$shape};
+      --inhouse-button-border-radius: #{functions.get-border-radius($shape: $shape, $size: map.get($options, size))};
+      border-radius: var(--inhouse-button-border-radius);
 
-    @each $appearance in adapter.get-button-appearances() {
-      &.-shape-#{$shape}.-appearance-#{"" + $appearance} {
-        @include -shape-style(
-          $appearance: $appearance,
+      & > * {
+        @include -child-element-style(
+          $appearance: map.get($options, appearance),
           $shape: $shape,
           $size: map.get($options, size)
         );
+      }
+
+      @each $size in adapter.get-interactive-component-height-keys() {
+        &.-size-#{$size} {
+          --inhouse-button-border-radius: #{functions.get-border-radius($shape: $shape, $size: $size)};
+        }
       }
     }
   }
 
   @each $size in adapter.get-interactive-component-height-keys() {
     &.-size-#{$size} {
-      @include -size-style(
-        $appearance: map.get($options, appearance),
-        $shape: map.get($options, shape),
-        $size: $size
-      );
-    }
+      --inhouse-button-size: #{$size};
+      --inhouse-button-height: #{adapter.get-interactive-component-height($level: $size)};
+      --inhouse-button-font-size: #{adapter.get-font-size($level: $size)};
+      --inhouse-button-line-height: #{adapter.get-line-height($level: $size, $density: normal)};
+      --inhouse-button-border-radius: #{functions.get-border-radius($shape: map.get($options, shape), $size: $size)};
+      height: var(--inhouse-button-height);
+      font-size: var(--inhouse-button-font-size);
+      line-height: var(--inhouse-button-line-height);
+      border-radius: var(--inhouse-button-border-radius);
 
-    @each $shape in adapter.get-shapes() {
-      &.-size-#{$size}.-shape-#{$shape} {
-        @include -shape-style(
+      & > * {
+        @include -child-element-style(
           $appearance: map.get($options, appearance),
-          $shape: $shape,
+          $shape: map.get($options, shape),
           $size: $size
         );
       }
 
-      @each $appearance in adapter.get-button-appearances() {
-        &.-size-#{$size}.-shape-#{$shape}.-appearance-#{"" + $appearance} {
-          @include -shape-style(
-            $appearance: $appearance,
-            $shape: $shape,
-            $size: $size
-          );
+      @each $shape in adapter.get-shapes() {
+        &.-shape-#{$shape} {
+          --inhouse-button-border-radius: #{functions.get-border-radius($shape: $shape, $size: $size)};
         }
       }
     }
@@ -190,38 +146,35 @@
   $options: map.merge(variables.$default-option, $options);
 
   @include skeleton.style;
+  @include -css-variables-base($options);
 
   width: adapter.get-width($width: map.get($options, width));
-  height: adapter.get-interactive-component-height($level: map.get($options, size));
-  border-radius:
-    functions.get-border-radius(
-      $shape: map.get($options, shape),
-      $size: map.get($options, size)
-    );
+  height: var(--inhouse-button-height);
+  border-radius: var(--inhouse-button-border-radius);
 
   @each $shape in adapter.get-shapes() {
     &.-shape-#{$shape} {
-      border-radius:
-        functions.get-border-radius(
-          $shape: $shape,
-          $size: map.get($options, size)
-        );
+      --inhouse-button-shape: #{$shape};
+      --inhouse-button-border-radius: #{functions.get-border-radius($shape: $shape, $size: map.get($options, size))};
+
+      @each $size in adapter.get-interactive-component-height-keys() {
+        &.-size-#{$size} {
+          --inhouse-button-border-radius: #{functions.get-border-radius($shape: $shape, $size: $size)};
+        }
+      }
     }
   }
 
   @each $size in adapter.get-interactive-component-height-keys() {
     &.-size-#{$size} {
-      height: adapter.get-interactive-component-height($level: $size);
-    }
+      --inhouse-button-size: #{$size};
+      --inhouse-button-height: #{adapter.get-interactive-component-height($level: $size)};
+      --inhouse-button-border-radius: #{functions.get-border-radius($shape: map.get($options, shape), $size: $size)};
 
-    @each $shape in adapter.get-shapes() {
-      &.-size-#{$size}.-shape-#{$shape} {
-        height: adapter.get-interactive-component-height($level: $size);
-        border-radius:
-          functions.get-border-radius(
-            $shape: $shape,
-            $size: $size
-          );
+      @each $shape in adapter.get-shapes() {
+        &.-shape-#{$shape} {
+          --inhouse-button-border-radius: #{functions.get-border-radius($shape: $shape, $size: $size)};
+        }
       }
     }
   }
@@ -251,16 +204,12 @@
   justify-content: center;
   box-sizing: border-box;
   width: adapter.get-width($width: map.get($options, width));
-  height: adapter.get-interactive-component-height($level: map.get($options, size));
+  height: var(--inhouse-button-height, #{adapter.get-interactive-component-height($level: map.get($options, size))});
   padding: 0;
   overflow: hidden;
-  font-size: adapter.get-font-size($level: map.get($options, size));
+  font-size: var(--inhouse-button-font-size, #{adapter.get-font-size($level: map.get($options, size))});
   font-family: inherit;
-  line-height:
-    adapter.get-line-height(
-      $level: map.get($options, size),
-      $density: normal
-    );
+  line-height: var(--inhouse-button-line-height, #{adapter.get-line-height($level: map.get($options, size), $density: normal)});
   white-space: nowrap;
   text-align: center;
   text-decoration: none;
@@ -268,11 +217,7 @@
   vertical-align: text-bottom;
   background-color: transparent;
   border-style: solid;
-  border-radius:
-    functions.get-border-radius(
-      $shape: map.get($options, shape),
-      $size: map.get($options, size)
-    );
+  border-radius: var(--inhouse-button-border-radius, #{functions.get-border-radius($shape: map.get($options, shape), $size: map.get($options, size))});
   outline: 0;
   cursor: pointer;
   transition: 0;
@@ -369,39 +314,18 @@
   }
 }
 
-@mixin -shape-style($appearance, $shape, $size) {
-  border-radius:
-    functions.get-border-radius(
-      $shape: $shape,
-      $size: $size
-    );
-
-  & > * {
-    @include -child-element-style(
-      $appearance: $appearance,
-      $shape: $shape,
-      $size: $size
-    );
-  }
+@mixin -css-variables-base($options) {
+  --inhouse-button-appearance: #{map.get($options, appearance)};
+  --inhouse-button-brightness: #{map.get($options, brightness)};
+  --inhouse-button-color: #{map.get($options, color)};
+  --inhouse-button-shape: #{map.get($options, shape)};
+  --inhouse-button-size: #{map.get($options, size)};
+  --inhouse-button-height: #{adapter.get-interactive-component-height($level: map.get($options, size))};
+  --inhouse-button-font-size: #{adapter.get-font-size($level: map.get($options, size))};
+  --inhouse-button-line-height: #{adapter.get-line-height($level: map.get($options, size), $density: normal)};
+  --inhouse-button-border-radius: #{functions.get-border-radius($shape: map.get($options, shape), $size: map.get($options, size))};
 }
 
-@mixin -size-style($appearance, $shape, $size) {
-  height: adapter.get-interactive-component-height($level: $size);
-  font-size: adapter.get-font-size($level: $size);
-  line-height:
-    adapter.get-line-height(
-      $level: $size,
-      $density: normal
-    );
-
-  & > * {
-    @include -child-element-style(
-      $appearance: $appearance,
-      $shape: $shape,
-      $size: $size
-    );
-  }
-}
 
 @mixin -child-element-style($appearance, $shape, $size) {
   display: inline-flex;
