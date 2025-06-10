@@ -240,14 +240,14 @@
   overflow: hidden;
   font-size: var(--in-button-font-size, adapter.get-font-size($level: map.get($options, size)));
   font-family: inherit;
+  font-weight: var(--in-button-font-weight, functions.get-font-weight($appearance: map.get($options, appearance)));
   line-height: var(--in-button-line-height, adapter.get-line-height($level: map.get($options, size), $density: normal));
   white-space: nowrap;
   text-align: center;
   text-decoration: none;
   text-overflow: ellipsis;
   vertical-align: text-bottom;
-  // background-color: transparent;
-  background-color: var(--in-button-color, adapter.get-button-color($color: map.get($options, color)));
+  background-color: transparent;
   border-style: solid;
   border-radius: var(--in-button-radius, functions.get-border-radius($shape: map.get($options, shape)));
   outline: 0;
@@ -255,11 +255,17 @@
   transition: 0;
   appearance: none;
   user-select: none;
+  box-shadow: var(--in-button-shadow, functions.get-box-shadow($appearance: map.get($options, appearance), $state: enabled));
+  outline: var(--in-button-outline, functions.get-outline($state: enabled));
+  outline-offset: adapter.get-focus-ring-outline-offset();
+  border-color: var(--in-button-border-color, adapter.get-button-border-color($appearance: map.get($options, appearance), $color: map.get($options, color), $state: enabled));
+  border-width: var(--in-button-border-width, adapter.get-button-border-size($appearance: map.get($options, appearance)));
 
   & > * {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     &:first-child {
       margin-inline-start: var(--in-button-padding-inline, functions.get-horizontal-gap($shape: map.get($options, shape)));
     }
@@ -271,6 +277,7 @@
 
   &:has(> *:only-child._leading) {
     aspect-ratio: 1 / 1;
+
     & > *:only-child._leading {
       margin-inline: 0;
       font-size: var(--in-button-icon-only-button-pict-height, adapter.get-icon-only-button-pict-height($level: map.get($options, size)));
@@ -279,7 +286,17 @@
 
   @each $intention in adapter.get-button-colors() {
     &.-color-#{$intention} {
-      --in-button-color: #{adapter.get-button-color($color: $intention)};
+      --in-button-border-color-value: #{adapter.get-button-border-color($appearance: outlined, $color: $intention, $state: enabled)};
+
+      // &.-appearance-outlined {
+      //   --in-button-border-color: #{adapter.get-button-border-color($appearance: outlined, $color: $intention, $state: enabled)};
+      // }
+      // &.-appearance-solid {
+      //   --in-button-border-color: #{adapter.get-button-border-color($appearance: solid, $color: $intention, $state: enabled)};
+      // }
+      // &.-appearance-hollow {
+      //   --in-button-border-color: #{adapter.get-button-border-color($appearance: hollow, $color: $intention, $state: enabled)};
+      // }
     }
   }
 
@@ -309,7 +326,50 @@
     }
   }
 
-  // appearanceがhollowの場合だけはfont-weightをboldにする
+  @each $appearance in adapter.get-button-appearances() {
+    &.-appearance-#{"" + $appearance} {
+      --in-button-shadow: #{functions.get-box-shadow($appearance: $appearance, $state: enabled)};
+      --in-button-border-width: #{adapter.get-button-border-size($appearance: $appearance)};
+      &:hover,
+      &.--hover {
+        --in-button-shadow: #{functions.get-box-shadow($appearance: $appearance, $state: hover)};
+      }
+      &:active,
+      &.--active {
+        --in-button-shadow: #{functions.get-box-shadow($appearance: $appearance, $state: active)};
+      }
+      &:focus-visible,
+      &.--focused {
+        --in-button-shadow: #{functions.get-box-shadow($appearance: $appearance, $state: focused)};
+        --in-button-outline: #{functions.get-outline($state: focused)};
+      }
+      &:disabled,
+      &.--disabled {
+        --in-button-shadow: #{functions.get-box-shadow($appearance: $appearance, $state: disabled)};
+      }
+    }
+  }
+
+  &.-appearance-outlined {
+    --in-button-border-color: var(--in-button-border-color-value);
+  }
+  &.-appearance-flat {
+    --in-button-border-color: transparent;
+  }
+  &.-appearance-hollow {
+    --in-button-font-weight: #{functions.get-font-weight($appearance: hollow)};
+    --in-button-border-color: var(--in-button-border-color-value);
+  }
+  &.-appearance-solid {
+    --in-button-border-color: var(--in-button-border-color-value);
+  }
+  &.-appearance-transparent {
+    --in-button-border-color: transparent;
+  }
+  &.-appearance-transparent {
+    --in-button-border-color: transparent;
+  }
+
 }
 
 @mixin export {

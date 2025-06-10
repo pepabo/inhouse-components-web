@@ -45,6 +45,7 @@
   }
 }
 
+// colorは未使用なので関係ない
 @function get-box-shadow($appearance: flat, $color: neutral, $state: enabled) {
   $available-appearances: adapter.get-button-appearances();
   $available-states: adapter.get-states();
