@@ -1,38 +1,39 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { Shape } from "../types";
 
 export interface Props {
   appearance?: "filled" | "outlined" | "elevated";
   body?: string;
+  children?: ReactNode;
   color?: "primary" | "secondary" | "tertiary";
   isGapless?: boolean;
   shape?: Shape;
 }
 
 const Card: FC<Props> = (props: Props) => {
-  const { appearance, body, color, isGapless, shape, ...rest } = props;
+  const { appearance, body, children, color, isGapless, shape, ...rest } = props;
 
   const classes = [`in-card`];
 
-  if (typeof appearance !== "undefined") {
-    classes.push(`-appearance-${appearance}`);
+  if (appearance) {
+    classes.push(`in-card--${appearance}`);
   }
 
-  if (typeof color !== "undefined") {
-    classes.push(`-color-${color}`);
+  if (color) {
+    classes.push(`in-card--${color}`);
   }
 
   if (isGapless) {
-    classes.push("-is-gapless");
+    classes.push("in-card--gapless");
   }
 
-  if (typeof shape !== "undefined") {
-    classes.push(`-shape-${shape}`);
+  if (shape) {
+    classes.push(`in-card--${shape}`);
   }
 
   return (
     <div className={classes.join(" ")} {...rest}>
-      {body || null}
+      {body || children || null}
     </div>
   );
 };
