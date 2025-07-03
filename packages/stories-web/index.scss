@@ -22,6 +22,7 @@
 
 .major-stack-1 {
   position: absolute;
+  top: 0;
   z-index: adapter.get-major-stack-z-index($layer: 1);
   width: 100%;
   height: 100vh;
