@@ -75,7 +75,6 @@
 
   ._link:focus-visible {
     outline: adapter.get-focus-ring-outline();
-    outline-offset: adapter.get-focus-ring-outline-offset();
   }
 }
 
