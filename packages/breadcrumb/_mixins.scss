@@ -7,6 +7,7 @@
 
 @mixin style($options: variables.$default-option) {
   $options: map.merge(variables.$default-option, $options);
+
   @include cell.style((density: map.get($options, density), size: map.get($options, size)));
 
   width: 100%;
@@ -16,6 +17,7 @@
     overflow-x: auto;
     white-space: nowrap;
   }
+
   &.-overflow-scroll {
     overflow-x: auto;
     white-space: nowrap;
@@ -31,26 +33,26 @@
 
   @each $density in adapter.get-densities() {
     &.-density-#{$density} {
-        @include cell.style((density: $density, size: map.get($options, size)));
+      @include cell.style((density: $density, size: map.get($options, size)));
 
-        padding-inline: adapter.get-spacing-size($level: map.get($options, size));
+      padding-inline: adapter.get-spacing-size($level: map.get($options, size));
     }
   }
 
   @each $size in adapter.get-cell-sizes() {
     &.-size-#{$size} {
-        @include cell.style((density: map.get($options, density), size: $size));
+      @include cell.style((density: map.get($options, density), size: $size));
 
-        padding-inline: adapter.get-spacing-size($level: $size);
+      padding-inline: adapter.get-spacing-size($level: $size);
     }
   }
 
   @each $density in adapter.get-densities() {
     @each $size in adapter.get-cell-sizes() {
       &.-density-#{$density}.-size-#{$size} {
-          @include cell.style((density: $density, size: $size));
+        @include cell.style((density: $density, size: $size));
 
-          padding-inline: adapter.get-spacing-size($level: $size);
+        padding-inline: adapter.get-spacing-size($level: $size);
       }
     }
   }
