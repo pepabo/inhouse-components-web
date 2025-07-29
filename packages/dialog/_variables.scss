@@ -1,0 +1,24 @@
+$default-options: (
+  size: m,
+  close-on-overlay-click: false
+);
+
+$z-index-map: (
+  modal: 6,
+  dialog: 1
+);
+
+$size-map: (
+  s: (
+    width: 400px,
+    max-width: calc(100vw - 32px)
+  ),
+  m: (
+    width: 500px,
+    max-width: calc(100vw - 32px)
+  ),
+  l: (
+    width: 600px,
+    max-width: calc(100vw - 32px)
+  )
+);
