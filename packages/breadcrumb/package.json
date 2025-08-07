@@ -1,0 +1,21 @@
+{
+  "name": "@pepabo-inhouse/breadcrumb",
+  "description": "Inhouse Components for the web breadcrumb component",
+  "version": "3.5.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/breadcrumb"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@pepabo-inhouse/adapter": "^3.5.0",
+    "@pepabo-inhouse/cell": "^3.5.0"
+  },
+  "devDependencies": {
+    "@pepabo-inhouse/flavor": "^3.4.0",
+    "@pepabo-inhouse/tokens": "^2.4.0"
+  }
+}

@@ -1,0 +1,23 @@
+$default-option: (
+  appearance: "transparent",
+  align: start,
+  is-gapless: false,
+  density: normal,
+  size: m,
+  overflow: wrap,
+);
+
+$available-align: (
+  start,
+  center,
+);
+
+$available-appearance: (
+  "transparent",
+  "outlined",
+);
+
+$available-overflow: (
+  "wrap",
+  "scroll",
+);
