@@ -6,6 +6,7 @@
 
 @mixin style($options: variables.$default-options) {
   $options: map.merge(variables.$default-options, $options);
+
   display: flex;
   gap: adapter.get-spacing-size(s);
   box-shadow: adapter.get-elevation-box-shadow(1);
@@ -73,21 +74,21 @@
 }
 
 @mixin -size-style($size) {
-    padding-block: calc(adapter.get-spacing-size($size) / 2);
-    padding-inline: adapter.get-spacing-size($size) calc(adapter.get-spacing-size($size) / 2);
-    border-radius: adapter.get-radius-size($size);
+  padding-block: calc(adapter.get-spacing-size($size) / 2);
+  padding-inline: adapter.get-spacing-size($size) calc(adapter.get-spacing-size($size) / 2);
+  border-radius: adapter.get-radius-size($size);
 
   ._leading {
+    font-size: adapter.get-font-size($size);
     line-height: adapter.get-line-height($level: $size, $density: normal);
     padding-block: calc((adapter.get-interactive-component-height($level: $size) - adapter.get-line-height($level: $size, $density: normal)) / 2);
-    font-size: adapter.get-font-size($size);
   }
 
   ._body {
+    gap: adapter.get-spacing-size(map.get(variables.$title-margin-map, $size));
+    font-size: adapter.get-font-size($size);
     line-height: adapter.get-line-height($level: $size, $density: normal);
     padding-block: calc((adapter.get-interactive-component-height($level: $size) - adapter.get-line-height($level: $size, $density: normal)) / 2);
-    font-size: adapter.get-font-size($size);
-    gap: adapter.get-spacing-size(map.get(variables.$title-margin-map, $size));
   }
 
   ._trailing {
