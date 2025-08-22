@@ -92,7 +92,7 @@
   }
 
   ._trailing {
-    ._button {
+    ._action {
       @include button.style(
         $options: (
           size: $size,
