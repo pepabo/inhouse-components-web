@@ -1,25 +1,24 @@
 @use "sass:map";
 @use "sass:list";
 @use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/button" as button;
 @use "./variables";
 
 @mixin style($options: variables.$default-options) {
-  display: flex;
-  padding: adapter.get-spacing-size(map.get($options, size));
-  font-size: adapter.get-font-size(map.get($options, size));
-  line-height: adapter.get-line-height($level: map.get($options, size), $density: normal);
-  border-radius: adapter.get-radius-size(map.get($options, size));
-  box-shadow: adapter.get-elevation-box-shadow(1);
   $options: map.merge(variables.$default-options, $options);
 
+  display: flex;
+  gap: adapter.get-spacing-size(s);
+  box-shadow: adapter.get-elevation-box-shadow(1);
+
   ._leading {
-    padding-right: adapter.get-spacing-size(s);
     line-height: inherit;
   }
 
   ._body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin: 0;
   }
 
@@ -75,11 +74,32 @@
 }
 
 @mixin -size-style($size) {
-  font-size: adapter.get-font-size($size);
-  line-height: adapter.get-line-height($level: $size, $density: normal);
+  padding-block: calc(adapter.get-spacing-size($size) / 2);
+  padding-inline: adapter.get-spacing-size($size) calc(adapter.get-spacing-size($size) / 2);
+  border-radius: adapter.get-radius-size($size);
+
+  ._leading {
+    font-size: adapter.get-font-size($size);
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+    padding-block: calc((adapter.get-interactive-component-height($level: $size) - adapter.get-line-height($level: $size, $density: normal)) / 2);
+  }
 
   ._body {
     gap: adapter.get-spacing-size(map.get(variables.$title-margin-map, $size));
+    font-size: adapter.get-font-size($size);
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+    padding-block: calc((adapter.get-interactive-component-height($level: $size) - adapter.get-line-height($level: $size, $density: normal)) / 2);
+  }
+
+  ._trailing {
+    ._action {
+      @include button.style(
+        $options: (
+          size: $size,
+          appearance: transparent,
+        )
+      );
+    }
   }
 }
 
