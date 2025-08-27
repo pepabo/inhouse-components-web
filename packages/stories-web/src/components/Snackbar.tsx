@@ -31,7 +31,7 @@ export const Snackbar: FC<Props> = ({
         <span>アイテム1を削除しました</span>
         <div className="_trailing">
           <button className="in-button -size-s -appearance-transparent">
-            <div className="_body">もとに戻す</div>
+            <span className="_body">もとに戻す</span>
           </button>
         </div>
       </div>
