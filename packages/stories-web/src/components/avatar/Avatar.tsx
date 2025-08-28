@@ -22,7 +22,7 @@ const Avatar: FC<Props> = (props: Props) => {
   }
 
   return (
-    <div
+    <span
       className={classes.join(' ')}
       {...rest}
     >
@@ -30,7 +30,7 @@ const Avatar: FC<Props> = (props: Props) => {
         src={src}
         srcSet={srcSet}
       />
-    </div>
+    </span>
   );
 }
 

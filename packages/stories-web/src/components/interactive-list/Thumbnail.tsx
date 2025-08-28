@@ -8,9 +8,9 @@ const Thumbnail :FC<Props> = (props: Props) => {
   const { children } = props
 
   return (
-    <div className='_thumbnail'>
+    <span className='_thumbnail'>
       {children}
-    </div>
+    </span>
   )
 }
 
