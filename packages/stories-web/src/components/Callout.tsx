@@ -32,7 +32,7 @@ const Callout: FC<Props> = (props: Props) => {
       { hasButton && (
         <div className="_trailing">
           <button className="_action">
-            <div className="_body">閉じる</div>
+            <span className="_body">閉じる</span>
           </button>
         </div>
       )}

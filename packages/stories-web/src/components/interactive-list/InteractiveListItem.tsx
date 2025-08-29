@@ -256,28 +256,28 @@ const Inner: FC<InnerProps> = (props: InnerProps) => {
   return (
     <>
       {leading &&
-        <div className='_leading'>
-          <div className={leadingElementClasses.join(' ')}>
+        <span className='_leading'>
+          <span className={leadingElementClasses.join(' ')}>
             {leading}
-          </div>
-        </div>
+          </span>
+        </span>
       }
-      <div className='_body'>
-        <div className='_title'>
+      <span className='_body'>
+        <span className='_title'>
           {title}
-        </div>
+        </span>
         {description && (
-          <div className='_description'>
+          <span className='_description'>
             {description}
-          </div>
+          </span>
         )}
-      </div>
+      </span>
       {trailing &&
-        <div className='_trailing'>
-          <div className={`_${trailingElement}`}>
+        <span className='_trailing'>
+          <span className={`_${trailingElement}`}>
             {trailing}
-          </div>
-        </div>
+          </span>
+        </span>
       }
     </>
   )

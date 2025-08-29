@@ -75,13 +75,13 @@ const Inner: FC<InnerProps> = (props: InnerProps) => {
 
   return (
     <>
-      <div className='_icon'>
+      <span className='_icon'>
         {icon}
-      </div>
+      </span>
       {text && (
-        <div className='_text'>
+        <span className='_text'>
           {text}
-        </div>
+        </span>
       )}
     </>
   )

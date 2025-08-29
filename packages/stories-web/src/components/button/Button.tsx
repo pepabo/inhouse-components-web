@@ -70,19 +70,19 @@ const Button: FC<Props> = (props: Props) => {
       {...rest}
     >
       {leading && (
-        <div className='_leading'>
+        <span className='_leading'>
           {leading}
-        </div>
+        </span>
       )}
       {body && (
-        <div className='_body'>
+        <span className='_body'>
           {body}
-        </div>
+        </span>
       )}
       {trailing && (
-        <div className='_trailing'>
+        <span className='_trailing'>
           {trailing}
-        </div>
+        </span>
       )}
     </button>
   )
