@@ -4,6 +4,7 @@ import {
   Dialog as AriaDialog,
   DialogTrigger as AriaDialogTrigger,
   Modal as AriaModal,
+  ModalOverlay as AriaModalOverlay,
   Button,
   Heading
 } from 'react-aria-components'
@@ -47,12 +48,11 @@ const Dialog: FC<Props> = (props: Props) => {
   return (
     <AriaDialogTrigger>
       <Button className="in-button">{triggerLabel}</Button>
-      <AriaModal
-        className={modalClasses}
+      <AriaModalOverlay
+        className="in-dialog-modal"
         isDismissable={closeOnOverlayClick}
       >
-        <div className="in-dialog-modal__overlay" />
-        <div className="in-dialog-modal__container">
+        <AriaModal className="_container">
           <AriaDialog
             className={dialogClasses}
             {...rest}
@@ -83,8 +83,8 @@ const Dialog: FC<Props> = (props: Props) => {
               </>
             )}
           </AriaDialog>
-        </div>
-      </AriaModal>
+        </AriaModal>
+      </AriaModalOverlay>
     </AriaDialogTrigger>
   );
 };
