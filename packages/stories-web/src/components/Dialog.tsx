@@ -9,16 +9,12 @@ import {
   Heading
 } from 'react-aria-components'
 
-type HTMLProps = HTMLAttributes<HTMLDivElement>
-
-export interface FooterProps {
-  close: () => void;
-}
+type HTMLProps = Omit<HTMLAttributes<HTMLDivElement>, 'role'>
 
 export interface Props extends Omit<HTMLProps, 'title'> {
   title: ReactNode;
   children: ReactNode;
-  footer?: ReactNode | ((props: FooterProps) => ReactNode);
+  footer?: ReactNode;
   size?: Extract<Size, 's' | 'm' | 'l'>;
   closeOnOverlayClick?: boolean;
   triggerLabel: string;
@@ -35,19 +31,17 @@ const Dialog: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const modalClassList = ['in-dialog-modal'];
   const dialogClassList = ['in-dialog'];
 
   if (size !== 'm') {
     dialogClassList.push(`-size-${size}`);
   }
 
-  const modalClasses = modalClassList.join(' ');
   const dialogClasses = dialogClassList.join(' ');
 
   return (
     <AriaDialogTrigger>
-      <Button className="in-button">{triggerLabel}</Button>
+      <Button className="in-button -appearance-outlined -width-half">{triggerLabel}</Button>
       <AriaModalOverlay
         className="in-dialog-modal"
         isDismissable={closeOnOverlayClick}
@@ -55,33 +49,31 @@ const Dialog: FC<Props> = (props: Props) => {
         <AriaModal className="_container">
           <AriaDialog
             className={dialogClasses}
+            role="dialog"
             {...rest}
           >
-            {({ close }) => (
-              <>
-                <div className="in-dialog__header">
-                  <Heading
-                    id="dialog-title"
-                    className="in-dialog__title"
-                    slot="title"
-                  >
-                    {title}
-                  </Heading>
+            <>
+              <div className="_header">
+                <Heading
+                  id="dialog-title"
+                  className="_title"
+                >
+                  {title}
+                </Heading>
+              </div>
+              <div className="_content" role="document">
+                {children}
+              </div>
+              {footer && (
+                <div
+                  className="_footer"
+                  role="toolbar"
+                  aria-label="ダイアログのアクション"
+                >
+                  {footer}
                 </div>
-                <div className="in-dialog__content" role="document">
-                  {children}
-                </div>
-                {footer && (
-                  <div
-                    className="in-dialog__footer"
-                    role="toolbar"
-                    aria-label="ダイアログのアクション"
-                  >
-                    {typeof footer === 'function' ? footer({ close }) : footer}
-                  </div>
-                )}
-              </>
-            )}
+              )}
+            </>
           </AriaDialog>
         </AriaModal>
       </AriaModalOverlay>

@@ -1,6 +1,8 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import Dialog, { Props } from './components/Dialog'
+import Row from './components/grid/Row'
+import Col from './components/grid/Col'
 
 export default {
   title: 'Components/Dialog',
@@ -17,22 +19,20 @@ const Template: StoryFn<Props> = (args) => {
   return (
     <Dialog
       {...args}
-      footer={({ close }) => (
-        <>
-          <button
-            className="in-button -appearance-hollow"
-            onClick={close}
-          >
-            キャンセル
-          </button>
-          <button
-            className="in-button -appearance-filled"
-            onClick={close}
-          >
-            確認
-          </button>
-        </>
-      )}
+      footer={
+        <Row justifyContent="end">
+          <Col col={12} colM={4} colL={4} offsetM={4} offsetL={4}>
+            <button className="in-button -appearance-outlined -width-full">
+              キャンセル
+            </button>
+          </Col>
+          <Col col={12} colM={4} colL={4}>
+            <button className="in-button -appearance-filled -color-interactive -width-full">
+              確認
+            </button>
+          </Col>
+        </Row>
+      }
     >
       <p>
         これはサンプルのダイアログコンテンツです。
@@ -74,22 +74,20 @@ const LongContentTemplate: StoryFn<Props> = (args) => {
   return (
     <Dialog
       {...args}
-      footer={({ close }) => (
-        <>
-          <button
-            className="in-button -appearance-hollow"
-            onClick={close}
-          >
-            キャンセル
-          </button>
-          <button
-            className="in-button -appearance-filled"
-            onClick={close}
-          >
-            確認
-          </button>
-        </>
-      )}
+      footer={
+        <Row justifyContent="end">
+          <Col col={12} colM={4} colL={4} offsetM={4} offsetL={4}>
+            <button className="in-button -appearance-outlined -width-full">
+              キャンセル
+            </button>
+          </Col>
+          <Col col={12} colM={4} colL={4}>
+            <button className="in-button -appearance-filled -color-interactive -width-full">
+              確認
+            </button>
+          </Col>
+        </Row>
+      }
     >
       <div>
         <p>これは長いコンテンツのサンプルです。</p>
