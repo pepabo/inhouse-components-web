@@ -11,10 +11,13 @@ import {
 
 type HTMLProps = Omit<HTMLAttributes<HTMLDivElement>, 'role'>
 
+export interface FooterProps {
+  close: () => void;
+}
 export interface Props extends Omit<HTMLProps, 'title'> {
   title: ReactNode;
   children: ReactNode;
-  footer?: ReactNode;
+  footer?: ReactNode | ((props: FooterProps) => ReactNode);
   size?: Extract<Size, 's' | 'm' | 'l'>;
   closeOnOverlayClick?: boolean;
   triggerLabel: string;
@@ -52,28 +55,30 @@ const Dialog: FC<Props> = (props: Props) => {
             role="dialog"
             {...rest}
           >
-            <>
-              <div className="_header">
-                <Heading
-                  id="dialog-title"
-                  className="_title"
-                >
-                  {title}
-                </Heading>
-              </div>
-              <div className="_content" role="document">
-                {children}
-              </div>
-              {footer && (
-                <div
-                  className="_footer"
-                  role="toolbar"
-                  aria-label="ダイアログのアクション"
-                >
-                  {footer}
+            {({ close }) => (
+              <>
+                <div className="_header">
+                  <Heading
+                    id="dialog-title"
+                    className="_title"
+                  >
+                    {title}
+                  </Heading>
                 </div>
-              )}
-            </>
+                <div className="_content" role="document">
+                  {children}
+                </div>
+                {footer && (
+                  <div
+                    className="_footer"
+                    role="toolbar"
+                    aria-label="ダイアログのアクション"
+                  >
+                     {typeof footer === 'function' ? footer({ close }) : footer}
+                  </div>
+                )}
+              </>
+            )}
           </AriaDialog>
         </AriaModal>
       </AriaModalOverlay>

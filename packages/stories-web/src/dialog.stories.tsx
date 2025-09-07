@@ -19,20 +19,21 @@ const Template: StoryFn<Props> = (args) => {
   return (
     <Dialog
       {...args}
-      footer={
-        <Row justifyContent="end">
-          <Col col={12} colM={4} colL={4} offsetM={4} offsetL={4}>
-            <button className="in-button -appearance-outlined -width-full">
-              キャンセル
-            </button>
-          </Col>
-          <Col col={12} colM={4} colL={4}>
-            <button className="in-button -appearance-filled -color-interactive -width-full">
-              確認
-            </button>
-          </Col>
-        </Row>
-      }
+      footer={({ close }) => (
+        <>
+          <button
+            className="in-button -appearance-outlined -width-third"
+            onClick={close}
+          >
+            キャンセル
+          </button>
+          <button
+            className="in-button -appearance-filled -color-interactive -width-third"
+          >
+            確認
+          </button>
+        </>
+      )}
     >
       <p>
         これはサンプルのダイアログコンテンツです。
@@ -74,20 +75,21 @@ const LongContentTemplate: StoryFn<Props> = (args) => {
   return (
     <Dialog
       {...args}
-      footer={
-        <Row justifyContent="end">
-          <Col col={12} colM={4} colL={4} offsetM={4} offsetL={4}>
-            <button className="in-button -appearance-outlined -width-full">
-              キャンセル
-            </button>
-          </Col>
-          <Col col={12} colM={4} colL={4}>
-            <button className="in-button -appearance-filled -color-interactive -width-full">
-              確認
-            </button>
-          </Col>
-        </Row>
-      }
+      footer={({ close }) => (
+        <>
+          <button
+            className="in-button -appearance-outlined -width-third"
+            onClick={close}
+          >
+            キャンセル
+          </button>
+          <button
+            className="in-button -appearance-filled -color-interactive -width-third"
+          >
+            確認
+          </button>
+        </>
+      )}
     >
       <div>
         <p>これは長いコンテンツのサンプルです。</p>
