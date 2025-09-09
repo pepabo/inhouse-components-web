@@ -1,8 +1,6 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import Dialog, { Props } from './components/Dialog'
-import Row from './components/grid/Row'
-import Col from './components/grid/Col'
 
 export default {
   title: 'Components/Dialog',
@@ -22,15 +20,15 @@ const Template: StoryFn<Props> = (args) => {
       footer={({ close }) => (
         <>
           <button
-            className="in-button -appearance-outlined -width-third"
+            className="in-button -appearance-outlined"
             onClick={close}
           >
-            キャンセル
+            <span className="_body">キャンセル</span>
           </button>
           <button
-            className="in-button -appearance-filled -color-interactive -width-third"
+            className="in-button -appearance-filled -color-interactive"
           >
-            確認
+            <span className="_body">確認</span>
           </button>
         </>
       )}
@@ -52,6 +50,8 @@ Index.args = {
   title: 'サンプルダイアログ',
   triggerLabel: 'ダイアログを開く',
   size: 'm',
+  buttonFlow: 'row',
+  alignment: 'center',
   closeOnOverlayClick: false
 }
 
@@ -60,6 +60,8 @@ Small.args = {
   title: '小さなダイアログ',
   triggerLabel: '小さなダイアログを開く',
   size: 's',
+  buttonFlow: 'row',
+  alignment: 'center',
   closeOnOverlayClick: false
 }
 
@@ -68,6 +70,8 @@ Large.args = {
   title: '大きなダイアログ',
   triggerLabel: '大きなダイアログを開く',
   size: 'l',
+  buttonFlow: 'row',
+  alignment: 'center',
   closeOnOverlayClick: true
 }
 
@@ -78,15 +82,15 @@ const LongContentTemplate: StoryFn<Props> = (args) => {
       footer={({ close }) => (
         <>
           <button
-            className="in-button -appearance-outlined -width-third"
+            className="in-button -appearance-outlined"
             onClick={close}
           >
-            キャンセル
+            <span className="_body">キャンセル</span>
           </button>
           <button
-            className="in-button -appearance-filled -color-interactive -width-third"
+            className="in-button -appearance-filled -color-interactive"
           >
-            確認
+            <span className="_body">確認</span>
           </button>
         </>
       )}
@@ -112,5 +116,7 @@ WithLongContent.args = {
   title: 'スクロール可能なダイアログ',
   triggerLabel: '長いコンテンツのダイアログを開く',
   size: 'm',
+  buttonFlow: 'row',
+  alignment: 'center',
   closeOnOverlayClick: false
 }

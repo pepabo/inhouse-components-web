@@ -5,22 +5,11 @@
 // Dialog Modal Styles
 @mixin modal-style($options: variables.$default-options) {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: adapter.get-major-stack-z-index(map.get(variables.$z-index-map, modal));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  inset: 0;
+  z-index: adapter.get-major-stack-z-index(6);
+  display: grid;
+  place-items: center;
   background-color: adapter.get-scrim-background-color();
-
-  ._container {
-    position: relative;
-    z-index: map.get(variables.$z-index-map, dialog);
-    margin: adapter.get-spacing-size(m);
-    outline: none;
-  }
 }
 
 // Dialog Content Styles
@@ -29,16 +18,15 @@
   $size: map.get($options, size);
   $size-config: map.get(variables.$size-map, $size);
 
+  display: flex;
+  flex-direction: column;
+  gap: adapter.get-spacing-size(m);
   width: map.get($size-config, width);
   max-width: map.get($size-config, max-width);
   max-height: 90vh;
-  padding: adapter.get-spacing-size(l) 0;
-  border-radius: adapter.get-radius-size(m);
+  padding: adapter.get-spacing-size(l);
   background: adapter.get-surface-color(light, primary);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr min(adapter.get-content-size(s), calc(100% - adapter.get-spacing-size(l) * 2)) 1fr;
-  gap: adapter.get-spacing-size(l) adapter.get-spacing-size(l);
+  border-radius: adapter.get-radius-size(m);
   animation: dialog-in 200ms ease-out;
 
   @include adapter.elevation(6);
@@ -47,12 +35,9 @@
     grid-column: 2;
   }
 
-  ._header {
-    // header styles
-  }
-
   ._title {
     @include adapter.text(l);
+
     margin: 0;
   }
 
@@ -62,14 +47,25 @@
 
   ._footer {
     display: flex;
-    justify-content: center;
     gap: adapter.get-spacing-size(s);
+    justify-content: center;
   }
 
-  // Size variants
+  @each $variant-alignment in "left", "center", "right" {
+    &.-alignment-#{$variant-alignment} {
+      @include -alignment-style($variant-alignment);
+    }
+  }
+
   @each $variant-size in "s", "m", "l" {
     &.-size-#{$variant-size} {
       @include -size-style($variant-size);
+    }
+  }
+
+  @each $variant-button-flow in "row", "column" {
+    &.-button-flow-#{$variant-button-flow} {
+      @include -button-flow-style($variant-button-flow);
     }
   }
 }
@@ -80,6 +76,60 @@
   max-width: map.get($size-config, max-width);
 }
 
+@mixin -alignment-style($alignment) {
+  @if $alignment == "left" {
+    ._header {
+      text-align: left;
+    }
+
+    ._content {
+      text-align: left;
+    }
+
+    ._footer {
+      justify-content: flex-start;
+    }
+  } @else if $alignment == "center" {
+    ._header {
+      text-align: center;
+    }
+
+    ._content {
+      text-align: center;
+    }
+
+    ._footer {
+      justify-content: center;
+    }
+  } @else if $alignment == "right" {
+    ._header {
+      text-align: left;
+    }
+
+    ._content {
+      text-align: left;
+    }
+
+    ._footer {
+      justify-content: flex-end;
+    }
+  }
+}
+
+@mixin -button-flow-style($button-flow) {
+  @if $button-flow == "row" {
+    ._footer {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  } @else if $button-flow == "column" {
+    ._footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}
+
 // Keyframes for dialog animation
 @mixin keyframes {
   @keyframes dialog-in {
@@ -87,6 +137,7 @@
       transform: scale(0.98);
       opacity: 0%;
     }
+
     to {
       transform: scale(1);
       opacity: 100%;
@@ -98,7 +149,7 @@
 @mixin export {
   @include keyframes;
 
-  .in-dialog-modal {
+  .in-modal {
     @include modal-style;
   }
 

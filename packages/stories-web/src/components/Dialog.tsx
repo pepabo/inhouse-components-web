@@ -19,6 +19,8 @@ export interface Props extends Omit<HTMLProps, 'title'> {
   children: ReactNode;
   footer?: ReactNode | ((props: FooterProps) => ReactNode);
   size?: Extract<Size, 's' | 'm' | 'l'>;
+  alignment?: 'left' | 'center' | 'right';
+  buttonFlow?: 'row' | 'column';
   closeOnOverlayClick?: boolean;
   triggerLabel: string;
 }
@@ -29,6 +31,8 @@ const Dialog: FC<Props> = (props: Props) => {
     children,
     footer,
     size = 'm',
+    alignment = 'center',
+    buttonFlow = 'row',
     closeOnOverlayClick = false,
     triggerLabel,
     ...rest
@@ -39,20 +43,27 @@ const Dialog: FC<Props> = (props: Props) => {
   if (size !== 'm') {
     dialogClassList.push(`-size-${size}`);
   }
+  if (alignment !== 'center') {
+    dialogClassList.push(`-alignment-${alignment}`);
+  }
+  if (buttonFlow !== 'row') {
+    dialogClassList.push(`-button-flow-${buttonFlow}`);
+  }
 
   const dialogClasses = dialogClassList.join(' ');
 
   return (
     <AriaDialogTrigger>
-      <Button className="in-button -appearance-outlined -width-half">{triggerLabel}</Button>
+      <Button className="in-button -appearance-outlined">
+        <span className="_body">{triggerLabel}</span>
+      </Button>
       <AriaModalOverlay
-        className="in-dialog-modal"
+        className="in-modal"
         isDismissable={closeOnOverlayClick}
       >
-        <AriaModal className="_container">
+        <AriaModal>
           <AriaDialog
             className={dialogClasses}
-            role="dialog"
             {...rest}
           >
             {({ close }) => (
