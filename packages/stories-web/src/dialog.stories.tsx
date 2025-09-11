@@ -14,24 +14,42 @@ export default {
 } as Meta
 
 const Template: StoryFn<Props> = (args) => {
+  const renderButtons = (close: () => void) => {
+    const cancelButton = (
+      <button
+        className="in-button -appearance-outlined"
+        onClick={close}
+      >
+        <span className="_body">キャンセル</span>
+      </button>
+    );
+
+    const confirmButton = (
+      <button
+        className="in-button -appearance-filled -color-interactive"
+      >
+        <span className="_body">確認</span>
+      </button>
+    );
+
+    // buttonFlow が column の場合は順序を逆にする
+    return args.buttonFlow === 'column' ? (
+      <>
+        {confirmButton}
+        {cancelButton}
+      </>
+    ) : (
+      <>
+        {cancelButton}
+        {confirmButton}
+      </>
+    );
+  };
+
   return (
     <Dialog
       {...args}
-      footer={({ close }) => (
-        <>
-          <button
-            className="in-button -appearance-outlined"
-            onClick={close}
-          >
-            <span className="_body">キャンセル</span>
-          </button>
-          <button
-            className="in-button -appearance-filled -color-interactive"
-          >
-            <span className="_body">確認</span>
-          </button>
-        </>
-      )}
+      footer={({ close }) => renderButtons(close)}
     >
       <p>
         これはサンプルのダイアログコンテンツです。
@@ -76,24 +94,42 @@ Large.args = {
 }
 
 const LongContentTemplate: StoryFn<Props> = (args) => {
+  const renderButtons = (close: () => void) => {
+    const cancelButton = (
+      <button
+        className="in-button -appearance-outlined"
+        onClick={close}
+      >
+        <span className="_body">キャンセル</span>
+      </button>
+    );
+
+    const confirmButton = (
+      <button
+        className="in-button -appearance-filled -color-interactive"
+      >
+        <span className="_body">確認</span>
+      </button>
+    );
+
+    // buttonFlow が column の場合は順序を逆にする
+    return args.buttonFlow === 'column' ? (
+      <>
+        {confirmButton}
+        {cancelButton}
+      </>
+    ) : (
+      <>
+        {cancelButton}
+        {confirmButton}
+      </>
+    );
+  };
+
   return (
     <Dialog
       {...args}
-      footer={({ close }) => (
-        <>
-          <button
-            className="in-button -appearance-outlined"
-            onClick={close}
-          >
-            <span className="_body">キャンセル</span>
-          </button>
-          <button
-            className="in-button -appearance-filled -color-interactive"
-          >
-            <span className="_body">確認</span>
-          </button>
-        </>
-      )}
+      footer={({ close }) => renderButtons(close)}
     >
       <div>
         <p>これは長いコンテンツのサンプルです。</p>
@@ -117,6 +153,16 @@ WithLongContent.args = {
   triggerLabel: '長いコンテンツのダイアログを開く',
   size: 'm',
   buttonFlow: 'row',
+  alignment: 'center',
+  closeOnOverlayClick: false
+}
+
+export const ColumnButtonFlow = Template.bind({})
+ColumnButtonFlow.args = {
+  title: '縦並びボタンのダイアログ',
+  triggerLabel: '縦並びボタンのダイアログを開く',
+  size: 'm',
+  buttonFlow: 'column',
   alignment: 'center',
   closeOnOverlayClick: false
 }
