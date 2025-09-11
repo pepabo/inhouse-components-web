@@ -1,23 +1,9 @@
 $default-options: (
   size: m,
-  close-on-overlay-click: false
+  alignment: center,
+  button-flow: row
 );
 
-$z-index-map: (
-  dialog: 1
-);
-
-$size-map: (
-  s: (
-    width: 400px,
-    max-width: calc(100vw - 32px)
-  ),
-  m: (
-    width: 500px,
-    max-width: calc(100vw - 32px)
-  ),
-  l: (
-    width: 600px,
-    max-width: calc(100vw - 32px)
-  )
-);
+$available-sizes: (s, m, l);
+$available-alignments: (left, center, right);
+$available-button-flows: (row, column);

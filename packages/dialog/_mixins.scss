@@ -3,7 +3,7 @@
 @use "./variables";
 
 // Dialog Modal Styles
-@mixin modal-style($options: variables.$default-options) {
+@mixin modal-style() {
   position: fixed;
   inset: 0;
   z-index: adapter.get-major-stack-z-index(6);
@@ -15,21 +15,22 @@
 // Dialog Content Styles
 @mixin dialog-style($options: variables.$default-options) {
   $options: map.merge(variables.$default-options, $options);
-  $size: map.get($options, size);
-  $size-config: map.get(variables.$size-map, $size);
 
   display: flex;
   flex-direction: column;
   gap: adapter.get-spacing-size(m);
-  width: map.get($size-config, width);
-  max-width: map.get($size-config, max-width);
-  max-height: 90vh;
+  box-sizing: border-box;
+  max-width: calc(100dvw - adapter.get-spacing-size(l) * 2);
+  max-height: calc(100dvh - adapter.get-spacing-size(l) * 2);
   padding: adapter.get-spacing-size(l);
   background: adapter.get-surface-color(light, primary);
   border-radius: adapter.get-radius-size(m);
   animation: dialog-in 200ms ease-out;
 
   @include adapter.elevation(6);
+  @include -size-style(map.get($options, size));
+  @include -alignment-style(map.get($options, alignment));
+  @include -button-flow-style(map.get($options, button-flow));
 
   > * {
     grid-column: 2;
@@ -71,9 +72,13 @@
 }
 
 @mixin -size-style($size) {
-  $size-config: map.get(variables.$size-map, $size);
-  width: map.get($size-config, width);
-  max-width: map.get($size-config, max-width);
+  @if $size == "s" {
+    width: adapter.get-boundary-size(xs);
+  } @else if $size == "m" {
+    width: adapter.get-boundary-size(s);
+  } @else if $size == "l" {
+    width: adapter.get-boundary-size(m);
+  }
 }
 
 @mixin -alignment-style($alignment) {
