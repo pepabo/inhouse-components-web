@@ -1,0 +1,91 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter" as adapter;
+@use "@pepabo-inhouse/cell" as cell;
+@use "@pepabo-inhouse/icon" as icon;
+@use "./variables";
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include cell.style((density: map.get($options, density), size: map.get($options, size)));
+
+  width: 100%;
+  padding-inline: adapter.get-spacing-size($level: map.get($options, size));
+
+  @if map.get($options, overflow) == "scroll" {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  &.-overflow-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  ._list {
+    display: inline;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @each $density in adapter.get-densities() {
+    &.-density-#{$density} {
+      @include cell.style((density: $density, size: map.get($options, size)));
+
+      padding-inline: adapter.get-spacing-size($level: map.get($options, size));
+    }
+  }
+
+  @each $size in adapter.get-cell-sizes() {
+    &.-size-#{$size} {
+      @include cell.style((density: map.get($options, density), size: $size));
+
+      padding-inline: adapter.get-spacing-size($level: $size);
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    @each $size in adapter.get-cell-sizes() {
+      &.-density-#{$density}.-size-#{$size} {
+        @include cell.style((density: $density, size: $size));
+
+        padding-inline: adapter.get-spacing-size($level: $size);
+      }
+    }
+  }
+
+  ._item {
+    display: inline-flex;
+    align-items: center;
+
+    &:not(:last-child)::after {
+      @include icon.style;
+
+      content: "chevron_right";
+      padding-inline: adapter.get-spacing-size($level: xs);
+    }
+  }
+
+  ._link {
+    color: adapter.get-implication-color($name: interactive, $level: 700);
+    text-decoration: underline;
+  }
+
+  ._current {
+    color: adapter.get-text-color($brightness: light, $name: high_emphasis);
+    text-decoration: none;
+  }
+
+  ._link:focus-visible {
+    outline: adapter.get-focus-ring-outline();
+  }
+}
+
+@mixin export {
+  .in-breadcrumb {
+    @include style;
+  }
+}

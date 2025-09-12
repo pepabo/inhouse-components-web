@@ -6,6 +6,7 @@
 @mixin style($option: variables.$default-option) {
   $option: map.merge(variables.$default-option, $option);
 
+  display: inline-block;
   box-sizing: border-box;
   width: adapter.get-avatar-width($level: map.get($option, size));
   height: adapter.get-avatar-height($level: map.get($option, size));
