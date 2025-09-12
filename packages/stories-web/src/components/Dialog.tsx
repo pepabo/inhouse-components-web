@@ -76,7 +76,7 @@ const Dialog: FC<Props> = (props: Props) => {
                     {title}
                   </Heading>
                 </div>
-                <div className="_content" role="document">
+                <div className="_content" aria-labelledby="dialog-title">
                   {children}
                 </div>
                 {footer && (

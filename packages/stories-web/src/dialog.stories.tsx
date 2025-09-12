@@ -13,7 +13,6 @@ export default {
   }
 } as Meta
 
-// 共通のrenderButtons関数
 const renderButtons = (
   close: () => void,
   buttonFlow: 'row' | 'column',
