@@ -44,6 +44,10 @@
 
   ._content {
     overflow-y: auto;
+
+    &:empty {
+      display: none;
+    }
   }
 
   ._footer {
