@@ -1,0 +1,9 @@
+$default-options: (
+  size: m,
+  alignment: center,
+  button-flow: row
+);
+
+$available-sizes: (s, m, l);
+$available-alignments: (left, center, right);
+$available-button-flows: (row, column);

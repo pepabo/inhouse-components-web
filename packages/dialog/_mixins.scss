@@ -1,0 +1,168 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter" as adapter;
+@use "./variables";
+
+// Dialog Modal Styles
+@mixin modal-style() {
+  position: fixed;
+  inset: 0;
+  z-index: adapter.get-major-stack-z-index(6);
+  display: grid;
+  place-items: center;
+  background-color: adapter.get-scrim-background-color();
+}
+
+// Dialog Content Styles
+@mixin dialog-style($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
+
+  display: flex;
+  flex-direction: column;
+  gap: adapter.get-spacing-size(m);
+  box-sizing: border-box;
+  max-width: calc(100dvw - adapter.get-spacing-size(l) * 2);
+  max-height: calc(100dvh - adapter.get-spacing-size(l) * 2);
+  padding: adapter.get-spacing-size(l);
+  background: adapter.get-surface-color(light, primary);
+  border-radius: adapter.get-radius-size(m);
+  animation: dialog-in 200ms ease-out;
+
+  @include adapter.elevation(6);
+  @include -size-style(map.get($options, size));
+  @include -alignment-style(map.get($options, alignment));
+  @include -button-flow-style(map.get($options, button-flow));
+
+  > * {
+    grid-column: 2;
+  }
+
+  ._title {
+    @include adapter.text(l);
+
+    margin: 0;
+  }
+
+  ._content {
+    overflow-y: auto;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  ._footer {
+    display: flex;
+    gap: adapter.get-spacing-size(s);
+    justify-content: center;
+  }
+
+  @each $variant-alignment in "left", "center", "right" {
+    &.-alignment-#{$variant-alignment} {
+      @include -alignment-style($variant-alignment);
+    }
+  }
+
+  @each $variant-size in "s", "m", "l" {
+    &.-size-#{$variant-size} {
+      @include -size-style($variant-size);
+    }
+  }
+
+  @each $variant-button-flow in "row", "column" {
+    &.-button-flow-#{$variant-button-flow} {
+      @include -button-flow-style($variant-button-flow);
+    }
+  }
+}
+
+@mixin -size-style($size) {
+  @if $size == "s" {
+    width: adapter.get-boundary-size(xs);
+  } @else if $size == "m" {
+    width: adapter.get-boundary-size(s);
+  } @else if $size == "l" {
+    width: adapter.get-boundary-size(m);
+  }
+}
+
+@mixin -alignment-style($alignment) {
+  @if $alignment == "left" {
+    ._header {
+      text-align: left;
+    }
+
+    ._content {
+      text-align: left;
+    }
+
+    ._footer {
+      justify-content: flex-start;
+    }
+  } @else if $alignment == "center" {
+    ._header {
+      text-align: center;
+    }
+
+    ._content {
+      text-align: center;
+    }
+
+    ._footer {
+      justify-content: center;
+    }
+  } @else if $alignment == "right" {
+    ._header {
+      text-align: left;
+    }
+
+    ._content {
+      text-align: left;
+    }
+
+    ._footer {
+      justify-content: flex-end;
+    }
+  }
+}
+
+@mixin -button-flow-style($button-flow) {
+  @if $button-flow == "row" {
+    ._footer {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  } @else if $button-flow == "column" {
+    ._footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}
+
+// Keyframes for dialog animation
+@mixin keyframes {
+  @keyframes dialog-in {
+    from {
+      transform: scale(0.98);
+      opacity: 0%;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 100%;
+    }
+  }
+}
+
+// Export mixin for CSS classes
+@mixin export {
+  @include keyframes;
+
+  .in-modal {
+    @include modal-style;
+  }
+
+  .in-dialog {
+    @include dialog-style;
+  }
+}

@@ -8,6 +8,7 @@
 @use "@pepabo-inhouse/checkbox";
 @use "@pepabo-inhouse/container";
 @use "@pepabo-inhouse/description-list";
+@use "@pepabo-inhouse/dialog";
 @use "@pepabo-inhouse/flavor";
 @use "@pepabo-inhouse/grid";
 @use "@pepabo-inhouse/header";
@@ -41,6 +42,7 @@
 @include checkbox.export;
 @include container.export;
 @include description-list.export;
+@include dialog.export;
 @include grid.export;
 @include icon.export;
 @include interactive-list.export;
