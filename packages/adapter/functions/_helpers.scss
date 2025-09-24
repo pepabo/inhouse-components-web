@@ -468,9 +468,9 @@ $available-hexadecimal-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
 /// 輝度を計算する
 /// 参考: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 @function -compose-luminance($color) {
-  $red: -compose-linear-channel-value(color.red($color));
-  $green: -compose-linear-channel-value(color.green($color));
-  $blue: -compose-linear-channel-value(color.blue($color));
+  $red: -compose-linear-channel-value(color.channel($color, "red", $space: rgb));
+  $green: -compose-linear-channel-value(color.channel($color, "green", $space: rgb));
+  $blue: -compose-linear-channel-value(color.channel($color, "blue", $space: rgb));
 
   @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }
