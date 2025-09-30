@@ -95,38 +95,6 @@
         $color: map.get($options, color),
       );
     }
-
-    @each $appearance in adapter.get-button-appearances() {
-      &.-brightness-#{$brightness}.-appearance-#{"" + $appearance} {
-        @include -appearance-style(
-          $appearance: $appearance,
-          $brightness: $brightness,
-          $color: map.get($options, color),
-          $state: enabled
-        );
-        @include -appearance-state-ruleset(
-          $appearance: $appearance,
-          $brightness: $brightness,
-          $color: map.get($options, color),
-        );
-      }
-
-      @each $intention in adapter.get-button-colors() {
-        &.-brightness-#{$brightness}.-appearance-#{"" + $appearance}.-color-#{$intention} {
-          @include -appearance-style(
-            $appearance: $appearance,
-            $brightness: $brightness,
-            $color: $intention,
-            $state: enabled
-          );
-          @include -appearance-state-ruleset(
-            $appearance: $appearance,
-            $brightness: $brightness,
-            $color: $intention,
-          );
-        }
-      }
-    }
   }
 
   @each $shape in adapter.get-shapes() {
@@ -137,16 +105,6 @@
         $size: map.get($options, size)
       );
     }
-
-    @each $appearance in adapter.get-button-appearances() {
-      &.-shape-#{$shape}.-appearance-#{"" + $appearance} {
-        @include -shape-style(
-          $appearance: $appearance,
-          $shape: $shape,
-          $size: map.get($options, size)
-        );
-      }
-    }
   }
 
   @each $size in adapter.get-interactive-component-height-keys() {
@@ -156,26 +114,6 @@
         $shape: map.get($options, shape),
         $size: $size
       );
-    }
-
-    @each $shape in adapter.get-shapes() {
-      &.-size-#{$size}.-shape-#{$shape} {
-        @include -shape-style(
-          $appearance: map.get($options, appearance),
-          $shape: $shape,
-          $size: $size
-        );
-      }
-
-      @each $appearance in adapter.get-button-appearances() {
-        &.-size-#{$size}.-shape-#{$shape}.-appearance-#{"" + $appearance} {
-          @include -shape-style(
-            $appearance: $appearance,
-            $shape: $shape,
-            $size: $size
-          );
-        }
-      }
     }
   }
 
