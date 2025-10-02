@@ -49,33 +49,36 @@
   }
 }
 
+@property --circular-progress-indicator-percentage {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
 @mixin circular($option: variables.$default-option) {
+  --circular-progress-indicator-color: #{adapter.get-progress-indicator-indicator-surface-color()};
+
   position: relative;
   width: adapter.get-circular-progress-indicator-width();
   height: adapter.get-circular-progress-indicator-height();
 
   &::after {
+    --circular-progress-indicator-percentage: 100%;
+
     position: absolute;
-    top: adapter.get-spacing-size($level: xxs);
-    right: adapter.get-spacing-size($level: xxs);
-    bottom: adapter.get-spacing-size($level: xxs);
-    left: adapter.get-spacing-size($level: xxs);
+    inset: adapter.get-spacing-size($level: xxs);
     display: block;
     box-sizing: border-box;
-    border-color: adapter.get-progress-indicator-indicator-surface-color();
-    border-style: solid;
-    border-width: adapter.get-progress-indicator-border-size($size: l);
+    background: conic-gradient(var(--circular-progress-indicator-color) var(--circular-progress-indicator-percentage), transparent 0);
     border-radius: 50%;
-    transform: rotate(45deg);
-    transform-origin: center;
-    transition: clip-path 0.1s ease;
+    transition: --circular-progress-indicator-percentage 0.1s ease;
     content: "";
-    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 50% 50%);
+    mask-image: radial-gradient(closest-side, transparent 79%, black 80% 100%);
   }
 
   &.-is-parent-color {
     &::after {
-      border-color: currentcolor;
+      --circular-progress-indicator-color: currentcolor;
     }
   }
 
@@ -85,59 +88,9 @@
     }
   }
 
-  @for $i from 0 to 25 {
+  @for $i from 0 to 100 {
     &[data-percentage="#{$i}"]::after {
-      clip-path:
-        polygon(
-          functions.compose-polygon-displacement($i) 0%,
-          functions.compose-polygon-displacement($i) 0%,
-          functions.compose-polygon-displacement($i) 0%,
-          functions.compose-polygon-displacement($i) 0%,
-          0% 0%,
-          50% 50%
-        );
-    }
-  }
-
-  @for $j from 25 to 50 {
-    &[data-percentage="#{$j}"]::after {
-      clip-path:
-        polygon(
-          100% functions.compose-polygon-displacement($j),
-          100% functions.compose-polygon-displacement($j),
-          100% functions.compose-polygon-displacement($j),
-          100% 0%,
-          0% 0%,
-          50% 50%
-        );
-    }
-  }
-
-  @for $k from 50 to 75 {
-    &[data-percentage="#{$k}"]::after {
-      clip-path:
-        polygon(
-          (100% - functions.compose-polygon-displacement($k)) 100%,
-          (100% - functions.compose-polygon-displacement($k)) 100%,
-          100% 100%,
-          100% 0%,
-          0% 0%,
-          50% 50%
-        );
-    }
-  }
-
-  @for $l from 75 to 100 {
-    &[data-percentage="#{$l}"]::after {
-      clip-path:
-        polygon(
-          0% (100% - functions.compose-polygon-displacement($l)),
-          0 100%,
-          100% 100%,
-          100% 0%,
-          0% 0%,
-          50% 50%
-        );
+      --circular-progress-indicator-percentage: #{$i * 1%};
     }
   }
 
