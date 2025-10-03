@@ -49,29 +49,29 @@
   }
 }
 
-@property --circular-progress-indicator-start-point {
+@property --circular-start-point {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 0%;
 }
 
-@property --circular-progress-indicator-percentage {
+@property --circular-percentage {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 100%;
 }
 
 @mixin circular($option: variables.$default-option) {
-  --circular-progress-indicator-color: #{adapter.get-progress-indicator-indicator-surface-color()};
-  --circular-progress-indicator-size: #{adapter.get-progress-indicator-border-size($size: m)};
+  --circular-color: #{adapter.get-progress-indicator-indicator-surface-color()};
+  --circular-size: #{adapter.get-progress-indicator-border-size($size: m)};
 
   position: relative;
   width: adapter.get-circular-progress-indicator-width();
   height: adapter.get-circular-progress-indicator-height();
 
   &::after {
-    --circular-progress-indicator-start-point: 0%;
-    --circular-progress-indicator-percentage: 100%;
+    --circular-start-point: 0%;
+    --circular-percentage: 100%;
 
     position: absolute;
     inset: adapter.get-spacing-size($level: xxs);
@@ -80,27 +80,27 @@
     margin: auto;
     background:
       conic-gradient(
-        transparent var(--circular-progress-indicator-start-point),
-        var(--circular-progress-indicator-color) var(--circular-progress-indicator-start-point),
-        var(--circular-progress-indicator-color) var(--circular-progress-indicator-percentage),
+        transparent var(--circular-start-point),
+        var(--circular-color) var(--circular-start-point),
+        var(--circular-color) var(--circular-percentage),
         transparent 0
       );
     border-radius: 50%;
-    transition: --circular-progress-indicator-percentage 0.1s ease;
+    transition: --circular-percentage 0.1s ease;
     content: "";
     mask-image:
       radial-gradient(
         closest-side,
-        transparent calc(100% - var(--circular-progress-indicator-size) - 0.5px),
-        rgba(0, 0, 0, 50%) calc(100% - var(--circular-progress-indicator-size) - 0.25px),
-        black calc(100% - var(--circular-progress-indicator-size)) 100%
+        transparent calc(100% - var(--circular-size) - 0.5px),
+        rgba(0, 0, 0, 50%) calc(100% - var(--circular-size) - 0.25px),
+        black calc(100% - var(--circular-size)) 100%
       );
     aspect-ratio: 1;
   }
 
   &.-is-parent-color {
     &::after {
-      --circular-progress-indicator-color: currentcolor;
+      --circular-color: currentcolor;
     }
   }
 
@@ -112,7 +112,7 @@
 
   @for $i from 0 to 100 {
     &[data-percentage="#{$i}"]::after {
-      --circular-progress-indicator-percentage: #{$i * 1%};
+      --circular-percentage: #{$i * 1%};
     }
   }
 
@@ -170,24 +170,24 @@
 
 @keyframes circular-indeterminate {
   0% {
-    --circular-progress-indicator-start-point: 0%;
-    --circular-progress-indicator-percentage: 0%;
+    --circular-start-point: 0%;
+    --circular-percentage: 0%;
   }
 
   50% {
-    --circular-progress-indicator-start-point: 0%;
-    --circular-progress-indicator-percentage: 100%;
+    --circular-start-point: 0%;
+    --circular-percentage: 100%;
   }
 
   100% {
-    --circular-progress-indicator-start-point: 100%;
-    --circular-progress-indicator-percentage: 100%;
+    --circular-start-point: 100%;
+    --circular-percentage: 100%;
   }
 }
 
 @mixin -size-style($size) {
   &::after {
-    --circular-progress-indicator-size: #{adapter.get-progress-indicator-border-size($size)};
+    --circular-size: #{adapter.get-progress-indicator-border-size($size)};
   }
 }
 
