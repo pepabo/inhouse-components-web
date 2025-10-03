@@ -3,7 +3,6 @@
 @use "@pepabo-inhouse/icon/mixins" as icon;
 @use "@pepabo-inhouse/adapter/functions" as adapter;
 @use "./variables";
-@use "./functions";
 
 @mixin linear($option: variables.$default-option) {
   $option: map.merge(variables.$default-option, $option);
