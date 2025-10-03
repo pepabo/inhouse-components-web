@@ -49,6 +49,12 @@
   }
 }
 
+@property --circular-progress-indicator-start-point {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
 @property --circular-progress-indicator-percentage {
   syntax: "<percentage>";
   inherits: false;
@@ -64,13 +70,20 @@
   height: adapter.get-circular-progress-indicator-height();
 
   &::after {
+    --circular-progress-indicator-start-point: 0%;
     --circular-progress-indicator-percentage: 100%;
 
     position: absolute;
     inset: adapter.get-spacing-size($level: xxs);
     display: block;
     box-sizing: border-box;
-    background: conic-gradient(var(--circular-progress-indicator-color) var(--circular-progress-indicator-percentage), transparent 0);
+    background:
+      conic-gradient(
+        transparent var(--circular-progress-indicator-start-point),
+        var(--circular-progress-indicator-color) var(--circular-progress-indicator-start-point),
+        var(--circular-progress-indicator-color) var(--circular-progress-indicator-percentage),
+        transparent 0
+      );
     border-radius: 50%;
     transition: --circular-progress-indicator-percentage 0.1s ease;
     content: "";
@@ -103,10 +116,8 @@
 
   &:not([aria-valuenow]),
   &[aria-valuenow=""] {
-    animation: circular-indeterminate-rotate 2s linear infinite;
-
     &::after {
-      animation: circular-indeterminate 2s linear infinite;
+      animation: circular-indeterminate 2s linear infinite, circular-indeterminate-rotate 2s linear infinite;
     }
   }
 }
@@ -157,135 +168,18 @@
 
 @keyframes circular-indeterminate {
   0% {
-    clip-path:
-      polygon(
-        functions.compose-polygon-displacement(10) 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  8% {
-    clip-path:
-      polygon(
-        100% 0%,
-        100% 0%,
-        100% 0%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  16% {
-    clip-path:
-      polygon(
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  24% {
-    clip-path:
-      polygon(
-        0% 100%,
-        0 100%,
-        100% 100%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  32% {
-    clip-path:
-      polygon(
-        0% functions.compose-polygon-displacement(10),
-        0 100%,
-        100% 100%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
+    --circular-progress-indicator-start-point: 0%;
+    --circular-progress-indicator-percentage: 0%;
   }
 
   50% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%,
-        100% 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        50% 50%
-      );
-  }
-
-  58% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%,
-        100% 0%,
-        100% 0%,
-        50% 50%
-      );
-  }
-
-  66% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        50% 50%
-      );
-  }
-
-  74% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        0% 100%,
-        0% 100%,
-        0% 100%,
-        50% 50%
-      );
-  }
-
-  82% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% functions.compose-polygon-displacement(10),
-        0% functions.compose-polygon-displacement(10),
-        0% functions.compose-polygon-displacement(10),
-        0% functions.compose-polygon-displacement(10),
-        50% 50%
-      );
+    --circular-progress-indicator-start-point: 0%;
+    --circular-progress-indicator-percentage: 100%;
   }
 
   100% {
-    clip-path:
-      polygon(
-        functions.compose-polygon-displacement(10) 0%,
-        0% 0%,
-        0% 0%,
-        0% 0%,
-        0% 0%,
-        50% 50%
-      );
+    --circular-progress-indicator-start-point: 100%;
+    --circular-progress-indicator-percentage: 100%;
   }
 }
 
