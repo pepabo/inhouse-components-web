@@ -85,6 +85,7 @@
         transparent 0
       );
     border-radius: 50%;
+    // stylelint-disable-next-line custom-property-no-missing-var-function
     transition: --circular-percentage 0.1s ease;
     content: "";
     mask-image:
