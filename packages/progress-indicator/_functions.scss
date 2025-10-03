@@ -1,5 +1,0 @@
-@use "sass:math";
-
-@function compose-polygon-displacement($var) {
-  @return 50% - (50% * math.tan(45deg - (($var % 25) * math.div(90,25))));
-}

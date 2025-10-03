@@ -1,9 +1,0 @@
-@use "./functions";
-@use "@gyugyu/assert-sass" as assert;
-
-@function test-compose-polygon-displacement() {
-  @return assert.equals(
-    functions.compose-polygon-displacement(50),
-    0%
-  );
-}
