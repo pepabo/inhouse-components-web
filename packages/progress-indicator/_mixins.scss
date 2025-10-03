@@ -57,6 +57,7 @@
 
 @mixin circular($option: variables.$default-option) {
   --circular-progress-indicator-color: #{adapter.get-progress-indicator-indicator-surface-color()};
+  --circular-progress-indicator-size: #{adapter.get-progress-indicator-border-size($size: m)};
 
   position: relative;
   width: adapter.get-circular-progress-indicator-width();
@@ -73,7 +74,13 @@
     border-radius: 50%;
     transition: --circular-progress-indicator-percentage 0.1s ease;
     content: "";
-    mask-image: radial-gradient(closest-side, transparent 79%, black 80% 100%);
+    mask-image:
+      radial-gradient(
+        closest-side,
+        transparent calc(100% - var(--circular-progress-indicator-size) - 0.5px),
+        rgba(0, 0, 0, 50%) calc(100% - var(--circular-progress-indicator-size) - 0.25px),
+        black calc(100% - var(--circular-progress-indicator-size)) 100%
+      );
   }
 
   &.-is-parent-color {
@@ -284,7 +291,7 @@
 
 @mixin -size-style($size) {
   &::after {
-    border-width: adapter.get-progress-indicator-border-size($size);
+    --circular-progress-indicator-size: #{adapter.get-progress-indicator-border-size($size)};
   }
 }
 
