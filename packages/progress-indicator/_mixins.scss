@@ -77,6 +77,7 @@
     inset: adapter.get-spacing-size($level: xxs);
     display: block;
     box-sizing: border-box;
+    margin: auto;
     background:
       conic-gradient(
         transparent var(--circular-progress-indicator-start-point),
@@ -94,6 +95,7 @@
         rgba(0, 0, 0, 50%) calc(100% - var(--circular-progress-indicator-size) - 0.25px),
         black calc(100% - var(--circular-progress-indicator-size)) 100%
       );
+    aspect-ratio: 1;
   }
 
   &.-is-parent-color {
