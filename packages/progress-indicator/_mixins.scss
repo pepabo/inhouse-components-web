@@ -38,39 +38,39 @@
     }
 
     &::before {
-      animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+      animation: in-linear-indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
     }
 
     &::after {
-      animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      animation: in-linear-indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
       animation-delay: 1.15s;
     }
   }
 }
 
-@property --circular-start-point {
+@property --in-circular-start-point {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 0%;
 }
 
-@property --circular-percentage {
+@property --in-circular-percentage {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 100%;
 }
 
 @mixin circular($option: variables.$default-option) {
-  --circular-color: #{adapter.get-progress-indicator-indicator-surface-color()};
-  --circular-size: #{adapter.get-progress-indicator-border-size($size: m)};
+  --in-circular-color: #{adapter.get-progress-indicator-indicator-surface-color()};
+  --in-circular-size: #{adapter.get-progress-indicator-border-size($size: m)};
 
   position: relative;
   width: adapter.get-circular-progress-indicator-width();
   height: adapter.get-circular-progress-indicator-height();
 
   &::after {
-    --circular-start-point: 0%;
-    --circular-percentage: 100%;
+    --in-circular-start-point: 0%;
+    --in-circular-percentage: 100%;
 
     position: absolute;
     inset: adapter.get-spacing-size($level: xxs);
@@ -79,28 +79,28 @@
     margin: auto;
     background:
       conic-gradient(
-        transparent var(--circular-start-point),
-        var(--circular-color) var(--circular-start-point),
-        var(--circular-color) var(--circular-percentage),
+        transparent var(--in-circular-start-point),
+        var(--in-circular-color) var(--in-circular-start-point),
+        var(--in-circular-color) var(--in-circular-percentage),
         transparent 0
       );
     border-radius: 50%;
     // stylelint-disable-next-line custom-property-no-missing-var-function
-    transition: --circular-percentage 0.1s ease;
+    transition: --in-circular-percentage 0.1s ease;
     content: "";
     mask-image:
       radial-gradient(
         closest-side,
-        transparent calc(100% - var(--circular-size) - 0.5px),
-        rgba(0, 0, 0, 50%) calc(100% - var(--circular-size) - 0.25px),
-        black calc(100% - var(--circular-size)) 100%
+        transparent calc(100% - var(--in-circular-size) - 0.5px),
+        rgba(0, 0, 0, 50%) calc(100% - var(--in-circular-size) - 0.25px),
+        black calc(100% - var(--in-circular-size)) 100%
       );
     aspect-ratio: 1;
   }
 
   &.-is-parent-color {
     &::after {
-      --circular-color: currentcolor;
+      --in-circular-color: currentcolor;
     }
   }
 
@@ -112,19 +112,19 @@
 
   @for $i from 0 to 100 {
     &[data-percentage="#{$i}"]::after {
-      --circular-percentage: #{$i * 1%};
+      --in-circular-percentage: #{$i * 1%};
     }
   }
 
   &:not([aria-valuenow]),
   &[aria-valuenow=""] {
     &::after {
-      animation: circular-indeterminate 2s linear infinite, circular-indeterminate-rotate 2s linear infinite;
+      animation: in-circular-indeterminate 2s linear infinite, in-circular-indeterminate-rotate 2s linear infinite;
     }
   }
 }
 
-@keyframes indeterminate {
+@keyframes in-linear-indeterminate {
   0% {
     right: 100%;
     left: -35%;
@@ -141,7 +141,7 @@
   }
 }
 
-@keyframes indeterminate-short {
+@keyframes in-linear-indeterminate-short {
   0% {
     right: 100%;
     left: -200%;
@@ -158,7 +158,7 @@
   }
 }
 
-@keyframes circular-indeterminate-rotate {
+@keyframes in-circular-indeterminate-rotate {
   0% {
     transform: rotate(0deg);
   }
@@ -168,26 +168,26 @@
   }
 }
 
-@keyframes circular-indeterminate {
+@keyframes in-circular-indeterminate {
   0% {
-    --circular-start-point: 0%;
-    --circular-percentage: 0%;
+    --in-circular-start-point: 0%;
+    --in-circular-percentage: 0%;
   }
 
   50% {
-    --circular-start-point: 0%;
-    --circular-percentage: 100%;
+    --in-circular-start-point: 0%;
+    --in-circular-percentage: 100%;
   }
 
   100% {
-    --circular-start-point: 100%;
-    --circular-percentage: 100%;
+    --in-circular-start-point: 100%;
+    --in-circular-percentage: 100%;
   }
 }
 
 @mixin -size-style($size) {
   &::after {
-    --circular-size: #{adapter.get-progress-indicator-border-size($size)};
+    --in-circular-size: #{adapter.get-progress-indicator-border-size($size)};
   }
 }
 
