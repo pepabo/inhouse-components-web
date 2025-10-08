@@ -3,7 +3,6 @@
 @use "@pepabo-inhouse/icon/mixins" as icon;
 @use "@pepabo-inhouse/adapter/functions" as adapter;
 @use "./variables";
-@use "./functions";
 
 @mixin linear($option: variables.$default-option) {
   $option: map.merge(variables.$default-option, $option);
@@ -39,43 +38,69 @@
     }
 
     &::before {
-      animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+      animation: in-linear-indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
     }
 
     &::after {
-      animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      animation: in-linear-indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
       animation-delay: 1.15s;
     }
   }
 }
 
+@property --in-circular-start-point {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --in-circular-percentage {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
 @mixin circular($option: variables.$default-option) {
+  --in-circular-color: #{adapter.get-progress-indicator-indicator-surface-color()};
+  --in-circular-size: #{adapter.get-progress-indicator-border-size($size: m)};
+
   position: relative;
   width: adapter.get-circular-progress-indicator-width();
   height: adapter.get-circular-progress-indicator-height();
 
   &::after {
+    --in-circular-start-point: 0%;
+    --in-circular-percentage: 100%;
+
     position: absolute;
-    top: adapter.get-spacing-size($level: xxs);
-    right: adapter.get-spacing-size($level: xxs);
-    bottom: adapter.get-spacing-size($level: xxs);
-    left: adapter.get-spacing-size($level: xxs);
+    inset: adapter.get-spacing-size($level: xxs);
     display: block;
     box-sizing: border-box;
-    border-color: adapter.get-progress-indicator-indicator-surface-color();
-    border-style: solid;
-    border-width: adapter.get-progress-indicator-border-size($size: l);
+    margin: auto;
+    background:
+      conic-gradient(
+        transparent var(--in-circular-start-point),
+        var(--in-circular-color) var(--in-circular-start-point),
+        var(--in-circular-color) var(--in-circular-percentage),
+        transparent 0
+      );
     border-radius: 50%;
-    transform: rotate(45deg);
-    transform-origin: center;
-    transition: clip-path 0.1s ease;
+    // stylelint-disable-next-line custom-property-no-missing-var-function
+    transition: --in-circular-percentage 0.1s ease;
     content: "";
-    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 50% 50%);
+    mask-image:
+      radial-gradient(
+        closest-side,
+        transparent calc(100% - var(--in-circular-size) - 0.5px),
+        rgba(0, 0, 0, 50%) calc(100% - var(--in-circular-size) - 0.25px),
+        black calc(100% - var(--in-circular-size)) 100%
+      );
+    aspect-ratio: 1;
   }
 
   &.-is-parent-color {
     &::after {
-      border-color: currentcolor;
+      --in-circular-color: currentcolor;
     }
   }
 
@@ -85,73 +110,21 @@
     }
   }
 
-  @for $i from 0 to 25 {
+  @for $i from 0 to 100 {
     &[data-percentage="#{$i}"]::after {
-      clip-path:
-        polygon(
-          functions.compose-polygon-displacement($i) 0%,
-          functions.compose-polygon-displacement($i) 0%,
-          functions.compose-polygon-displacement($i) 0%,
-          functions.compose-polygon-displacement($i) 0%,
-          0% 0%,
-          50% 50%
-        );
-    }
-  }
-
-  @for $j from 25 to 50 {
-    &[data-percentage="#{$j}"]::after {
-      clip-path:
-        polygon(
-          100% functions.compose-polygon-displacement($j),
-          100% functions.compose-polygon-displacement($j),
-          100% functions.compose-polygon-displacement($j),
-          100% 0%,
-          0% 0%,
-          50% 50%
-        );
-    }
-  }
-
-  @for $k from 50 to 75 {
-    &[data-percentage="#{$k}"]::after {
-      clip-path:
-        polygon(
-          (100% - functions.compose-polygon-displacement($k)) 100%,
-          (100% - functions.compose-polygon-displacement($k)) 100%,
-          100% 100%,
-          100% 0%,
-          0% 0%,
-          50% 50%
-        );
-    }
-  }
-
-  @for $l from 75 to 100 {
-    &[data-percentage="#{$l}"]::after {
-      clip-path:
-        polygon(
-          0% (100% - functions.compose-polygon-displacement($l)),
-          0 100%,
-          100% 100%,
-          100% 0%,
-          0% 0%,
-          50% 50%
-        );
+      --in-circular-percentage: #{$i * 1%};
     }
   }
 
   &:not([aria-valuenow]),
   &[aria-valuenow=""] {
-    animation: circular-indeterminate-rotate 2s linear infinite;
-
     &::after {
-      animation: circular-indeterminate 2s linear infinite;
+      animation: in-circular-indeterminate 2s linear infinite, in-circular-indeterminate-rotate 2s linear infinite;
     }
   }
 }
 
-@keyframes indeterminate {
+@keyframes in-linear-indeterminate {
   0% {
     right: 100%;
     left: -35%;
@@ -168,7 +141,7 @@
   }
 }
 
-@keyframes indeterminate-short {
+@keyframes in-linear-indeterminate-short {
   0% {
     right: 100%;
     left: -200%;
@@ -185,7 +158,7 @@
   }
 }
 
-@keyframes circular-indeterminate-rotate {
+@keyframes in-circular-indeterminate-rotate {
   0% {
     transform: rotate(0deg);
   }
@@ -195,143 +168,26 @@
   }
 }
 
-@keyframes circular-indeterminate {
+@keyframes in-circular-indeterminate {
   0% {
-    clip-path:
-      polygon(
-        functions.compose-polygon-displacement(10) 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  8% {
-    clip-path:
-      polygon(
-        100% 0%,
-        100% 0%,
-        100% 0%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  16% {
-    clip-path:
-      polygon(
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  24% {
-    clip-path:
-      polygon(
-        0% 100%,
-        0 100%,
-        100% 100%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
-  }
-
-  32% {
-    clip-path:
-      polygon(
-        0% functions.compose-polygon-displacement(10),
-        0 100%,
-        100% 100%,
-        100% 0%,
-        0% 0%,
-        50% 50%
-      );
+    --in-circular-start-point: 0%;
+    --in-circular-percentage: 0%;
   }
 
   50% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%,
-        100% 0%,
-        functions.compose-polygon-displacement(10) 0%,
-        50% 50%
-      );
-  }
-
-  58% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%,
-        100% 0%,
-        100% 0%,
-        50% 50%
-      );
-  }
-
-  66% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        50% 50%
-      );
-  }
-
-  74% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        0% 100%,
-        0% 100%,
-        0% 100%,
-        50% 50%
-      );
-  }
-
-  82% {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% functions.compose-polygon-displacement(10),
-        0% functions.compose-polygon-displacement(10),
-        0% functions.compose-polygon-displacement(10),
-        0% functions.compose-polygon-displacement(10),
-        50% 50%
-      );
+    --in-circular-start-point: 0%;
+    --in-circular-percentage: 100%;
   }
 
   100% {
-    clip-path:
-      polygon(
-        functions.compose-polygon-displacement(10) 0%,
-        0% 0%,
-        0% 0%,
-        0% 0%,
-        0% 0%,
-        50% 50%
-      );
+    --in-circular-start-point: 100%;
+    --in-circular-percentage: 100%;
   }
 }
 
 @mixin -size-style($size) {
   &::after {
-    border-width: adapter.get-progress-indicator-border-size($size);
+    --in-circular-size: #{adapter.get-progress-indicator-border-size($size)};
   }
 }
 
