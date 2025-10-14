@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/grid",
   "description": "Inhouse Components for the web grid component",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,11 +11,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/adapter": "^3.6.0",
-    "@pepabo-inhouse/container": "^3.6.0"
+    "@pepabo-inhouse/adapter": "^3.7.0",
+    "@pepabo-inhouse/container": "^3.7.0"
   },
   "devDependencies": {
-    "@pepabo-inhouse/constants": "^3.4.0",
+    "@pepabo-inhouse/constants": "^3.7.0",
     "@pepabo-inhouse/flavor": "^3.4.0",
     "@pepabo-inhouse/tokens": "^2.4.0"
   }
