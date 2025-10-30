@@ -5,113 +5,157 @@
 @use "./variables";
 @use "./functions";
 
+@mixin export {
+  .in-button {
+    @include style;
+  }
+
+  .in-skeleton-button {
+    @include skeleton-style;
+  }
+}
+
 // ソースコードの読みやすさを優先させて、以下のルールのlintの対象から除外する
 /* stylelint-disable no-descending-specificity */
 /* stylelint-disable no-duplicate-selectors */
 
 @mixin style($options: variables.$default-option) {
-  $options: map.merge(variables.$default-option, $options);
+  @include style-with-variants(
+    $variants: (
+      appearance: adapter.get-button-appearances(),
+      color: adapter.get-button-colors(),
+      brightness: adapter.get-brightnesses(),
+      shape: adapter.get-shapes(),
+      size: adapter.get-interactive-component-height-keys(),
+      width: adapter.get-widths()
+    ),
+    $default-style: $options
+  );
+}
 
-  @include -proto($options);
+/// 指定した属性とその値の組み合わせのスタイル
+/// このmixinは、デフォルトのスタイルと、追加で必要なオプションスタイルを出力します。
+///
+/// @param {Map} $variants - オプションとして利用したいスタイル(modifierとして利用できるスタイル)に関する属性
+/// @param {Map} $default-style - デフォルトのスタイル(modifierなしの状態のスタイル)に関する属性
+///
+/// @example
+///   @include style-with-variants($variants: (
+///     appearance: (flat, solid),
+///     color: (primary, neutral),
+///     size: (m, l)
+///   ));
+@mixin style-with-variants($variants: (), $default-style: variables.$default-option) {
+  $default-style: map.merge(variables.$default-option, $default-style);
+
+  @include -proto($default-style);
   @include -appearance-style(
-    $appearance: map.get($options, appearance),
-    $brightness: map.get($options, brightness),
-    $color: map.get($options, color),
+    $appearance: map.get($default-style, appearance),
+    $brightness: map.get($default-style, brightness),
+    $color: map.get($default-style, color),
     $state: enabled
   );
   @include -appearance-state-ruleset(
-    $appearance: map.get($options, appearance),
-    $brightness: map.get($options, brightness),
-    $color: map.get($options, color),
+    $appearance: map.get($default-style, appearance),
+    $brightness: map.get($default-style, brightness),
+    $color: map.get($default-style, color),
   );
 
   & > * {
     @include -child-element-style(
-      $appearance: map.get($options, appearance),
-      $shape: map.get($options, shape),
-      $size: map.get($options, size)
+      $appearance: map.get($default-style, appearance),
+      $shape: map.get($default-style, shape),
+      $size: map.get($default-style, size)
     );
   }
 
-  @each $appearance in adapter.get-button-appearances() {
+  // 使用する軸の値を取得
+  $use-appearances: -get-variant-values($variants, appearance);
+  $use-colors: -get-variant-values($variants, color);
+  $use-brightnesses: -get-variant-values($variants, brightness);
+  $use-shapes: -get-variant-values($variants, shape);
+  $use-sizes: -get-variant-values($variants, size);
+  $use-widths: -get-variant-values($variants, width);
+
+  @each $appearance in $use-appearances {
     &.-appearance-#{"" + $appearance} {
       @include -appearance-style(
         $appearance: $appearance,
-        $brightness: map.get($options, brightness),
-        $color: map.get($options, color),
+        $brightness: map.get($default-style, brightness),
+        $color: map.get($default-style, color),
         $state: enabled
       );
       @include -appearance-state-ruleset(
         $appearance: $appearance,
-        $brightness: map.get($options, brightness),
-        $color: map.get($options, color),
+        $brightness: map.get($default-style, brightness),
+        $color: map.get($default-style, color),
       );
     }
   }
 
-  @each $intention in adapter.get-button-colors() {
+  @each $intention in $use-colors {
     &.-color-#{$intention} {
       @include -appearance-style(
-        $appearance: map.get($options, appearance),
-        $brightness: map.get($options, brightness),
+        $appearance: map.get($default-style, appearance),
+        $brightness: map.get($default-style, brightness),
         $color: $intention,
         $state: enabled
       );
       @include -appearance-state-ruleset(
-        $appearance: map.get($options, appearance),
-        $brightness: map.get($options, brightness),
+        $appearance: map.get($default-style, appearance),
+        $brightness: map.get($default-style, brightness),
         $color: $intention,
       );
     }
 
-    @each $appearance in adapter.get-button-appearances() {
+    @each $appearance in $use-appearances {
       &.-color-#{$intention}.-appearance-#{"" + $appearance} {
         @include -appearance-style(
           $appearance: $appearance,
-          $brightness: map.get($options, brightness),
+          $brightness: map.get($default-style, brightness),
           $color: $intention,
           $state: enabled
         );
         @include -appearance-state-ruleset(
           $appearance: $appearance,
-          $brightness: map.get($options, brightness),
+          $brightness: map.get($default-style, brightness),
           $color: $intention,
         );
       }
     }
   }
 
-  @each $brightness in adapter.get-brightnesses() {
+  @each $brightness in $use-brightnesses {
     &.-brightness-#{$brightness} {
       @include -appearance-style(
-        $appearance: map.get($options, appearance),
+        $appearance: map.get($default-style, appearance),
         $brightness: $brightness,
-        $color: map.get($options, color),
+        $color: map.get($default-style, color),
         $state: enabled
       );
       @include -appearance-state-ruleset(
-        $appearance: map.get($options, appearance),
+        $appearance: map.get($default-style, appearance),
         $brightness: $brightness,
-        $color: map.get($options, color),
+        $color: map.get($default-style, color),
       );
     }
 
-    @each $appearance in adapter.get-button-appearances() {
+    @each $appearance in $use-appearances {
       &.-brightness-#{$brightness}.-appearance-#{"" + $appearance} {
         @include -appearance-style(
           $appearance: $appearance,
           $brightness: $brightness,
-          $color: map.get($options, color),
+          $color: map.get($default-style, color),
           $state: enabled
         );
         @include -appearance-state-ruleset(
           $appearance: $appearance,
           $brightness: $brightness,
-          $color: map.get($options, color),
+          $color: map.get($default-style, color),
         );
       }
 
-      @each $intention in adapter.get-button-colors() {
+      @each $intention in $use-colors {
         &.-brightness-#{$brightness}.-appearance-#{"" + $appearance}.-color-#{$intention} {
           @include -appearance-style(
             $appearance: $appearance,
@@ -129,45 +173,45 @@
     }
   }
 
-  @each $shape in adapter.get-shapes() {
+  @each $shape in $use-shapes {
     &.-shape-#{$shape} {
       @include -shape-style(
-        $appearance: map.get($options, appearance),
+        $appearance: map.get($default-style, appearance),
         $shape: $shape,
-        $size: map.get($options, size)
+        $size: map.get($default-style, size)
       );
     }
 
-    @each $appearance in adapter.get-button-appearances() {
+    @each $appearance in $use-appearances {
       &.-shape-#{$shape}.-appearance-#{"" + $appearance} {
         @include -shape-style(
           $appearance: $appearance,
           $shape: $shape,
-          $size: map.get($options, size)
+          $size: map.get($default-style, size)
         );
       }
     }
   }
 
-  @each $size in adapter.get-interactive-component-height-keys() {
+  @each $size in $use-sizes {
     &.-size-#{$size} {
       @include -size-style(
-        $appearance: map.get($options, appearance),
-        $shape: map.get($options, shape),
+        $appearance: map.get($default-style, appearance),
+        $shape: map.get($default-style, shape),
         $size: $size
       );
     }
 
-    @each $shape in adapter.get-shapes() {
+    @each $shape in $use-shapes {
       &.-size-#{$size}.-shape-#{$shape} {
         @include -shape-style(
-          $appearance: map.get($options, appearance),
+          $appearance: map.get($default-style, appearance),
           $shape: $shape,
           $size: $size
         );
       }
 
-      @each $appearance in adapter.get-button-appearances() {
+      @each $appearance in $use-appearances {
         &.-size-#{$size}.-shape-#{$shape}.-appearance-#{"" + $appearance} {
           @include -shape-style(
             $appearance: $appearance,
@@ -179,7 +223,7 @@
     }
   }
 
-  @each $width in adapter.get-widths() {
+  @each $width in $use-widths {
     &.-width-#{$width} {
       width: adapter.get-width($width: $width);
     }
@@ -230,16 +274,6 @@
     &.-width-#{$width} {
       width: adapter.get-width($width: $width);
     }
-  }
-}
-
-@mixin export {
-  .in-button {
-    @include style;
-  }
-
-  .in-skeleton-button {
-    @include skeleton-style;
   }
 }
 
@@ -426,4 +460,12 @@
     margin-left: 0;
     font-size: adapter.get-icon-only-button-pict-height($level: $size);
   }
+}
+
+@function -get-variant-values($variants, $key) {
+  @if not map.has-key($variants, $key) {
+    @return ();
+  }
+
+  @return map.get($variants, $key);
 }
