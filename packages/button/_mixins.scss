@@ -21,7 +21,6 @@
 
 @mixin style($options: variables.$default-option) {
   @include style-with-variants(
-    $default-style: $options,
     $variants: (
       appearance: adapter.get-button-appearances(),
       color: adapter.get-button-colors(),
@@ -29,15 +28,16 @@
       shape: adapter.get-shapes(),
       size: adapter.get-interactive-component-height-keys(),
       width: adapter.get-widths()
-    )
+    ),
+    $default-style: $options
   );
 }
 
 /// 指定した属性とその値の組み合わせのスタイル
 /// このmixinは、デフォルトのスタイルと、追加で必要なオプションスタイルを出力します。
 ///
-/// @param {Map} $default-style - デフォルトのスタイル(modifierなしの状態のスタイル)に関する属性
 /// @param {Map} $variants - オプションとして利用したいスタイル(modifierとして利用できるスタイル)に関する属性
+/// @param {Map} $default-style - デフォルトのスタイル(modifierなしの状態のスタイル)に関する属性
 ///
 /// @example
 ///   @include style-with-variants($variants: (
@@ -45,7 +45,7 @@
 ///     color: (primary, neutral),
 ///     size: (m, l)
 ///   ));
-@mixin style-with-variants($default-style: variables.$default-option, $variants: ()) {
+@mixin style-with-variants($variants: (), $default-style: variables.$default-option) {
   $default-style: map.merge(variables.$default-option, $default-style);
 
   @include -proto($default-style);
