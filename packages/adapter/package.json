@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/adapter",
   "description": "Inhouse is core design system to support pepabo brand.",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -11,10 +11,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@pepabo-inhouse/constants": "^3.7.0"
+    "@pepabo-inhouse/constants": "^3.8.0"
   },
   "devDependencies": {
-    "@pepabo-inhouse/flavor": "^3.4.0",
+    "@pepabo-inhouse/flavor": "^3.8.0",
     "@pepabo-inhouse/tokens": "^2.4.0",
     "sassdoc": "^2.7.4"
   },
