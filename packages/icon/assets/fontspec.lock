@@ -280,6 +280,10 @@
       "name": "clock",
       "codePoint": 61808
     },
+    "clip.svg": {
+      "name": "clip",
+      "codePoint": 61826
+    },
     "circle.svg": {
       "name": "circle",
       "codePoint": 61721
