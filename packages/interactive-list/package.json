@@ -1,7 +1,7 @@
 {
   "name": "@pepabo-inhouse/interactive-list",
   "description": "Inhouse Components for the web interactive-list component",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@pepabo-inhouse/adapter": "^3.8.0",
     "@pepabo-inhouse/cell": "^3.8.0",
-    "@pepabo-inhouse/icon": "^3.9.0",
+    "@pepabo-inhouse/icon": "^3.9.1",
     "@pepabo-inhouse/skeleton": "^3.8.0",
     "@pepabo-inhouse/thumbnail": "^3.8.0"
   },
