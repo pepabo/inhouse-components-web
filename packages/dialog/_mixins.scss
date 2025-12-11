@@ -31,6 +31,7 @@
   @include -size-style(map.get($options, size));
   @include -alignment-style(map.get($options, alignment));
   @include -button-flow-style(map.get($options, button-flow));
+  @include keyframes;
 
   > * {
     grid-column: 2;
