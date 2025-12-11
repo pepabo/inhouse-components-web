@@ -76,14 +76,13 @@ const Dialog: FC<Props> = (props: Props) => {
                     {title}
                   </Heading>
                 </div>
-                <div className="_content" aria-labelledby="dialog-title">
+                <div className="_content">
                   {children}
                 </div>
                 {footer && (
                   <div
                     className="_footer"
                     role="toolbar"
-                    aria-label="ダイアログのアクション"
                   >
                      {typeof footer === 'function' ? footer({ close }) : footer}
                   </div>
