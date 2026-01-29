@@ -106,6 +106,13 @@
   );
 }
 
+@function test-get-radio-label-offset() {
+  @return assert.equals(
+    functions.get-radio-label-offset(),
+    2rem
+  );
+}
+
 @function test-get-side-navigation-width() {
   @return assert.equals(
     functions.get-side-navigation-width(),

@@ -3,6 +3,7 @@
 @use "@pepabo-inhouse/flavor/tokens";
 @use "../helpers";
 @use "../../error-message";
+@use "./gap";
 
 $width-tokens: map.get(
   map.get(tokens.$tokens, size),
@@ -228,6 +229,17 @@ $width-tokens: map.get(
   $child-tokens: map.get($tokens, child);
 
   @return map.get($child-tokens, foreground);
+}
+
+/// radioボタンのラベル左端位置のオフセット値を取得します
+/// ラベル下に配置する要素の左端を揃える際に使用します
+///
+/// @group size
+/// @example
+///   functions.get-radio-label-offset()
+///   // 2rem
+@function get-radio-label-offset() {
+  @return get-radio-parent-width() + gap.get-radio-label-gap();
 }
 
 /// side navigationのwidthの値を取得します

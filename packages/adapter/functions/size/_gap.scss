@@ -27,3 +27,15 @@ $gap-size-tokens: map.get(
 
   @return map.get($tokens, $level);
 }
+
+/// radioボタンとラベル間のgapを取得します。
+///
+/// @group size
+/// @example
+///   functions.get-radio-label-gap()
+///   // 0.5rem
+@function get-radio-label-gap() {
+  // TODO: トークンが追加されたら以下を使用:
+  // @return map.get($gap-size-tokens, radio-label);
+  @return 0.5rem;
+}

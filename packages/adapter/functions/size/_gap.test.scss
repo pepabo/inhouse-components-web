@@ -7,3 +7,10 @@
     1rem
   );
 }
+
+@function test-get-radio-label-gap() {
+  @return assert.equals(
+    functions.get-radio-label-gap(),
+    0.5rem
+  );
+}
