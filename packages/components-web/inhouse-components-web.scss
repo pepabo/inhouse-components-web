@@ -26,6 +26,7 @@
 @use "@pepabo-inhouse/table";
 @use "@pepabo-inhouse/textfield";
 @use "@pepabo-inhouse/snackbar";
+@use "@pepabo-inhouse/sticker";
 @use "@pepabo-inhouse/validation-message";
 
 // flavor内で@import が存在しているので最初に flavor を読む
@@ -58,4 +59,5 @@
 @include table.export;
 @include textfield.export;
 @include snackbar.export;
+@include sticker.export;
 @include validation-message.export;
