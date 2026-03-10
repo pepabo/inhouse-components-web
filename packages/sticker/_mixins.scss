@@ -67,5 +67,5 @@
   line-height: adapter.get-line-height($level: $size, $density: normal);
   padding-block: calc(adapter.get-spacing-size(xs) / 2);
   padding-inline: adapter.get-spacing-size(s);
-  border-radius: adapter.get-radius-size(s);
+  border-radius: 1.25rem;
 }
