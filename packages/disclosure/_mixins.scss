@@ -1,0 +1,98 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/cell/mixins" as cell;
+@use "./variables";
+
+@mixin style($option: variables.$default-option) {
+  $option: map.merge(variables.$default-option, $option);
+
+  > ._summary {
+    @include -summary-proto(
+      $density: map.get($option, density),
+      $size: map.get($option, size)
+    );
+  }
+
+  &[open] > ._summary {
+    background-color:
+      adapter.get-background-overlay-color(
+        $brightness: light,
+        $state: activated
+      );
+
+    > ._chevron {
+      transform: rotate(90deg);
+    }
+  }
+
+  @each $size in adapter.get-cell-sizes() {
+    &.-size-#{$size} > ._summary {
+      @include -summary-proto(
+        $density: map.get($option, density),
+        $size: $size
+      );
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    &.-density-#{$density} > ._summary {
+      @include -summary-proto(
+        $density: $density,
+        $size: map.get($option, size)
+      );
+    }
+  }
+
+  @each $density in adapter.get-densities() {
+    @each $size in adapter.get-cell-sizes() {
+      &.-density-#{$density}.-size-#{$size} > ._summary {
+        @include -summary-proto($density: $density, $size: $size);
+      }
+    }
+  }
+}
+
+@mixin export {
+  .in-disclosure {
+    @include style;
+  }
+}
+
+@mixin -summary-proto($density: normal, $size: m) {
+  @include cell.style((density: $density, size: $size));
+
+  display: flex;
+  gap: adapter.get-interactive-list-spacing-size();
+  align-items: center;
+  background-color:
+    adapter.get-background-overlay-color(
+      $brightness: light,
+      $state: enabled
+    );
+  list-style: none;
+  cursor: pointer;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover,
+  &.--hover {
+    background-color:
+      adapter.get-background-overlay-color(
+        $brightness: light,
+        $state: hover
+      );
+  }
+
+  &:focus-visible,
+  &.--focused {
+    background-color:
+      adapter.get-background-overlay-color(
+        $brightness: light,
+        $state: focused
+      );
+    outline: adapter.get-focus-ring-outline();
+    outline-offset: adapter.get-focus-ring-outline-offset();
+  }
+}
