@@ -64,12 +64,12 @@
   display: flex;
   gap: adapter.get-interactive-list-spacing-size();
   align-items: center;
+  list-style: none;
   background-color:
     adapter.get-background-overlay-color(
       $brightness: light,
       $state: enabled
     );
-  list-style: none;
   cursor: pointer;
 
   &::-webkit-details-marker {
