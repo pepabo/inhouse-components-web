@@ -1,0 +1,182 @@
+@use "sass:map";
+@use "sass:list";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/icon/mixins" as icon;
+@use "@pepabo-inhouse/skeleton/mixins" as skeleton;
+@use "./variables";
+@use "./functions";
+
+@mixin export {
+  .in-chips {
+    @include style;
+  }
+
+  .in-skeleton-chips {
+    @include skeleton-style;
+  }
+}
+
+// ソースコードの読みやすさを優先させて、以下のルールのlintの対象から除外する
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-duplicate-selectors */
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include -proto($options);
+  @include -color-style(
+    $color: map.get($options, color),
+    $state: enabled
+  );
+  @include -state-ruleset(
+    $color: map.get($options, color)
+  );
+
+  & > * {
+    @include -child-element-style(
+      $size: map.get($options, size)
+    );
+  }
+
+  @each $color in adapter.get-semantic-intentions() {
+    &.-color-#{$color} {
+      @include -color-style(
+        $color: $color,
+        $state: enabled
+      );
+      @include -state-ruleset(
+        $color: $color
+      );
+    }
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      @include -size-style($size: $size);
+
+      & > * {
+        @include -child-element-style(
+          $size: $size
+        );
+      }
+    }
+  }
+}
+
+@mixin skeleton-style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include skeleton.style;
+
+  width: auto;
+  height: adapter.get-interactive-component-height($level: map.get($options, size));
+  border-radius:
+    functions.get-border-radius(
+      $size: map.get($options, size)
+    );
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      height: adapter.get-interactive-component-height($level: $size);
+      border-radius:
+        functions.get-border-radius(
+          $size: $size
+        );
+    }
+  }
+}
+
+@mixin -proto($options) {
+  position: relative;
+  display: inline-flex;
+  gap: adapter.get-spacing-size($level: xxs);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: adapter.get-interactive-component-height($level: map.get($options, size));
+  padding: 0;
+  overflow: hidden;
+  font-size: adapter.get-font-size($level: map.get($options, size));
+  font-family: inherit;
+  line-height:
+    adapter.get-line-height(
+      $level: map.get($options, size),
+      $density: normal
+    );
+  white-space: nowrap;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  border: adapter.get-border-size($level: m) solid;
+  border-radius:
+    functions.get-border-radius(
+      $size: map.get($options, size)
+    );
+  outline: 0;
+  cursor: pointer;
+  transition: 0;
+  appearance: none;
+  user-select: none;
+}
+
+@mixin -color-style($color, $state) {
+  color: adapter.get-semantic-color($color, 800);
+  background-color: adapter.get-semantic-color($color, 100);
+  border-color: adapter.get-semantic-color($color, 300);
+  outline: functions.get-outline($state: $state);
+  outline-offset: adapter.get-focus-ring-outline-offset();
+}
+
+@mixin -state-ruleset($color) {
+  &:hover,
+  &.--hover {
+    background-color: adapter.get-semantic-color($color, 200);
+  }
+
+  &:active,
+  &.--active {
+    background-color: adapter.get-semantic-color($color, 300);
+  }
+
+  &:focus-visible,
+  &.--focused {
+    @include -color-style(
+      $color: $color,
+      $state: focused
+    );
+  }
+
+  &:disabled,
+  &.--disabled {
+    cursor: default;
+    opacity: adapter.get-disabled-surface-opacity();
+  }
+}
+
+@mixin -size-style($size) {
+  height: adapter.get-interactive-component-height($level: $size);
+  font-size: adapter.get-font-size($level: $size);
+  line-height:
+    adapter.get-line-height(
+      $level: $size,
+      $density: normal
+    );
+  border-radius:
+    functions.get-border-radius(
+      $size: $size
+    );
+}
+
+@mixin -child-element-style($size) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:first-child {
+    margin-left: functions.get-horizontal-padding($size: $size);
+  }
+
+  &:last-child {
+    margin-right: functions.get-horizontal-padding($size: $size);
+  }
+}
