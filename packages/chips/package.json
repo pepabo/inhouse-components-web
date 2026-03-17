@@ -1,0 +1,23 @@
+{
+  "name": "@pepabo-inhouse/chips",
+  "description": "Inhouse Components for the web chips component",
+  "version": "3.9.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pepabo/inhouse-components-web.git",
+    "directory": "packages/chips"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@pepabo-inhouse/adapter": "^3.9.3",
+    "@pepabo-inhouse/icon": "^3.9.3",
+    "@pepabo-inhouse/skeleton": "^3.9.3"
+  },
+  "devDependencies": {
+    "@pepabo-inhouse/constants": "^3.9.3",
+    "@pepabo-inhouse/flavor": "^3.9.3",
+    "@pepabo-inhouse/tokens": "^2.4.0"
+  }
+}
