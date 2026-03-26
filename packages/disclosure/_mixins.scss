@@ -6,27 +6,27 @@
 @mixin style($option: variables.$default-option) {
   $option: map.merge(variables.$default-option, $option);
 
-  > ._summary {
+  > ._leading {
     @include -summary-proto(
       $density: map.get($option, density),
       $size: map.get($option, size)
     );
   }
 
-  &[open] > ._summary {
+  &[open] > ._leading {
     background-color:
       adapter.get-background-overlay-color(
         $brightness: light,
         $state: activated
       );
 
-    > ._chevron {
+    > ._icon {
       transform: rotate(90deg);
     }
   }
 
   @each $size in adapter.get-cell-sizes() {
-    &.-size-#{$size} > ._summary {
+    &.-size-#{$size} > ._leading {
       @include -summary-proto(
         $density: map.get($option, density),
         $size: $size
@@ -35,7 +35,7 @@
   }
 
   @each $density in adapter.get-densities() {
-    &.-density-#{$density} > ._summary {
+    &.-density-#{$density} > ._leading {
       @include -summary-proto(
         $density: $density,
         $size: map.get($option, size)
@@ -45,7 +45,7 @@
 
   @each $density in adapter.get-densities() {
     @each $size in adapter.get-cell-sizes() {
-      &.-density-#{$density}.-size-#{$size} > ._summary {
+      &.-density-#{$density}.-size-#{$size} > ._leading {
         @include -summary-proto($density: $density, $size: $size);
       }
     }

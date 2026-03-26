@@ -36,12 +36,12 @@ const Disclosure: FC<Props> = (props: Props) => {
       open={open}
       {...rest}
     >
-      <summary className='_summary'>
+      <summary className='_leading'>
         <Icon
-          className='_chevron'
+          className='_icon'
           icon='chevron_right'
         />
-        <span className='_body'>{summary}</span>
+        {summary}
       </summary>
       <div className='_content'>
         {children}
