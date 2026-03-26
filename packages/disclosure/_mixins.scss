@@ -62,7 +62,7 @@
   @include cell.style((density: $density, size: $size));
 
   display: flex;
-  gap: adapter.get-interactive-list-spacing-size();
+  gap: adapter.get-gap-size(xs);
   align-items: center;
   list-style: none;
   background-color:
