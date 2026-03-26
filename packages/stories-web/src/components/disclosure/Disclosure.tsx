@@ -43,7 +43,7 @@ const Disclosure: FC<Props> = (props: Props) => {
         />
         {summary}
       </summary>
-      <div className='_content'>
+      <div className='_body'>
         {children}
       </div>
     </details>
