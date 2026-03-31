@@ -38,7 +38,7 @@
   // size
   @include -size-rule($size: map.get($options, size));
 
-  @each $size in "s", "m", "l" {
+  @each $size in "xs", "s", "m", "l", "xl" {
     &.-size-#{$size} {
       @include -size-rule($size: $size);
     }

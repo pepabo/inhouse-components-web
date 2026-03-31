@@ -5,9 +5,9 @@ export interface Props {
   children: ReactNode;
   color?: Extract<
     SemanticColor,
-    "informative" | "positive" | "negative" | "notice"
+    "neutral" | "informative" | "positive" | "negative" | "notice" | "attention"
   >;
-  size?: Extract<Size, 's' | 'm' | 'l'>;
+  size?: Extract<Size, 'xs' | 's' | 'm' | 'l' | 'xl'>;
   appearance?: Extract<Appearance, 'filled' | 'outlined'>;
 }
 

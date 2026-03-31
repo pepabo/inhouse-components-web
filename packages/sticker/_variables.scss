@@ -5,10 +5,12 @@ $default-options: (
 );
 
 $available-colors: (
+  neutral,
   informative,
   positive,
-  notice,
   negative,
+  notice,
+  attention,
 );
 
 $available-appearances: (
