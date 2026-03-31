@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@mixin style($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
+
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-weight: bold;
+
+  // color
+  @include -color-rule(
+    $color: map.get($options, color),
+    $appearance: map.get($options, appearance),
+  );
+
+  @each $color in variables.$available-colors {
+    &.-color-#{$color} {
+      @include -color-rule($color: $color, $appearance: map.get($options, appearance));
+
+      @each $appearance in variables.$available-appearances {
+        &.-appearance-#{$appearance} {
+          @include -color-rule($color: $color, $appearance: $appearance);
+        }
+      }
+    }
+  }
+
+  // appearance (without color override)
+  @each $appearance in variables.$available-appearances {
+    &.-appearance-#{$appearance} {
+      @include -color-rule($color: map.get($options, color), $appearance: $appearance);
+    }
+  }
+
+  // size
+  @include -size-rule($size: map.get($options, size));
+
+  @each $size in "xs", "s", "m", "l", "xl" {
+    &.-size-#{$size} {
+      @include -size-rule($size: $size);
+    }
+  }
+}
+
+@mixin export {
+  .in-sticker {
+    @include style;
+  }
+}
+
+@mixin -color-rule($color: informative, $appearance: filled) {
+  @if $appearance == filled {
+    color: adapter.get-semantic-color($color, 800);
+    background-color: adapter.get-semantic-color($color, 100);
+  } @else if $appearance == outlined {
+    color: adapter.get-semantic-color($color, 800);
+    background-color: transparent;
+    border: 1px solid adapter.get-semantic-color($color, 300);
+  }
+}
+
+@mixin -size-rule($size: m) {
+  font-size: adapter.get-font-size($size);
+  line-height: adapter.get-line-height($level: $size, $density: normal);
+  padding-block: calc(adapter.get-spacing-size(xs) / 2);
+  padding-inline: adapter.get-spacing-size(s);
+  border-radius: 4px;
+}

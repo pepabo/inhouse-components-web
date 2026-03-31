@@ -1,0 +1,19 @@
+$default-options: (
+  color: informative,
+  size: m,
+  appearance: filled,
+);
+
+$available-colors: (
+  neutral,
+  informative,
+  positive,
+  negative,
+  notice,
+  attention,
+);
+
+$available-appearances: (
+  filled,
+  outlined,
+);
