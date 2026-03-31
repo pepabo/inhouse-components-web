@@ -1,0 +1,38 @@
+@use "sass:list";
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "./variables";
+
+@function get-border-radius($size: m) {
+  $available-sizes: adapter.get-interactive-component-height-keys();
+
+  @if list.index($available-sizes, $size) == null {
+    @error "$sizeには #{$available-sizes} のいずれかのみ指定できます";
+  }
+
+  @return adapter.get-interactive-component-height($level: $size) * 0.5;
+}
+
+@function get-horizontal-padding($size: m) {
+  @if $size == s or $size == xs {
+    @return adapter.get-spacing-size($level: xs);
+  } @else {
+    @return adapter.get-spacing-size($level: s);
+  }
+}
+
+@function get-outline($state: enabled) {
+  $available-states: adapter.get-states();
+
+  @if list.index($available-states, $state) == null {
+    @error "$stateには #{$available-states} のいずれかのみ指定できます";
+  }
+
+  $focus-ring: adapter.get-focus-ring-outline();
+
+  @if $state == focused {
+    @return $focus-ring;
+  } @else {
+    @return none;
+  }
+}
