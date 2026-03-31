@@ -7,11 +7,11 @@
 @use "./functions";
 
 @mixin export {
-  .in-chips {
+  .in-chip {
     @include style;
   }
 
-  .in-skeleton-chips {
+  .in-skeleton-chip {
     @include skeleton-style;
   }
 }

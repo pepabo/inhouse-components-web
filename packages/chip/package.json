@@ -1,11 +1,11 @@
 {
-  "name": "@pepabo-inhouse/chips",
-  "description": "Inhouse Components for the web chips component",
+  "name": "@pepabo-inhouse/chip",
+  "description": "Inhouse Components for the web chip component",
   "version": "3.9.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
-    "directory": "packages/chips"
+    "directory": "packages/chip"
   },
   "publishConfig": {
     "access": "public"
