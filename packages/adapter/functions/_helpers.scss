@@ -409,6 +409,8 @@
 }
 
 /// （未使用？）
+/// TODO: 自己再帰による無限ループと、Sass 1.85+ で非推奨の if() を含んでいる。
+/// 削除したいが、残っている理由があるのかもしれないので確認する。
 ///
 /// @group helper
 @function get-foreground-brightness($background-color) {
