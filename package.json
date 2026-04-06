@@ -37,7 +37,7 @@
     "reg-publish-s3-plugin": "0.12.1",
     "reg-suit": "^0.14.3",
     "rimraf": "^5.0.1",
-    "sass": "1.98.0",
+    "sass": "1.62.1",
     "stylelint": "14.16.1",
     "stylelint-config-rational-order": "npm:stylelint-config-rational-order-fix@^0.1.9",
     "stylelint-config-standard-scss": "2.0.1",
