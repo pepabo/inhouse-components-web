@@ -1,6 +1,6 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
-import ChipDemo, { Props } from './components/chip/ChipDemo'
+import ChipDemo, { Props } from './components/demo/ChipDemo'
 import SkeletonChip, { Props as SkeletonChipProps } from './components/chip/SkeletonChip'
 
 export default {

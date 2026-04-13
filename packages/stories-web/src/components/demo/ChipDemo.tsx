@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Chip, { Props as ChipProps } from './Chip'
+import Chip, { Props as ChipProps } from '../chip/Chip'
 import Icon from '../Icon'
 
 export type Props = Pick<ChipProps, 'color' | 'size'>
