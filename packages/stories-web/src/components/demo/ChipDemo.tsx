@@ -45,7 +45,7 @@ const ChipDemo: FC<Props> = (props: Props) => (
       trailing={
         <Icon
           className='_icon'
-          icon='close'
+          icon='cross'
         />
       }
     />
