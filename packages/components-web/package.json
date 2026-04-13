@@ -21,6 +21,7 @@
     "@pepabo-inhouse/card": "^4.0.0",
     "@pepabo-inhouse/cell": "^4.0.0",
     "@pepabo-inhouse/checkbox": "^4.0.0",
+    "@pepabo-inhouse/chip": "^4.0.0",
     "@pepabo-inhouse/constants": "^4.0.0",
     "@pepabo-inhouse/container": "^4.0.0",
     "@pepabo-inhouse/description-list": "^4.0.0",

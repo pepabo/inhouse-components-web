@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-get-border-radius() {
+  @return assert.equals(
+    functions.get-border-radius($size: m),
+    1.25rem
+  );
+}
+
+@function test-get-horizontal-padding-m() {
+  @return assert.equals(
+    functions.get-horizontal-padding($size: m),
+    0.75rem
+  );
+}
+
+@function test-get-horizontal-padding-s() {
+  @return assert.equals(
+    functions.get-horizontal-padding($size: s),
+    0.5rem
+  );
+}
+
+@function test-get-outline() {
+  @return assert.equals(
+    "#{functions.get-outline($state: focused)}",
+    "0.25rem solid #3e93de"
+  );
+}
