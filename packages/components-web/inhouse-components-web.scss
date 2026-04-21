@@ -10,6 +10,7 @@
 @use "@pepabo-inhouse/container";
 @use "@pepabo-inhouse/description-list";
 @use "@pepabo-inhouse/dialog";
+@use "@pepabo-inhouse/disclosure";
 @use "@pepabo-inhouse/flavor";
 @use "@pepabo-inhouse/grid";
 @use "@pepabo-inhouse/header";
@@ -45,6 +46,7 @@
 @include container.export;
 @include description-list.export;
 @include dialog.export;
+@include disclosure.export;
 @include grid.export;
 @include icon.export;
 @include interactive-list.export;

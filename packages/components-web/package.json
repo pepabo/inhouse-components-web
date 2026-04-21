@@ -25,6 +25,7 @@
     "@pepabo-inhouse/constants": "^4.0.0",
     "@pepabo-inhouse/container": "^4.0.0",
     "@pepabo-inhouse/description-list": "^4.0.0",
+    "@pepabo-inhouse/disclosure": "^4.0.0",
     "@pepabo-inhouse/flavor": "^4.0.0",
     "@pepabo-inhouse/grid": "^4.0.0",
     "@pepabo-inhouse/header": "^4.0.0",
