@@ -1,33 +1,43 @@
-import React, { FC, ReactNode } from 'react'
-import { SemanticColor, Size, Appearance } from '../types'
+import React, { FC, HTMLAttributes, ReactNode } from 'react'
+import { Appearance, SemanticColor, Size } from '../types'
 
-export interface Props {
-  children: ReactNode;
-  color?: Extract<
-    SemanticColor,
-    "neutral" | "informative" | "positive" | "negative" | "notice" | "attention"
-  >;
-  size?: Extract<Size, 'xs' | 's' | 'm' | 'l' | 'xl'>;
-  appearance?: Extract<Appearance, 'filled' | 'outlined'>;
+type HTMLProps = HTMLAttributes<HTMLSpanElement>
+
+export interface Props extends HTMLProps {
+  appearance?: Extract<Appearance, 'filled' | 'outlined'>
+  children: ReactNode
+  color?: SemanticColor
+  size?: Extract<Size, 'xs' | 's' | 'm' | 'l' | 'xl'>
 }
 
 const Sticker: FC<Props> = (props: Props) => {
   const {
-    color = "informative",
-    size = "m",
-    appearance = "filled",
-    children
+    appearance,
+    children,
+    color,
+    size,
+    ...rest
   } = props
 
-  const classes = [
-    'in-sticker',
-    `-color-${color}`,
-    `-size-${size}`,
-    `-appearance-${appearance}`,
-  ]
+  const classes = ['in-sticker']
+
+  if (typeof color !== 'undefined') {
+    classes.push(`-color-${color}`)
+  }
+
+  if (typeof size !== 'undefined') {
+    classes.push(`-size-${size}`)
+  }
+
+  if (typeof appearance !== 'undefined') {
+    classes.push(`-appearance-${appearance}`)
+  }
 
   return (
-    <span className={classes.join(' ')}>
+    <span
+      className={classes.join(' ')}
+      {...rest}
+    >
       {children}
     </span>
   )
