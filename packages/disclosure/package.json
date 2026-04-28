@@ -1,19 +1,19 @@
 {
-  "name": "@pepabo-inhouse/button",
-  "description": "Inhouse Components for the web button component",
+  "name": "@pepabo-inhouse/disclosure",
+  "description": "Inhouse Components for the web disclosure component",
   "version": "4.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
-    "directory": "packages/button"
+    "directory": "packages/disclosure"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@pepabo-inhouse/adapter": "^4.0.0",
-    "@pepabo-inhouse/icon": "^4.0.0",
-    "@pepabo-inhouse/skeleton": "^4.0.0"
+    "@pepabo-inhouse/cell": "^4.0.0",
+    "@pepabo-inhouse/icon": "^4.0.0"
   },
   "devDependencies": {
     "@pepabo-inhouse/constants": "^4.0.0",

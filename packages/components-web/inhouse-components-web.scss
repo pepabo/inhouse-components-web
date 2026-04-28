@@ -6,9 +6,11 @@
 @use "@pepabo-inhouse/callout";
 @use "@pepabo-inhouse/card";
 @use "@pepabo-inhouse/checkbox";
+@use "@pepabo-inhouse/chip";
 @use "@pepabo-inhouse/container";
 @use "@pepabo-inhouse/description-list";
 @use "@pepabo-inhouse/dialog";
+@use "@pepabo-inhouse/disclosure";
 @use "@pepabo-inhouse/flavor";
 @use "@pepabo-inhouse/grid";
 @use "@pepabo-inhouse/header";
@@ -41,9 +43,11 @@
 @include callout.export;
 @include card.export;
 @include checkbox.export;
+@include chip.export;
 @include container.export;
 @include description-list.export;
 @include dialog.export;
+@include disclosure.export;
 @include grid.export;
 @include icon.export;
 @include interactive-list.export;

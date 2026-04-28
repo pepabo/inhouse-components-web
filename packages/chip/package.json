@@ -1,11 +1,11 @@
 {
-  "name": "@pepabo-inhouse/button",
-  "description": "Inhouse Components for the web button component",
+  "name": "@pepabo-inhouse/chip",
+  "description": "Inhouse Components for the web chip component",
   "version": "4.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepabo/inhouse-components-web.git",
-    "directory": "packages/button"
+    "directory": "packages/chip"
   },
   "publishConfig": {
     "access": "public"
