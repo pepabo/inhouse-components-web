@@ -5,16 +5,18 @@ type HTMLProps = HTMLAttributes<HTMLSpanElement>
 
 export interface Props extends HTMLProps {
   appearance?: 'fill-only' | 'fill-with-outlined' | 'outlined' | 'text-only'
-  children: ReactNode
+  body?: ReactNode
   color?: SemanticColor
+  leading?: ReactNode
   size?: Extract<Size, 'xs' | 's' | 'm' | 'l' | 'xl'>
 }
 
 const Sticker: FC<Props> = (props: Props) => {
   const {
     appearance,
-    children,
+    body,
     color,
+    leading,
     size,
     ...rest
   } = props
@@ -38,7 +40,16 @@ const Sticker: FC<Props> = (props: Props) => {
       className={classes.join(' ')}
       {...rest}
     >
-      {children}
+      {leading && (
+        <span className='_leading'>
+          {leading}
+        </span>
+      )}
+      {body && (
+        <span className='_body'>
+          {body}
+        </span>
+      )}
     </span>
   )
 }

@@ -25,6 +25,10 @@
     $size: map.get($options, size)
   );
 
+  & > * {
+    @include -child-element-style;
+  }
+
   @each $color in adapter.get-semantic-intentions() {
     &.-color-#{$color} {
       @include -color-style(
@@ -90,9 +94,16 @@
 
 @mixin -proto {
   display: inline-flex;
+  gap: adapter.get-spacing-size($level: xxs);
   align-items: center;
   font-family: inherit;
   white-space: nowrap;
+}
+
+@mixin -child-element-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin -color-style($color, $appearance) {
