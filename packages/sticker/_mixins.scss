@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/skeleton/mixins" as skeleton;
 @use "./variables";
 
 @mixin style($options: variables.$default-options) {
@@ -7,7 +8,6 @@
 
   display: inline-flex;
   align-items: center;
-  font-weight: bold;
   white-space: nowrap;
 
   // color
@@ -45,9 +45,42 @@
   }
 }
 
+@mixin skeleton-style($options: variables.$default-options) {
+  $options: map.merge(variables.$default-options, $options);
+
+  @include skeleton.style;
+
+  display: inline-block;
+  width: auto;
+  height:
+    calc(
+      adapter.get-line-height(
+        $level: map.get($options, size),
+        $density: normal
+      ) + adapter.get-spacing-size(xs)
+    );
+  border-radius: 4px;
+
+  @each $size in "xs", "s", "m", "l", "xl" {
+    &.-size-#{$size} {
+      height:
+        calc(
+          adapter.get-line-height(
+            $level: $size,
+            $density: normal
+          ) + adapter.get-spacing-size(xs)
+        );
+    }
+  }
+}
+
 @mixin export {
   .in-sticker {
     @include style;
+  }
+
+  .in-skeleton-sticker {
+    @include skeleton-style;
   }
 }
 
