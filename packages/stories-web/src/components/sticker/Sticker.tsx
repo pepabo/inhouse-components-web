@@ -1,10 +1,10 @@
 import React, { FC, HTMLAttributes, ReactNode } from 'react'
-import { Appearance, SemanticColor, Size } from '../types'
+import { SemanticColor, Size } from '../types'
 
 type HTMLProps = HTMLAttributes<HTMLSpanElement>
 
 export interface Props extends HTMLProps {
-  appearance?: Extract<Appearance, 'filled' | 'outlined'>
+  appearance?: 'fill-only' | 'fill-with-outlined' | 'outlined' | 'text-only'
   children: ReactNode
   color?: SemanticColor
   size?: Extract<Size, 'xs' | 's' | 'm' | 'l' | 'xl'>

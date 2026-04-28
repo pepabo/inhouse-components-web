@@ -96,13 +96,20 @@
 }
 
 @mixin -color-style($color, $appearance) {
-  @if $appearance == filled {
+  @if $appearance == fill-only {
+    color: #fff;
+    background-color: adapter.get-semantic-color($color, 700);
+  } @else if $appearance == fill-with-outlined {
     color: adapter.get-semantic-color($color, 800);
     background-color: adapter.get-semantic-color($color, 100);
+    border: 1px solid adapter.get-semantic-color($color, 300);
   } @else if $appearance == outlined {
     color: adapter.get-semantic-color($color, 800);
     background-color: #fff;
     border: 1px solid adapter.get-semantic-color($color, 300);
+  } @else if $appearance == text-only {
+    color: adapter.get-semantic-color($color, 800);
+    background-color: transparent;
   }
 }
 
