@@ -101,7 +101,7 @@
     background-color: adapter.get-semantic-color($color, 100);
   } @else if $appearance == outlined {
     color: adapter.get-semantic-color($color, 800);
-    background-color: transparent;
+    background-color: #fff;
     border: 1px solid adapter.get-semantic-color($color, 300);
   }
 }
