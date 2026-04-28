@@ -1,0 +1,12 @@
+$default-option: (
+  color: informative,
+  size: m,
+  appearance: fill-only,
+);
+
+$available-appearances: (
+  fill-only,
+  fill-with-outlined,
+  outlined,
+  text-only,
+);

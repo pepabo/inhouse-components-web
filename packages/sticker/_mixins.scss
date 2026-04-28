@@ -1,0 +1,137 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/skeleton/mixins" as skeleton;
+@use "./variables";
+
+@mixin export {
+  .in-sticker {
+    @include style;
+  }
+
+  .in-skeleton-sticker {
+    @include skeleton-style;
+  }
+}
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include -proto;
+  @include -color-style(
+    $color: map.get($options, color),
+    $appearance: map.get($options, appearance)
+  );
+  @include -size-style(
+    $size: map.get($options, size)
+  );
+
+  & > * {
+    @include -child-element-style;
+  }
+
+  @each $color in adapter.get-semantic-intentions() {
+    &.-color-#{$color} {
+      @include -color-style(
+        $color: $color,
+        $appearance: map.get($options, appearance)
+      );
+
+      @each $appearance in variables.$available-appearances {
+        &.-appearance-#{$appearance} {
+          @include -color-style(
+            $color: $color,
+            $appearance: $appearance
+          );
+        }
+      }
+    }
+  }
+
+  @each $appearance in variables.$available-appearances {
+    &.-appearance-#{$appearance} {
+      @include -color-style(
+        $color: map.get($options, color),
+        $appearance: $appearance
+      );
+    }
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      @include -size-style($size: $size);
+    }
+  }
+}
+
+@mixin skeleton-style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  @include skeleton.style;
+
+  display: inline-block;
+  width: auto;
+  height:
+    calc(
+      adapter.get-line-height(
+        $level: map.get($options, size),
+        $density: normal
+      ) + adapter.get-spacing-size($level: xs)
+    );
+  border-radius: 4px;
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      height:
+        calc(
+          adapter.get-line-height(
+            $level: $size,
+            $density: normal
+          ) + adapter.get-spacing-size($level: xs)
+        );
+    }
+  }
+}
+
+@mixin -proto {
+  display: inline-flex;
+  gap: adapter.get-spacing-size($level: xxs);
+  align-items: center;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+@mixin -child-element-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin -color-style($color, $appearance) {
+  @if $appearance == fill-only {
+    color: #fff;
+    background-color: adapter.get-semantic-color($color, 700);
+  } @else if $appearance == fill-with-outlined {
+    color: adapter.get-semantic-color($color, 800);
+    background-color: adapter.get-semantic-color($color, 100);
+    border: 1px solid adapter.get-semantic-color($color, 300);
+  } @else if $appearance == outlined {
+    color: adapter.get-semantic-color($color, 800);
+    background-color: #fff;
+    border: 1px solid adapter.get-semantic-color($color, 300);
+  } @else if $appearance == text-only {
+    color: adapter.get-semantic-color($color, 800);
+    background-color: transparent;
+  }
+}
+
+@mixin -size-style($size) {
+  font-size: adapter.get-font-size($level: $size);
+  line-height:
+    adapter.get-line-height(
+      $level: $size,
+      $density: normal
+    );
+  padding-block: calc(adapter.get-spacing-size($level: xs) / 2);
+  padding-inline: adapter.get-spacing-size($level: s);
+  border-radius: 4px;
+}
