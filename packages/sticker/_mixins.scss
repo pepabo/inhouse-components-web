@@ -96,8 +96,10 @@
   display: inline-flex;
   gap: adapter.get-spacing-size($level: xxs);
   align-items: center;
+  box-sizing: border-box;
   font-family: inherit;
   white-space: nowrap;
+  vertical-align: middle;
   border: adapter.get-border-size($level: m) solid;
 }
 
@@ -128,13 +130,19 @@
 }
 
 @mixin -size-style($size) {
+  height:
+    calc(
+      adapter.get-line-height(
+        $level: $size,
+        $density: normal
+      ) + adapter.get-spacing-size($level: xs)
+    );
   font-size: adapter.get-font-size($level: $size);
   line-height:
     adapter.get-line-height(
       $level: $size,
       $density: normal
     );
-  padding-block: calc(adapter.get-spacing-size($level: xs) / 2);
   padding-inline: adapter.get-spacing-size($level: s);
   border-radius: adapter.get-radius-size($level: m);
 }
