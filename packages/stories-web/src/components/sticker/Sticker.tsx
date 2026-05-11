@@ -4,7 +4,7 @@ import { SemanticColor, Size } from '../types'
 type HTMLProps = HTMLAttributes<HTMLSpanElement>
 
 export interface Props extends HTMLProps {
-  appearance?: 'fill-only' | 'fill-with-outlined' | 'outlined' | 'text-only'
+  appearance?: 'flat' | 'tinted' | 'outlined' | 'transparent'
   body?: ReactNode
   color?: SemanticColor
   leading?: ReactNode

@@ -1,12 +1,12 @@
 $default-option: (
   color: informative,
   size: m,
-  appearance: fill-only,
+  appearance: flat,
 );
 
 $available-appearances: (
-  fill-only,
-  fill-with-outlined,
+  flat,
+  tinted,
   outlined,
-  text-only,
+  transparent,
 );

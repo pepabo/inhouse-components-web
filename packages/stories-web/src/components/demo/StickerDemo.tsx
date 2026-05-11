@@ -6,19 +6,19 @@ export type Props = Pick<StickerProps, 'color' | 'size'>
 
 const StickerDemo: FC<Props> = (props: Props) => (
   <>
-    <Sticker {...props} appearance='fill-only' body='label' />
-    <Sticker {...props} appearance='fill-with-outlined' body='label' />
+    <Sticker {...props} appearance='flat' body='label' />
+    <Sticker {...props} appearance='tinted' body='label' />
     <Sticker {...props} appearance='outlined' body='label' />
-    <Sticker {...props} appearance='text-only' body='label' />
+    <Sticker {...props} appearance='transparent' body='label' />
     <Sticker
       {...props}
-      appearance='fill-only'
+      appearance='flat'
       body='label'
       leading={<Icon className='_icon' icon='person' />}
     />
     <Sticker
       {...props}
-      appearance='fill-with-outlined'
+      appearance='tinted'
       body='label'
       leading={<Icon className='_icon' icon='person' />}
     />
@@ -30,7 +30,7 @@ const StickerDemo: FC<Props> = (props: Props) => (
     />
     <Sticker
       {...props}
-      appearance='text-only'
+      appearance='transparent'
       body='label'
       leading={<Icon className='_icon' icon='person' />}
     />
