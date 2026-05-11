@@ -14,25 +14,25 @@ const StickerDemo: FC<Props> = (props: Props) => (
       {...props}
       appearance='fill-only'
       body='label'
-      leading={<Icon className='_icon' icon='heart' />}
+      leading={<Icon className='_icon' icon='person' />}
     />
     <Sticker
       {...props}
       appearance='fill-with-outlined'
       body='label'
-      leading={<Icon className='_icon' icon='heart' />}
+      leading={<Icon className='_icon' icon='person' />}
     />
     <Sticker
       {...props}
       appearance='outlined'
       body='label'
-      leading={<Icon className='_icon' icon='heart' />}
+      leading={<Icon className='_icon' icon='person' />}
     />
     <Sticker
       {...props}
       appearance='text-only'
       body='label'
-      leading={<Icon className='_icon' icon='heart' />}
+      leading={<Icon className='_icon' icon='person' />}
     />
   </>
 )
