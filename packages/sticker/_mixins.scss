@@ -77,7 +77,7 @@
         $density: normal
       ) + adapter.get-spacing-size($level: xs)
     );
-  border-radius: 4px;
+  border-radius: adapter.get-radius-size($level: m);
 
   @each $size in adapter.get-interactive-component-height-keys() {
     &.-size-#{$size} {
@@ -98,6 +98,7 @@
   align-items: center;
   font-family: inherit;
   white-space: nowrap;
+  border: adapter.get-border-size($level: m) solid;
 }
 
 @mixin -child-element-style {
@@ -110,17 +111,19 @@
   @if $appearance == fill-only {
     color: #fff;
     background-color: adapter.get-semantic-color($color, 700);
+    border-color: adapter.get-semantic-color($color, 700);
   } @else if $appearance == fill-with-outlined {
     color: adapter.get-semantic-color($color, 800);
     background-color: adapter.get-semantic-color($color, 100);
-    border: 1px solid adapter.get-semantic-color($color, 300);
+    border-color: adapter.get-semantic-color($color, 300);
   } @else if $appearance == outlined {
     color: adapter.get-semantic-color($color, 800);
     background-color: #fff;
-    border: 1px solid adapter.get-semantic-color($color, 300);
+    border-color: adapter.get-semantic-color($color, 300);
   } @else if $appearance == text-only {
     color: adapter.get-semantic-color($color, 800);
     background-color: transparent;
+    border-color: transparent;
   }
 }
 
@@ -133,5 +136,5 @@
     );
   padding-block: calc(adapter.get-spacing-size($level: xs) / 2);
   padding-inline: adapter.get-spacing-size($level: s);
-  border-radius: 4px;
+  border-radius: adapter.get-radius-size($level: m);
 }
