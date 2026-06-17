@@ -216,6 +216,10 @@
       "name": "funnel",
       "codePoint": 61747
     },
+    "folder_outlined.svg": {
+      "name": "folder_outlined",
+      "codePoint": 61827
+    },
     "folder.svg": {
       "name": "folder",
       "codePoint": 61794
@@ -255,6 +259,10 @@
     "download.svg": {
       "name": "download",
       "codePoint": 61742
+    },
+    "document_outlined.svg": {
+      "name": "document_outlined",
+      "codePoint": 61830
     },
     "discord.svg": {
       "name": "discord",
@@ -343,6 +351,10 @@
     "balloon.svg": {
       "name": "balloon",
       "codePoint": 61698
+    },
+    "article_outlined.svg": {
+      "name": "article_outlined",
+      "codePoint": 61831
     },
     "arrow_up.svg": {
       "name": "arrow_up",
