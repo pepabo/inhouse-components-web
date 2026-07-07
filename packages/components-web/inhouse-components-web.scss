@@ -19,6 +19,7 @@
 @use "@pepabo-inhouse/interactive-table";
 @use "@pepabo-inhouse/list";
 @use "@pepabo-inhouse/navigation-drawer";
+@use "@pepabo-inhouse/pagination";
 @use "@pepabo-inhouse/progress-indicator";
 @use "@pepabo-inhouse/radio";
 @use "@pepabo-inhouse/scrim";
@@ -54,6 +55,7 @@
 @include interactive-table.export;
 @include list.export;
 @include navigation-drawer.export;
+@include pagination.export;
 @include progress-indicator.export;
 @include radio.export;
 @include scrim.export;

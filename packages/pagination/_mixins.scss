@@ -1,0 +1,111 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/icon/mixins" as icon;
+@use "./variables";
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  display: flex;
+  gap: adapter.get-spacing-size($level: xs);
+  align-items: center;
+  justify-content: center;
+
+  ._list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: adapter.get-spacing-size($level: xs);
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ._item {
+    display: inline-flex;
+  }
+
+  @include -size-rule($size: map.get($options, size));
+
+  ._link,
+  ._previous,
+  ._next {
+    color: adapter.get-implication-color($name: interactive, $level: 700);
+    text-decoration: underline;
+
+    &:hover {
+      background: adapter.get-background-overlay-color($brightness: light, $state: hover);
+    }
+
+    &:active {
+      background: adapter.get-background-overlay-color($brightness: light, $state: active);
+    }
+
+    &:focus-visible {
+      outline: adapter.get-focus-ring-outline();
+      outline-offset: adapter.get-focus-ring-outline-offset();
+    }
+  }
+
+  ._current {
+    color: adapter.get-text-color($brightness: light, $name: high_emphasis);
+    font-weight: bold;
+    background: adapter.get-surface-color(light, secondary);
+  }
+
+  ._truncation {
+    color: adapter.get-text-color($brightness: light, $name: low_emphasis);
+  }
+
+  ._counter {
+    color: adapter.get-text-color($brightness: light, $name: high_emphasis);
+  }
+
+  ._previous::before {
+    @include icon.style;
+
+    content: "chevron_left";
+  }
+
+  ._next::after {
+    @include icon.style;
+
+    content: "chevron_right";
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      @include -size-rule($size: $size);
+    }
+  }
+}
+
+@mixin export {
+  .in-pagination {
+    @include style;
+  }
+}
+
+@mixin -size-rule($size) {
+  ._link,
+  ._current,
+  ._truncation,
+  ._previous,
+  ._next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: adapter.get-interactive-component-height($level: $size);
+    height: adapter.get-interactive-component-height($level: $size);
+    padding-inline: adapter.get-spacing-size($level: xs);
+    font-size: adapter.get-font-size($level: $size);
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+    border-radius: adapter.get-radius-size($level: m);
+  }
+
+  ._counter {
+    font-size: adapter.get-font-size($level: $size);
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+  }
+}

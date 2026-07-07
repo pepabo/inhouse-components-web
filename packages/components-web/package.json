@@ -34,6 +34,7 @@
     "@pepabo-inhouse/interactive-table": "^4.0.0",
     "@pepabo-inhouse/list": "^4.0.0",
     "@pepabo-inhouse/navigation-drawer": "^4.0.0",
+    "@pepabo-inhouse/pagination": "^4.0.0",
     "@pepabo-inhouse/progress-indicator": "^4.0.0",
     "@pepabo-inhouse/radio": "^4.0.0",
     "@pepabo-inhouse/scrim": "^4.0.0",
