@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes, ReactNode } from 'react'
 import { SemanticColor, Size } from '../types'
+import { useStyleBase } from '../styleBase'
 
 type HTMLProps = HTMLAttributes<HTMLSpanElement>
 
@@ -21,7 +22,8 @@ const Sticker: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-sticker']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-sticker`]
 
   if (typeof color !== 'undefined') {
     classes.push(`-color-${color}`)

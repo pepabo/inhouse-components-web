@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
+import { useStyleBase } from '../styleBase'
 
 const SkeletonRadio: FC = () => {
+  const styleBase = useStyleBase()
   return (
-    <div className='in-skeleton-radio'></div>
+    <div className={`${styleBase}-skeleton-radio`}></div>
   )
 }
 

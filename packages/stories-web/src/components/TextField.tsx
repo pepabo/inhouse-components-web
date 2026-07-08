@@ -1,5 +1,6 @@
 import React, { FC, InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 import { Appearance, SemanticColor, Size, State, Width } from './types';
+import { useStyleBase } from './styleBase';
 import {
   TextField as AriaTextField,
   Input as AriaInput,
@@ -35,7 +36,8 @@ const TextField: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const wrapperClasses = ['in-textfield'];
+  const styleBase = useStyleBase();
+  const wrapperClasses = [`${styleBase}-textfield`];
   const innerClasses = ['_input'];
 
   if (typeof appearance !== 'undefined') {
@@ -78,7 +80,7 @@ const TextField: FC<Props> = (props: Props) => {
           {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}
         />
       )}
-      <AriaFieldError className="in-validation-message -color-negative">
+      <AriaFieldError className={`${styleBase}-validation-message -color-negative`}>
         {({ validationDetails }) =>
           validationDetails.valueMissing
             ? '必須項目です'

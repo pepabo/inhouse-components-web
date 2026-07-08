@@ -1,13 +1,18 @@
 import type { StoryFn, Meta } from "@storybook/react";
 import React from "react";
 import Card, { Props } from "./components/card/Card";
+import StyleComparison from "./components/demo/StyleComparison";
 
 export default {
   title: "Components/Card",
   component: Card,
 } as Meta;
 
-const Template: StoryFn<Props> = (args) => <Card {...args} />;
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Card {...args} />
+  </StyleComparison>
+);
 
 export const Index = Template.bind({});
 Index.args = {

@@ -1,6 +1,7 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import SelectDemo, { Props } from './components/demo/SelectDemo'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/Select',
@@ -13,7 +14,11 @@ export default {
   }
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <SelectDemo {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <SelectDemo {...args} />
+  </StyleComparison>
+)
 
 export const Index = Template.bind({})
 Index.args = {}

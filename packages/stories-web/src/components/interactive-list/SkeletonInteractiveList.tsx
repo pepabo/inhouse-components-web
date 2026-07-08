@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Density } from '../types'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   children: ReactNode
@@ -17,7 +18,8 @@ const SkeletonInteractiveList: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = ['in-skeleton-interactive-list']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-skeleton-interactive-list`]
 
   if (typeof density !== 'undefined') {
     classes.push(`-density-${density}`)

@@ -1,6 +1,7 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import Breadcrumb, { Props, Option } from './components/Breadcrumb'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/Breadcrumb',
@@ -54,10 +55,12 @@ const longTextOptions: Option[] = [
 
 const Template: StoryFn<Props> = (args) => {
   return (
-      <Breadcrumb
-        ariaLabel="メニュー"
-        {...args}
-      />
+      <StyleComparison>
+        <Breadcrumb
+          ariaLabel="メニュー"
+          {...args}
+        />
+      </StyleComparison>
   );
 };
 

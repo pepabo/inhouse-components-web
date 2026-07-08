@@ -1,5 +1,6 @@
 import React, { CSSProperties, FC } from 'react'
 import { Size } from '../types'
+import { useStyleBase } from '../styleBase'
 
 type TextUnit = 'rem'
 type TextLength = `${number}${TextUnit}`
@@ -16,7 +17,8 @@ const SkeletonSticker: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-skeleton-sticker']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-skeleton-sticker`]
   let style: CSSProperties = {}
 
   if (typeof size !== 'undefined') {

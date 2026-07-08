@@ -1,13 +1,18 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import List, { Props } from './components/List'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/List',
   component: List
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <List {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <List {...args} />
+  </StyleComparison>
+)
 
 export const UnorderedList = Template.bind({})
 UnorderedList.args = {

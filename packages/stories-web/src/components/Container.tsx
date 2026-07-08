@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Size } from './types'
+import { useStyleBase } from './styleBase'
 
 export interface Props {
   children?: ReactNode
@@ -14,7 +15,8 @@ const Container: FC<Props> = (props: Props) => {
     size,
   } = props
 
-  const classes = ['in-container']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-container`]
 
   if (isGapless) {
     classes.push('-is-gapless')

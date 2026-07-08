@@ -1,5 +1,6 @@
 import React, { FC, SelectHTMLAttributes } from 'react'
 import { Appearance, SemanticColor, Size, State, Width } from './types'
+import { useStyleBase } from './styleBase'
 
 type HTMLProps = SelectHTMLAttributes<HTMLSelectElement>
 
@@ -24,7 +25,8 @@ const Select: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const wrapperClasses = ['in-select']
+  const styleBase = useStyleBase()
+  const wrapperClasses = [`${styleBase}-select`]
   const innerClasses = ['_select']
 
   if (typeof appearance !== 'undefined') {

@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Appearance, Brightness, Position } from './types'
+import { useStyleBase } from './styleBase'
 
 export interface Props {
   appearance?: Extract<Appearance, 'white' | 'filled' | 'transparent'>
@@ -33,7 +34,8 @@ const AppBar: FC<Props> = (props: Props) => {
     throw new Error('trailing と trailingElement はセットで使用してください')
   }
 
-  const classes = [`in-app-bar`]
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-app-bar`]
 
   if (typeof appearance !== 'undefined') {
     classes.push(`-appearance-${appearance}`)

@@ -9,14 +9,23 @@ import Icon from './components/Icon'
 import Checkbox from './components/checkbox/Checkbox'
 import SkeletonCheckbox from './components/checkbox/SkeletonCheckbox'
 import fixture from '../assets/fixture.jpg'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/InteractiveTable',
   component: InteractiveTable
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <InteractiveTable {...args} />
-const SkeletonTemplate: StoryFn<Props> = (args) => <SkeletonInteractiveTable {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <InteractiveTable {...args} />
+  </StyleComparison>
+)
+const SkeletonTemplate: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <SkeletonInteractiveTable {...args} />
+  </StyleComparison>
+)
 
 const items = [];
 

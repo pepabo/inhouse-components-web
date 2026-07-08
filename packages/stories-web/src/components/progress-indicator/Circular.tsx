@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Size } from '../types';
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   max: number
@@ -17,7 +18,8 @@ const Circular: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-circular-progress-indicator']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-circular-progress-indicator`]
   if (typeof size !== 'undefined') {
     classes.push(`-size-${size}`)
   }

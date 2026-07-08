@@ -3,6 +3,7 @@ import React from 'react'
 import BottomNavigation, { Props } from './components/bottom-navigation/BottomNavigation'
 import BottomNavigationItem from './components/bottom-navigation/BottomNavigationItem'
 import Icon from './components/Icon'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/BottomNavigation',
@@ -12,7 +13,11 @@ export default {
   }
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <BottomNavigation {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <BottomNavigation {...args} />
+  </StyleComparison>
+)
 
 const items = () => {
   return (

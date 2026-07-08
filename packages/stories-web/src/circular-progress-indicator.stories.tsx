@@ -2,13 +2,18 @@ import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import Circular, { Props } from './components/progress-indicator/Circular'
 import Button from './components/button/Button'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/ProgressIndicator/Circular',
   component: Circular
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <Circular {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Circular {...args} />
+  </StyleComparison>
+)
 
 export const Determinate = Template.bind({})
 Determinate.args = {

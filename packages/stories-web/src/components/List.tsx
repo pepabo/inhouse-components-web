@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Density, Size } from './types'
+import { useStyleBase } from './styleBase'
 
 export interface Props {
   children: ReactNode
@@ -19,7 +20,8 @@ const List: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = [`in-${tag}`]
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-${tag}`]
 
   if (typeof density !== 'undefined') {
     classes.push(`-density-${density}`)

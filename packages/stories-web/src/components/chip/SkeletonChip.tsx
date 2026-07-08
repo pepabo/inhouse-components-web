@@ -1,5 +1,6 @@
 import React, { CSSProperties, FC } from 'react'
 import { Size } from '../types'
+import { useStyleBase } from '../styleBase'
 
 type TextUnit = 'rem'
 type TextLength = `${number}${TextUnit}`
@@ -16,7 +17,8 @@ const SkeletonChip: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-skeleton-chip']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-skeleton-chip`]
   let style: CSSProperties = {}
 
   if (typeof size !== 'undefined') {

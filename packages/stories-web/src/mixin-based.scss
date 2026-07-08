@@ -1,0 +1,190 @@
+// mixinベースのサンプル実装
+//
+// classベース（.in-*）と同じ見た目になることを確認するために、
+// 各コンポーネントのmixinを .mixin-* というクラス名に当てている。
+// （READMEで「エイリアシング」と呼んでいる使い方のサンプル）
+//
+// Storybook上では StyleComparison コンポーネントで
+// classベースと同一画面に並べて表示される。
+@use "@pepabo-inhouse/components-web" as inhouse;
+
+// bottom-navigation / chip / dialog は components-web の _index.scss から
+// forward されていないため、各パッケージを直接 @use する
+@use "@pepabo-inhouse/bottom-navigation" as bottom-navigation;
+@use "@pepabo-inhouse/chip" as chip;
+@use "@pepabo-inhouse/dialog" as dialog;
+
+// skeleton-style は各パッケージの公開エントリ（_index.scss）から
+// forward されていないため、mixins を直接 @use する
+@use "@pepabo-inhouse/avatar/mixins" as avatar-mixins;
+@use "@pepabo-inhouse/button/mixins" as button-mixins;
+@use "@pepabo-inhouse/checkbox/mixins" as checkbox-mixins;
+@use "@pepabo-inhouse/chip/mixins" as chip-mixins;
+@use "@pepabo-inhouse/interactive-list/mixins" as interactive-list-mixins;
+@use "@pepabo-inhouse/interactive-table/mixins" as interactive-table-mixins;
+@use "@pepabo-inhouse/radio/mixins" as radio-mixins;
+@use "@pepabo-inhouse/sticker/mixins" as sticker-mixins;
+
+.mixin-app-bar {
+  @include inhouse.app-bar-style;
+}
+
+.mixin-avatar {
+  @include inhouse.avatar-style;
+}
+
+.mixin-skeleton-avatar {
+  @include avatar-mixins.skeleton-style;
+}
+
+.mixin-bottom-navigation {
+  @include bottom-navigation.style;
+}
+
+.mixin-breadcrumb {
+  @include inhouse.breadcrumb-style;
+}
+
+.mixin-button {
+  @include inhouse.button-style;
+}
+
+.mixin-skeleton-button {
+  @include button-mixins.skeleton-style;
+}
+
+.mixin-callout {
+  @include inhouse.callout-style;
+}
+
+.mixin-card {
+  @include inhouse.card-style;
+}
+
+.mixin-checkbox {
+  @include inhouse.checkbox-style;
+}
+
+.mixin-skeleton-checkbox {
+  @include checkbox-mixins.skeleton-style;
+}
+
+.mixin-chip {
+  @include chip.style;
+}
+
+.mixin-skeleton-chip {
+  @include chip-mixins.skeleton-style;
+}
+
+.mixin-container {
+  @include inhouse.container-style;
+}
+
+.mixin-description-list {
+  @include inhouse.description-list-style;
+}
+
+.mixin-modal {
+  @include dialog.modal-style;
+}
+
+.mixin-dialog {
+  @include dialog.dialog-style;
+}
+
+.mixin-disclosure {
+  @include inhouse.disclosure-style;
+}
+
+.mixin-row {
+  @include inhouse.grid-row;
+}
+
+.mixin-col {
+  @include inhouse.grid-col;
+}
+
+.mixin-icon {
+  @include inhouse.icon-style;
+}
+
+.mixin-interactive-list {
+  @include inhouse.interactive-list-style;
+}
+
+.mixin-skeleton-interactive-list {
+  @include interactive-list-mixins.skeleton-style;
+}
+
+.mixin-interactive-table {
+  @include inhouse.interactive-table-style;
+}
+
+.mixin-skeleton-interactive-table {
+  @include interactive-table-mixins.skeleton-style;
+}
+
+.mixin-ol {
+  @include inhouse.list-style;
+}
+
+.mixin-ul {
+  @include inhouse.list-style((list-style-type: disc));
+}
+
+.mixin-navigation-drawer {
+  @include inhouse.navigation-drawer-style;
+}
+
+.mixin-linear-progress-indicator {
+  @include inhouse.progress-indicator-linear;
+}
+
+.mixin-circular-progress-indicator {
+  @include inhouse.progress-indicator-circular;
+}
+
+.mixin-radio {
+  @include inhouse.radio-style;
+}
+
+.mixin-skeleton-radio {
+  @include radio-mixins.skeleton-style;
+}
+
+.mixin-select {
+  @include inhouse.select-style;
+}
+
+.mixin-side-navigation {
+  @include inhouse.side-navigation-style;
+}
+
+.mixin-snackbar {
+  @include inhouse.snackbar-style;
+}
+
+.mixin-sticker {
+  @include inhouse.sticker-style;
+}
+
+.mixin-skeleton-sticker {
+  @include sticker-mixins.skeleton-style;
+}
+
+.mixin-tab {
+  @include inhouse.tab-style;
+}
+
+.mixin-table {
+  @include inhouse.table-style;
+}
+
+.mixin-textfield {
+  @include inhouse.textfield-style;
+}
+
+.mixin-validation-message {
+  @include inhouse.validation-message-style;
+}

@@ -1,6 +1,7 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import Disclosure, { Props } from './components/disclosure/Disclosure'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/Disclosure',
@@ -17,7 +18,11 @@ export default {
   },
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <Disclosure {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Disclosure {...args} />
+  </StyleComparison>
+)
 
 const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
@@ -75,7 +80,7 @@ DensityComfort.args = {
 }
 
 const MultipleTemplate: StoryFn = () => (
-  <>
+  <StyleComparison>
     <Disclosure
       density='normal'
       size='m'
@@ -98,7 +103,7 @@ const MultipleTemplate: StoryFn = () => (
     >
       {content}
     </Disclosure>
-  </>
+  </StyleComparison>
 )
 
 export const Multiple = MultipleTemplate.bind({})

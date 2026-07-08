@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   body: ReactNode
@@ -13,7 +14,8 @@ const SideNavigation: FC<Props> = (props: Props) => {
     isActivated,
   } = props
 
-  const classes = ['in-side-navigation']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-side-navigation`]
 
   if (isActivated) {
     classes.push(`--activated`)

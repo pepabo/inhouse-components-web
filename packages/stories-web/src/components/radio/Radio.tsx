@@ -1,4 +1,5 @@
 import React, { FC, InputHTMLAttributes } from 'react'
+import { useStyleBase } from '../styleBase'
 
 type HTMLProps = InputHTMLAttributes<HTMLInputElement>
 
@@ -20,7 +21,8 @@ const Radio: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = ['in-radio']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-radio`]
 
   if (disabled) {
     classes.push('--disabled')

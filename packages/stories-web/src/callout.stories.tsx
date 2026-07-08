@@ -1,6 +1,7 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import Callout, { Props } from './components/Callout'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/Callout',
@@ -8,7 +9,11 @@ export default {
   size: 'm',
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <Callout {...args} ></Callout>
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Callout {...args} ></Callout>
+  </StyleComparison>
+)
 
 export const Index = Template.bind({})
 Index.args = {

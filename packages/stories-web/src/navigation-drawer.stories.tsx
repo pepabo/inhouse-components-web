@@ -1,6 +1,7 @@
 import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import NavigationDrawerDemo, { Props } from './components/demo/NavigationDrawerDemo'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/NavigationDrawer',
@@ -10,7 +11,11 @@ export default {
   }
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <NavigationDrawerDemo {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <NavigationDrawerDemo {...args} />
+  </StyleComparison>
+)
 
 export const Index = Template.bind({})
 Index.args = {

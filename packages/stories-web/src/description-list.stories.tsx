@@ -2,13 +2,18 @@ import type { StoryFn, Meta } from '@storybook/react'
 import React from 'react'
 import DescriptionList, { Props } from './components/description-list/DescriptionList'
 import DescriptionListItem from './components/description-list/DescriptionListItem'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/DescriptionList',
   component: DescriptionList
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <DescriptionList {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <DescriptionList {...args} />
+  </StyleComparison>
+)
 
 export const DefaultDescriptionList = Template.bind({})
 DefaultDescriptionList.args = {

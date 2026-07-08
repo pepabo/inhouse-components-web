@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, HTMLAttributes } from 'react'
 import { Size } from './types'
+import { useStyleBase } from './styleBase'
 import {
   Dialog as AriaDialog,
   DialogTrigger as AriaDialogTrigger,
@@ -38,7 +39,8 @@ const Dialog: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const dialogClassList = ['in-dialog'];
+  const styleBase = useStyleBase();
+  const dialogClassList = [`${styleBase}-dialog`];
 
   if (size !== 'm') {
     dialogClassList.push(`-size-${size}`);
@@ -54,11 +56,11 @@ const Dialog: FC<Props> = (props: Props) => {
 
   return (
     <AriaDialogTrigger>
-      <Button className="in-button -appearance-outlined">
+      <Button className={`${styleBase}-button -appearance-outlined`}>
         <span className="_body">{triggerLabel}</span>
       </Button>
       <AriaModalOverlay
-        className="in-modal"
+        className={`${styleBase}-modal`}
         isDismissable={closeOnOverlayClick}
       >
         <AriaModal>

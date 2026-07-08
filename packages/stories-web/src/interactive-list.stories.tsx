@@ -14,14 +14,23 @@ import SkeletonCheckbox from './components/checkbox/SkeletonCheckbox'
 import SkeletonRadio from './components/radio/SkeletonRadio'
 import SkeletonAvatar from './components/avatar/SkeletonAvatar'
 import fixture from '../assets/fixture.jpg'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/InteractiveList',
   component: InteractiveList
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <InteractiveList {...args} />
-const SkeletonTemplate: StoryFn<Props> = (args) => <SkeletonInteractiveList {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <InteractiveList {...args} />
+  </StyleComparison>
+)
+const SkeletonTemplate: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <SkeletonInteractiveList {...args} />
+  </StyleComparison>
+)
 
 type Line = 'single' | 'multi'
 

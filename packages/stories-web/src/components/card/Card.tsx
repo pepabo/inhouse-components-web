@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { Shape } from "../types";
+import { useStyleBase } from "../styleBase";
 
 export interface Props {
   appearance?: "filled" | "outlined" | "elevated";
@@ -12,7 +13,8 @@ export interface Props {
 const Card: FC<Props> = (props: Props) => {
   const { appearance, body, color, isGapless, shape, ...rest } = props;
 
-  const classes = [`in-card`];
+  const styleBase = useStyleBase();
+  const classes = [`${styleBase}-card`];
 
   if (typeof appearance !== "undefined") {
     classes.push(`-appearance-${appearance}`);

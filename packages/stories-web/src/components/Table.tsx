@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, TableHTMLAttributes } from 'react'
 import { Density, Size } from './types'
+import { useStyleBase } from './styleBase'
 
 type HTMLProps = TableHTMLAttributes<HTMLTableElement>
 
@@ -21,7 +22,8 @@ const Table: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = ['in-table']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-table`]
 
   if (typeof density !== 'undefined') {
     classes.push(`-density-${density}`)

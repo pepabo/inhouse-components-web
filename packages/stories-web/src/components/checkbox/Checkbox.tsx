@@ -1,4 +1,5 @@
 import React, { FC, InputHTMLAttributes } from 'react'
+import { useStyleBase } from '../styleBase'
 
 type HTMLProps = InputHTMLAttributes<HTMLInputElement>
 
@@ -22,7 +23,8 @@ const Checkbox: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = ['in-checkbox']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-checkbox`]
 
   if (disabled) {
     classes.push('--disabled')

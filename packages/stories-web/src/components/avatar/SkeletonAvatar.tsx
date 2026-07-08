@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Size } from '../types'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   size?: Extract<Size, 'xs' | 's' | 'm' | 'l'>
@@ -11,7 +12,8 @@ const SkeletonAvatar: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = [`in-skeleton-avatar`]
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-skeleton-avatar`]
 
   if (typeof size !== 'undefined') {
     classes.push(`-size-${size}`)

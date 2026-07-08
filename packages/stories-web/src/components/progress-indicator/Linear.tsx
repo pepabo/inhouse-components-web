@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   max: number
@@ -12,7 +13,8 @@ const Linear: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-linear-progress-indicator']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-linear-progress-indicator`]
 
   let percentage
 

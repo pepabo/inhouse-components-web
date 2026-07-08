@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   alignItems?: 'start' | 'center' | 'end' | 'stretch'
@@ -16,7 +17,8 @@ const Row: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-row']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-row`]
 
   if (typeof alignItems !== 'undefined') {
     classes.push(`-align-items-${alignItems}`)

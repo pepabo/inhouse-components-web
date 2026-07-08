@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Density } from '../types'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   areaLabel: string
@@ -15,7 +16,8 @@ const InteractiveTable: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = [`in-interactive-table`]
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-interactive-table`]
 
   if (typeof density !== 'undefined') {
     classes.push(`-density-${density}`)

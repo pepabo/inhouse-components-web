@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import { Size, Density, Overflow } from './types'
+import { useStyleBase } from './styleBase'
 import {
   Breadcrumbs as AriaBreakcrumbs,
   Breadcrumb as AriaBreadcrumb,
@@ -31,7 +32,8 @@ const Breadcrumb: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classList = ['in-breadcrumb'];
+  const styleBase = useStyleBase();
+  const classList = [`${styleBase}-breadcrumb`];
 
   if (typeof size !== 'undefined') {
     classList.push(`-size-${size}`);

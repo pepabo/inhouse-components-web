@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useStyleBase } from './styleBase'
 
 export interface Props {
   className?: string
@@ -8,7 +9,8 @@ export interface Props {
 const Icon: FC<Props> = (props: Props) => {
   const { className, icon } = props
 
-  const classes = ['in-icon']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-icon`]
 
   if (typeof className !== 'undefined') {
     classes.push(className)

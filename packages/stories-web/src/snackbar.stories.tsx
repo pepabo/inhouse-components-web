@@ -1,13 +1,18 @@
 import type { StoryFn, Meta } from "@storybook/react";
 import React from "react";
 import Snackbar, { Props } from "./components/Snackbar";
+import StyleComparison from "./components/demo/StyleComparison";
 
 export default {
   title: "Components/Snackbar",
   component: Snackbar,
 } as Meta;
 
-const Template: StoryFn<Props> = (args) => <Snackbar {...args} />;
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Snackbar {...args} />
+  </StyleComparison>
+);
 
 export const Neutral = Template.bind({});
 Neutral.args = { color: "neutral", isActive: true };

@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Appearance } from '../types'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   appearance: Extract<Appearance, 'white' | 'filled'>
@@ -13,7 +14,8 @@ const BottomNavigation: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classes = [`in-bottom-navigation`]
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-bottom-navigation`]
 
   if (typeof appearance !== 'undefined') {
     classes.push(`-appearance-${appearance}`)

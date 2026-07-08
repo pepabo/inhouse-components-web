@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 import { SemanticColor, Size, State } from '../types'
+import { useStyleBase } from '../styleBase'
 
 type HTMLProps = ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -23,7 +24,8 @@ const Chip: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-chip']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-chip`]
 
   if (typeof color !== 'undefined') {
     classes.push(`-color-${color}`)

@@ -4,6 +4,7 @@ import AppBar, { Props } from './components/AppBar'
 import Button from './components/button/Button'
 import Icon from './components/Icon'
 import TextField from './components/TextField'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/AppBar',
@@ -13,7 +14,11 @@ export default {
   }
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <AppBar {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <AppBar {...args} />
+  </StyleComparison>
+)
 
 export const Tool = Template.bind({})
 Tool.args = {

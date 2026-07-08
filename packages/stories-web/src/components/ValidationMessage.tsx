@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { SemanticColor } from './types';
+import { useStyleBase } from './styleBase'
 
 export interface Props {
   children: string;
@@ -7,7 +8,8 @@ export interface Props {
 }
 
 const ValidationMessage: FC<Props> = (props: Props) => {
-  const wrapperClasses = ['in-validation-message']
+  const styleBase = useStyleBase()
+  const wrapperClasses = [`${styleBase}-validation-message`]
   const {
     color,
     children

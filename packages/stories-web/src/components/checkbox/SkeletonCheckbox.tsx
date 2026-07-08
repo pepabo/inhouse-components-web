@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
+import { useStyleBase } from '../styleBase'
 
 const SkeletonCheckbox: FC = () => {
+  const styleBase = useStyleBase()
   return (
-    <div className='in-skeleton-checkbox'></div>
+    <div className={`${styleBase}-skeleton-checkbox`}></div>
   )
 }
 

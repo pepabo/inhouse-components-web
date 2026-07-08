@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, HTMLAttributes } from 'react'
 import { Appearance, Density, Size } from './types'
+import { useStyleBase } from './styleBase'
 import {
   Tabs as AriaTabs,
   TabList as AriaTabList,
@@ -45,7 +46,8 @@ const Tab: FC<Props> = (props: Props) => {
     ...rest
   } = props;
 
-  const classList = ['in-tab'];
+  const styleBase = useStyleBase();
+  const classList = [`${styleBase}-tab`];
 
   if (typeof appearance !== 'undefined') {
     classList.push(`-appearance-${appearance}`);

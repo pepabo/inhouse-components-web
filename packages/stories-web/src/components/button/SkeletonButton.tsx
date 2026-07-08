@@ -1,5 +1,6 @@
 import React, { CSSProperties, FC } from 'react'
 import { Shape, Size, Width } from '../types'
+import { useStyleBase } from '../styleBase'
 
 type TextUnit = 'rem'
 type TextLength = `${number}${TextUnit}`
@@ -18,7 +19,8 @@ const SkeletonButton: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-skeleton-button']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-skeleton-button`]
   let style: CSSProperties = {}
 
   if (typeof shape !== 'undefined') {

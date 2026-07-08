@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Layer } from '../types'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   bodies: ReactNode[]
@@ -18,7 +19,8 @@ const NavigationDrawer: FC<Props> = (props: Props) => {
     scrim,
   } = props
 
-  const classes = ['in-navigation-drawer']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-navigation-drawer`]
 
   if (isActivated) {
     classes.push(`--activated`)

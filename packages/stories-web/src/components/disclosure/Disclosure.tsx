@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import { Density, Size } from '../types'
 import Icon from '../Icon'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   children: ReactNode
@@ -20,7 +21,8 @@ const Disclosure: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-disclosure']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-disclosure`]
 
   if (typeof density !== 'undefined') {
     classes.push(`-density-${density}`)

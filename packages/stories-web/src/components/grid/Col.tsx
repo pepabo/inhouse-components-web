@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react'
+import { useStyleBase } from '../styleBase'
 
 export interface Props {
   children: ReactNode
@@ -24,7 +25,8 @@ const Col: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-col']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-col`]
 
   if (typeof col !== 'undefined') {
     classes.push(`-col-${col}`)

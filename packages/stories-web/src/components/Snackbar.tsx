@@ -1,5 +1,6 @@
 import React, { FC, InputHTMLAttributes } from "react";
 import { SemanticColor } from "./types";
+import { useStyleBase } from "./styleBase";
 
 type HTMLProps = InputHTMLAttributes<HTMLInputElement>;
 
@@ -17,20 +18,22 @@ export const Snackbar: FC<Props> = ({
   isActive = true,
   isInline = false,
 }) => {
+  const styleBase = useStyleBase();
+
   return (
     <>
       {/* note: 表示したときにキーボードでアクションを実行できるよう、focusを当てる */}
       <div
-        className={`in-snackbar -color-${color} ${isActive ? "--active" : ""} ${
-          isInline ? "-inline" : ""
-        }`}
+        className={`${styleBase}-snackbar -color-${color} ${
+          isActive ? "--active" : ""
+        } ${isInline ? "-inline" : ""}`}
         aria-live="polite"
         aria-atomic="true"
       >
-        <span className="in-icon" data-icon="check" />
+        <span className={`${styleBase}-icon`} data-icon="check" />
         <span>アイテム1を削除しました</span>
         <div className="_trailing">
-          <button className="in-button -size-s -appearance-transparent">
+          <button className={`${styleBase}-button -size-s -appearance-transparent`}>
             <span className="_body">もとに戻す</span>
           </button>
         </div>

@@ -3,14 +3,23 @@ import React from 'react'
 import Avatar, { Props } from './components/avatar/Avatar'
 import SkeletonAvatar, { Props as SkeletonProps } from './components/avatar/SkeletonAvatar'
 import fixture from '../assets/fixture.jpg'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/Avatar',
   component: Avatar
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <Avatar {...args} />
-const SkeletonTemplate: StoryFn<SkeletonProps> = (args) => <SkeletonAvatar {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Avatar {...args} />
+  </StyleComparison>
+)
+const SkeletonTemplate: StoryFn<SkeletonProps> = (args) => (
+  <StyleComparison>
+    <SkeletonAvatar {...args} />
+  </StyleComparison>
+)
 
 export const Index = Template.bind({})
 Index.args = {

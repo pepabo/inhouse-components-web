@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { SemanticColor, Size } from './types';
+import { useStyleBase } from './styleBase'
 
 export interface Props {
   children: ReactNode;
@@ -12,7 +13,8 @@ export interface Props {
 }
 
 const Callout: FC<Props> = (props: Props) => {
-  const wrapperClasses = ['in-callout']
+  const styleBase = useStyleBase()
+  const wrapperClasses = [`${styleBase}-callout`]
   const {
     color = "informative",
     size = "m",
@@ -25,7 +27,7 @@ const Callout: FC<Props> = (props: Props) => {
 
   return (
     <div className={wrapperClasses.join(' ')}>
-      <span className="_leading in-icon"></span>
+      <span className={`_leading ${styleBase}-icon`}></span>
       <div className="_body">
         { children }
       </div>

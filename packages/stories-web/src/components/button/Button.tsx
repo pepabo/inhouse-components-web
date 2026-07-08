@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 import { Appearance, Brightness, ImplicationColor, SemanticColor, Shape, Size, State, Width } from '../types'
+import { useStyleBase } from '../styleBase'
 
 type HTMLProps = ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -33,7 +34,8 @@ const Button: FC<Props> = (props: Props) => {
     ...rest
   } = props
 
-  const classes = ['in-button']
+  const styleBase = useStyleBase()
+  const classes = [`${styleBase}-button`]
 
   if (typeof appearance !== 'undefined') {
     classes.push(`-appearance-${appearance}`)

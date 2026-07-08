@@ -2,13 +2,18 @@ import type { StoryFn, Meta } from '@storybook/react'
 import React, { ReactNode } from 'react'
 import Row, { Props } from './components/grid/Row'
 import Col from './components/grid/Col'
+import StyleComparison from './components/demo/StyleComparison'
 
 export default {
   title: 'Components/Grid/Row',
   component: Row
 } as Meta
 
-const Template: StoryFn<Props> = (args) => <Row {...args} />
+const Template: StoryFn<Props> = (args) => (
+  <StyleComparison>
+    <Row {...args} />
+  </StyleComparison>
+)
 
 const items: ReactNode[] = [];
 const cols = [1, 2, 3, 4, 6, 12];
