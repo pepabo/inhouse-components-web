@@ -73,6 +73,13 @@
     content: "chevron_right";
   }
 
+  // 端のページでは Previous / Next を出力しない代わりにプレースホルダーを置き、
+  // 要素分の領域を保持する（レイアウトシフトと連続操作中の誤クリックを防ぐ）
+  ._previous.-is-placeholder,
+  ._next.-is-placeholder {
+    visibility: hidden;
+  }
+
   @each $size in adapter.get-interactive-component-height-keys() {
     &.-size-#{$size} {
       @include -size-rule($size: $size);

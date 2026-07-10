@@ -72,8 +72,10 @@ const Pagination: FC<Props> = (props: Props) => {
       aria-label={ariaLabel}
       {...rest}
     >
-      {current > 1 && (
+      {current > 1 ? (
         <a className="_previous" href={hrefTemplate(current - 1)}>前のページ</a>
+      ) : (
+        <span className="_previous -is-placeholder">前のページ</span>
       )}
       {format === 'numbered' && (
         <ul className="_list">
@@ -97,8 +99,10 @@ const Pagination: FC<Props> = (props: Props) => {
       {(format === 'simple' || withCounter) && (
         <span className="_counter">{current} / {max}</span>
       )}
-      {current < max && (
+      {current < max ? (
         <a className="_next" href={hrefTemplate(current + 1)}>次のページ</a>
+      ) : (
+        <span className="_next -is-placeholder">次のページ</span>
       )}
     </nav>
   );
