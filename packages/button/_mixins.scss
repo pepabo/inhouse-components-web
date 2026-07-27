@@ -19,18 +19,25 @@
 /* stylelint-disable no-descending-specificity */
 /* stylelint-disable no-duplicate-selectors */
 
-@mixin style($options: variables.$default-option) {
-  @include style-with-variants(
-    $variants: (
-      appearance: adapter.get-button-appearances(),
-      color: adapter.get-button-colors(),
-      brightness: adapter.get-brightnesses(),
-      shape: adapter.get-shapes(),
-      size: adapter.get-interactive-component-height-keys(),
-      width: adapter.get-widths()
-    ),
-    $default-style: $options
-  );
+@mixin style($options: null) {
+  @if $options == null {
+    @include style-with-variants(
+      $variants: (
+        appearance: adapter.get-button-appearances(),
+        color: adapter.get-button-colors(),
+        brightness: adapter.get-brightnesses(),
+        shape: adapter.get-shapes(),
+        size: adapter.get-interactive-component-height-keys(),
+        width: adapter.get-widths()
+      ),
+      $default-style: variables.$default-option
+    );
+  } @else {
+    @include style-with-variants(
+      $variants: (),
+      $default-style: $options
+    );
+  }
 }
 
 /// 指定した属性とその値の組み合わせのスタイル
@@ -230,7 +237,15 @@
   }
 }
 
-@mixin skeleton-style($options: variables.$default-option) {
+@mixin skeleton-style($options: null) {
+  @if $options == null {
+    @include -skeleton-style-with-variants;
+  } @else {
+    @include -skeleton-proto($options);
+  }
+}
+
+@mixin -skeleton-proto($options) {
   $options: map.merge(variables.$default-option, $options);
 
   @include skeleton.style;
@@ -242,6 +257,12 @@
       $shape: map.get($options, shape),
       $size: map.get($options, size)
     );
+}
+
+@mixin -skeleton-style-with-variants {
+  $options: variables.$default-option;
+
+  @include -skeleton-proto($options);
 
   @each $shape in adapter.get-shapes() {
     &.-shape-#{$shape} {
