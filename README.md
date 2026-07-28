@@ -32,6 +32,22 @@
 
 [adapter](https://pepabo.github.io/inhouse-components-web/adapter/)
 
+## AI エージェントと使う場合
+
+各コンポーネントパッケージには、[design.pepabo.com](https://design.pepabo.com/) のデザインドキュメント（使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約）が README.md の「デザインドキュメント」節として同梱されています。あわせて `CLAUDE.md` / `AGENTS.md` も同梱しており、Claude Code などの AI エージェントがパッケージ内のファイル（mixin の SCSS など）を読んだ際に、自動でデザインドキュメントへ誘導されます。
+
+利用側リポジトリで確実に参照させたい場合は、以下のスニペットをプロジェクトの `CLAUDE.md`（または `AGENTS.md`）に貼ってください。
+
+```markdown
+## デザインシステム (Inhouse)
+
+UI の実装・変更で `@pepabo-inhouse/*` パッケージを使う前に、
+`node_modules/@pepabo-inhouse/<package>/README.md` の「デザインドキュメント」節を読むこと。
+コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・
+ライティングの規約が記載されている。
+node_modules は既定では検索対象外のため、Grep ではなくパスを直接指定して Read すること。
+```
+
 ## Customization
 
 components-web にはビルド済みの production ready な CSS とは別で、 Sass と NPM を使った flavor によるカスタマイズの仕組みが備わっています。
