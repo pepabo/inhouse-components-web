@@ -68,8 +68,8 @@ Snackbar は、操作結果が GUI 上に現れにくい場面で、簡素な内
       <span class="_body">もとに戻す</span>
     </button>
   </div>
-```
 </div>
+```
 
 ### 3. 使い分け (Usage)
 
