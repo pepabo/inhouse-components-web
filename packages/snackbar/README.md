@@ -133,55 +133,55 @@ Snackbar は、操作結果が GUI 上に現れにくい場面で、簡素な内
 >
   <span class="in-icon" data-icon="check" />
   <span>Neutral</span>
-  <div class='trailing'>
+  <div class='_trailing'>
     <button class="in-button -size-s -appearance-transparent">
       <span class="_body">Action</span>
     </button>
   </div>
-```
-  <br />
-  <br />
-  <div
-    class='in-snackbar -color-positive --active -inline'
-    aria-live="polite"
-  >
-    <span class="in-icon" data-icon="check" />
-    <span>Positive</span>
-    <div class='trailing'>
-      <button class="in-button -size-s -appearance-transparent">
-        <span class="_body">Action</span>
-      </button>
-    </div>
-  </div>
-  <br />
-  <br />
-  <div
-    class='in-snackbar -color-negative --active -inline'
-    aria-live="polite"
-  >
-    <span class="in-icon" data-icon="check" />
-    <span>Negative</span>
-    <div class='trailing'>
-      <button class="in-button -size-s -appearance-transparent">
-        <span class="_body">Action</span>
-      </button>
-    </div>
-  </div>
-  <br />
-  <br />
-  <div
-    class='in-snackbar -color-notice --active -inline'
-    aria-live="polite"
-  >
-    <span class="in-icon" data-icon="check" />
-    <span>Notice</span>
-    <div class='trailing'>
-      <button class="in-button -size-s -appearance-transparent">
-        <span class="_body">Action</span>
-      </button>
-    </div>
+</div>
+<br />
+<br />
+<div
+  class='in-snackbar -color-positive --active -inline'
+  aria-live="polite"
+>
+  <span class="in-icon" data-icon="check" />
+  <span>Positive</span>
+  <div class='_trailing'>
+    <button class="in-button -size-s -appearance-transparent">
+      <span class="_body">Action</span>
+    </button>
   </div>
 </div>
+<br />
+<br />
+<div
+  class='in-snackbar -color-negative --active -inline'
+  aria-live="polite"
+>
+  <span class="in-icon" data-icon="check" />
+  <span>Negative</span>
+  <div class='_trailing'>
+    <button class="in-button -size-s -appearance-transparent">
+      <span class="_body">Action</span>
+    </button>
+  </div>
+</div>
+<br />
+<br />
+<div
+  class='in-snackbar -color-notice --active -inline'
+  aria-live="polite"
+>
+  <span class="in-icon" data-icon="check" />
+  <span>Notice</span>
+  <div class='_trailing'>
+    <button class="in-button -size-s -appearance-transparent">
+      <span class="_body">Action</span>
+    </button>
+  </div>
+</div>
+```
 
 推奨される選び方の判断基準:
 
@@ -217,17 +217,17 @@ Snackbar は、操作結果が GUI 上に現れにくい場面で、簡素な内
 >
   <span class="in-icon" data-icon="check" />
   <span>Inline</span>
-```
-  <br />
-  <br />
-  <div
-    class='in-snackbar -color-neutral --active'
-    aria-live="polite"
-  >
-    <span class="in-icon" data-icon="check" />
-    <span>Block (default)</span>
-  </div>
 </div>
+<br />
+<br />
+<div
+  class='in-snackbar -color-neutral --active'
+  aria-live="polite"
+>
+  <span class="in-icon" data-icon="check" />
+  <span>Block (default)</span>
+</div>
+```
 
 #### 実装
 
@@ -242,7 +242,7 @@ Snackbar は、操作結果が GUI 上に現れにくい場面で、簡素な内
 >
   <span class="icon-component" data-icon="check" />
   <span>アイテム1を削除しました</span>
-  <div class="trailing">
+  <div class="_trailing">
     <button class="button-component">
       <span class="_body">もとに戻す</span>
     </button>
@@ -262,10 +262,6 @@ Snackbar は、操作結果が GUI 上に現れにくい場面で、簡素な内
       size: l,
     )
   );
-
-  > .trailing {
-    margin-left: auto;
-  }
 }
 ```
 
