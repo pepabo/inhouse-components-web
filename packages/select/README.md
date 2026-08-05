@@ -170,12 +170,12 @@ Semantic Colorを指定して配色できます。
     <tr>
       <th>Neutral*</th>
       <td><code>.-color-neutral</code></td>
-      <td>Pepper Gray (#767b85)</td>
+      <td>Pepper Gray</td>
     </tr>
     <tr>
       <th>Negative</th>
       <td><code>.-color-negative</code></td>
-      <td>Pepper Red (#c25d5d)</td>
+      <td>Pepper Red</td>
     </tr>
   </tbody>
 </table>

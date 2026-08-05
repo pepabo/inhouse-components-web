@@ -287,22 +287,22 @@ Appearanceの中でも背景色が透明なものはBrightness（環境の輝度
     <tr>
       <th>Neutral*</th>
       <td><code>.-color-neutral</code></td>
-      <td>Pepper Gray (#767b85)</td>
+      <td>Pepper Gray</td>
     </tr>
     <tr>
       <th>Negative</th>
       <td><code>.-color-negative</code></td>
-      <td>Pepper Red (#c25d5d)</td>
+      <td>Pepper Red</td>
     </tr>
     <tr>
       <th>Interactive</th>
       <td><code>.-color-interactive</code></td>
-      <td>Pepper Blue (#3e6f99)</td>
+      <td>Pepper Blue</td>
     </tr>
     <tr>
       <th>Favorite</th>
       <td><code>.-color-favorite</code></td>
-      <td>Pepper Red (#c25d5d)</td>
+      <td>Pepper Red</td>
     </tr>
   </tbody>
 </table>
