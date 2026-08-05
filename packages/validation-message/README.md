@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/validation-message
 $ yarn add @pepabo-inhouse/validation-message
 ```
 
-<!-- design-doc:start (design.pepabo.com から自動転載。手動編集しないでください) -->
+<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
 
 ## デザインドキュメント (Design Documentation)
 

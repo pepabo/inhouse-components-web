@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/header
 $ yarn add @pepabo-inhouse/header
 ```
 
-<!-- design-doc:start (design.pepabo.com から自動転載。手動編集しないでください) -->
+<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
 
 ## デザインドキュメント (Design Documentation)
 

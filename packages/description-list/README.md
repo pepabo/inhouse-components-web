@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/description-list
 $ yarn add @pepabo-inhouse/description-list
 ```
 
-<!-- design-doc:start (design.pepabo.com から自動転載。手動編集しないでください) -->
+<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
 
 ## デザインドキュメント (Design Documentation)
 

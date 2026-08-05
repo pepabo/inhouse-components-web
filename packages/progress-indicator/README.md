@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/progress-indicator
 $ yarn add @pepabo-inhouse/progress-indicator
 ```
 
-<!-- design-doc:start (design.pepabo.com から自動転載。手動編集しないでください) -->
+<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
 
 ## デザインドキュメント (Design Documentation)
 

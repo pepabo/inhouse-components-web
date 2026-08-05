@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/app-bar
 $ yarn add @pepabo-inhouse/app-bar
 ```
 
-<!-- design-doc:start (design.pepabo.com から自動転載。手動編集しないでください) -->
+<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
 
 ## デザインドキュメント (Design Documentation)
 

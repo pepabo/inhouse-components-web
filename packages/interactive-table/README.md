@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/interactive-table
 $ yarn add @pepabo-inhouse/interactive-table
 ```
 
-<!-- design-doc:start (design.pepabo.com から自動転載。手動編集しないでください) -->
+<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
 
 ## デザインドキュメント (Design Documentation)
 
