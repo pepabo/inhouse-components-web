@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/dialog
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Dialog コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/dialog/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/dialog.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/dialog/
 
 Dialog は、ユーザーの操作に介入して、操作実行の確認などを行う対話型のコンポーネントです。
 

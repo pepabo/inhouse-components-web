@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/bottom-navigation
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Bottom Navigation コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/bottom-navigation/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/bottom-navigation.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/bottom-navigation/
 
 Bottom Navigation は、画面の下部に 3〜5 つの最上位の遷移先を表示するナビゲーションコンポーネントです。
 

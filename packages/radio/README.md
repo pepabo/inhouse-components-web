@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/radio
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Radio コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/radio/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/radio.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/radio/
 
 Radioは、一般的にラジオボタン（ラジオボタングループ）と呼ばれ、複数の項目から1つだけ選択するコンポーネントです。
 

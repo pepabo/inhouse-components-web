@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/interactive-table
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Interactive Table コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/interactive-table/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/interactive-table.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/interactive-table/
 
 Interactive Table は、商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするための Table コンポーネントです。一番上に Heading を組み合わせた Row を配置し、その下に Description を組み合わせた Row を垂直に並べて構成します。
 

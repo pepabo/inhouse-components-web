@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/app-bar
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [App Bar コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/app-bar/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/app-bar.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/app-bar/
 
 App Bar は、アプリケーションの最上位に配置される [Header](https://design.pepabo.com/inhouse/components/header/) です。アプリケーション本体のタイトル（またはロゴ）を表示してブランドの印象を表現するとともに、アプリケーションの主要アクションとナビゲーションを提供します。
 

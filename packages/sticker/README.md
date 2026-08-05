@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/sticker
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Sticker コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/sticker/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/sticker.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/sticker/
 
 Sticker は、オブジェクト（メインの情報）に対する付加的な情報を表示するコンポーネントです。
 

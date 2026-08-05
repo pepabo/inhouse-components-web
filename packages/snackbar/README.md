@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/snackbar
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Snackbar コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/snackbar/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/snackbar.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/snackbar/
 
 Snackbar は、システムが実行した結果をユーザーに一時的にフィードバックするコンポーネントです。画面の下部に短時間表示され、一定時間で自動的に消えることで、比較的重要度の低い内容であることを示しつつフィードバックを伝えます。
 

@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/list
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/list/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/list.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/list/
 
 List は、あるオブジェクトの集合を順序なしリスト（unordered list）または順序つきリスト（ordered list）として表示するコンポーネントです。リストは入れ子にすることもでき、順序なしと順序つきを混在させた入れ子も可能です。
 

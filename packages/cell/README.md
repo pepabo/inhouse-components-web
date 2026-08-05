@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/cell
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Cell コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/cell/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/cell.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/cell/
 
 Cell は、List、Description List、Table、Interactive List、Interactive Table などのプロトタイプ（基底）として機能するコンポーネントです。
 

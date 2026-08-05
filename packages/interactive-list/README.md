@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/interactive-list
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Interactive List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/interactive-list/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/interactive-list.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/interactive-list/
 
 Interactive List は、商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするためのリストコンポーネントです。Item に Leading、Body、Trailing を組み合わせて、対象オブジェクトの情報を適切に伝達します。
 

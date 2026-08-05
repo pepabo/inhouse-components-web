@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/tab
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Tab コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/tab/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/tab.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/tab/
 
 Tab は、コンテンツを特定の条件で分類し個々にラベルを付けて、ユーザーが選択した項目に紐付くコンテンツのみを表示するコンポーネントです。同一コンテキスト内で表示内容を切り替える目的で使用し、別画面への遷移には Navigation 系のコンポーネントを使います。
 

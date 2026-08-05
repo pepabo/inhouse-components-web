@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/breadcrumb
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Breadcrumb コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/breadcrumb/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/breadcrumb.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/breadcrumb/
 
 Breadcrumb は、サイトの全体構造と現在位置の関係を、ホームを起点とした階層表現によって示すナビゲーション系のコンポーネントです。ユーザーは Breadcrumb を利用することで、現在アクセスしているページの位置を把握したり、効率的に上位階層へ移動できます。
 

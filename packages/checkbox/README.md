@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/checkbox
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Checkbox コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/checkbox/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/checkbox.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/checkbox/
 
 Checkbox は、基本的に ON または OFF（true または false）の値を持ち、2つの値から1つを選択・切り替えるのに使うコンポーネントです。
 

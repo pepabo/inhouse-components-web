@@ -52,7 +52,7 @@ $ yarn add @pepabo-inhouse/button
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Button コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/button/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/button.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/button/
 
 ボタンは、ユーザーが押すことで機能やアクションを発動するためのインタラクティブな UI 要素です。コンテキストに応じて Navigation（移動）、Confirmation（確認）、Execution（実行）、Cancellation（取消）、UI Operation（UI 操作）の5種類のロールを持ちます。
 

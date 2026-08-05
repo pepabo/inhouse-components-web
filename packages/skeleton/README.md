@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/skeleton
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Skeleton コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/skeleton/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/skeleton.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/skeleton/
 
 Skeleton は、画面の読み込み中であることを、読み込み完了後に表示される要素の形状を模したプレースホルダーとして示すコンポーネントです。形状を事前に提示することで、ユーザーの待機時間に対する体感を改善します。
 

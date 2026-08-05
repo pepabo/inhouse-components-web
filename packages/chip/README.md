@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/chip
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Chip コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/chip/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/chip.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/chip/
 
 Chip は、ラベルのような見た目でユーザーのインタラクションを受け付けるコンポーネントです。
 

@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/grid
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Grid コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/grid/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/grid.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/grid/
 
 Grid（グリッド）は、コンテンツを行と列に分割してレイアウトするためのコンポーネントです。Row（行）と Column（列）、そして Column 間の Gap によって、一貫したリズムのレイアウトを組み立てられます。
 

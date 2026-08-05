@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/textfield
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Textfield コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/textfield/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/textfield.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/textfield/
 
 Textfield は、 UI にテキストを入力したいときに使うコンポーネントです。線で囲む、または領域を塗りつぶした見た目にすることで、テキストを入力する範囲を明確にユーザーに伝えます。また、Label や Helper Text、適切なエラーメッセージを提供することで、テキストの入力をサポートします。
 

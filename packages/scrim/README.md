@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/scrim
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Scrim コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/scrim/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/scrim.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/scrim/
 
 Scrim は、ページのコンテンツより上の面に重ねて表示する幕のコンポーネントです。
 

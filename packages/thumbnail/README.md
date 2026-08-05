@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/thumbnail
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Thumbnail コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/thumbnail/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/thumbnail.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/thumbnail/
 
 Thumbnail は、対象のオブジェクトを画像を通して理解するのを助けるコンポーネントです。
 

@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/select
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Select コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/select/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/select.mdx`
+> 原本: https://design.pepabo.com/inhouse/components/select/
 
 セレクトボックスは、複数の選択肢から一つを選ぶための入力要素です。ドロップダウンリストとも呼ばれ、限られたスペースで多くの選択肢を提示できる利点があります。
 
