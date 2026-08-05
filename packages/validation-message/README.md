@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/validation-message
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Validation Message コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/validation-message/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/validation-message/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/validation-message.mdx`
 
 Validation Message は、フォーム入力の検証結果をユーザーに伝えるテキストコンポーネントです。
 

@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/callout
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Callout コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/callout/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/callout/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/callout.mdx`
 
 Callout は、ユーザーに対して重要かつ簡潔な情報を効果的に伝え、必要に応じて行動を促すためのコンポーネントです。アイコン、メッセージ、必要に応じてアクションや閉じるボタンを含む構造を持ち、[色の使い分け](https://design.pepabo.com/inhouse/flavors/color/)によって伝える状態のニュアンスを変えられます。
 

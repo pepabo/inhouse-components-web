@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/progress-indicator
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Progress Indicator コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/progress-indicator/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/progress-indicator/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/progress-indicator.mdx`
 
 Progress Indicator は、アプリケーションの読み込み、フォームの送信、更新の保存など、進行中のプロセスのステータスをユーザーに通知するコンポーネントです。現在のアプリケーションの状態を伝え、ユーザーが現在の画面から移動できるかどうかを示します。
 

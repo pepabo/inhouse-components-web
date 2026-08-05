@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/description-list
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Description List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/description-list/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/description-list/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/description-list.mdx`
 
 Description List は、Key と Value のペアの集合を説明リストとして表示するコンポーネントです。用語集の作成や、オブジェクトのメタデータ表示などに用います。
 

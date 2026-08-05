@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/card
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Card コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/card/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/card/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/card.mdx`
 
 Card は、ある情報のチャンク（塊）を、枠線や背景・影などの視覚的なスタイルで囲って表現するコンポーネントです。複数の情報を一つの単位としてまとめ、一覧表示や詳細表示の構成要素として用います。
 

@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/container
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Container コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/container/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/container/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/container.mdx`
 
 Container（コンテナ）は、コンテンツの領域を示すコンポーネントです。サイズを指定するとコンテンツが広がる最大幅を決定でき、コンテンツに最大幅および左右のマージンを設けたい場合に使用します。
 

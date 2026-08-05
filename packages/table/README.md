@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/table
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Table コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/table/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/table/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/table.mdx`
 
 Table は、商品やユーザーなど、同じ種類のオブジェクトの集合を構造化して表示するコンポーネントです。最上部に見出しの Heading 行を配置し、その下に Description 行を垂直方向に並べて構成します。
 

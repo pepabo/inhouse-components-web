@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/side-navigation
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Side Navigation コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/side-navigation/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/side-navigation/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/side-navigation.mdx`
 
 Side Navigation は、デスクトップや大型タブレットなどの大きな画面で、横方向の画面遷移を提供するナビゲーションコンポーネントです。画面の端に最上位の遷移先を縦並びで表示し、アプリケーションのどこからでも主要な画面間を移動できるようにします。
 

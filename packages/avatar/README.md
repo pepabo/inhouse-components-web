@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/avatar
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Avatar コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/avatar/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/avatar/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/avatar.mdx`
 
 Avatar は、対象のオブジェクトがユーザー（人）に関するものであることを示すための、円形を基本とした画像コンポーネントです。プロフィール画像やユーザーアイコンとして用い、対象がユーザーに紐づいていることを視覚的に明確にします。
 

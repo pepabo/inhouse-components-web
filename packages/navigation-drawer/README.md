@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/navigation-drawer
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Navigation Drawer コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/navigation-drawer/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/navigation-drawer/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/navigation-drawer.mdx`
 
 Navigation Drawer は、モバイルや小型タブレットなどの小さな画面で、Bottom Navigation に収まらない優先順位の低い遷移先を格納するドロワー型のナビゲーションコンポーネントです。普段は非表示で、ユーザーの操作によって展開されます。
 

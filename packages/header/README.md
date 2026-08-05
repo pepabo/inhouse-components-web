@@ -19,7 +19,7 @@ $ yarn add @pepabo-inhouse/header
 ## デザインドキュメント (Design Documentation)
 
 > このセクションは Pepabo Design [Header コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/header/) からの転載です。
-> 原本: https://design.pepabo.com/inhouse/components/header/
+> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/header.mdx`
 
 Header は、メジャースタック系コンポーネント（Dialog、Navigation Drawer、Sheet）の画面上部に配置するヘッダーコンポーネントです。タスクの目的を明確にするタイトルや、逆方向の遷移・サブアクションを行うためのボタンを配置します。
 
