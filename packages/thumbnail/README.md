@@ -14,7 +14,7 @@ $ npm install @pepabo-inhouse/thumbnail
 $ yarn add @pepabo-inhouse/thumbnail
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->
+<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 

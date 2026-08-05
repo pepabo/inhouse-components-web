@@ -25,7 +25,8 @@ import { fileURLToPath } from 'node:url'
 const SITE = 'https://design.pepabo.com'
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const MDX_SUBDIR = 'src/pages/inhouse/components'
-const START_MARKER = '<!-- design-doc:start (design.pepabo.com からの転載。更新は手動) -->'
+const START_MARKER =
+  '<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->'
 const END_MARKER = '<!-- design-doc:end -->'
 const START_RE = /^<!-- design-doc:start[^\n]*-->$/m
 const END_RE = /^<!-- design-doc:end -->$/m
