@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/header
 $ yarn add @pepabo-inhouse/header
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Header コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Header は、メジャースタック系コンポーネント（Dialog、Navigation Drawer、Sheet）の画面上部に配置するヘッダーコンポーネントです。タスクの目的を明確にするタイトルや、逆方向の遷移・サブアクションを行うためのボタンを配置します。
 

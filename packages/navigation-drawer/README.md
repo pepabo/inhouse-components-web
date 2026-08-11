@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/navigation-drawer
 $ yarn add @pepabo-inhouse/navigation-drawer
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Navigation Drawer コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Navigation Drawer は、モバイルや小型タブレットなどの小さな画面で、Bottom Navigation に収まらない優先順位の低い遷移先を格納するドロワー型のナビゲーションコンポーネントです。普段は非表示で、ユーザーの操作によって展開されます。
 

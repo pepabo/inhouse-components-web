@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/snackbar
 $ yarn add @pepabo-inhouse/snackbar
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Snackbar コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Snackbar は、システムが実行した結果をユーザーに一時的にフィードバックするコンポーネントです。画面の下部に短時間表示され、一定時間で自動的に消えることで、比較的重要度の低い内容であることを示しつつフィードバックを伝えます。
 

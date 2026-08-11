@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/tab
 $ yarn add @pepabo-inhouse/tab
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Tab コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Tab は、コンテンツを特定の条件で分類し個々にラベルを付けて、ユーザーが選択した項目に紐付くコンテンツのみを表示するコンポーネントです。同一コンテキスト内で表示内容を切り替える目的で使用し、別画面への遷移には Navigation 系のコンポーネントを使います。
 

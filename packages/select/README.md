@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/select
 $ yarn add @pepabo-inhouse/select
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Select コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 セレクトボックスは、複数の選択肢から一つを選ぶための入力要素です。ドロップダウンリストとも呼ばれ、限られたスペースで多くの選択肢を提示できる利点があります。
 

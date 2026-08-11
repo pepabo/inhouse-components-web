@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/progress-indicator
 $ yarn add @pepabo-inhouse/progress-indicator
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Progress Indicator コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Progress Indicator は、アプリケーションの読み込み、フォームの送信、更新の保存など、進行中のプロセスのステータスをユーザーに通知するコンポーネントです。現在のアプリケーションの状態を伝え、ユーザーが現在の画面から移動できるかどうかを示します。
 

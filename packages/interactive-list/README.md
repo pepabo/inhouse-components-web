@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/interactive-list
 $ yarn add @pepabo-inhouse/interactive-list
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Interactive List コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Interactive List は、商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするためのリストコンポーネントです。Item に Leading、Body、Trailing を組み合わせて、対象オブジェクトの情報を適切に伝達します。
 

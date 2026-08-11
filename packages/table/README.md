@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/table
 $ yarn add @pepabo-inhouse/table
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Table コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Table は、商品やユーザーなど、同じ種類のオブジェクトの集合を構造化して表示するコンポーネントです。最上部に見出しの Heading 行を配置し、その下に Description 行を垂直方向に並べて構成します。
 

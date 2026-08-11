@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/grid
 $ yarn add @pepabo-inhouse/grid
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Grid コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Grid（グリッド）は、コンテンツを行と列に分割してレイアウトするためのコンポーネントです。Row（行）と Column（列）、そして Column 間の Gap によって、一貫したリズムのレイアウトを組み立てられます。
 

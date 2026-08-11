@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/breadcrumb
 $ yarn add @pepabo-inhouse/breadcrumb
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Breadcrumb コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Breadcrumb は、サイトの全体構造と現在位置の関係を、ホームを起点とした階層表現によって示すナビゲーション系のコンポーネントです。ユーザーは Breadcrumb を利用することで、現在アクセスしているページの位置を把握したり、効率的に上位階層へ移動できます。
 

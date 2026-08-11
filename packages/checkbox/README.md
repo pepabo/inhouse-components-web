@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/checkbox
 $ yarn add @pepabo-inhouse/checkbox
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Checkbox コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Checkbox は、基本的に ON または OFF（true または false）の値を持ち、2つの値から1つを選択・切り替えるのに使うコンポーネントです。
 

@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/avatar
 $ yarn add @pepabo-inhouse/avatar
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Avatar コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Avatar は、対象のオブジェクトがユーザー（人）に関するものであることを示すための、円形を基本とした画像コンポーネントです。プロフィール画像やユーザーアイコンとして用い、対象がユーザーに紐づいていることを視覚的に明確にします。
 

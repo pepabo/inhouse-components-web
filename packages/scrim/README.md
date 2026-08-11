@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/scrim
 $ yarn add @pepabo-inhouse/scrim
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Scrim コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Scrim は、ページのコンテンツより上の面に重ねて表示する幕のコンポーネントです。
 

@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/side-navigation
 $ yarn add @pepabo-inhouse/side-navigation
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Side Navigation コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Side Navigation は、デスクトップや大型タブレットなどの大きな画面で、横方向の画面遷移を提供するナビゲーションコンポーネントです。画面の端に最上位の遷移先を縦並びで表示し、アプリケーションのどこからでも主要な画面間を移動できるようにします。
 

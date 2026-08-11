@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/thumbnail
 $ yarn add @pepabo-inhouse/thumbnail
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Thumbnail コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Thumbnail は、対象のオブジェクトを画像を通して理解するのを助けるコンポーネントです。
 

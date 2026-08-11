@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/callout
 $ yarn add @pepabo-inhouse/callout
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Callout コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Callout は、ユーザーに対して重要かつ簡潔な情報を効果的に伝え、必要に応じて行動を促すためのコンポーネントです。アイコン、メッセージ、必要に応じてアクションや閉じるボタンを含む構造を持ち、色の使い分けによって伝える状態のニュアンスを変えられます。
 

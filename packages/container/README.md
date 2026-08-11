@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/container
 $ yarn add @pepabo-inhouse/container
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Container コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Container（コンテナ）は、コンテンツの領域を示すコンポーネントです。サイズを指定するとコンテンツが広がる最大幅を決定でき、コンテンツに最大幅および左右のマージンを設けたい場合に使用します。
 

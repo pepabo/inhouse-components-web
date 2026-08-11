@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/radio
 $ yarn add @pepabo-inhouse/radio
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Radio コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Radioは、一般的にラジオボタン（ラジオボタングループ）と呼ばれ、複数の項目から1つだけ選択するコンポーネントです。
 

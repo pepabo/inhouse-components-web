@@ -47,12 +47,12 @@ $ yarn add @pepabo-inhouse/button
 }
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Button コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 ボタンは、ユーザーが押すことで機能やアクションを発動するためのインタラクティブな UI 要素です。コンテキストに応じて Navigation（移動）、Confirmation（確認）、Execution（実行）、Cancellation（取消）、UI Operation（UI 操作）の5種類のロールを持ちます。
 

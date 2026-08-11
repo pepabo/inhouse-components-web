@@ -19,8 +19,6 @@
     "lint:script": "eslint . --ext ts,tsx",
     "test": "bash scripts/test.sh",
     "vrt": "reg-suit run",
-    "sync:design-docs": "node scripts/sync_design_docs.mjs",
-    "sync:design-docs:check": "node scripts/sync_design_docs.mjs --check",
     "changelog": "ts-node scripts/create_changelog.ts",
     "prepublishOnly": "npm run build"
   },

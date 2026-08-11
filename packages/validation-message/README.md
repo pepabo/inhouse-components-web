@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/validation-message
 $ yarn add @pepabo-inhouse/validation-message
 ```
 
-<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (自動生成。直接編集しないでください) -->
 
 ## デザインドキュメント (Design Documentation)
 
 > Validation Message コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
-> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
+> このセクションは自動生成されています。直接編集しないでください。
 
 Validation Message は、フォーム入力の検証結果をユーザーに伝えるテキストコンポーネントです。
 
