@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/card
 $ yarn add @pepabo-inhouse/card
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Card コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/card/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/card.mdx`
+> Card コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Card は、ある情報のチャンク（塊）を、枠線や背景・影などの視覚的なスタイルで囲って表現するコンポーネントです。複数の情報を一つの単位としてまとめ、一覧表示や詳細表示の構成要素として用います。
 
@@ -322,7 +322,7 @@ Card 自体はインタラクションを持たないため、固有のステー
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - Card 内に画像のみを配置する場合は `<img>` の `alt` に内容を識別できる代替テキストを設定する
 - Card 内に複数のリンクやボタンを配置する場合は、それぞれにフォーカスリングが見えるようにする

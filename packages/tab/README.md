@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/tab
 $ yarn add @pepabo-inhouse/tab
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Tab コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/tab/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/tab.mdx`
+> Tab コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Tab は、コンテンツを特定の条件で分類し個々にラベルを付けて、ユーザーが選択した項目に紐付くコンテンツのみを表示するコンポーネントです。同一コンテキスト内で表示内容を切り替える目的で使用し、別画面への遷移には Navigation 系のコンポーネントを使います。
 
@@ -41,8 +41,6 @@ Tab は **List**、**Item**、**Panel** の3つの要素で構成されます。
 - [GitHub](https://github.com/pepabo/inhouse-components-web/tree/main/packages/tab)
 
 ### 2. 構成要素 (Anatomy)
-
-![](https://design.pepabo.com/images/inhouse/components/tab/dictionary.png)
 
 #### List
 
@@ -74,12 +72,12 @@ Tab は **List**、**Item**、**Panel** の3つの要素で構成されます。
 
 #### いつ使わないか
 
-- 別画面への遷移には Tab ではなく Navigation 系のコンポーネント（[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) / [Navigation Drawer](https://design.pepabo.com/inhouse/components/navigation-drawer/) など）を使います。Tab は同一コンテキスト内での切り替え専用です。
+- 別画面への遷移には Tab ではなく Navigation 系のコンポーネント（[Side Navigation](../side-navigation/README.md) / [Navigation Drawer](../navigation-drawer/README.md) など）を使います。Tab は同一コンテキスト内での切り替え専用です。
 - 分類した項目に明確な序列（順序）が存在する場合は、Pagination の使用を検討します。並列ではないコンテンツを Tab に並べると、ユーザーが恣意性を推し量る必要が生じ、予測可能性が低下します。
 
 #### 類似コンポーネントとの違い
 
-- **[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) / [Navigation Drawer](https://design.pepabo.com/inhouse/components/navigation-drawer/)**: 別画面への遷移を伴う場合に使います。Tab は同一コンテキスト内での切り替え専用です。
+- **[Side Navigation](../side-navigation/README.md) / [Navigation Drawer](../navigation-drawer/README.md)**: 別画面への遷移を伴う場合に使います。Tab は同一コンテキスト内での切り替え専用です。
 
 ### 4. バリエーション (Variants)
 
@@ -349,7 +347,7 @@ Tab におけるデフォルトです。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - List 要素に `role="tablist"`、各 Item 要素に `role="tab"`、Panel 要素に `role="tabpanel"` を設定する
 - 選択中の Item に `aria-selected="true"`、非選択の Item に `aria-selected="false"` を設定する

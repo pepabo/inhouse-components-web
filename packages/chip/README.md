@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/chip
 $ yarn add @pepabo-inhouse/chip
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Chip コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/chip/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/chip.mdx`
+> Chip コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Chip は、ラベルのような見た目でユーザーのインタラクションを受け付けるコンポーネントです。
 
@@ -27,7 +27,7 @@ Chip は、ラベルのような見た目でユーザーのインタラクショ
 
 #### 説明
 
-コンテンツなど流動性の高いものに対するアクションを表現します。静的な [Sticker](https://design.pepabo.com/inhouse/components/sticker/) に対して、Chip はインタラクティブなコンポーネントという位置付けです。押せる感・手元感を強調するため、Sticker よりも丸い形状をしています。
+コンテンツなど流動性の高いものに対するアクションを表現します。静的な [Sticker](../sticker/README.md) に対して、Chip はインタラクティブなコンポーネントという位置付けです。押せる感・手元感を強調するため、Sticker よりも丸い形状をしています。
 
 #### リンク
 
@@ -46,13 +46,13 @@ Chip は、ラベルのような見た目でユーザーのインタラクショ
 
 #### いつ使わないか
 
-- インタラクションを持たない付加的な情報の表示には [Sticker](https://design.pepabo.com/inhouse/components/sticker/) を使用する
-- 送信や削除など、画面に対して固定的な主要アクションには [Button](https://design.pepabo.com/inhouse/components/button/) を使用する
+- インタラクションを持たない付加的な情報の表示には [Sticker](../sticker/README.md) を使用する
+- 送信や削除など、画面に対して固定的な主要アクションには [Button](../button/README.md) を使用する
 
 #### 類似コンポーネントとの違い
 
-- **[Sticker](https://design.pepabo.com/inhouse/components/sticker/)**: オブジェクトに対する付加的な情報を表示する静的なコンポーネント。区別のため Sticker は矩形寄りの角丸、Chip はより丸い形状とする。
-- **[Button](https://design.pepabo.com/inhouse/components/button/)**: 画面に対して固定的なアクションのトリガー。Chip はコンテンツなど流動性の高いものに対するアクションに用いる。
+- **[Sticker](../sticker/README.md)**: オブジェクトに対する付加的な情報を表示する静的なコンポーネント。区別のため Sticker は矩形寄りの角丸、Chip はより丸い形状とする。
+- **[Button](../button/README.md)**: 画面に対して固定的なアクションのトリガー。Chip はコンテンツなど流動性の高いものに対するアクションに用いる。
 
 ### 4. バリエーション (Variants)
 
@@ -175,7 +175,7 @@ Chip は、ラベルのような見た目でユーザーのインタラクショ
 
 #### Skeleton
 
-コンテンツの読み込み中は、Chip と同じ形状の [Skeleton](https://design.pepabo.com/inhouse/components/skeleton/) を表示できます。
+コンテンツの読み込み中は、Chip と同じ形状の [Skeleton](../skeleton/README.md) を表示できます。
 
 ### 5. ステート (States)
 
@@ -231,7 +231,7 @@ Overlay Color を重ねて選択しようとしていることを示します。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - 役割に応じて `<button>` や `<a>` など適切なインタラクティブ要素でマークアップし、見た目だけでボタンやリンクを表現しない
 - 絞り込みなどで選択状態を持つ場合は、`aria-pressed` などで選択状態を支援技術に伝え、色だけで選択状態を表現しない

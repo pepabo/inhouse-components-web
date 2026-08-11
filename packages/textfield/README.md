@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/textfield
 $ yarn add @pepabo-inhouse/textfield
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Textfield コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/textfield/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/textfield.mdx`
+> Textfield コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Textfield は、 UI にテキストを入力したいときに使うコンポーネントです。線で囲む、または領域を塗りつぶした見た目にすることで、テキストを入力する範囲を明確にユーザーに伝えます。また、Label や Helper Text、適切なエラーメッセージを提供することで、テキストの入力をサポートします。
 
@@ -41,8 +41,6 @@ Inhouse の Textfield は、1行のテキスト入力（`<input>`）と改行を
 - [GitHub](https://github.com/pepabo/inhouse-components-web/tree/main/packages/textfield)
 
 ### 2. 構成要素 (Anatomy)
-
-![](https://design.pepabo.com/images/inhouse/components/textfield/dictionary.png)
 
 #### A. Container
 
@@ -97,11 +95,11 @@ UI にテキストを自由入力させる必要がある場面で使います�
 
 #### いつ使わないか
 
-- テキストを自由入力するのではなく、複数の選択肢から一つを選択する場合は [Select](https://design.pepabo.com/inhouse/components/select/) を使います。
+- テキストを自由入力するのではなく、複数の選択肢から一つを選択する場合は [Select](../select/README.md) を使います。
 
 #### 類似コンポーネントとの違い
 
-- **[Select](https://design.pepabo.com/inhouse/components/select/)**: 定義された選択肢から一つを選ばせたい場合に使います。Textfield は値を自由入力させたい場合に使います。
+- **[Select](../select/README.md)**: 定義された選択肢から一つを選ばせたい場合に使います。Textfield は値を自由入力させたい場合に使います。
 
 ### 4. バリエーション (Variants)
 
@@ -404,7 +402,7 @@ Semantic Colorを指定して配色できます。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `<label>` 要素で Label をマークアップし、`for` 属性（または親子関係）で `<input>` と関連付ける
 - Placeholder text を Label の代わりに使わない（コンテキストがひと目で分かる場合を除き Label は省略しない）

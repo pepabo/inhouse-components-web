@@ -14,14 +14,14 @@ $ npm install @pepabo-inhouse/callout
 $ yarn add @pepabo-inhouse/callout
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Callout コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/callout/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/callout.mdx`
+> Callout コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
-Callout は、ユーザーに対して重要かつ簡潔な情報を効果的に伝え、必要に応じて行動を促すためのコンポーネントです。アイコン、メッセージ、必要に応じてアクションや閉じるボタンを含む構造を持ち、[色の使い分け](https://design.pepabo.com/inhouse/flavors/color/)によって伝える状態のニュアンスを変えられます。
+Callout は、ユーザーに対して重要かつ簡潔な情報を効果的に伝え、必要に応じて行動を促すためのコンポーネントです。アイコン、メッセージ、必要に応じてアクションや閉じるボタンを含む構造を持ち、色の使い分けによって伝える状態のニュアンスを変えられます。
 
 ### 1. 概要 (Overview)
 
@@ -88,7 +88,7 @@ Callout は、システムの状態やユーザーが取るべき行動など、
 
 #### 類似コンポーネントとの違い
 
-- **[Snackbar](https://design.pepabo.com/inhouse/components/snackbar/)**: 揮発性の高い、一時的なフィードバックを担う。Callout は継続的に表示する情報伝達を担う。
+- **[Snackbar](../snackbar/README.md)**: 揮発性の高い、一時的なフィードバックを担う。Callout は継続的に表示する情報伝達を担う。
 
 ### 4. バリエーション (Variants)
 
@@ -217,7 +217,7 @@ Callout は表示・非表示の状態を持ちます。閉じる操作を提供
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - 通知の重要度に応じて `role="status"`（控えめな通知）または `role="alert"`（緊急の通知）を設定する
 - 色だけで情報を伝えない。アイコンとテキストの両方で意味を伝える

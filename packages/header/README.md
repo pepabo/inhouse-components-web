@@ -14,20 +14,18 @@ $ npm install @pepabo-inhouse/header
 $ yarn add @pepabo-inhouse/header
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Header コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/header/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/header.mdx`
+> Header コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Header は、メジャースタック系コンポーネント（Dialog、Navigation Drawer、Sheet）の画面上部に配置するヘッダーコンポーネントです。タスクの目的を明確にするタイトルや、逆方向の遷移・サブアクションを行うためのボタンを配置します。
 
 ### 1. 概要 (Overview)
 
 #### 説明
-
-![](https://design.pepabo.com/images/inhouse/components/header/about.png)
 
 Header はメジャースタック系コンポーネントの画面のタイトルを表示し、タスクの目的を明確にします。あわせて、「検索」「絞り込み」「シェア」などのタスクの完了には必ずしも必要ではないサブアクションを行えるようにします。
 
@@ -50,8 +48,6 @@ Header は Leading、Body、Trailing の3つの領域で構成されます。こ
 
 #### Leading
 
-![](https://design.pepabo.com/images/inhouse/components/header/leading.png)
-
 逆方向の画面遷移を誘導する「戻る」「閉じる」「キャンセル」Button を配置できます。Button の Appearance は画面内の優先順位を考慮して Transparent を選択します。
 
 | ナビゲーション | Button |
@@ -64,15 +60,11 @@ Header は Leading、Body、Trailing の3つの領域で構成されます。こ
 
 #### Body
 
-![](https://design.pepabo.com/images/inhouse/components/header/body.png)
-
 現在の画面のタスクの目的を明確にするタイトルを配置できます。タイトルはなるべく簡潔にして文字がはみ出さないようにします。入れられるのは一般名詞のみで、商品名などの固有名詞は変動する情報のため入れることができません。
 
 必須/任意: 必須
 
 #### Trailing
-
-![](https://design.pepabo.com/images/inhouse/components/header/trailing.png)
 
 画面内のスコープに限定した「検索」「絞り込み」「シェア」「その他」などのサブアクションを促す Button を配置できます。「送信」や「保存」などタスクの完了に必ず必要なアクションは Header に配置できません(利用頻度が高く、コンテンツ内のフォーム入力の視線の先や、モバイルデバイスで指が届く範囲に配置するほうがアクセシブルなため)。
 
@@ -81,8 +73,6 @@ Header は Leading、Body、Trailing の3つの領域で構成されます。こ
 配置するアクションが4つ以上になる場合は、Ellipsis Vertical もしくは Ellipsis Horizontal の Icon のみの Button を最後尾に配置して、優先順位の低いアクションを Menu に格納できます。
 
 また、Trailing には検索クエリを入力できる Textfield を配置できます。優先順位が高い場合およびデスクトップのように領域が十分ある場合はデフォルトで表示しますが、優先順位が低い場合は Magnifying Glass の Icon のクリックイベントで展開します。
-
-![](https://design.pepabo.com/images/inhouse/components/header/trailing-search.png)
 
 必須/任意: 任意
 
@@ -126,8 +116,6 @@ Header は Leading、Body、Trailing の3つの領域で構成されます。こ
   </tbody>
 </table>
 
-![](https://design.pepabo.com/images/inhouse/components/header/appearance-white.png)
-
 #### Appearance
 
 外観を決定します。
@@ -157,15 +145,9 @@ Header は Leading、Body、Trailing の3つの領域で構成されます。こ
 
 ##### White
 
-![](https://design.pepabo.com/images/inhouse/components/header/appearance-white.png)
-
 ##### Filled
 
-![](https://design.pepabo.com/images/inhouse/components/header/appearance-filled.png)
-
 ##### Transparent
-
-![](https://design.pepabo.com/images/inhouse/components/header/appearance-transparent.png)
 
 #### Brightness
 
@@ -210,7 +192,7 @@ Textfield に検索クエリを入力して Submit することで検索を行�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - Header のルート要素には `<header>` を用いる
 - Icon のみの Button には `aria-label` でその機能を伝えるテキストを設定する

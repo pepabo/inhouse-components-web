@@ -14,14 +14,14 @@ $ npm install @pepabo-inhouse/app-bar
 $ yarn add @pepabo-inhouse/app-bar
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [App Bar コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/app-bar/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/app-bar.mdx`
+> App Bar コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
-App Bar は、アプリケーションの最上位に配置される [Header](https://design.pepabo.com/inhouse/components/header/) です。アプリケーション本体のタイトル（またはロゴ）を表示してブランドの印象を表現するとともに、アプリケーションの主要アクションとナビゲーションを提供します。
+App Bar は、アプリケーションの最上位に配置される [Header](../header/README.md) です。アプリケーション本体のタイトル（またはロゴ）を表示してブランドの印象を表現するとともに、アプリケーションの主要アクションとナビゲーションを提供します。
 
 ### 1. 概要 (Overview)
 
@@ -29,11 +29,11 @@ App Bar は、アプリケーションの最上位に配置される [Header](ht
 
 App Bar は **Leading**、**Body**、**Trailing** の3つの領域で構成されます。
 
-- **Leading**: Menu アイコンの Button による Navigation 系コンポーネント（[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) / [Navigation Drawer](https://design.pepabo.com/inhouse/components/navigation-drawer/)）の開閉を担う領域。
+- **Leading**: Menu アイコンの Button による Navigation 系コンポーネント（[Side Navigation](../side-navigation/README.md) / [Navigation Drawer](../navigation-drawer/README.md)）の開閉を担う領域。
 - **Body**: アプリケーションの名前やロゴを左寄せで配置する領域。
 - **Trailing**: アプリケーションの主要アクションを促す Button や、横方向のナビゲーションを配置できる領域。
 
-[Header](https://design.pepabo.com/inhouse/components/header/) が逆方向の遷移のみ行えるのに対し、App Bar は Leading の Menu Button や Trailing に置いた Navigation で横方向のビュー遷移も行えます。
+[Header](../header/README.md) が逆方向の遷移のみ行えるのに対し、App Bar は Leading の Menu Button や Trailing に置いた Navigation で横方向のビュー遷移も行えます。
 
 このコンポーネントは Web アプリケーションの場合のみ使用します。ネイティブアプリケーションでは、インタラクションの一貫性や実装コストに優れたプラットフォーム標準のコンポーネント（iOS: [Toolbars](https://developer.apple.com/design/human-interface-guidelines/toolbars)、Android: [App bars](https://m3.material.io/components/app-bars/overview)）を使用します。
 
@@ -44,13 +44,9 @@ App Bar は **Leading**、**Body**、**Trailing** の3つの領域で構成さ�
 
 ### 2. 構成要素 (Anatomy)
 
-![背景色などが違う3種類のapp-barが並んだキャプチャ](https://design.pepabo.com/images/inhouse/components/app-bar/cover.png)
-
-![app-barのキャプチャに3つの構成要素Leading, Body, Trailingを加えて示した図表](https://design.pepabo.com/images/inhouse/components/app-bar/dictionary.png)
-
 #### A. Leading
 
-Menu アイコンの Button のクリックイベントで Navigation 系のコンポーネント（[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) または [Navigation Drawer](https://design.pepabo.com/inhouse/components/navigation-drawer/)）を開閉し、横方向のビュー遷移を行えます。Bottom Navigation で代わりが効く場合は必ず設置する必要はありません。
+Menu アイコンの Button のクリックイベントで Navigation 系のコンポーネント（[Side Navigation](../side-navigation/README.md) または [Navigation Drawer](../navigation-drawer/README.md)）を開閉し、横方向のビュー遷移を行えます。Bottom Navigation で代わりが効く場合は必ず設置する必要はありません。
 
 必須/任意: 任意
 
@@ -77,17 +73,17 @@ Menu アイコンの Button のクリックイベントで Navigation 系のコ�
 
 #### いつ使うか
 
-Web アプリケーションの最上位 [Header](https://design.pepabo.com/inhouse/components/header/) として、ブランドの表現と主要アクション・ナビゲーションへのアクセスを提供する場面で使います。
+Web アプリケーションの最上位 [Header](../header/README.md) として、ブランドの表現と主要アクション・ナビゲーションへのアクセスを提供する場面で使います。
 
 #### いつ使わないか
 
 - **ネイティブアプリケーション**: インタラクションの一貫性や実装コストに優れたプラットフォーム標準のコンポーネント（iOS Toolbars / Android App bars）を使います。
-- **サブアクションのみを並べる場合**: タスクの完了に必ずしも必要ではないサブアクションを並べる場合は [Header](https://design.pepabo.com/inhouse/components/header/) を使います。App Bar はアプリケーションの主要アクションを置く場所です。
+- **サブアクションのみを並べる場合**: タスクの完了に必ずしも必要ではないサブアクションを並べる場合は [Header](../header/README.md) を使います。App Bar はアプリケーションの主要アクションを置く場所です。
 
 #### 類似コンポーネントとの違い
 
-- **[Header](https://design.pepabo.com/inhouse/components/header/)**: タスクの完了に必ずしも必要ではないサブアクションを並べる用途。App Bar はアプリケーションの主要アクションを配置できる点と、Trailing に Navigation を配置できる点が異なります。
-- **[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) / [Navigation Drawer](https://design.pepabo.com/inhouse/components/navigation-drawer/)**: 縦並びの最上位ナビゲーション。App Bar の Leading に置いた Menu Button から開閉します。
+- **[Header](../header/README.md)**: タスクの完了に必ずしも必要ではないサブアクションを並べる用途。App Bar はアプリケーションの主要アクションを配置できる点と、Trailing に Navigation を配置できる点が異なります。
+- **[Side Navigation](../side-navigation/README.md) / [Navigation Drawer](../navigation-drawer/README.md)**: 縦並びの最上位ナビゲーション。App Bar の Leading に置いた Menu Button から開閉します。
 
 ### 4. バリエーション (Variants)
 
@@ -232,10 +228,7 @@ App Bar の見た目を指定できます。
 ```html
 <header class="in-app-bar -appearance-white -brightness-light -position-fixed">
   <div class="_content">
-    <div class="_leading"></div>
-    <div class="_body"></div>
-    <div class="_trailing"></div>
-  </div>
+              </div>
 </header>
 ```
 
@@ -259,7 +252,7 @@ App Bar が通常表示されている状態です。各内部要素（Button �
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ルート要素に `<header>` を用いる
 - Leading の Menu Button には `aria-label="メニュー"` などの分かりやすいラベルを設定し、`aria-expanded` で開閉状態、`aria-controls` で対応する Navigation を伝える

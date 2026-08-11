@@ -14,20 +14,18 @@ $ npm install @pepabo-inhouse/interactive-list
 $ yarn add @pepabo-inhouse/interactive-list
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Interactive List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/interactive-list/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/interactive-list.mdx`
+> Interactive List コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Interactive List は、商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするためのリストコンポーネントです。Item に Leading、Body、Trailing を組み合わせて、対象オブジェクトの情報を適切に伝達します。
 
 ### 1. 概要 (Overview)
 
 #### 説明
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/dictionary.png)
 
 商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするために使用します。オブジェクトの集合名を明示的に示したい場合は簡潔な Title を付けます。
 
@@ -48,31 +46,21 @@ Body の始まりにつく要素です。アイキャッチ及び、Checkbox や
 
 ユーザーオブジェクトを扱う場合に使用します。アバター画像をアイキャッチにするとユーザーを識別しやすくなります。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/avatar.png)
-
 ##### Thumbnail
 
 商品オブジェクトなど、画像をアイキャッチとしてオブジェクトを識別しやすくしたい場合に使用します。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/thumbnail.png)
 
 ##### Icon
 
 オブジェクトを表象・識別しやすくなる場合に使用します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/icon.png)
-
 ##### Checkbox
 
 List の中から複数の Item を選択できるようにする場合に使用します。タップターゲットは Checkbox だけではなく、Item 全体になります。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/checkbox-left.png)
-
 ##### Radio
 
 List の中からどれか一つの Item を選択できるようにする場合に使用します。タップターゲットは Radio だけではなく、Item 全体になります。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/radio.png)
 
 #### Body
 
@@ -82,13 +70,9 @@ Item の本体です。Title 及び Description といった対象オブジェ�
 
 商品名、ユーザー名など対象オブジェクトの最も主要な情報を 2 行まで表示できます。2 行以上になった場合は三点リーダーで省略されます。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/title.png)
-
 ##### Description
 
 在庫数、価格、ユーザー ID など対象オブジェクトの副次的な情報を 2 行まで表示できます。2 行以上になった場合は三点リーダーで省略されます。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/description.png)
 
 #### Trailing
 
@@ -98,19 +82,13 @@ Body の終わりにつく要素です。Chevron Right Icon や Drag Handle Icon
 
 画面遷移できることを示します。タップターゲットは Chevron Right Icon だけではなく、Item 全体になります。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/chevron-right-icon.png)
-
 ##### Drag Handle Icon
 
 並び替えできることを示します。タップターゲットはコンテキストに応じて Drag Handle Icon のみの場合と Item 全体の場合があります。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/drag-handle-icon.png)
-
 ##### Checkbox
 
 List の中から複数の Item を選択できます。タップターゲットは Checkbox だけではなく、Item 全体になります。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/checkbox-right.png)
 
 ### 3. 使い分け (Usage)
 
@@ -120,9 +98,9 @@ List の中から複数の Item を選択できます。タップターゲット
 
 #### いつ使わないか
 
-- Interactive にやりとりする必要がない場合は [List](https://design.pepabo.com/inhouse/components/list/) を使用する
-- 画像が対象オブジェクトを表すメインの情報になる場合は [Card](https://design.pepabo.com/inhouse/components/card/) を使用する（モバイルでは Interactive List、デスクトップでは Card の方が情報が伝わりやすい場合は、画面サイズに応じて変換するパターンも検討する）
-- 表形式で表示したほうが情報が伝わりやすい場合は [Interactive Table](https://design.pepabo.com/inhouse/components/interactive-table/) を使用する
+- Interactive にやりとりする必要がない場合は [List](../list/README.md) を使用する
+- 画像が対象オブジェクトを表すメインの情報になる場合は [Card](../card/README.md) を使用する（モバイルでは Interactive List、デスクトップでは Card の方が情報が伝わりやすい場合は、画面サイズに応じて変換するパターンも検討する）
+- 表形式で表示したほうが情報が伝わりやすい場合は [Interactive Table](../interactive-table/README.md) を使用する
 
 #### 使用上の注意
 
@@ -135,7 +113,7 @@ List の中から複数の Item を選択できます。タップターゲット
 
 ### 4. バリエーション (Variants)
 
-Interactive List は [Cell](https://design.pepabo.com/inhouse/components/cell/) を継承しています。
+Interactive List は [Cell](../cell/README.md) を継承しています。
 
 #### Density
 
@@ -149,13 +127,9 @@ Interactive List は [Cell](https://design.pepabo.com/inhouse/components/cell/) 
 
 Body の中に 1 行の Title のみがあるときは Single になります。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/avatar.png)
-
 ##### Multi
 
 Multi になると、Leading 及び Trailing 内の Element の揃え位置が変化します。Body の中に Title と Description を含む場合は Multi になります。また、Title が 2 行になった場合も Multi になります。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/multi.png)
 
 ### 5. ステート (States)
 
@@ -165,43 +139,29 @@ Overlay Color を重ねて状態を表現します。
 
 特に何もアクションしていないデフォルトの状態です。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/enabled.png)
-
 #### Hover
 
 上に Hover の Overlay Color を重ねて選択しようとしていることを示します。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/hover.png)
 
 #### Focused
 
 上に Focus の Overlay Color を重ねてフォーカスされていることを示します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/focused.png)
-
 #### Selected
 
 Checkbox や Radio などが Selected になっているときに対象の Item が選択されていることをわかりやすくします。上に Selected の Overlay Color を重ねて選択されていることを示します。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/selected.png)
 
 #### Activated
 
 Navigation などで該当する項目がアクティブになるような画面にいるときにアクティブなことがわかりやすくします。上に Activated の Overlay Color を重ねてアクティブであることを示します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/activated.png)
-
 #### Dragged
 
 Drag しているときには Dragged の Overlay Color を重ね、Elevation を変化させて、Drag している状態をわかりやすくします。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/dragged.png)
-
 #### Disabled
 
 透明度を上げて、インタラクションが不可能なことを示します。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-list/disabled.png)
 
 #### インタラクション
 
@@ -223,7 +183,7 @@ Checkbox を用いてオブジェクトの集合から対象のオブジェク�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - リストの構造を `<ul>` / `<li>` などで適切にマークアップし、見た目だけでリストを表現しない
 - Checkbox や Radio を含む場合、選択状態を支援技術に伝え、タップターゲットを Item 全体に広げる

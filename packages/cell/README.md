@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/cell
 $ yarn add @pepabo-inhouse/cell
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Cell コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/cell/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/cell.mdx`
+> Cell コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Cell は、List、Description List、Table、Interactive List、Interactive Table などのプロトタイプ（基底）として機能するコンポーネントです。
 
@@ -54,8 +54,8 @@ List や Table のように、Size や Density が一貫したボックスが 1 
 
 Cell は次のコンポーネントのプロトタイプとして継承されます。
 
-- **[List](https://design.pepabo.com/inhouse/components/list/)** / **[Description List](https://design.pepabo.com/inhouse/components/description-list/)** / **[Table](https://design.pepabo.com/inhouse/components/table/)**: 1 次元・2 次元の静的なリストや表。
-- **[Interactive List](https://design.pepabo.com/inhouse/components/interactive-list/)** / **[Interactive Table](https://design.pepabo.com/inhouse/components/interactive-table/)**: ユーザーと Interactive にやりとりするリストや表。
+- **[List](../list/README.md)** / **[Description List](../description-list/README.md)** / **[Table](../table/README.md)**: 1 次元・2 次元の静的なリストや表。
+- **[Interactive List](../interactive-list/README.md)** / **[Interactive Table](../interactive-table/README.md)**: ユーザーと Interactive にやりとりするリストや表。
 
 ### 4. バリエーション (Variants)
 
@@ -111,7 +111,7 @@ Cell を継承したコンポーネントで Interactive なものはインタ�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - Cell に含めるテキストのコントラスト比を確保する
 - 継承先のコンポーネントの意味に応じて適切な HTML 要素（リストなら `<li>` など）でマークアップし、見た目だけで構造を表現しない

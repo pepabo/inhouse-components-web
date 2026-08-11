@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/checkbox
 $ yarn add @pepabo-inhouse/checkbox
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Checkbox コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/checkbox/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/checkbox.mdx`
+> Checkbox コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Checkbox は、基本的に ON または OFF（true または false）の値を持ち、2つの値から1つを選択・切り替えるのに使うコンポーネントです。
 
@@ -56,13 +56,13 @@ ON/OFF の2つの値からどちらかを選択する場面で使います。2�
 
 #### いつ使わないか
 
-- 2つ以上の値から単数選択する場合は [Radio](https://design.pepabo.com/inhouse/components/radio/) または [Select](https://design.pepabo.com/inhouse/components/select/) の使用を検討します。Checkbox は「OFF を意識しなくていい」前提で使うため、複数項目の単数選択には向きません。
+- 2つ以上の値から単数選択する場合は [Radio](../radio/README.md) または [Select](../select/README.md) の使用を検討します。Checkbox は「OFF を意識しなくていい」前提で使うため、複数項目の単数選択には向きません。
 - 別項目の enabled/disabled に作用させるなど、副作用としてモードが発生する操作には基本的に使いません。やむを得ず使う場合は、ある Checkbox の選択がどの要素に作用するか予測しやすいよう配慮します。
 
 #### 類似コンポーネントとの違い
 
-- **[Radio](https://design.pepabo.com/inhouse/components/radio/)**: 「2つ以上の値を並列にする」のが Radio です。「ある項目を ON にすると他の項目が OFF になる」排他選択であり、同じグループ内の他の Radio の値に関心を持つ点で Checkbox とは対照的です。Checkbox には「ラベルで明示されている ON と暗黙的な OFF」という順列が生じます。
-- **[Select](https://design.pepabo.com/inhouse/components/select/)**: 複数項目から単数選択する Select は選択肢がドロップダウンメニューに格納されるため、表示領域の制約がある場合や選択肢が多い場合に有効です。
+- **[Radio](../radio/README.md)**: 「2つ以上の値を並列にする」のが Radio です。「ある項目を ON にすると他の項目が OFF になる」排他選択であり、同じグループ内の他の Radio の値に関心を持つ点で Checkbox とは対照的です。Checkbox には「ラベルで明示されている ON と暗黙的な OFF」という順列が生じます。
+- **[Select](../select/README.md)**: 複数項目から単数選択する Select は選択肢がドロップダウンメニューに格納されるため、表示領域の制約がある場合や選択肢が多い場合に有効です。
 
 ### 4. バリエーション (Variants)
 
@@ -160,7 +160,7 @@ Focus の Overlay Color を重ねてフォーカスされていることを示�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - HTML 標準の `<input type="checkbox">` 要素でマークアップする
 - `<label>` 要素で Label をマークアップし、`<input>` と関連付ける（クリック可能領域を Label まで広げる）

@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/avatar
 $ yarn add @pepabo-inhouse/avatar
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Avatar コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/avatar/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/avatar.mdx`
+> Avatar コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Avatar は、対象のオブジェクトがユーザー（人）に関するものであることを示すための、円形を基本とした画像コンポーネントです。プロフィール画像やユーザーアイコンとして用い、対象がユーザーに紐づいていることを視覚的に明確にします。
 
@@ -71,8 +71,6 @@ Container の内側に配置する画像です。原則としてユーザーの�
 #### Size
 
 サイズを指定できます。コンテキストや Avatar を含めるコンポーネントのサイズに応じて XS / S / M / L の4種類から選択します。
-
-![](https://design.pepabo.com/images/inhouse/components/avatar/about.png)
 
 <table>
   <thead>
@@ -136,7 +134,7 @@ Container の内側に配置する画像です。原則としてユーザーの�
 
 ```html
 <div class="avatar-component">
-  <img src="https://design.pepabo.com/images/partners/example.png" alt="ユーザー名" />
+  <img src="/images/partners/example.png" alt="ユーザー名" />
 </div>
 ```
 
@@ -160,7 +158,7 @@ Container の内側に配置する画像です。原則としてユーザーの�
 
 ```html
 <div class="in-avatar -size-m">
-  <img src="https://design.pepabo.com/images/partners/example.png" alt="ユーザー名" />
+  <img src="/images/partners/example.png" alt="ユーザー名" />
 </div>
 ```
 
@@ -178,7 +176,7 @@ Avatar 単体はインタラクションを持たないため、固有のステ�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `<img>` の `alt` 属性には、対象のユーザー名など Avatar が示す人物を識別できるテキストを設定する
 - 装飾目的で Avatar を使う場合は `alt=""` とし、スクリーンリーダーから読み上げられないようにする

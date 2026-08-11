@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/dialog
 $ yarn add @pepabo-inhouse/dialog
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Dialog コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/dialog/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/dialog.mdx`
+> Dialog コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Dialog は、ユーザーの操作に介入して、操作実行の確認などを行う対話型のコンポーネントです。
 
@@ -27,7 +27,7 @@ Dialog は、ユーザーの操作に介入して、操作実行の確認など�
 
 #### 説明
 
-ユーザーの操作に介入することで、操作実行の確認などを行います。[Scrim](https://design.pepabo.com/inhouse/components/scrim/) を伴って元のページのコンテンツより上の面に表示され、基本的にはモードを生じさせます。モードの間、下の階層のコンテンツは操作できません。
+ユーザーの操作に介入することで、操作実行の確認などを行います。[Scrim](../scrim/README.md) を伴って元のページのコンテンツより上の面に表示され、基本的にはモードを生じさせます。モードの間、下の階層のコンテンツは操作できません。
 
 #### リンク
 
@@ -50,7 +50,7 @@ Dialog の問いかけを示す Title を配置します。
 
 #### Scrim
 
-Dialog の下に [Scrim](https://design.pepabo.com/inhouse/components/scrim/) を敷いてモードを作り、下の階層が操作できないことを示します。
+Dialog の下に [Scrim](../scrim/README.md) を敷いてモードを作り、下の階層が操作できないことを示します。
 
 ### 3. 使い分け (Usage)
 
@@ -144,7 +144,7 @@ Footer のボタンの並び方向を決定します。**Row / Column** から�
   </tbody>
 </table>
 
-以下は Dialog 本体（`.in-dialog`）の表示例です。実際の使用時は [Scrim](https://design.pepabo.com/inhouse/components/scrim/) を含む `.in-modal` に内包し、画面中央に表示します。
+以下は Dialog 本体（`.in-dialog`）の表示例です。実際の使用時は [Scrim](../scrim/README.md) を含む `.in-modal` に内包し、画面中央に表示します。
 
 ```html
 <div class="in-dialog">
@@ -196,7 +196,7 @@ Dialog は開いているか閉じているかの状態を持ちます。開く�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `<dialog>` 要素または `role="dialog"` と `aria-modal="true"` でマークアップし、モーダルであることを支援技術に伝える
 - Title と Dialog を `aria-labelledby` などで関連付ける

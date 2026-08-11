@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/sticker
 $ yarn add @pepabo-inhouse/sticker
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Sticker コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/sticker/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/sticker.mdx`
+> Sticker コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Sticker は、オブジェクト（メインの情報）に対する付加的な情報を表示するコンポーネントです。
 
@@ -27,7 +27,7 @@ Sticker は、オブジェクト（メインの情報）に対する付加的な
 
 #### 説明
 
-ステータス、おすすめ、カテゴライズ、ハッシュタグなど、オブジェクトに対する付加的な情報を表示します。インタラクティブな [Chip](https://design.pepabo.com/inhouse/components/chip/) に対して、静的な Sticker という位置付けです。Chip と区別するため、矩形寄りの角丸としています。
+ステータス、おすすめ、カテゴライズ、ハッシュタグなど、オブジェクトに対する付加的な情報を表示します。インタラクティブな [Chip](../chip/README.md) に対して、静的な Sticker という位置付けです。Chip と区別するため、矩形寄りの角丸としています。
 
 #### リンク
 
@@ -48,12 +48,12 @@ Sticker は、オブジェクト（メインの情報）に対する付加的な
 
 #### いつ使わないか
 
-- 絞り込みや解除などのインタラクションを受け付ける場合は [Chip](https://design.pepabo.com/inhouse/components/chip/) を使用する
-- Key と Value のペアで情報を並べる場合は [Description List](https://design.pepabo.com/inhouse/components/description-list/) を使用する
+- 絞り込みや解除などのインタラクションを受け付ける場合は [Chip](../chip/README.md) を使用する
+- Key と Value のペアで情報を並べる場合は [Description List](../description-list/README.md) を使用する
 
 #### 類似コンポーネントとの違い
 
-- **[Chip](https://design.pepabo.com/inhouse/components/chip/)**: ラベルのような見た目でインタラクションを受け付けるコンポーネント。押せる感の強調のため丸く、静的な Sticker は区別のため矩形寄りの角丸とする。
+- **[Chip](../chip/README.md)**: ラベルのような見た目でインタラクションを受け付けるコンポーネント。押せる感の強調のため丸く、静的な Sticker は区別のため矩形寄りの角丸とする。
 
 ### 4. バリエーション (Variants)
 
@@ -224,7 +224,7 @@ Sticker は、オブジェクト（メインの情報）に対する付加的な
 
 #### Skeleton
 
-コンテンツの読み込み中は、Sticker と同じ形状の [Skeleton](https://design.pepabo.com/inhouse/components/skeleton/) を表示できます。
+コンテンツの読み込み中は、Sticker と同じ形状の [Skeleton](../skeleton/README.md) を表示できます。
 
 ### 5. ステート (States)
 
@@ -232,7 +232,7 @@ Sticker は静的なコンポーネントであり、インタラクションを
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ステータスなどの意味を色だけで伝えず、ラベルテキストでも伝える
 - アイコンのみで表現する場合は代替テキストを設定する

@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/progress-indicator
 $ yarn add @pepabo-inhouse/progress-indicator
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Progress Indicator コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/progress-indicator/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/progress-indicator.mdx`
+> Progress Indicator コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Progress Indicator は、アプリケーションの読み込み、フォームの送信、更新の保存など、進行中のプロセスのステータスをユーザーに通知するコンポーネントです。現在のアプリケーションの状態を伝え、ユーザーが現在の画面から移動できるかどうかを示します。
 
@@ -41,8 +41,6 @@ Progress Indicator は、進行中の処理がどの程度進んでいるか、�
 
 ### 2. 構成要素 (Anatomy)
 
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/about.png)
-
 #### Indicator
 
 進捗そのものを表現する、動きを持つ可視要素です。Linear ではトラックに沿って伸びるバーとして、Circular では円弧として表現します。
@@ -61,8 +59,6 @@ Indicator の動きの基準となる、進捗が及ぶ範囲を示す要素で�
 
 必須/任意: 任意
 
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/with_caption.png)
-
 ### 3. 使い分け (Usage)
 
 #### いつ使うか
@@ -71,19 +67,13 @@ Indicator の動きの基準となる、進捗が及ぶ範囲を示す要素で�
 
 ##### 画面コンテンツの初期読み込みを示す
 
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/initial_content_loading.png)
-
 画面の中央に Linear / Circular の Progress Indicator を配置することで、画面コンテンツの初期読み込みを示します。
 
 ##### スワイプして更新
 
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/swipe_to_refresh_indicator.png)
-
 「スワイプして更新」ジェスチャによって UI が更新されていることを示す目的で、Circular の Progress Indicator を表示します。
 
 ##### 新しいコンテンツが表示される場所を示す
-
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/new_content_appears_area.png)
 
 既存のコンテンツの上または下に Circular の Progress Indicator を配置すると、新しいコンテンツが表示される場所に注意が向けられます。
 
@@ -91,8 +81,6 @@ Indicator の動きの基準となる、進捗が及ぶ範囲を示す要素で�
 
 - **Linear をオーバーレイする**: コンポーネントの最下部に Linear Progress Indicator をオーバーレイすることで、対象のコンポーネントが進行中の状態であることを表現できます。この場合、対象のコンポーネント（例: Button）は Disabled にします。
 - **アイコンを Circular Progress Indicator に置き換える**: 状態をアイコンで表現している場合は、進行中という状態を Circular Progress Indicator に置き換えて表現することができます。
-
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/shortcut.gif)
 
 #### いつ使わないか
 
@@ -106,7 +94,7 @@ Button のラベルを Progress Indicator に置き換えると、そのボタ�
 
 #### 類似コンポーネントとの違い
 
-- **[Skeleton](https://design.pepabo.com/inhouse/components/skeleton/)**: 描画される要素の形状が定まっている場合に使う。Progress Indicator は形状が未定の場合や、進捗を示したい場合に使う。
+- **[Skeleton](../skeleton/README.md)**: 描画される要素の形状が定まっている場合に使う。Progress Indicator は形状が未定の場合や、進捗を示したい場合に使う。
 
 ### 4. バリエーション (Variants)
 
@@ -137,16 +125,12 @@ Button のラベルを Progress Indicator に置き換えると、そのボタ�
 
 ##### Linear
 
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/linear.png)
-
 固定された表示可能なトラックの長さに沿って Indicator をアニメーション化することで、進行状況を表示します。
 
 - 完了率が検出できる場合: プロセスの進行状況に同期して、トラックの 0 から 100% まで幅が増加する Indicator が表示される
 - 完了率が検出できない場合: プロセスが完了するまで、トラックに沿って Indicator が継続的にアニメーションする
 
 ##### Circular
-
-![](https://design.pepabo.com/images/inhouse/components/progress-indicator/circular.png)
 
 見えない円形のトラックに沿って時計回りに Indicator をアニメーションすることで、進行状況を表示します。
 
@@ -179,7 +163,7 @@ Progress Indicator を非表示にし、失敗した理由を通知して、次�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ルート要素に `role="progressbar"` を設定する
 - 完了率が検出できる場合は `aria-valuenow` / `aria-valuemin` / `aria-valuemax` を設定する

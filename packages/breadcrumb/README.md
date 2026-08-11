@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/breadcrumb
 $ yarn add @pepabo-inhouse/breadcrumb
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Breadcrumb コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/breadcrumb/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/breadcrumb.mdx`
+> Breadcrumb コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Breadcrumb は、サイトの全体構造と現在位置の関係を、ホームを起点とした階層表現によって示すナビゲーション系のコンポーネントです。ユーザーは Breadcrumb を利用することで、現在アクセスしているページの位置を把握したり、効率的に上位階層へ移動できます。
 
@@ -40,8 +40,6 @@ Breadcrumb は **Item** と、各 Item を区切る **Separator** で構成さ�
 - [GitHub](https://github.com/pepabo/inhouse-components-web/tree/main/packages/breadcrumb)
 
 ### 2. 構成要素 (Anatomy)
-
-![](https://design.pepabo.com/images/inhouse/components/breadcrumb/dictionary.png)
 
 #### Item
 
@@ -69,7 +67,7 @@ Item を区切る記号です。
 
 #### 類似コンポーネントとの違い
 
-- **[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) / [Navigation Drawer](https://design.pepabo.com/inhouse/components/navigation-drawer/)**: 主要なナビゲーションとしての役割を担います。Breadcrumb はそれらを補完するものであり、置き換えるものではありません。
+- **[Side Navigation](../side-navigation/README.md) / [Navigation Drawer](../navigation-drawer/README.md)**: 主要なナビゲーションとしての役割を担います。Breadcrumb はそれらを補完するものであり、置き換えるものではありません。
 
 ### 4. バリエーション (Variants)
 
@@ -217,7 +215,7 @@ Breadcrumb の Item には、Link と Text の2種類のステートがありま
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ルート要素に `<nav>` を用い、`aria-label="Breadcrumb"` を設定する
 - 末尾の Item（現在位置）には `aria-current="page"` を設定する

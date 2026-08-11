@@ -14,20 +14,18 @@ $ npm install @pepabo-inhouse/table
 $ yarn add @pepabo-inhouse/table
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Table コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/table/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/table.mdx`
+> Table コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Table は、商品やユーザーなど、同じ種類のオブジェクトの集合を構造化して表示するコンポーネントです。最上部に見出しの Heading 行を配置し、その下に Description 行を垂直方向に並べて構成します。
 
 ### 1. 概要 (Overview)
 
 #### 説明
-
-![](https://design.pepabo.com/images/inhouse/components/table/dictionary.png)
 
 Table は、同じ種類のオブジェクトを行として並べ、列ごとに同じ属性を表示する形式のデータ表現です。Heading 行と Description 行は視覚的に区別できるようにし、見出しは Bold、行同士の境界には Stroke を引きます。
 
@@ -477,7 +475,7 @@ Table 自体はインタラクションを起こさないため、固有のス�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ルート要素には `<table>` を用い、見た目を整える目的だけで `<div>` などに置き換えない
 - Heading 行のセルには `<th scope="col">` を設定し、列見出しであることを伝える

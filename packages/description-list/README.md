@@ -14,20 +14,18 @@ $ npm install @pepabo-inhouse/description-list
 $ yarn add @pepabo-inhouse/description-list
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Description List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/description-list/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/description-list.mdx`
+> Description List コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Description List は、Key と Value のペアの集合を説明リストとして表示するコンポーネントです。用語集の作成や、オブジェクトのメタデータ表示などに用います。
 
 ### 1. 概要 (Overview)
 
 #### 説明
-
-![](https://design.pepabo.com/images/inhouse/components/description-list/dictionary.png)
 
 Description List は、Term（Key）と Description（Value）のペアを並べて表示します。Cell の表現を継承しており、Density / Size などのモディファイアによって密度や大きさを調整できます。
 
@@ -95,8 +93,6 @@ Key と Value のペアではなく、単純なリストを表示する場合は
   </tbody>
 </table>
 
-![](https://design.pepabo.com/images/inhouse/components/description-list/bullet.png)
-
 #### Density
 
 密度を決定します。
@@ -119,8 +115,6 @@ Key と Value のペアではなく、単純なリストを表示する場合は
     </tr>
   </tbody>
 </table>
-
-![](https://design.pepabo.com/images/inhouse/components/description-list/density.png)
 
 #### Size
 
@@ -145,8 +139,6 @@ Key と Value のペアではなく、単純なリストを表示する場合は
   </tbody>
 </table>
 
-![](https://design.pepabo.com/images/inhouse/components/description-list/size.png)
-
 #### Tabular
 
 デスクトップサイズのときに Term と Description を横並びにするかを決定します。Bullet と併用はできません。
@@ -167,15 +159,13 @@ Key と Value のペアではなく、単純なリストを表示する場合は
   </tbody>
 </table>
 
-![](https://design.pepabo.com/images/inhouse/components/description-list/tabular.png)
-
 ### 5. ステート (States)
 
 Description List 自体はインタラクションを持たないため、固有のステートは持ちません。内部にテキストリンクなどを内包する場合は、そのリンクのステートに従います。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `<dl>` / `<dt>` / `<dd>` を意味通りに使い、見た目だけで横並び・縦並びを実現するために他のタグに置き換えない
 - Tabular 表示でも、Term と Description の対応関係がスクリーンリーダーで読み上げ可能になるよう、構造を崩さない

@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/grid
 $ yarn add @pepabo-inhouse/grid
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Grid コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/grid/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/grid.mdx`
+> Grid コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Grid（グリッド）は、コンテンツを行と列に分割してレイアウトするためのコンポーネントです。Row（行）と Column（列）、そして Column 間の Gap によって、一貫したリズムのレイアウトを組み立てられます。
 
@@ -35,8 +35,6 @@ Grid は、Row（行）の中に Column（列）を並べることで、コン�
 - [GitHub](https://github.com/pepabo/inhouse-components-web/tree/main/packages/grid)
 
 ### 2. 構成要素 (Anatomy)
-
-![](https://design.pepabo.com/images/inhouse/components/grid/dictionary.png)
 
 #### A. Row
 
@@ -67,12 +65,12 @@ Column と Column の間隔です。Row の両端には Gap はありません�
 
 #### いつ使わないか
 
-- 最大幅と左右マージンを制御したいだけの場合は [Container](https://design.pepabo.com/inhouse/components/container/) を使用する
+- 最大幅と左右マージンを制御したいだけの場合は [Container](../container/README.md) を使用する
 - リストや表など、意味を持つ構造には Grid ではなく対応するコンポーネント（List、Table など）を使用する
 
 #### 類似コンポーネントとの違い
 
-- **[Container](https://design.pepabo.com/inhouse/components/container/)**: コンテンツの最大幅と左右マージンを制御する。Grid を Container の中に置いて併用することが多い。
+- **[Container](../container/README.md)**: コンテンツの最大幅と左右マージンを制御する。Grid を Container の中に置いて併用することが多い。
 
 ### 4. バリエーション (Variants)
 
@@ -82,7 +80,7 @@ Column は 12 分割を基準に、1 つの Column が占める分割数を指�
 
 ### 5. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - Grid はレイアウトのための仕組みであり、視覚的な並びと DOM の読み上げ順が食い違わないようにする
 - 列の並べ替えを視覚的に行う場合も、内容の論理的な順序が崩れないようにマークアップする

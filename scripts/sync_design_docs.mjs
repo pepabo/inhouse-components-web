@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * design.pepabo.com のコンポーネントドキュメント（mdx）を、各パッケージの
- * README.md の design-doc マーカー間に転載する。
+ * コンポーネントのデザインドキュメント（mdx）を、各パッケージの
+ * README.md の design-doc マーカー間に反映する。
  *
- *   node scripts/sync_design_docs.mjs --source <design.pepabo.com のパス>
+ *   node scripts/sync_design_docs.mjs --source <デザインドキュメントのソースディレクトリ>
  *   node scripts/sync_design_docs.mjs --source <path> --check   # 書き込まず差分の有無だけ報告
  *
  * mdx は Astro 依存のため、そのまま貼ると壊れる。以下の変換をかける。
@@ -14,19 +14,21 @@
  *      flavor token ごとに変わるため README に固定値を書かない）
  *   4. <span class="element-mark">A</span>Foo 見出し → 「A. Foo」
  *   5. <a href>（Astro の target=_blank 付き）→ markdown リンク
- *   6. 画像・リンクの相対パス → https://design.pepabo.com/... の絶対 URL
- *   7. 見出しを1段下げて README（Usage / Mixins）の階層に整合
+ *   6. コンポーネント間リンク → このリポジトリ内の README への相対リンク
+ *      （対応パッケージが無いリンクと外部相対リンクはリンク解除してテキストのみ残す）
+ *   7. ソース側の画像（/images/... への埋め込み）はコードフェンス外では除去する
+ *      （コードフェンス内の <img> 例は相対パスのまま残す）
+ *   8. 見出しを1段下げて README（Usage / Mixins）の階層に整合
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { join, dirname, resolve, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const SITE = 'https://design.pepabo.com'
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const MDX_SUBDIR = 'src/pages/inhouse/components'
 const START_MARKER =
-  '<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->'
+  '<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->'
 const END_MARKER = '<!-- design-doc:end -->'
 const START_RE = /^<!-- design-doc:start[^\n]*-->$/m
 const END_RE = /^<!-- design-doc:end -->$/m
@@ -84,9 +86,17 @@ function convertCodePreview(body) {
   return out + body.slice(cursor)
 }
 
-/** 相対パスをサイトの絶対 URL にする */
-function absolutize(url) {
-  return url.startsWith('/') ? SITE + url : url
+/**
+ * ソース内の相対リンクをこのリポジトリで解決する。
+ * /inhouse/components/<slug>/ で対応パッケージがあれば README への相対リンク、
+ * それ以外の相対リンクはリンク解除してテキストのみ返す。
+ */
+function resolveLink(href, text) {
+  const m = href.match(/^\/inhouse\/components\/([a-z0-9-]+)\/?(#.*)?$/)
+  if (m && existsSync(join(REPO_ROOT, 'packages', m[1]))) {
+    return `[${text}](../${m[1]}/README.md)`
+  }
+  return text
 }
 
 /** コードフェンスの外側の行だけに変換をかける */
@@ -114,13 +124,6 @@ function convert(mdx, slug) {
 
   body = convertCodePreview(body)
 
-  // <img src="/..."> はコードブロックの内側にも現れる（コピペしてそのまま動く
-  // 例にするため）ので、フェンスを問わず絶対 URL にする
-  body = body.replace(
-    /(<img\b[^>]*?\ssrc=")(\/[^"]*)"/g,
-    (_, head, src) => `${head}${absolutize(src)}"`
-  )
-
   body = transformOutsideFences(body, (line) =>
     line
       // カラーチップは落として flavor 名のみ残す
@@ -130,16 +133,22 @@ function convert(mdx, slug) {
       // <span class="element-mark">A</span>Container → A. Container
       // 1つの見出しに複数（C, D など）並ぶケースがある
       .replace(/<span class="element-mark">([^<]*)<\/span>\s*/g, '$1. ')
-      // <a href="..." target="_blank" ...>text</a> → [text](...)
-      .replace(
-        /<a href="([^"]+)"[^>]*>([^<]*)<\/a>/g,
-        (_, href, text) => `[${text}](${absolutize(href)})`
+      // 画像（markdown 形式・<img> とも）はフェンス外では除去する
+      .replace(/!\[[^\]]*\]\(\/[^)]+\)/g, '')
+      .replace(/<img\b[^>]*\ssrc="\/[^"]*"[^>]*\/?>/g, '')
+      // <a href="..." target="_blank" ...>text</a> → リンク解決
+      .replace(/<a href="([^"]+)"[^>]*>([^<]*)<\/a>/g, (_, href, text) =>
+        href.startsWith('/') ? resolveLink(href, text) : `[${text}](${href})`
       )
-      // markdown の画像・リンクの相対パス → 絶対 URL
-      .replace(/(!?\[[^\]]*\])\((\/[^)]+)\)/g, (_, label, url) => `${label}(${absolutize(url)})`)
+      // markdown の相対リンク → リンク解決
+      .replace(/\[([^\]]*)\]\((\/[^)]+)\)/g, (_, text, url) => resolveLink(url, text))
       // 見出しを1段下げる
       .replace(/^(#{1,5}) /, '#$1 ')
   )
+
+  // 画像の除去で空になったギャラリー用の <div> と、その直前のラベル行
+  // （「アクティブの場合:」など）を取り除く
+  body = body.replace(/(?:^[^\n<#]*[:：]\s*\n\s*)?<div\b[^>]*>\s*<\/div>[ \t]*\n?/gm, '')
 
   // 変換で生じた空行の潰れ・連続をならす
   body = body
@@ -153,8 +162,8 @@ function convert(mdx, slug) {
   const header = [
     '## デザインドキュメント (Design Documentation)',
     '',
-    `> このセクションは Pepabo Design [${label} コンポーネントのドキュメント](${SITE}/inhouse/components/${slug}/) からの転載です。`,
-    `> 原本: design.pepabo.com リポジトリの \`${MDX_SUBDIR}/${slug}.mdx\``,
+    `> ${label} コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。`,
+    '> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。',
   ].join('\n')
 
   return `${header}\n\n${body}`
@@ -188,9 +197,9 @@ function main() {
   const { source, check } = parseArgs(process.argv.slice(2))
   if (!source) {
     console.error(
-      'design.pepabo.com のパスを指定してください:\n' +
-        '  node scripts/sync_design_docs.mjs --source /path/to/design.pepabo.com\n' +
-        '  DESIGN_DOC_SRC=/path/to/design.pepabo.com node scripts/sync_design_docs.mjs'
+      'デザインドキュメントのソースディレクトリを指定してください:\n' +
+        '  node scripts/sync_design_docs.mjs --source /path/to/source\n' +
+        '  DESIGN_DOC_SRC=/path/to/source node scripts/sync_design_docs.mjs'
     )
     process.exit(1)
   }

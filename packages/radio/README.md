@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/radio
 $ yarn add @pepabo-inhouse/radio
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Radio コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/radio/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/radio.mdx`
+> Radio コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Radioは、一般的にラジオボタン（ラジオボタングループ）と呼ばれ、複数の項目から1つだけ選択するコンポーネントです。
 
@@ -55,14 +55,14 @@ Radioグループには初期値が必要です。初期状態で何か1つ選�
 
 - 1つの Radio を単体で配置するとき（排他制御ができないため）
 - 初期値を設定できない／何も選択されていない状態を許容したいとき
-- 選択肢が一つしかない（ON/OFF）場合は、[Checkbox](https://design.pepabo.com/inhouse/components/checkbox/) を使います。
-- リストから2つ以上のアイテムを選択したい場合は、[Checkbox](https://design.pepabo.com/inhouse/components/checkbox/) を使います。
-- リストの数が多く、選択肢を折りたためる場合は、スペース削減のため [Select](https://design.pepabo.com/inhouse/components/select/) を使います。
+- 選択肢が一つしかない（ON/OFF）場合は、[Checkbox](../checkbox/README.md) を使います。
+- リストから2つ以上のアイテムを選択したい場合は、[Checkbox](../checkbox/README.md) を使います。
+- リストの数が多く、選択肢を折りたためる場合は、スペース削減のため [Select](../select/README.md) を使います。
 
 #### 類似コンポーネントとの違い
 
-- **[Checkbox](https://design.pepabo.com/inhouse/components/checkbox/)**: 「ある項目を ON にすると他の項目が OFF になる」排他選択である Radio と異なり、Checkbox は単体で完結し他に影響しません。ON/OFF の2値の切り替えや、複数項目を任意で選択する場面に向きます。
-- **[Select](https://design.pepabo.com/inhouse/components/select/)**: リストの数が多く、使用可能なオプションを折りたためる場合はスペースを削減できる Select を検討します。
+- **[Checkbox](../checkbox/README.md)**: 「ある項目を ON にすると他の項目が OFF になる」排他選択である Radio と異なり、Checkbox は単体で完結し他に影響しません。ON/OFF の2値の切り替えや、複数項目を任意で選択する場面に向きます。
+- **[Select](../select/README.md)**: リストの数が多く、使用可能なオプションを折りたためる場合はスペースを削減できる Select を検討します。
 
 ### 4. バリエーション (Variants)
 
@@ -161,7 +161,7 @@ Focus の Overlay Color を重ねてフォーカスされていることを示�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - HTML 標準の `<input type="radio">` 要素でマークアップする
 - グループ化するすべての Radio に同じ `name` 属性を指定する

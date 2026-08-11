@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/select
 $ yarn add @pepabo-inhouse/select
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Select コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/select/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/select.mdx`
+> Select コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 セレクトボックスは、複数の選択肢から一つを選ぶための入力要素です。ドロップダウンリストとも呼ばれ、限られたスペースで多くの選択肢を提示できる利点があります。
 
@@ -39,8 +39,6 @@ Select を使用する際は、デフォルト値の設定に注意してくだ�
 - [GitHub](https://github.com/pepabo/inhouse-components-web/tree/main/packages/select)
 
 ### 2. 構成要素 (Anatomy)
-
-![](https://design.pepabo.com/images/inhouse/components/select/dictionary.png)
 
 #### A. Container
 
@@ -70,14 +68,14 @@ Select を使用する際は、デフォルト値の設定に注意してくだ�
 
 #### いつ使わないか
 
-- 選択肢の数が4個程度までの場合は、[Radio](https://design.pepabo.com/inhouse/components/radio/) の利用を検討します。すべての選択肢を一度に確認でき、選択時の操作回数も減らせます。
-- 複数選択をさせたい場合は、[Checkbox](https://design.pepabo.com/inhouse/components/checkbox/) を並べて使います。HTML 標準の `<select>` 要素には `multiple` 属性で複数選択する機能もありますが、ブラウザ間の差が大きく操作が暗黙的なため、Inhouse では Select を単数選択に絞っています。
+- 選択肢の数が4個程度までの場合は、[Radio](../radio/README.md) の利用を検討します。すべての選択肢を一度に確認でき、選択時の操作回数も減らせます。
+- 複数選択をさせたい場合は、[Checkbox](../checkbox/README.md) を並べて使います。HTML 標準の `<select>` 要素には `multiple` 属性で複数選択する機能もありますが、ブラウザ間の差が大きく操作が暗黙的なため、Inhouse では Select を単数選択に絞っています。
 - 選択肢が極端に多く一覧として扱いきれない場合は、Select 単体では完結させず、インクリメンタルサーチなど別のフィルタリング手段との併用を検討します。
 
 #### 類似コンポーネントとの違い
 
-- **[Radio](https://design.pepabo.com/inhouse/components/radio/)**: 選択肢が少ない場合は、すべての選択肢を一度に確認できるため、ユーザーの認知負荷を減らすことができます。
-- **[Checkbox](https://design.pepabo.com/inhouse/components/checkbox/)**: 複数選択や ON/OFF の切り替えには Checkbox を使います。
+- **[Radio](../radio/README.md)**: 選択肢が少ない場合は、すべての選択肢を一度に確認できるため、ユーザーの認知負荷を減らすことができます。
+- **[Checkbox](../checkbox/README.md)**: 複数選択や ON/OFF の切り替えには Checkbox を使います。
 
 #### 選択肢の並び順
 
@@ -152,7 +150,7 @@ Selectの見た目を指定できます。
 
 - どちらの Appearance も同じ機能を提供します。サービスのスタイルに最適なものを選択してください。
 - 同一の画面内で使用する場合は、同じセクション内で異なる Appearance を混在させず、セクション内では一貫した Appearance を使います。
-- スタイルの指針は [Textfield](https://design.pepabo.com/inhouse/components/textfield/) と共通です。
+- スタイルの指針は [Textfield](../textfield/README.md) と共通です。
 
 #### Color
 
@@ -474,7 +472,7 @@ Semantic Colorを指定して配色できます。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - HTML 標準の `<select>` 要素でマークアップする（独自実装でドロップダウンを再現しない）
 - `<label>` 要素で Label をマークアップし、`<select>` と関連付ける

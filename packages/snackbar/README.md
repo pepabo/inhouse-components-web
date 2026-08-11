@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/snackbar
 $ yarn add @pepabo-inhouse/snackbar
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Snackbar コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/snackbar/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/snackbar.mdx`
+> Snackbar コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Snackbar は、システムが実行した結果をユーザーに一時的にフィードバックするコンポーネントです。画面の下部に短時間表示され、一定時間で自動的に消えることで、比較的重要度の低い内容であることを示しつつフィードバックを伝えます。
 
@@ -87,7 +87,7 @@ Snackbar は、操作結果が GUI 上に現れにくい場面で、簡素な内
 
 #### 類似コンポーネントとの違い
 
-- **[Callout](https://design.pepabo.com/inhouse/components/callout/)**: 継続的に表示する情報伝達に使う。Snackbar は一時的なフィードバックに使う。
+- **[Callout](../callout/README.md)**: 継続的に表示する情報伝達に使う。Snackbar は一時的なフィードバックに使う。
 
 ### 4. バリエーション (Variants)
 
@@ -320,7 +320,7 @@ Snackbar の表示状態です。`.--active` を付与することで画面に�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ルート要素に `aria-live="polite"` を設定し、スクリーンリーダーで表示時に内容が読み上げられるようにする
 - アクションボタンを置く場合、Snackbar の表示時間内に押せるだけの時間（最低 5 秒以上）を確保するか、ホバー／フォーカス中は自動消去しないようにする

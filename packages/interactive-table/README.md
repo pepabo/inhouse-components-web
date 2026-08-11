@@ -14,20 +14,18 @@ $ npm install @pepabo-inhouse/interactive-table
 $ yarn add @pepabo-inhouse/interactive-table
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Interactive Table コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/interactive-table/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/interactive-table.mdx`
+> Interactive Table コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Interactive Table は、商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするための Table コンポーネントです。一番上に Heading を組み合わせた Row を配置し、その下に Description を組み合わせた Row を垂直に並べて構成します。
 
 ### 1. 概要 (Overview)
 
 #### 説明
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/dictionary.png)
 
 商品やユーザーなど、あるオブジェクトの集合と Interactive にやりとりするための Table です。
 
@@ -48,19 +46,13 @@ Heading の Row と Description の Row の区切りをわかりやすくする�
 
 Align を **Start / End** から選択できます。デフォルトでは左揃えですが、右から左への言語の場合は反転する必要があります。扱うデータが数値型の場合は End にしたほうが可読性が高まるため End にすべきです。見出しの役割を果たし、Description と視覚的に差別化するため、Font Weight は Bold にします。テキストが長くなった場合は三点リーダーで省略します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/heading-text.png)
-
 ##### Text with Sort Button
 
 Align を Start / End から選択できます。デフォルトでは左揃えですが、右から左への言語の場合は反転する必要があります。扱うデータが数値型の場合は End にしたほうが可読性が高まるため End にすべきです。また、Arrow Downward Icon の Button をタップすることで、昇順 / 降順を回転のアニメーションで切り替えることができます。Start の場合は Arrow Icon は最後につけ、End の場合は最初につけます。見出しの役割を果たし、Description と視覚的に差別化するため、Font Weight は Bold にします。テキストが長くなった場合は三点リーダーで省略します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/heading-text-with-sort-button.png)
-
 ##### Checkbox
 
 Align は常に Center です。false / true / mixed から選択します。mixed は Selected が混在していることを表します。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/heading-checkbox.png)
 
 #### Description
 
@@ -70,25 +62,17 @@ Description Row 同士の区切りをわかりやすくするため、下に Sec
 
 Align を Start / End から選択できます。扱うデータが数値型の場合は End にしたほうが可読性が高まるため End にすべきです。テキストが長くなった場合は三点リーダーで省略します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/description-text.png)
-
 ##### Button
 
 Button を配置できます。対象のオブジェクトを操作するのに使います。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/description-button.png)
 
 ##### Checkbox
 
 Align は常に Center です。false / true から選択します。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/description-checkbox.png)
-
 ##### Image
 
 Align は常に Center です。商品オブジェクトなど対象のオブジェクトがアイキャッチ画像によって識別しやすくなると考えられる場合に使用します。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/description-img.png)
 
 ### 3. 使い分け (Usage)
 
@@ -100,15 +84,15 @@ Align は常に Center です。商品オブジェクトなど対象のオブジ
 
 ##### Table を使用したほうがよい場合
 
-オブジェクトの集合とユーザーが Interactive にやりとりする必要がない場合は [Table](https://design.pepabo.com/inhouse/components/table/) の使用を検討します。
+オブジェクトの集合とユーザーが Interactive にやりとりする必要がない場合は [Table](../table/README.md) の使用を検討します。
 
 ##### Card を使用したほうがよい場合
 
-画像が対象オブジェクトを表すメインの情報になる場合は [Card](https://design.pepabo.com/inhouse/components/card/) の使用を検討します。また、モバイルサイズの場合は Interactive Table の方が情報が伝わりやすいが、デスクトップサイズのときは Card の方が情報が伝わりやすい場合は、画面サイズに応じて Card へ変換するパターンも検討します。
+画像が対象オブジェクトを表すメインの情報になる場合は [Card](../card/README.md) の使用を検討します。また、モバイルサイズの場合は Interactive Table の方が情報が伝わりやすいが、デスクトップサイズのときは Card の方が情報が伝わりやすい場合は、画面サイズに応じて Card へ変換するパターンも検討します。
 
 ##### Interactive List を使用したほうがよい場合
 
-垂直なリスト形式で表示したほうが対象オブジェクトの情報が伝わりやすい場合は [Interactive List](https://design.pepabo.com/inhouse/components/interactive-list/) の使用を検討します。
+垂直なリスト形式で表示したほうが対象オブジェクトの情報が伝わりやすい場合は [Interactive List](../interactive-list/README.md) の使用を検討します。
 
 #### 使用上の注意
 
@@ -146,15 +130,9 @@ Heading の Row を画面上部に固定するかを決定します。スクロ�
 
 コレクションビュー「契約商品」とシングルビュー「詳細」をドリルダウン式に行き来できる UI のモックアップです。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/collection-view.png)
-
 コレクションビューでは列ヘッダーからのフィルター・ソートといったテーブル操作の他に、オブジェクト行のアクションとしては行全体のクリックによるシングルビューへの遷移を行います。
 
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/single-view.png)
-
 シングルビュー側に「契約期間の変更」「サブスクリプション解除」など低頻度・破壊的なアクションを配置することで、コレクションビュー側は行全体をクリックしてシングルビューへ遷移するアクションのみに絞り込むことができます。
-
-![](https://design.pepabo.com/images/inhouse/components/interactive-table/collection-view_sp.png)
 
 モバイル端末では横スクロールと行のタップが競合する可能性がありますが、実際の使用においては大きな問題にはなりません。そのため、行全体をタップする設計を採用できます。
 
@@ -176,7 +154,7 @@ Heading の Checkbox にチェックを入れることで、Description 側の C
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `<table>` / `<thead>` / `<tbody>` / `<th>` / `<td>` を意味通りに使い、`<th>` には `scope` を設定して行・列の対応を支援技術に伝える
 - ソート可能な列の状態は `aria-sort` などで支援技術に伝える

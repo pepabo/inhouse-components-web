@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/validation-message
 $ yarn add @pepabo-inhouse/validation-message
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Validation Message コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/validation-message/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/validation-message.mdx`
+> Validation Message コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Validation Message は、フォーム入力の検証結果をユーザーに伝えるテキストコンポーネントです。
 
@@ -27,7 +27,7 @@ Validation Message は、フォーム入力の検証結果をユーザーに伝�
 
 #### 説明
 
-[Textfield](https://design.pepabo.com/inhouse/components/textfield/) などの入力コントロールの下に配置し、入力が受け入れられない場合のエラーや、入力が有効であることなどの検証結果を伝えます。テキスト入力が受け入れられない場合、エラーメッセージはそれを修正する方法の指示を表示します。
+[Textfield](../textfield/README.md) などの入力コントロールの下に配置し、入力が受け入れられない場合のエラーや、入力が有効であることなどの検証結果を伝えます。テキスト入力が受け入れられない場合、エラーメッセージはそれを修正する方法の指示を表示します。
 
 #### リンク
 
@@ -47,8 +47,8 @@ Validation Message は、フォーム入力の検証結果をユーザーに伝�
 
 #### いつ使わないか
 
-- 使用方法など入力フィールドに関する永続的なガイダンスは、検証結果とぶつかって消えてしまわないよう Helper text として Label の直下に配置する（[Form](https://design.pepabo.com/inhouse/components/form/) を参照）
-- フォーム全体や画面レベルの通知には [Callout](https://design.pepabo.com/inhouse/components/callout/) や [Snackbar](https://design.pepabo.com/inhouse/components/snackbar/) を使用する
+- 使用方法など入力フィールドに関する永続的なガイダンスは、検証結果とぶつかって消えてしまわないよう Helper text として Label の直下に配置する（Form を参照）
+- フォーム全体や画面レベルの通知には [Callout](../callout/README.md) や [Snackbar](../snackbar/README.md) を使用する
 
 ### 4. バリエーション (Variants)
 
@@ -106,7 +106,7 @@ Validation Message 自体はインタラクションを起こさないため、�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `aria-describedby` などで対象の入力コントロールとメッセージを関連付け、支援技術にも検証結果が伝わるようにする
 - エラーであることを色だけで伝えず、メッセージのテキストでも伝える

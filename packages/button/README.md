@@ -47,12 +47,12 @@ $ yarn add @pepabo-inhouse/button
 }
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Button コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/button/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/button.mdx`
+> Button コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 ボタンは、ユーザーが押すことで機能やアクションを発動するためのインタラクティブな UI 要素です。コンテキストに応じて Navigation（移動）、Confirmation（確認）、Execution（実行）、Cancellation（取消）、UI Operation（UI 操作）の5種類のロールを持ちます。
 
@@ -74,8 +74,6 @@ $ yarn add @pepabo-inhouse/button
 - [GitHub](https://github.com/pepabo/inhouse-components-web/tree/main/packages/button)
 
 ### 2. 構成要素 (Anatomy)
-
-![](https://design.pepabo.com/images/inhouse/components/button/dictionary.png)
 
 #### A. Container
 
@@ -731,7 +729,7 @@ Bodyの後に要素を挿入することができます。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - `<div>` や `<span>` ではなく、用途に応じて `<button>` 要素または `<a>` 要素でマークアップする
 - アイコンのみで構成されるボタンには、`aria-label` でボタンの機能を伝えるテキストを設定する

@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/skeleton
 $ yarn add @pepabo-inhouse/skeleton
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Skeleton コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/skeleton/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/skeleton.mdx`
+> Skeleton コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Skeleton は、画面の読み込み中であることを、読み込み完了後に表示される要素の形状を模したプレースホルダーとして示すコンポーネントです。形状を事前に提示することで、ユーザーの待機時間に対する体感を改善します。
 
@@ -30,8 +30,6 @@ Skeleton は、画面の読み込み中であることを、読み込み完了�
 Skeleton は、読み込み完了後に表示される要素の輪郭をあらかじめ示すことで、ユーザーが「この場所に何が表示されるのか」を予測できるようにします。
 
 明滅するアニメーションを継続的に表示することで「いま読み込み中である」ことを伝え、読み込み完了とともに実際のコンテンツに差し替わります。
-
-![](https://design.pepabo.com/images/inhouse/components/skeleton/dictionary.png)
 
 #### リンク
 
@@ -71,7 +69,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
 
 #### 類似コンポーネントとの違い
 
-- **[Progress Indicator](https://design.pepabo.com/inhouse/components/progress-indicator/)**: 読み込み完了後の要素の形状が未定の場合や、進捗を示したい場合に使う。Skeleton は形状が定まっている場合に使う。
+- **[Progress Indicator](../progress-indicator/README.md)**: 読み込み完了後の要素の形状が未定の場合や、進捗を示したい場合に使う。Skeleton は形状が定まっている場合に使う。
 
 ### 4. バリエーション (Variants)
 
@@ -81,35 +79,24 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
 
 ```html
 <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
-  <div className='in-skeleton-avatar -size-xs'></div>
-  <div className='in-skeleton-avatar -size-s'></div>
-  <div className='in-skeleton-avatar -size-m'></div>
-  <div className='in-skeleton-avatar -size-l'></div>
-</div>
+        </div>
 ```
 
 #### Button
 
 ```html
 <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
-  <div className='in-skeleton-button -size-xs -width-third'></div>
-  <div className='in-skeleton-button -size-s -width-third'></div>
-  <div className='in-skeleton-button -size-m -width-third'></div>
-  <div className='in-skeleton-button -size-l -width-third'></div>
-  <div className='in-skeleton-button -size-xl -width-third'></div>
-</div>
+          </div>
 ```
 
 #### Checkbox
 
 ```html
-<div className='in-skeleton-checkbox'></div>
 ```
 
 #### Radio
 
 ```html
-<div className='in-skeleton-radio'></div>
 ```
 
 #### Interactive List
@@ -137,8 +124,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
         </div>
         <div className='_trailing'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
       </div>
     </li>
@@ -146,8 +132,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
       <div>
         <div className='_leading'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
         <div className='_body'>
           <div className='_title'>
@@ -160,8 +145,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
       <div>
         <div className='_leading'>
           <div className='_avatar'>
-            <div className='in-skeleton-avatar -size-m'></div>
-          </div>
+                      </div>
         </div>
         <div className='_body'>
           <div className='_title'>
@@ -170,8 +154,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
         </div>
         <div className='_trailing'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
       </div>
     </li>
@@ -191,8 +174,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
         </div>
         <div className='_trailing'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
       </div>
     </li>
@@ -229,8 +211,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
         </div>
         <div className='_trailing'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
       </div>
     </li>
@@ -238,8 +219,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
       <div>
         <div className='_leading'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
         <div className='_body'>
           <div className='_title'>
@@ -255,8 +235,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
       <div>
         <div className='_leading'>
           <div className='_avatar'>
-            <div className='in-skeleton-avatar -size-m'></div>
-          </div>
+                      </div>
         </div>
         <div className='_body'>
           <div className='_title'>
@@ -268,8 +247,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
         </div>
         <div className='_trailing'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
       </div>
     </li>
@@ -292,8 +270,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
         </div>
         <div className='_trailing'>
           <div className='_input'>
-            <div className='in-skeleton-checkbox'></div>
-          </div>
+                      </div>
         </div>
       </div>
     </li>
@@ -308,8 +285,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
   <thead className='-is-sticky'>
     <tr>
       <th style={{ width: '4.5rem' }}>
-        <div className='in-skeleton-checkbox'></div>
-      </th>
+              </th>
       <th style={{ width: '5.5rem' }}></th>
       <th
         role='columnheader'
@@ -346,8 +322,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
   <tbody>
     <tr>
       <td>
-        <div className='in-skeleton-checkbox'></div>
-      </td>
+              </td>
       <td>
         <div className='_media'>
           <div className='_thumbnail'>
@@ -371,8 +346,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
     </tr>
     <tr>
       <td>
-        <div className='in-skeleton-checkbox'></div>
-      </td>
+              </td>
       <td>
         <div className='_media'>
           <div className='_thumbnail'>
@@ -396,8 +370,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
     </tr>
     <tr>
       <td>
-        <div className='in-skeleton-checkbox'></div>
-      </td>
+              </td>
       <td>
         <div className='_media'>
           <div className='_thumbnail'>
@@ -421,8 +394,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
     </tr>
     <tr>
       <td>
-        <div className='in-skeleton-checkbox'></div>
-      </td>
+              </td>
       <td>
         <div className='_media'>
           <div className='_thumbnail'>
@@ -446,8 +418,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
     </tr>
     <tr>
       <td>
-        <div className='in-skeleton-checkbox'></div>
-      </td>
+              </td>
       <td>
         <div className='_media'>
           <div className='_thumbnail'>
@@ -520,7 +491,7 @@ Skeleton が瞬間的にのみ表示されると、画面の点滅として認�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - Skeleton 自体は装飾要素として扱い、`aria-hidden="true"` を設定してスクリーンリーダーから読み上げられないようにする
 - 読み込みが進行中であることはルート領域に `aria-busy="true"` を設定して伝える

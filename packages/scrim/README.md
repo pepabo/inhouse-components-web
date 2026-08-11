@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/scrim
 $ yarn add @pepabo-inhouse/scrim
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Scrim コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/scrim/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/scrim.mdx`
+> Scrim コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Scrim は、ページのコンテンツより上の面に重ねて表示する幕のコンポーネントです。
 
@@ -27,7 +27,7 @@ Scrim は、ページのコンテンツより上の面に重ねて表示する�
 
 #### 説明
 
-[Dialog](https://design.pepabo.com/inhouse/components/dialog/) などのコンポーネントの下に敷いてモードを作り、それより下のページのコンテンツが操作できないことを視覚的に伝えます。ページのコンテンツより上の面に表示されるコンポーネントは Scrim を持つかどうかで Modal と Non-Modal に分けられ、Scrim が存在するとそれより下のページのコンテンツは操作できません。
+[Dialog](../dialog/README.md) などのコンポーネントの下に敷いてモードを作り、それより下のページのコンテンツが操作できないことを視覚的に伝えます。ページのコンテンツより上の面に表示されるコンポーネントは Scrim を持つかどうかで Modal と Non-Modal に分けられ、Scrim が存在するとそれより下のページのコンテンツは操作できません。
 
 #### リンク
 
@@ -41,11 +41,11 @@ Scrim は、ページのコンテンツより上の面に重ねて表示する�
 
 #### いつ使うか
 
-- [Dialog](https://design.pepabo.com/inhouse/components/dialog/) など、モードを作って下の階層の操作を制限するコンポーネントを表示するとき
+- [Dialog](../dialog/README.md) など、モードを作って下の階層の操作を制限するコンポーネントを表示するとき
 
 #### いつ使わないか
 
-- [Snackbar](https://design.pepabo.com/inhouse/components/snackbar/) など、元からあったコンテンツの閲覧・操作を阻害しない形で情報を提示する Non-Modal なコンポーネントには使わない
+- [Snackbar](../snackbar/README.md) など、元からあったコンテンツの閲覧・操作を阻害しない形で情報を提示する Non-Modal なコンポーネントには使わない
 - Scrim を重ねた上のコンテンツのアクションで元のページがリアルタイムに変化するなど、元のページとの関係をより強調させたい場合は Scrim を外すことを検討する
 
 ### 4. バリエーション (Variants)
@@ -81,11 +81,11 @@ Hollow は半透明の黒で下のコンテンツを暗くし、モードが生�
 
 ### 5. ステート (States)
 
-Scrim 自体はインタラクションを起こさないため、固有のステートは持ちません。なお、[Dialog](https://design.pepabo.com/inhouse/components/dialog/) の下に敷いた場合でも、Scrim を押して Dialog を閉じることはしません。
+Scrim 自体はインタラクションを起こさないため、固有のステートは持ちません。なお、[Dialog](../dialog/README.md) の下に敷いた場合でも、Scrim を押して Dialog を閉じることはしません。
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - Scrim で覆った下の階層のコンテンツは、`inert` などを用いて支援技術やキーボード操作からも到達できないようにし、見た目と支援技術の挙動を一致させる
 

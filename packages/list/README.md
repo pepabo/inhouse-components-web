@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/list
 $ yarn add @pepabo-inhouse/list
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/list/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/list.mdx`
+> List コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 List は、あるオブジェクトの集合を順序なしリスト（unordered list）または順序つきリスト（ordered list）として表示するコンポーネントです。リストは入れ子にすることもでき、順序なしと順序つきを混在させた入れ子も可能です。
 
@@ -332,7 +332,7 @@ List 自体はインタラクションを持たないため、固有のステー
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - 番号(マーカー)をブラウザに自動生成させたい場合は `<ol>`、そうでない場合は `<ul>` を使う
 - 項目に紐づく番号自体が情報として永続的な意味を持つ場合(法令の条文番号など、項目の追加・削除で繰り上がると参照が壊れるもの)は `<ul>` を使い、番号は項目テキストの先頭に書く

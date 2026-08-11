@@ -14,12 +14,12 @@ $ npm install @pepabo-inhouse/navigation-drawer
 $ yarn add @pepabo-inhouse/navigation-drawer
 ```
 
-<!-- design-doc:start (design.pepabo.com からの転載。scripts/sync_design_docs.mjs で再生成) -->
+<!-- design-doc:start (scripts/sync_design_docs.mjs で再生成) -->
 
 ## デザインドキュメント (Design Documentation)
 
-> このセクションは Pepabo Design [Navigation Drawer コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/navigation-drawer/) からの転載です。
-> 原本: design.pepabo.com リポジトリの `src/pages/inhouse/components/navigation-drawer.mdx`
+> Navigation Drawer コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約です。
+> このセクションは scripts/sync_design_docs.mjs により生成されています。直接編集しないでください。
 
 Navigation Drawer は、モバイルや小型タブレットなどの小さな画面で、Bottom Navigation に収まらない優先順位の低い遷移先を格納するドロワー型のナビゲーションコンポーネントです。普段は非表示で、ユーザーの操作によって展開されます。
 
@@ -30,7 +30,7 @@ Navigation Drawer は、モバイルや小型タブレットなどの小さな�
 Navigation Drawer は **Header**（オプション）と **Body** で構成されます。Body に Interactive List を持ち、タップすると Interactive List Item が示す最上位の遷移先に移動します。
 
 - **Header**: アカウント切り替えなどに使用できる柔軟なスペース。
-- **Body**: [Interactive List](https://design.pepabo.com/inhouse/components/interactive-list/) を設置して横方向の画面遷移を促します。
+- **Body**: [Interactive List](../interactive-list/README.md) を設置して横方向の画面遷移を促します。
 
 ドロワーは画面を覆う Scrim（暗幕）の上に Content として表示されます。
 
@@ -41,8 +41,6 @@ Navigation Drawer は **Header**（オプション）と **Body** で構成さ�
 
 ### 2. 構成要素 (Anatomy)
 
-![](https://design.pepabo.com/images/inhouse/components/navigation-drawer/dictionary.png)
-
 #### Header
 
 アカウント切り替えや閉じる Button など、柔軟に内容を配置できるスペースです。Body のスクロールに対して固定するかどうかを選択できます。
@@ -51,7 +49,7 @@ Navigation Drawer は **Header**（オプション）と **Body** で構成さ�
 
 #### Body
 
-最上位の遷移先を示す [Interactive List](https://design.pepabo.com/inhouse/components/interactive-list/) を配置します。Drawer の高さよりコンテンツが長い場合は Body 内で垂直方向にスクロールできます。
+最上位の遷移先を示す [Interactive List](../interactive-list/README.md) を配置します。Drawer の高さよりコンテンツが長い場合は Body 内で垂直方向にスクロールできます。
 
 必須/任意: 必須
 
@@ -70,11 +68,11 @@ Drawer の背景に表示する半透明の覆いです。タップで Drawer �
 #### いつ使わないか
 
 - **モバイルなどの小さな画面で遷移先が5つまでに収まる場合**: Bottom Navigation のみを使います。
-- **デスクトップや大型タブレットの場合**: アプリケーションのどこからでもアクセスできる必要がある最上位の遷移先が3つ以上あるなら、[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/) を使います。
+- **デスクトップや大型タブレットの場合**: アプリケーションのどこからでもアクセスできる必要がある最上位の遷移先が3つ以上あるなら、[Side Navigation](../side-navigation/README.md) を使います。
 
 #### 類似コンポーネントとの違い
 
-- **[Side Navigation](https://design.pepabo.com/inhouse/components/side-navigation/)**: 大きな画面で常時表示するナビゲーション。Navigation Drawer は小さな画面でユーザー操作により展開する点が異なります。
+- **[Side Navigation](../side-navigation/README.md)**: 大きな画面で常時表示するナビゲーション。Navigation Drawer は小さな画面でユーザー操作により展開する点が異なります。
 - **Bottom Navigation**: モバイルで上位5つの遷移先を画面下部に常時表示する。Navigation Drawer はそれに収まらない遷移先を格納します。
 
 ### 4. バリエーション (Variants)
@@ -117,8 +115,7 @@ Drawer の重ね順を指定できます。複数のオーバーレイ UI を同
 
 ```html
 <div class="navigation-drawer-component --activated">
-  <div class="_scrim"></div>
-  <div class="_content">
+    <div class="_content">
     <div class="_header">
       <!-- ヘッダー領域（閉じるボタン、アカウント情報など） -->
     </div>
@@ -149,11 +146,8 @@ Drawer の重ね順を指定できます。複数のオーバーレイ UI を同
 
 ```html
 <div class="in-navigation-drawer -layer-1 --activated">
-  <div class="_scrim"></div>
-  <div class="_content">
-    <div class="_header"></div>
-    <div class="_body"></div>
-  </div>
+    <div class="_content">
+          </div>
 </div>
 ```
 
@@ -167,7 +161,7 @@ Drawer の重ね順を指定できます。複数のオーバーレイ UI を同
 
 ### 5. ステート (States)
 
-Body 内部の Interactive List のステートは [Interactive List](https://design.pepabo.com/inhouse/components/interactive-list/) に準じます。
+Body 内部の Interactive List のステートは [Interactive List](../interactive-list/README.md) に準じます。
 
 #### Default
 
@@ -184,7 +178,7 @@ Navigation Drawer が展開され、Scrim と Content が表示されている�
 
 ### 6. アクセシビリティ (Accessibility)
 
-このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則は[アクセシビリティガイドライン](https://design.pepabo.com/foundation/accessibility-guidelines/)を参照してください。
+このコンポーネント固有のチェック項目です。コントラスト・フォーカス可視化など全コンポーネント共通の原則はアクセシビリティガイドラインを参照してください。
 
 - ルート要素に `<nav>` を用い、`aria-label` で「メニュー」などの役割を伝えるラベルを設定する
 - 開閉状態を `aria-expanded` で伝え、開閉操作を行う Button と `aria-controls` で関連付ける
