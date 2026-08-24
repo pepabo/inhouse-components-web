@@ -21,7 +21,27 @@ $ yarn add @pepabo-inhouse/button
 - `$options` を省略した場合は、デフォルトのスタイルに加えてすべてのmodifier（`-appearance-*`, `-color-*`, `-brightness-*`, `-shape-*`, `-size-*`, `-width-*`）のスタイルを出力します。`export` が出力する `.in-button` と同じ内容です。
 - `$options` を明示的に指定した場合は、指定した値（未指定の属性はデフォルト値）のスタイルだけを出力し、modifierのスタイルは出力しません。mixinベース（エイリアシング）でスタイルを固定して使う場合は、こちらの使い方をすることで不要なCSSの出力を避けられます。
 
-使用例は本 README 末尾の[デザインドキュメント内「実装」](#実装)を参照してください。
+```scss
+@use '@pepabo-inhouse/components-web' as inhouse;
+
+// 指定したオプションの組み合わせのスタイルだけが出力される
+.button-submit {
+  @include inhouse.button-style(
+    $options: (
+      appearance: flat,
+      color: neutral,
+      shape: circle,
+      size: m,
+      width: auto,
+    )
+  );
+}
+
+// 従来どおり、デフォルトのスタイルとすべてのmodifierのスタイルが出力される
+.button-legacy {
+  @include inhouse.button-style;
+}
+```
 
 #### `skeleton-style($options: null)`
 
