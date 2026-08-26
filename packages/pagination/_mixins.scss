@@ -1,0 +1,140 @@
+@use "sass:map";
+@use "@pepabo-inhouse/adapter/functions" as adapter;
+@use "@pepabo-inhouse/icon/mixins" as icon;
+@use "./variables";
+
+@mixin style($options: variables.$default-option) {
+  $options: map.merge(variables.$default-option, $options);
+
+  display: flex;
+  gap: adapter.get-spacing-size($level: xs);
+  align-items: center;
+  justify-content: center;
+
+  ._list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: adapter.get-spacing-size($level: xs);
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ._item {
+    display: inline-flex;
+  }
+
+  @include -size-rule($size: map.get($options, size));
+
+  ._link,
+  ._previous,
+  ._next {
+    color: adapter.get-implication-color($name: interactive, $level: 700);
+    text-decoration: underline;
+
+    &:hover {
+      background: adapter.get-background-overlay-color($brightness: light, $state: hover);
+    }
+
+    &:active {
+      background: adapter.get-background-overlay-color($brightness: light, $state: active);
+    }
+
+    &:focus-visible {
+      outline: adapter.get-focus-ring-outline();
+      outline-offset: adapter.get-focus-ring-outline-offset();
+    }
+  }
+
+  ._current {
+    color: adapter.get-text-color($brightness: light, $name: high_emphasis);
+    font-weight: bold;
+    background: adapter.get-surface-color(light, secondary);
+  }
+
+  ._truncation {
+    color: adapter.get-text-color($brightness: light, $name: low_emphasis);
+  }
+
+  ._counter {
+    color: adapter.get-text-color($brightness: light, $name: high_emphasis);
+  }
+
+  ._previous::before {
+    @include icon.style;
+
+    vertical-align: middle;
+    content: "chevron_left";
+  }
+
+  ._next::after {
+    @include icon.style;
+
+    vertical-align: middle;
+    content: "chevron_right";
+  }
+
+  // 端のページでは Previous / Next を出力しない代わりにプレースホルダーを置き、
+  // 要素分の領域を保持する（レイアウトシフトと連続操作中の誤クリックを防ぐ）
+  ._previous.-is-placeholder,
+  ._next.-is-placeholder {
+    visibility: hidden;
+  }
+
+  @each $size in adapter.get-interactive-component-height-keys() {
+    &.-size-#{$size} {
+      @include -size-rule($size: $size);
+    }
+  }
+}
+
+@mixin export {
+  .in-pagination {
+    @include style;
+  }
+}
+
+@mixin -size-rule($size) {
+  $height: adapter.get-interactive-component-height($level: $size);
+
+  ._link,
+  ._current,
+  ._truncation,
+  ._previous,
+  ._next {
+    box-sizing: border-box;
+    min-width: $height;
+    height: $height;
+    padding-inline: adapter.get-spacing-size($level: xs);
+    font-size: adapter.get-font-size($level: $size);
+    border-radius: adapter.get-radius-size($level: m);
+  }
+
+  ._link,
+  ._current,
+  ._truncation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+  }
+
+  // Previous / Next は flex ではなく inline-block にする。
+  // flex コンテナにすると chevron の擬似要素が flex アイテムとして blockify され、
+  // atomic inline ではなくなるためリンクの下線が chevron まで引かれてしまう
+  // （下線は親が描画するので擬似要素側の text-decoration: none では消せない）。
+  // 高さと同じ line-height でテキストを垂直中央に置く。
+  ._previous,
+  ._next {
+    display: inline-block;
+    line-height: $height;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  ._counter {
+    font-size: adapter.get-font-size($level: $size);
+    line-height: adapter.get-line-height($level: $size, $density: normal);
+  }
+}
