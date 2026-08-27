@@ -11,3 +11,7 @@ $ npm install @pepabo-inhouse/description-list
 
 $ yarn add @pepabo-inhouse/description-list
 ```
+
+## デザインドキュメント (Design Documentation)
+
+コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約は、[Pepabo Design の Description List コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/description-list/)を参照してください。
