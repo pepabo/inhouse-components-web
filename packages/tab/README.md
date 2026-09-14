@@ -11,3 +11,7 @@ $ npm install @pepabo-inhouse/tab
 
 $ yarn add @pepabo-inhouse/tab
 ```
+
+## デザインドキュメント (Design Documentation)
+
+コンポーネントの使い分け・バリエーション・ステート・アクセシビリティ・ライティングの規約は、[Pepabo Design の Tab コンポーネントのドキュメント](https://design.pepabo.com/inhouse/components/tab/)を参照してください。
