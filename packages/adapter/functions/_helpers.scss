@@ -400,8 +400,9 @@
   $brightness: light,
   $own-brightness: light
 ) {
-  // AppearanceがTransparentの時、Overlay Colorは自身のBrightnessによってではなく、背景のBrightnessによって決まる
-  @if $appearance == transparent {
+  // 面を持たないAppearanceの時、Overlay Colorは自身のBrightnessによってではなく、背景のBrightnessによって決まる
+  // outlinedは明るい面の上では白い面を持つが、その場合 $own-brightness も light になるため結果は変わらない
+  @if $appearance == transparent or $appearance == outlined {
     @return $brightness;
   } @else {
     @return $own-brightness;

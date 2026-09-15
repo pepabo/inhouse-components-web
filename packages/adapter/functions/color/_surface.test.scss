@@ -41,6 +41,30 @@
   );
 }
 
+@function test-get-button-surface-color-outlined-on-light() {
+  @return assert.equals(
+    functions.get-button-surface-color(
+      $appearance: outlined,
+      $brightness: light,
+      $color: neutral,
+      $state: enabled
+    ),
+    #ffffff
+  );
+}
+
+@function test-get-button-surface-color-outlined-on-dark() {
+  @return assert.equals(
+    functions.get-button-surface-color(
+      $appearance: outlined,
+      $brightness: dark,
+      $color: neutral,
+      $state: enabled
+    ),
+    rgba(#ffffff, 0)
+  );
+}
+
 @function test-get-button-surface-image() {
   @return assert.equals(
     "#{functions.get-button-surface-image($appearance: flat, $brightness: light, $color: neutral, $own-brightness: light, $state: enabled)}",
