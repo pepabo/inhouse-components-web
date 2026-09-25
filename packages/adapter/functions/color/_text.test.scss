@@ -19,14 +19,30 @@
 }
 
 @function test-get-button-text-color() {
+  // 面が暗いので白いインクを選ぶ
   @return assert.equals(
     functions.get-button-text-color(
       $appearance: flat,
       $brightness: light,
       $color: neutral,
+      $own-brightness: dark,
       $state: enabled
     ),
     #ffffff
+  );
+}
+
+@function test-get-button-text-color-on-light-surface() {
+  // 面が明るいので濃いインクを選ぶ
+  @return assert.equals(
+    functions.get-button-text-color(
+      $appearance: flat,
+      $brightness: light,
+      $color: neutral,
+      $own-brightness: light,
+      $state: enabled
+    ),
+    #393c41
   );
 }
 
