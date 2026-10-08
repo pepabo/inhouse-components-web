@@ -144,6 +144,19 @@ $surface-color-tokens: map.get(
   @if $appearance == flat {
     @return button-color.get-button-color($color: $color);
   } @else if $appearance == outlined {
+    // 第1段階: 暗い面の上にいると宣言されたときだけ、面を持たず背景を透過させる。
+    // 明るい面の上では白い面と背景が一致して見えないため、これまでと同じ値を返す。
+    // 第2段階でこの分岐を外し、brightnessによらず面を持たないようにする。
+    @if $brightness == dark {
+      @return rgba(
+        get-surface-color(
+          $brightness: light,
+          $priority: primary
+        ),
+        0
+      );
+    }
+
     @return get-surface-color(
       $brightness: light,
       $priority: primary
