@@ -336,11 +336,23 @@
 }
 
 @mixin -appearance-style($appearance, $brightness, $color, $state) {
+  // 自分の面が明るいか暗いか。overlayの向きと、面の上に載る文字色の両方で使う
+  $own-brightness:
+    adapter.get-background-brightness(
+      $background-color: adapter.get-button-surface-color(
+        $appearance: $appearance,
+        $brightness: $brightness,
+        $color: $color,
+        $state: $state
+      )
+    );
+
   color:
     adapter.get-button-text-color(
       $appearance: $appearance,
       $brightness: $brightness,
       $color: $color,
+      $own-brightness: $own-brightness,
       $state: $state
     );
   font-weight: functions.get-font-weight($appearance: $appearance);
@@ -349,14 +361,7 @@
       $appearance: $appearance,
       $brightness: $brightness,
       $color: $color,
-      $own-brightness: adapter.get-background-brightness(
-        $background-color: adapter.get-button-surface-color(
-          $appearance: $appearance,
-          $brightness: $brightness,
-          $color: $color,
-          $state: $state
-        )
-      ),
+      $own-brightness: $own-brightness,
       $state: $state
     );
   border-color:

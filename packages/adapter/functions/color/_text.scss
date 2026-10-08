@@ -101,6 +101,7 @@ $text-color-tokens: map.get(
   $appearance: flat,
   $brightness: light,
   $color: neutral,
+  $own-brightness: light,
   $state: enabled
 ) {
   $available-appearances: helpers.get-button-appearances();
@@ -139,11 +140,12 @@ $text-color-tokens: map.get(
   }
 
   @if $appearance == flat {
-    @return surface-color.get-surface-color($brightness: light, $priority: primary);
+    // 面の上に載る文字。面が明るければ濃いインク、暗ければ白いインクを選ぶ
+    @return get-text-color($brightness: $own-brightness, $name: high_emphasis);
   } @else if $appearance == outlined {
     @return button-color.get-button-color($color: $color);
   } @else if $appearance == solid {
-    @return surface-color.get-surface-color($brightness: light, $priority: primary);
+    @return get-text-color($brightness: $own-brightness, $name: high_emphasis);
   } @else if $appearance == white {
     @return button-color.get-button-color($color: $color);
   } @else if $appearance == transparent {
